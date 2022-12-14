@@ -17,8 +17,10 @@ module.exports = {
   ],
   output: {
     // Для изображений отведём отдельную папку в *dist*
-    assetModuleFilename: "assets/[hash][ext][query]"
+    assetModuleFilename: "assets/[hash][ext][query]",
+    filename: '[name].[contenthash].js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -52,6 +54,16 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: 'html-loader',
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       }
     ]
   }
