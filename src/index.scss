@@ -3,9 +3,13 @@
 // этот файл подключается к index.ts следующим образом: import './index.scss'; тут нужно будет поменять путь на тот случай если решим хранить все файлы стилей в одной папке
 
 body {
-  background-image: url('./images/IMG_20221110_133002.jpg');
+  background-image: url('./assets/IMG_20221110_133002.jpg');
 }
 
 div {
-  background-color: rgb(104, 35, 46);
+  background-color: rgb(61, 26, 32);
+}
+
+img {
+  width: 50%;
 }
