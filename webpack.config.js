@@ -6,9 +6,19 @@ const path = require('path'),
 let mode = 'development';
 
 (mode === 'development') ? "style-loader" : MiniCssExtractPlugin.loader;
-// TODO: добавить обновления сразу для дев сервера
 module.exports = {
   mode: mode,
+  devServer: {
+    open: true,
+    port: 9000,
+    hot: false,
+    client: {
+      overlay: true,
+      progress: true,
+    },
+    liveReload: true,
+    watchFiles: ['src/*.html'],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(pathToSrc, 'index.html')
