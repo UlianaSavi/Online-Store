@@ -1,12 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin'),
+      MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path'),
       pathToSrc = path.join(__dirname, 'src');
 
 let mode = 'development';
 
-if (process.env.MODE_ENV === 'production') {
-  mode = 'production'
-}
+(mode === 'development') ? "style-loader" : MiniCssExtractPlugin.loader;
 
 module.exports = {
   mode: mode,
@@ -14,8 +13,33 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(pathToSrc, 'index.html')
     }),
+    new MiniCssExtractPlugin(),
   ],
   module: {
-    rules: []
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [ 
+                    "postcss-preset-env",
+                    {
+                      // Options
+                    }
+                  ]
+                ]
+              }
+            }
+          },
+          "sass-loader"
+        ]
+      }
+    ]
   }
 }
