@@ -5,7 +5,10 @@ const path = require('path'),
 
 let mode = 'development';
 
-(mode === 'development') ? "style-loader" : MiniCssExtractPlugin.loader;
+if (process.env.NODE_ENV === 'production') {
+  mode = 'production'
+}
+
 module.exports = {
   mode: mode,
   devServer: {
@@ -28,7 +31,8 @@ module.exports = {
   output: {
     // Для изображений отведём отдельную папку в *dist*
     assetModuleFilename: "assets/[hash][ext][query]",
-    filename: '[name].[contenthash].js'
+    filename: '[name].[contenthash].js',
+    clean: true
   },
   devtool: 'source-map',
   module: {
@@ -36,8 +40,7 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
+          (mode === 'development') ? "style-loader" : MiniCssExtractPlugin.loader,
           {
             loader: "postcss-loader",
             options: {
