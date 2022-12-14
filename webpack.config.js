@@ -6,7 +6,7 @@ const path = require('path'),
 let mode = 'development';
 
 (mode === 'development') ? "style-loader" : MiniCssExtractPlugin.loader;
-
+// TODO: добавить обновления сразу для дев сервера
 module.exports = {
   mode: mode,
   plugins: [
@@ -15,6 +15,10 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
   ],
+  output: {
+    // Для изображений отведём отдельную папку в *dist*
+    assetModuleFilename: "assets/[hash][ext][query]"
+  },
   module: {
     rules: [
       {
@@ -39,6 +43,15 @@ module.exports = {
           },
           "sass-loader"
         ]
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      // Изображения которые вставляются в сам *html*
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
       }
     ]
   }

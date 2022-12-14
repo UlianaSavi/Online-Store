@@ -2,6 +2,10 @@
 // для подключения модульных стилей использовать @use, например `@use _global`
 // этот файл подключается к index.ts следующим образом: import './index.scss'; тут нужно будет поменять путь на тот случай если решим хранить все файлы стилей в одной папке
 
+body {
+  background-image: url('./images/IMG_20221110_133002.jpg');
+}
+
 div {
   background-color: cornflowerblue;
 }

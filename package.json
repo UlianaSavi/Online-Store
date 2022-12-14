@@ -21,6 +21,7 @@
   "homepage": "https://github.com/UlianaSavi/Online-Store#readme",
   "devDependencies": {
     "css-loader": "^6.7.3",
+    "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
     "postcss": "^8.4.20",
