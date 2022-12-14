@@ -4,7 +4,9 @@
   "description": "\"# Online-Store\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "set NODE_ENV=development&&webpack serve --open",
+    "dev": "set NODE_ENV=development&&webpack",
+    "build": "set NODE_ENV=production&&webpack"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/UlianaSavi/Online-Store/issues"
   },
-  "homepage": "https://github.com/UlianaSavi/Online-Store#readme"
+  "homepage": "https://github.com/UlianaSavi/Online-Store#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
 }
