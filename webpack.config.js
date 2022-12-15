@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'),
       MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-      CopyPlugin = require('copy-webpack-plugin');
+      CopyPlugin = require('copy-webpack-plugin'),
+      EslintPlugin = require('eslint-webpack-plugin');
 const path = require('path'),
       pathToSrc = path.join(__dirname, 'src');
 
@@ -36,7 +37,8 @@ module.exports = {
           to: path.resolve(__dirname, 'dist/assets')
         }
       ]
-    })
+    }),
+    new EslintPlugin({ extensions: 'ts' })
   ],
   output: {
     // Для изображений отведём отдельную папку в *dist*
