@@ -1,0 +1,1 @@
+{"version":3,"file":"main.d22aa235c35ae00ad68a.js","mappings":"mBACAA,QAAQC,IAAI,W","sources":["webpack://online-store/./src/index.ts"],"sourcesContent":["import './index.scss';\r\nconsole.log('Hello ts');\r\n// let puk: string;\r\n//  puk = 1;\r\n"],"names":["console","log"],"sourceRoot":""}
