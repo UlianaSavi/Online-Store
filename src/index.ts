@@ -1,4 +1,4 @@
-import './styles/index.scss';
+import './index.scss';
 
 console.log('Hello ts');
 
