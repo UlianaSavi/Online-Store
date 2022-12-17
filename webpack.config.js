@@ -1,14 +1,14 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'),
-      MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-      CopyPlugin = require('copy-webpack-plugin'),
-      EslintPlugin = require('eslint-webpack-plugin');
+  MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+  CopyPlugin = require('copy-webpack-plugin'),
+  EslintPlugin = require('eslint-webpack-plugin');
 const path = require('path'),
-      pathToSrc = path.join(__dirname, 'src');
+  pathToSrc = path.join(__dirname, 'src');
 
 let mode = 'development';
 
 if (process.env.NODE_ENV === 'production') {
-  mode = 'production'
+  mode = 'production';
 }
 
 module.exports = {
@@ -20,10 +20,10 @@ module.exports = {
     hot: false,
     client: {
       overlay: true,
-      progress: true,
+      progress: true
     },
     liveReload: true,
-    watchFiles: ['src/*.html'],
+    watchFiles: ['src/*.html']
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -42,7 +42,7 @@ module.exports = {
   ],
   output: {
     // Для изображений отведём отдельную папку в *dist*
-    assetModuleFilename: "assets/[name][ext]",
+    assetModuleFilename: 'assets/[name][ext]',
     filename: '[name].[contenthash].js',
     clean: true
   },
@@ -61,28 +61,28 @@ module.exports = {
       },
       {
         test: /\.html$/i,
-        loader: "html-loader",
+        loader: 'html-loader'
       },
       {
         test: /\.ts$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.scss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource"
-      },
+        type: 'asset/inline'
+      }
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js'],
-  },
-}
+    extensions: ['.ts', '.js']
+  }
+};
