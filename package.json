@@ -10,7 +10,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  
   "browserList": [
     "last 2 versions",
     " > 1%",
