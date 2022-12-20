@@ -1,6 +1,8 @@
 import './index.scss';
+import { App } from './ts/App';
 
 console.log('Hello ts');
 
-// let puk: string;
-//  puk = 1;
+const root = document.querySelector('#root') as HTMLElement;
+const app = new App(root);
+app.init();
