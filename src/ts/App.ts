@@ -8,6 +8,8 @@ import { create } from './utils/create';
 // import { Counter } from './components/Counter/Counter';
 // import { isEqual } from './utils/objects';
 import { Header } from './components/Header/Header';
+import { MainHTML } from './components/MainHTML/MainHTML';
+import { Footer } from './components/Footer/Footer';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -19,11 +21,15 @@ export class App {
     }
   };
   header: HTMLElement | null;
+  main: HTMLElement | null;
+  footer: HTMLElement | null;
   root: HTMLElement;
 
   constructor(root: HTMLElement) {
     this.root = root;
     this.header = null;
+    this.main = null;
+    this.footer = null;
   }
 
   createDefaultLayer = () => {
@@ -32,6 +38,16 @@ export class App {
       dataAttr: [['id', 'header']],
       parent: this.root
     });
+    this.main = create({
+      tagName: 'main',
+      dataAttr: [['id', 'main']],
+      parent: this.root
+    });
+    this.footer = create({
+      tagName: 'footer',
+      dataAttr: [['id', 'footer']],
+      parent: this.root
+    })
   };
 
   init = () => {
@@ -46,6 +62,10 @@ export class App {
     // const test = new Button(this.header, controller);
     const header = new Header(this.header);
     header.render();
+    const mainHTML = new MainHTML(this.main);
+    mainHTML.render();
+    const footer = new Footer(this.footer);
+    footer.render();
 
     // Dinamic components
     // const counter = new Counter(this.header, controller);
