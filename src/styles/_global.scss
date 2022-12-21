@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$main-color: rgb(31, 30, 30);
+$text-color: white;
+$text-color-dark: rgb(83, 83, 83);
+$svg-icons-color: #ffbd59;
+// $svg-icons-color:  #c1b550bb;
+$border-hover-color: #7a5f3c73;
+
+.body {
+  background-color: $main-color;
+  font-family: 'Roboto', sans-serif;
+  &__wrapper {
+    margin: 0 2em;
+  }
+}
+
+a {
+  color: $text-color;
+}
+
+ul {
+  list-style-type: none;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding-inline-start: 0px;
+}
+
+.btn {
+  border: none;
+  border-radius: 14px;
+  color: $text-color-dark;
+  padding: 7px;
+  background-color: $svg-icons-color;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.btn:hover {
+  color: $svg-icons-color;
+  background-color: $text-color-dark;
+  transition: all 0.5s;
+}

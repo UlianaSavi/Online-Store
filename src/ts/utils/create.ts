@@ -1,7 +1,7 @@
 export interface ICreateProps {
   tagName: string;
   classNames?: string;
-  children?: string | Array<string> | number;
+  children?: string | Array<string> | number | Array<HTMLElement>;
   parent?: Element | null;
   dataAttr?: string[][];
 }
