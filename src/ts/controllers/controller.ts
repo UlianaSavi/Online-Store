@@ -1,4 +1,5 @@
 import { Model } from '../models/model';
+import { IProduct } from '../types';
 
 export class Controller {
   model: Model;
@@ -46,13 +47,11 @@ export class Controller {
     });
   };
 
-  setData = (data: string) => {
-    // const state = this.model.getState();
-
-    console.log(data);
-
+  setData = (data: IProduct[]) => {
+    const state = this.model.getState();
     this.model.setState({
-      ...this.model.getState()
+      ...state,
+      products: data
     });
   };
 }

@@ -1,245 +1,49 @@
+import { Model } from '../../models/model';
 import { IAppState } from '../../types';
 import { create } from '../../utils/create';
+import { Filters } from '../../components/Filters/Filters';
+import { isEqual } from '../../utils/objects';
 
 export class Catalog {
   parent: HTMLElement | null;
-  component: HTMLElement | null;
+  section: HTMLElement | null;
+  model: Model;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, model: Model) {
     this.parent = parent;
-    this.component = null;
+    this.section = null;
+    this.model = model;
   }
 
-  update = (props: IAppState) => {
-    this.render({ props });
+  createDefaultLayer = () => {
+    this.section = create({
+      tagName: 'section',
+      classNames: 'catalog container',
+      parent: this.parent
+    });
   };
 
   render = ({ props, mounted }: { props?: IAppState; mounted?: () => void }) => {
-    console.log(props);
+    console.log('props', props);
+    this.createDefaultLayer();
 
-    this.component?.remove();
+    const filters = new Filters(this.section);
 
-    // рендер родителей для компонент - как в App root контейнер
-    // встраивание компонент - сюда импортируешь компоненты страницы и как children встраиваешь
-    // обработчик что страница отрендерилась - mouted()
+    this.model.subscribe((state, prevState) => {
+      if (isEqual(state.products, prevState?.products)) {
+        return;
+      }
 
-    const btnReset = create({
-      tagName: 'button',
-      classNames: 'btn',
-      children: 'Сбросить фильтры',
-      dataAttr: [['id', 'btnReset']]
+      const categories = [
+        ...new Set(state.products.map((item) => item.category).filter((item) => !!item))
+      ];
+      const names = [
+        ...new Set(state.products.map((item) => item.animeName).filter((item) => !!item))
+      ];
+      filters.update({ names, categories });
     });
 
-    const btnCopy = create({
-      tagName: 'button',
-      classNames: 'btn',
-      children: 'Cкопировать',
-      dataAttr: [['id', 'btnCopy']]
-    });
-
-    const filtersItem = create({
-      tagName: 'div',
-      classNames: 'filters__item__list__item',
-      children: [
-        create({
-          tagName: 'input',
-          classNames: 'custom__checkbox',
-          dataAttr: [
-            ['type', 'checkbox'],
-            ['id', 'Chancellery']
-          ]
-        }),
-        create({
-          tagName: 'label',
-          dataAttr: [['for', 'Chancellery']],
-          children: 'Канцелярия'
-        }),
-        create({
-          tagName: 'span',
-          classNames: 'list__name',
-          children: '(10/10)'
-        })
-      ]
-    });
-
-    const titleSubline = create({
-      tagName: 'div',
-      classNames: 'filters__item__title__subline'
-    });
-
-    const filtersBlock = create({
-      tagName: 'div',
-      classNames: 'filters',
-      children: [
-        create({
-          tagName: 'div',
-          classNames: 'reset',
-          children: [btnReset, btnCopy]
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'filters__items',
-          children: [
-            create({
-              tagName: 'div',
-              classNames: 'filters__item',
-              children: [
-                create({
-                  tagName: 'h3',
-                  classNames: 'filters__item__title',
-                  children: 'Категория'
-                }),
-                titleSubline,
-                create({
-                  tagName: 'div',
-                  classNames: 'filters__item__list',
-                  children: [filtersItem]
-                })
-              ]
-            }),
-            create({
-              tagName: 'div',
-              classNames: 'filters__item',
-              children: [
-                create({
-                  tagName: 'h3',
-                  classNames: 'filters__item__title',
-                  children: 'Названиe произведения'
-                }),
-                titleSubline,
-                create({
-                  tagName: 'div',
-                  classNames: 'filters__item__list'
-                  //   children: [filtersItem]
-                })
-              ]
-            }),
-            create({
-              tagName: 'div',
-              classNames: 'filters__item',
-              children: [
-                create({
-                  tagName: 'h3',
-                  classNames: 'filters__item__title',
-                  children: 'Цена'
-                }),
-                titleSubline,
-                create({
-                  tagName: 'div',
-                  classNames: 'range',
-                  children: [
-                    create({
-                      tagName: 'div',
-                      classNames: 'range__text',
-                      children: [
-                        create({
-                          tagName: 'span',
-                          classNames: 'range__text',
-                          children: [
-                            'От ',
-                            create({
-                              tagName: 'span',
-                              children: '10 руб.',
-                              dataAttr: [['id', 'min__range']]
-                            })
-                          ]
-                        }),
-                        '⟷',
-                        create({
-                          tagName: 'span',
-                          children: [
-                            'До ',
-                            create({
-                              tagName: 'span',
-                              children: '10000 руб.',
-                              dataAttr: [['id', 'max__range']]
-                            })
-                          ]
-                        })
-                      ]
-                    }),
-                    create({
-                      tagName: 'div',
-                      children: `
-                          <input data-role="doubleslider" class="ultra-thin cycle-marker"/>
-                          `
-                    })
-                  ]
-                })
-              ]
-            }),
-            create({
-              tagName: 'div',
-              classNames: 'filters__item',
-              children: [
-                create({
-                  tagName: 'h3',
-                  classNames: 'filters__item__title',
-                  children: 'Количество на складе'
-                }),
-                titleSubline,
-                create({
-                  tagName: 'div',
-                  classNames: 'range',
-                  children: [
-                    create({
-                      tagName: 'div',
-                      classNames: 'range__text',
-                      children: [
-                        create({
-                          tagName: 'span',
-                          classNames: 'range__text',
-                          children: [
-                            'От ',
-                            create({
-                              tagName: 'span',
-                              children: '2.',
-                              dataAttr: [['id', 'min__range2']]
-                            })
-                          ]
-                        }),
-                        '⟷',
-                        create({
-                          tagName: 'span',
-                          children: [
-                            'До ',
-                            create({
-                              tagName: 'span',
-                              children: '1000.',
-                              dataAttr: [['id', 'max__range2']]
-                            })
-                          ]
-                        })
-                      ]
-                    }),
-                    create({
-                      tagName: 'div',
-                      children: `
-                        <input data-role="doubleslider" class="ultra-thin cycle-marker"/>
-                        `
-                    })
-                  ]
-                })
-              ]
-            })
-          ]
-        })
-      ]
-    });
-
-    this.component = create({
-      tagName: 'section',
-      classNames: 'catalog container',
-      children: [
-        create({
-          tagName: 'div',
-          classNames: 'catalog__wrapper',
-          children: [filtersBlock]
-        })
-      ],
-      parent: this.parent
-    });
-
+    this.section?.remove();
     mounted && mounted();
   };
 }
