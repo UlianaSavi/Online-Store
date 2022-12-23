@@ -4,9 +4,9 @@ import { IAppState } from './types';
 import { START_PAGE } from './contains';
 import { create } from './utils/create';
 import { Header } from './components/Header/Header';
-// import { MainHTML } from './components/MainHTML/MainHTML';
+// import { MainHTML } from './pages/MainHTML/MainHTML';
 import { Footer } from './components/Footer/Footer';
-import { Catalog } from './components/CatalogPage/CatalogPage';
+import { Catalog } from './pages/CatalogPage/CatalogPage';
 
 export class App {
   BASE_STATE: IAppState = {
