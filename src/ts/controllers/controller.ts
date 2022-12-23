@@ -46,7 +46,11 @@ export class Controller {
     });
   };
 
-  freeUpdate = () => {
+  setData = (data: string) => {
+    // const state = this.model.getState();
+
+    console.log(data);
+
     this.model.setState({
       ...this.model.getState()
     });

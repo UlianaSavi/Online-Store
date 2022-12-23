@@ -13,7 +13,7 @@ export class MainHTML {
   update = (props: IAppState) => {
     this.render(props);
   };
-  
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   render = (props?: IAppState) => {
     this.component?.remove();
@@ -37,24 +37,24 @@ export class MainHTML {
               children: [
                 create({
                   tagName: 'li',
-                  classNames: "catalog-list__category",
+                  classNames: 'catalog-list__category',
                   children: 'Канцелярия'
                 }),
                 create({
                   tagName: 'li',
-                  classNames: "catalog-list__category",
+                  classNames: 'catalog-list__category',
                   children: 'Фигурки'
                 }),
                 create({
                   tagName: 'li',
-                  classNames: "catalog-list__category",
+                  classNames: 'catalog-list__category',
                   children: 'Манга'
                 }),
                 create({
                   tagName: 'li',
-                  classNames: "catalog-list__category",
+                  classNames: 'catalog-list__category',
                   children: 'Косплей'
-                }),
+                })
               ]
             })
           ]
@@ -66,23 +66,23 @@ export class MainHTML {
         }),
         create({
           tagName: 'article',
-          classNames: "main__popular-items",
+          classNames: 'main__popular-items',
           children: [
             create({
               tagName: 'div',
-              classNames: "popular-items__wrapper",
+              classNames: 'popular-items__wrapper',
               children: [
                 create({
                   tagName: 'div',
-                  classNames: "popular-items__most-popular-item",
+                  classNames: 'popular-items__most-popular-item',
                   children: [
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
-                          classNames: "popular-items__img",
+                          classNames: 'popular-items__img',
                           dataAttr: [
                             ['src', './assets/img/bloknotKlinok.jpg'],
                             ['alt', 'item photo']
@@ -90,7 +90,7 @@ export class MainHTML {
                         }),
                         create({
                           tagName: 'div',
-                          classNames: "popular-items__name-and-price",
+                          classNames: 'popular-items__name-and-price',
                           children: [
                             create({
                               tagName: 'div',
@@ -105,18 +105,18 @@ export class MainHTML {
                 }),
                 create({
                   tagName: 'div',
-                  classNames: "popular-items__others-popular-items",
+                  classNames: 'popular-items__others-popular-items',
                   children: [
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', "./assets/img/figurinesBleanch1.jpg"],
-                            ['alt', "item photo"]
+                            ['src', './assets/img/figurinesBleanch1.jpg'],
+                            ['alt', 'item photo']
                           ]
                         }),
                         create({
@@ -140,14 +140,14 @@ export class MainHTML {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', "./assets/img/bookOnePunchMan2.jpg"],
-                            ['alt', "item photo"]
+                            ['src', './assets/img/bookOnePunchMan2.jpg'],
+                            ['alt', 'item photo']
                           ]
                         }),
                         create({
@@ -171,14 +171,14 @@ export class MainHTML {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', "./assets/img/cosplayNaruto3.jpg"],
-                            ['alt', "item photo"]
+                            ['src', './assets/img/cosplayNaruto3.jpg'],
+                            ['alt', 'item photo']
                           ]
                         }),
                         create({
@@ -202,14 +202,14 @@ export class MainHTML {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', "./assets/img/mangaonePiece2.jpeg"],
-                            ['alt', "item photo"]
+                            ['src', './assets/img/mangaonePiece2.jpeg'],
+                            ['alt', 'item photo']
                           ]
                         }),
                         create({
@@ -239,6 +239,6 @@ export class MainHTML {
         })
       ],
       parent: this.parent
-    })
-  }
+    });
+  };
 }
