@@ -1,6 +1,13 @@
 import { IAppState } from '../../types';
 import { create } from '../../utils/create';
 
+
+export const filter = create({
+  tagName: 'a',
+  children: `To filter page`,
+  dataAttr: [['id', 'filter'], ['href', '/filter']]
+})
+
 export class MainHTML {
   parent: HTMLElement | null;
   component: HTMLElement | null;
@@ -13,7 +20,7 @@ export class MainHTML {
   update = (props: IAppState) => {
     this.render(props);
   };
-  
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   render = (props?: IAppState) => {
     this.component?.remove();
@@ -29,12 +36,8 @@ export class MainHTML {
         }),
         // Временно
         create({
-          tagName: 'a',
-          dataAttr: [
-            ['href', '/filter'],
-            ['id', 'filter']
-          ],
-          children: `To Filter Page`
+          tagName: 'div',
+          children: [filter]
         }),
         create({
           tagName: 'aside',

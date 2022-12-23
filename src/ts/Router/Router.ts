@@ -1,5 +1,6 @@
 import { FilterPage } from "../components/FilterPage/FilterPage";
 import { MainHTML } from "../components/MainHTML/MainHTML";
+import { filter } from "../components/MainHTML/MainHTML";
 
 export class Router {
   routes: object;
@@ -17,11 +18,8 @@ export class Router {
 
   initRouter = () => {
     this.mainTag = document.getElementById('main');
-    const filter = document.getElementById('filter');
-    console.log(typeof filter)
     
     if (filter !== null) {
-      console.log('adding event listener')
       filter.addEventListener('click', (event) => this.route(event));
     }
     window.onpopstate = this.handleLocation;
@@ -30,7 +28,6 @@ export class Router {
   }
   
   route = (event: Event) => {
-    console.log('handling route')
     event = event || window.event;
     event.preventDefault();
 
@@ -42,7 +39,6 @@ export class Router {
   }
   
   handleLocation = async () => {
-    console.log('handing location')
     const path = window.location.pathname;
     const route: FilterPage = this.routes[path as keyof typeof this.routes] || this.routes[404 as keyof typeof this.routes];
     const html = route.render();
