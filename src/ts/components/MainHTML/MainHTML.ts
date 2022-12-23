@@ -27,6 +27,15 @@ export class MainHTML {
           classNames: 'main__header',
           children: 'Каталог'
         }),
+        // Временно
+        create({
+          tagName: 'a',
+          dataAttr: [
+            ['href', '/filter'],
+            ['id', 'filter']
+          ],
+          children: `To Filter Page`
+        }),
         create({
           tagName: 'aside',
           classNames: 'main__catalog',
@@ -240,5 +249,6 @@ export class MainHTML {
       ],
       parent: this.parent
     })
+    return this.component;
   }
 }

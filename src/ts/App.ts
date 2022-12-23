@@ -10,6 +10,7 @@ import { create } from './utils/create';
 import { Header } from './components/Header/Header';
 import { MainHTML } from './components/MainHTML/MainHTML';
 import { Footer } from './components/Footer/Footer';
+import { Router } from './Router/Router';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -24,12 +25,14 @@ export class App {
   main: HTMLElement | null;
   footer: HTMLElement | null;
   root: HTMLElement;
+  router: Router;
 
   constructor(root: HTMLElement) {
     this.root = root;
     this.header = null;
     this.main = null;
     this.footer = null;
+    this.router = new Router();
   }
 
   createDefaultLayer = () => {
@@ -94,5 +97,6 @@ export class App {
     // });
 
     model.fire();
+    this.router.initRouter();
   };
 }
