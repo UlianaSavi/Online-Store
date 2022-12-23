@@ -8,7 +8,6 @@ interface ICounterState {
 
 export interface IAppState {
   page: IPageState;
-  count: ICounterState;
   products: IProduct[];
 }
 

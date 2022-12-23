@@ -8,7 +8,7 @@
       "popularity": 4.69,
       "stock": 94,
       "animeName": "OnePunchMan",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/penalOnepunchMan1.jpg", "./img/penalOnepunchMan2.jpg"]
     },
     {
@@ -19,7 +19,7 @@
       "popularity": 4.44,
       "stock": 34,
       "animeName": "OnePiece",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/ruchkaOnePiece1.jpg", "./img/ruchkaOnePiece2.jpg"]
     },
     {
@@ -30,7 +30,7 @@
       "popularity": 4.86,
       "stock": 36,
       "animeName": "DemonBlade",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/bloknotKlinok.jpg", "./img/bloknotKlinok2.jpg"]
     },
     {
@@ -41,7 +41,7 @@
       "popularity": 4.3,
       "stock": 123,
       "animeName": "OnePunchMan",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/bookOnePunchMan1.jpg", "./img/bookOnePunchMan2.jpg"]
     },
     {
@@ -52,7 +52,7 @@
       "popularity": 4.09,
       "stock": 122,
       "animeName": "TokyoAvengers",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/BookTokyoAvengers1.jfif", "./img/BookTokyoAvengers2.jpg"]
     },
     {
@@ -63,7 +63,7 @@
       "popularity": 4.57,
       "stock": 82,
       "animeName": "TokyoAvengers",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/penalTokyoAvengers1.jpg", "./img/penalTokyoAvengers2.jpg"]
     },
     {
@@ -74,7 +74,7 @@
       "popularity": 4.25,
       "stock": 50,
       "animeName": "Bleach",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/BleachPenal1.jpg", "./img/BleachPenal1.jpg"]
     },
     {
@@ -85,7 +85,7 @@
       "popularity": 4.43,
       "stock": 78,
       "animeName": "Bleach",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/bookBleach1.jpg", "./img/bookBleach2.jpg"]
     },
     {
@@ -96,7 +96,7 @@
       "popularity": 4.54,
       "stock": 97,
       "animeName": "Bleach",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/nakleikiBleach1.jpg", "./img/nakleikiBleach1.jpg"]
     },
     {
@@ -107,7 +107,7 @@
       "popularity": 4.43,
       "stock": 89,
       "animeName": "Naruto",
-      "category": "stationery",
+      "category": "Stationery",
       "images": ["./img/ruchkaNaruto1.jpg", "./img/ruchkaNaruto1.jpg"]
     },
     {
@@ -118,7 +118,7 @@
       "popularity": 4.96,
       "stock": 25,
       "animeName": "OnePunchMan",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaOnePunchMan1.jpg", "./img/mangaOnePunchMan2.jpg"]
     },
     {
@@ -129,7 +129,7 @@
       "popularity": 4.99,
       "stock": 52,
       "animeName": "OnePunchMan",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaOnePunchMan3.jpg", "./img/mangaOnePunchMan4.jpg"]
     },
     {
@@ -140,7 +140,7 @@
       "popularity": 4.59,
       "stock": 61,
       "animeName": "OnePiece",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaOnePiece1.jpeg", "./img/mangaOnePiece2.jpeg"]
     },
     {
@@ -151,7 +151,7 @@
       "popularity": 4.21,
       "stock": 52,
       "animeName": "OnePiece",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaOnePiece3.jpeg", "./img/mangaOnePiece4.jpeg"]
     },
     {
@@ -162,7 +162,7 @@
       "popularity": 4.9,
       "stock": 105,
       "animeName": "GTO",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaGTO1.jpg", "./img/mangaGTO2.jpg"]
     },
     {
@@ -173,7 +173,7 @@
       "popularity": 4.83,
       "stock": 110,
       "animeName": "Bleach",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaBleach1.jpg", "./img/mangaBleach2.jpg"]
     },
     {
@@ -184,7 +184,7 @@
       "popularity": 4.52,
       "stock": 78,
       "animeName": "GTO",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaGTO3.jpg", "./img/mangaGTO4.jpg"]
     },
     {
@@ -195,7 +195,7 @@
       "popularity": 4.56,
       "stock": 88,
       "animeName": "DemonBlade",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaKlinok1.jpg", "./img/mangaKlinok2.jpg"]
     },
     {
@@ -206,7 +206,7 @@
       "popularity": 4.42,
       "stock": 54,
       "animeName": "TokyoAvengers",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaTokyoAvengers1.jpg", "./img/mangaTokyoAvengers2.jpg"]
     },
     {
@@ -217,7 +217,7 @@
       "popularity": 4.06,
       "stock": 140,
       "animeName": "TokyoAvengers",
-      "category": "manga",
+      "category": "Manga",
       "images": ["./img/mangaTokyoAvengers3.jpg", "./img/mangaTokyoAvengers4.jpg"]
     },
     {
@@ -228,7 +228,7 @@
       "popularity": 4.44,
       "stock": 133,
       "animeName": "OnePunchMan",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesOnePunchMan1.jpg", "./img/figurinesOnePunchMan2.jpg"]
     },
     {
@@ -239,7 +239,7 @@
       "popularity": 4.57,
       "stock": 146,
       "animeName": "OnePunchMan",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesOnePunchMan3.jpg", "./img/figurinesOnePunchMan4.jpg"]
     },
     {
@@ -250,7 +250,7 @@
       "popularity": 4.85,
       "stock": 26,
       "animeName": "OnePiece",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesOnePiece1.jpg", "./img/figurinesOnePiece2.jpg"]
     },
     {
@@ -261,7 +261,7 @@
       "popularity": 4.94,
       "stock": 113,
       "animeName": "DemonBlade",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesDemonBlade1.jpg", "./img/figurinesDemonBlade2.jpg"]
     },
     {
@@ -272,7 +272,7 @@
       "popularity": 4.87,
       "stock": 47,
       "animeName": "DemonBlade",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesDemonBlade3.jpg", "./img/figurinesDemonBlade4.jpg"]
     },
     {
@@ -283,7 +283,7 @@
       "popularity": 4.08,
       "stock": 131,
       "animeName": "TokyoAvengers",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesTokyoAvengers1.jpg", "./img/figurinesTokyoAvengers2.jpg"]
     },
     {
@@ -294,7 +294,7 @@
       "popularity": 4.41,
       "stock": 17,
       "animeName": "TokyoAvengers",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesTokyoAvengers3.jpg", "./img/figurinesTokyoAvengers4.jpg"]
     },
     {
@@ -305,7 +305,7 @@
       "popularity": 4.82,
       "stock": 54,
       "animeName": "Bleach",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesBleanch1.jpg", "./img/figurinesBleanch2.jpg"]
     },
     {
@@ -316,7 +316,7 @@
       "popularity": 4.44,
       "stock": 7,
       "animeName": "Bleach",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesBleanch3.jpg", "./img/figurinesBleanch4.jpg"]
     },
     {
@@ -327,7 +327,7 @@
       "popularity": 4.92,
       "stock": 54,
       "animeName": "Naruto",
-      "category": "figurines",
+      "category": "Figurines",
       "images": ["./img/figurinesNaruto1.jpg", "./img/figurinesNaruto2.jpg"]
     },
     {
@@ -338,7 +338,7 @@
       "popularity": 4.96,
       "stock": 140,
       "animeName": "OnePunchMan",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayOnePunchMan1.jpg", "./img/cosplayOnePunchMan2.jpg"]
     },
     {
@@ -349,7 +349,7 @@
       "popularity": 4.74,
       "stock": 30,
       "animeName": "OnePunchMan",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayOnePunchMan3.jpg", "./img/cosplayOnePunchMan4.jpg"]
     },
     {
@@ -360,7 +360,7 @@
       "popularity": 3.31,
       "stock": 106,
       "animeName": "DemonBlade",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayDemonBlade1.jpg", "./img/cosplayDemonBlade2.jpg"]
     },
     {
@@ -371,7 +371,7 @@
       "popularity": 4.01,
       "stock": 136,
       "animeName": "DemonBlade",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayDemonBlade3.jpg", "./img/cosplayDemonBlade4.jpg"]
     },
     {
@@ -382,7 +382,7 @@
       "popularity": 4.06,
       "stock": 68,
       "animeName": "TokyoAvengers",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayTokyoAvengers1.jpg", "./img/cosplayTokyoAvengers2.jpg"]
     },
     {
@@ -393,7 +393,7 @@
       "popularity": 3.86,
       "stock": 39,
       "animeName": "TokyoAvengers",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayTokyoAvengers3.jpg", "./img/cosplayTokyoAvengers4.jpg"]
     },
     {
@@ -404,7 +404,7 @@
       "popularity": 4.52,
       "stock": 12,
       "animeName": "Bleach",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayBleach1.jpg", "./img/cosplayBleach2.jpg"]
     },
     {},
@@ -416,7 +416,7 @@
       "popularity": 3.52,
       "stock": 14,
       "animeName": "Bleach",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayBleach3.jpg", "./img/cosplayBleach4.jpg"]
     },
     {
@@ -427,7 +427,7 @@
       "popularity": 4.8,
       "stock": 20,
       "animeName": "Naruto",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayNaruto1.jpg", "./img/cosplayNaruto2.jpg"]
     },
     {
@@ -438,7 +438,7 @@
       "popularity": 3.55,
       "stock": 21,
       "animeName": "Naruto",
-      "category": "cosplay",
+      "category": "Cosplay",
       "images": ["./img/cosplayNaruto3.jpg", "./img/cosplayNaruto4.jpg"]
     }
   ],

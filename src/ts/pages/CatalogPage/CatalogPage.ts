@@ -16,6 +16,8 @@ export class Catalog {
   }
 
   createDefaultLayer = () => {
+    this.section?.remove();
+
     this.section = create({
       tagName: 'section',
       classNames: 'catalog container',
@@ -24,7 +26,7 @@ export class Catalog {
   };
 
   render = ({ props, mounted }: { props?: IAppState; mounted?: () => void }) => {
-    console.log('props', props);
+    console.log(props);
     this.createDefaultLayer();
 
     const filters = new Filters(this.section);
@@ -43,7 +45,6 @@ export class Catalog {
       filters.update({ names, categories });
     });
 
-    this.section?.remove();
     mounted && mounted();
   };
 }

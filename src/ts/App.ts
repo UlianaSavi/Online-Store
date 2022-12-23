@@ -14,10 +14,7 @@ export class App {
     page: {
       currentPage: START_PAGE
     },
-    products: [],
-    count: {
-      count: 0
-    }
+    products: []
   };
   header: HTMLElement | null;
   main: HTMLElement | null;
@@ -93,7 +90,5 @@ export class App {
     //     controller.freeUpdate();
     //   });
     // });
-
-    model.fire();
   };
 }

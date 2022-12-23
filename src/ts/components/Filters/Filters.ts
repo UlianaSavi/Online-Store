@@ -37,30 +37,32 @@ export class Filters {
       dataAttr: [['id', 'btnCopy']]
     });
 
-    const filtersItem = create({
-      tagName: 'div',
-      classNames: 'filters__item__list__item',
-      children: [
-        create({
-          tagName: 'input',
-          classNames: 'custom__checkbox',
-          dataAttr: [
-            ['type', 'checkbox'],
-            ['id', 'Chancellery']
-          ]
-        }),
-        create({
-          tagName: 'label',
-          dataAttr: [['for', 'Chancellery']],
-          children: 'Канцелярия'
-        }),
-        create({
-          tagName: 'span',
-          classNames: 'list__name',
-          children: '(10/10)'
-        })
-      ]
-    });
+    const filtersItem = props?.categories.map((item) =>
+      create({
+        tagName: 'div',
+        classNames: 'filters__item__list__item',
+        children: [
+          create({
+            tagName: 'input',
+            classNames: 'custom__checkbox',
+            dataAttr: [
+              ['type', 'checkbox'],
+              ['id', item]
+            ]
+          }),
+          create({
+            tagName: 'label',
+            dataAttr: [['for', item]],
+            children: item
+          }),
+          create({
+            tagName: 'span',
+            classNames: 'list__name',
+            children: '(10/10)'
+          })
+        ]
+      })
+    );
 
     const titleSubline = create({
       tagName: 'div',
@@ -93,7 +95,7 @@ export class Filters {
                 create({
                   tagName: 'div',
                   classNames: 'filters__item__list',
-                  children: [filtersItem]
+                  children: filtersItem
                 })
               ]
             }),
@@ -110,7 +112,7 @@ export class Filters {
                 create({
                   tagName: 'div',
                   classNames: 'filters__item__list',
-                  children: [filtersItem]
+                  children: filtersItem
                 })
               ]
             }),
