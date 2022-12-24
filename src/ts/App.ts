@@ -25,14 +25,14 @@ export class App {
   main: HTMLElement | null;
   footer: HTMLElement | null;
   root: HTMLElement;
-  router: Router;
+  router: Router | null;
 
   constructor(root: HTMLElement) {
     this.root = root;
     this.header = null;
     this.main = null;
     this.footer = null;
-    this.router = new Router();
+    this.router = null;
   }
 
   createDefaultLayer = () => {
@@ -55,6 +55,7 @@ export class App {
 
   init = () => {
     this.createDefaultLayer();
+    this.router = new Router(this.main);
 
     const model = new Model(this.BASE_STATE);
     // const controller = new Controller(model);

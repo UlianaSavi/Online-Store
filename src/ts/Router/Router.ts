@@ -4,21 +4,17 @@ import { filter } from "../components/MainHTML/MainHTML";
 
 export class Router {
   routes: object;
-  mainTag: HTMLElement | null;
+  _mainTag: HTMLElement | null;
 
-  constructor () {
-    this.mainTag = null;
+  constructor (mainTag: HTMLElement | null) {
+    this._mainTag = mainTag;
     this.routes = {
-      "/": new MainHTML(this.mainTag),
-      "/filter": new FilterPage(this.mainTag)
+      "/": new MainHTML(this._mainTag),
+      "/filter": new FilterPage(this._mainTag)
     };
-
-    // this.initRouter();
   }
 
   initRouter = (hash?: string) => {
-    this.mainTag = document.getElementById('main');
-    
     if (filter !== null) {
       filter.addEventListener('click', (event) => this.route(event));
     }
@@ -48,9 +44,9 @@ export class Router {
     const route: FilterPage = this.routes[path as keyof typeof this.routes] || this.routes[404 as keyof typeof this.routes];
     const html = route.render();
 
-    if (this.mainTag !== null) {
-      this.mainTag.innerHTML = '';
-      this.mainTag.appendChild(html);
+    if (this._mainTag !== null) {
+      this._mainTag.innerHTML = '';
+      this._mainTag.appendChild(html);
     }
   };
 
