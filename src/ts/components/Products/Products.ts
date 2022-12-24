@@ -2,8 +2,8 @@ import { create } from '../../utils/create';
 
 interface IProductsProps {
   names: string[];
-  prices: number;
-  stocks: number;
+  prices: number[];
+  stocks: number[];
 }
 
 export class Products {
@@ -27,7 +27,8 @@ export class Products {
     this.component = create({
       tagName: 'div',
       classNames: 'products',
-      children: []
+      children: [],
+      parent: this.parent
     });
   };
 }
