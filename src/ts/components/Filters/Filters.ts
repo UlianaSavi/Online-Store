@@ -26,18 +26,45 @@ export class Filters {
     const btnReset = create({
       tagName: 'button',
       classNames: 'btn',
-      children: 'Сбросить фильтры',
+      children: 'Reset Filters',
       dataAttr: [['id', 'btnReset']]
     });
 
     const btnCopy = create({
       tagName: 'button',
       classNames: 'btn',
-      children: 'Cкопировать',
+      children: 'Copy',
       dataAttr: [['id', 'btnCopy']]
     });
 
-    const filtersItem = props?.categories.map((item) =>
+    const categoryItem = props?.names.map((item) =>
+      create({
+        tagName: 'div',
+        classNames: 'filters__item__list__item',
+        children: [
+          create({
+            tagName: 'input',
+            classNames: 'custom__checkbox',
+            dataAttr: [
+              ['type', 'checkbox'],
+              ['id', item]
+            ]
+          }),
+          create({
+            tagName: 'label',
+            dataAttr: [['for', item]],
+            children: item
+          }),
+          create({
+            tagName: 'span',
+            classNames: 'list__name',
+            children: '(10/10)'
+          })
+        ]
+      })
+    );
+
+    const nameItem = props?.categories.map((item) =>
       create({
         tagName: 'div',
         classNames: 'filters__item__list__item',
@@ -89,13 +116,13 @@ export class Filters {
                 create({
                   tagName: 'h3',
                   classNames: 'filters__item__title',
-                  children: 'Категория'
+                  children: 'Category'
                 }),
                 titleSubline,
                 create({
                   tagName: 'div',
                   classNames: 'filters__item__list',
-                  children: filtersItem
+                  children: nameItem
                 })
               ]
             }),
@@ -106,13 +133,13 @@ export class Filters {
                 create({
                   tagName: 'h3',
                   classNames: 'filters__item__title',
-                  children: 'Названиe произведения'
+                  children: 'Name'
                 }),
                 titleSubline,
                 create({
                   tagName: 'div',
                   classNames: 'filters__item__list',
-                  children: filtersItem
+                  children: categoryItem
                 })
               ]
             }),
@@ -123,7 +150,7 @@ export class Filters {
                 create({
                   tagName: 'h3',
                   classNames: 'filters__item__title',
-                  children: 'Цена'
+                  children: 'Price'
                 }),
                 titleSubline,
                 create({
@@ -138,10 +165,10 @@ export class Filters {
                           tagName: 'span',
                           classNames: 'range__text',
                           children: [
-                            'От ',
+                            'From ',
                             create({
                               tagName: 'span',
-                              children: '10 руб.',
+                              children: '10 ₽',
                               dataAttr: [['id', 'min__range']]
                             })
                           ]
@@ -150,10 +177,10 @@ export class Filters {
                         create({
                           tagName: 'span',
                           children: [
-                            'До ',
+                            'To  ',
                             create({
                               tagName: 'span',
-                              children: '10000 руб.',
+                              children: '10000 ₽',
                               dataAttr: [['id', 'max__range']]
                             })
                           ]
@@ -177,7 +204,7 @@ export class Filters {
                 create({
                   tagName: 'h3',
                   classNames: 'filters__item__title',
-                  children: 'Количество на складе'
+                  children: 'Stock'
                 }),
                 titleSubline,
                 create({
@@ -192,7 +219,7 @@ export class Filters {
                           tagName: 'span',
                           classNames: 'range__text',
                           children: [
-                            'От ',
+                            'From ',
                             create({
                               tagName: 'span',
                               children: '2.',
@@ -204,7 +231,7 @@ export class Filters {
                         create({
                           tagName: 'span',
                           children: [
-                            'До ',
+                            'To  ',
                             create({
                               tagName: 'span',
                               children: '1000.',
