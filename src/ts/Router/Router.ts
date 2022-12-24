@@ -16,15 +16,19 @@ export class Router {
     // this.initRouter();
   }
 
-  initRouter = () => {
+  initRouter = (hash?: string) => {
     this.mainTag = document.getElementById('main');
     
     if (filter !== null) {
       filter.addEventListener('click', (event) => this.route(event));
     }
-    window.onpopstate = this.handleLocation;
+
+    window.addEventListener('popstate', () => {
+      this.handleLocation();
+    })
   
-    this.handleLocation();
+    if (hash) this.handleLocation(hash)
+    else this.handleLocation();
   }
   
   route = (event: Event) => {
@@ -38,15 +42,22 @@ export class Router {
     this.handleLocation();
   }
   
-  handleLocation = async () => {
-    const path = window.location.pathname;
+  handleLocation = async (hash?: string) => {
+    let path = window.location.pathname;
+    if (hash) path = hash;
     const route: FilterPage = this.routes[path as keyof typeof this.routes] || this.routes[404 as keyof typeof this.routes];
     const html = route.render();
-    console.log(route)
 
     if (this.mainTag !== null) {
       this.mainTag.innerHTML = '';
       this.mainTag.appendChild(html);
     }
   };
+
+  enableRouteChange () {
+    window.addEventListener('hashchange', () => {
+      const hash = `/${window.location.hash.slice(1)}`;
+      this.initRouter(hash);
+    })
+  }
 }

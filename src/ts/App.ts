@@ -98,5 +98,6 @@ export class App {
 
     model.fire();
     this.router.initRouter();
+    this.router.enableRouteChange();
   };
 }
