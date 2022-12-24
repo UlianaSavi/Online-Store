@@ -16,7 +16,8 @@ $border-hover-color: #7a5f3c73;
 }
 
 a {
-  color: $text-color;
+  color: inherit;
+  text-decoration: none;
 }
 
 ul {

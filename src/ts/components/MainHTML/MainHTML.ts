@@ -4,7 +4,7 @@ import { create } from '../../utils/create';
 
 export const filter = create({
   tagName: 'a',
-  children: `To filter page`,
+  children: `Let's shopping!`,
   dataAttr: [['id', 'filter'], ['href', '/filter']]
 })
 
@@ -34,11 +34,6 @@ export class MainHTML {
           classNames: 'main__header',
           children: 'Каталог'
         }),
-        // Временно
-        create({
-          tagName: 'div',
-          children: [filter]
-        }),
         create({
           tagName: 'aside',
           classNames: 'main__catalog',
@@ -47,25 +42,31 @@ export class MainHTML {
               tagName: 'ul',
               classNames: 'catalog-list',
               children: [
+                // create({
+                //   tagName: 'li',
+                //   classNames: "catalog-list__category",
+                //   children: 'Канцелярия'
+                // }),
+                // create({
+                //   tagName: 'li',
+                //   classNames: "catalog-list__category",
+                //   children: 'Фигурки'
+                // }),
+                // create({
+                //   tagName: 'li',
+                //   classNames: "catalog-list__category",
+                //   children: 'Манга'
+                // }),
+                // create({
+                //   tagName: 'li',
+                //   classNames: "catalog-list__category",
+                //   children: 'Косплей'
+                // }),
+                // Временно
                 create({
                   tagName: 'li',
                   classNames: "catalog-list__category",
-                  children: 'Канцелярия'
-                }),
-                create({
-                  tagName: 'li',
-                  classNames: "catalog-list__category",
-                  children: 'Фигурки'
-                }),
-                create({
-                  tagName: 'li',
-                  classNames: "catalog-list__category",
-                  children: 'Манга'
-                }),
-                create({
-                  tagName: 'li',
-                  classNames: "catalog-list__category",
-                  children: 'Косплей'
+                  children: [filter]
                 }),
               ]
             })
