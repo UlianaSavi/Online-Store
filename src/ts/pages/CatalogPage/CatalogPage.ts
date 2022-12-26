@@ -1,5 +1,4 @@
 import { Model } from '../../models/model';
-import { IAppState } from '../../types';
 import { create } from '../../utils/create';
 import { Filters } from '../../components/Filters/Filters';
 import { isEqual } from '../../utils/objects';
@@ -17,8 +16,6 @@ export class Catalog {
   }
 
   createDefaultLayer = () => {
-    this.section?.remove();
-
     this.section = create({
       tagName: 'section',
       classNames: 'catalog container catalog__wrapper',
@@ -26,8 +23,11 @@ export class Catalog {
     });
   };
 
-  render = ({ props, mounted }: { props?: IAppState; mounted?: () => void }) => {
-    console.log(props);
+  unmount = () => {
+    this.section?.remove();
+  };
+
+  mount = ({ mounted }: { mounted?: () => void }) => {
     this.createDefaultLayer();
 
     const filters = new Filters(this.section);
