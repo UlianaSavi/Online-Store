@@ -1,3 +1,4 @@
+import { Page404 } from "../components/404/404";
 import { FilterPage } from "../components/FilterPage/FilterPage";
 import { MainHTML } from "../components/MainHTML/MainHTML";
 import { filter } from "../components/MainHTML/MainHTML";
@@ -9,6 +10,7 @@ export class Router {
   constructor (mainTag: HTMLElement | null) {
     this._mainTag = mainTag;
     this.routes = {
+      404: new Page404(this._mainTag),
       "/": new MainHTML(this._mainTag),
       "/filter": new FilterPage(this._mainTag)
     };
