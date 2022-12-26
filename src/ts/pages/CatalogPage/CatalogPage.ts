@@ -21,7 +21,7 @@ export class Catalog {
 
     this.section = create({
       tagName: 'section',
-      classNames: 'catalog container',
+      classNames: 'catalog container catalog__wrapper',
       parent: this.parent
     });
   };
@@ -44,13 +44,22 @@ export class Catalog {
       const names = [
         ...new Set(state.products.map((item) => item.animeName).filter((item) => !!item))
       ];
+      filters.update({ names, categories });
+    });
+
+    this.model.subscribe((state, prevState) => {
+      if (isEqual(state.products, prevState?.products)) {
+        return;
+      }
+      const names = [
+        ...new Set(state.products.map((item) => item.animeName).filter((item) => !!item))
+      ];
       const prices = [
         ...new Set(state.products.map((item) => item.price).filter((item) => !!item))
       ];
       const stocks = [
         ...new Set(state.products.map((item) => item.stock).filter((item) => !!item))
       ];
-      filters.update({ names, categories });
       products.update({ names, prices, stocks });
     });
 

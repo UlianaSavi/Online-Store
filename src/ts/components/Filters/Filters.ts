@@ -4,7 +4,6 @@ interface IFilterProps {
   categories: string[];
   names: string[];
 }
-
 export class Filters {
   parent: HTMLElement | null;
   component: HTMLElement | null;
