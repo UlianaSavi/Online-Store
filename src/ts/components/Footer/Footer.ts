@@ -14,8 +14,8 @@ export class Footer {
     this.render(props);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   render = (props?: IAppState) => {
+    console.log(props);
     this.component?.remove();
 
     this.component = create({
@@ -24,14 +24,12 @@ export class Footer {
       children: [
         create({
           tagName: 'section',
-          classNames: "footer__signature",
+          classNames: 'footer__signature',
           children: [
             create({
               tagName: 'a',
               classNames: 'footer__link',
-              dataAttr: [
-                ['href', 'https://github.com/AlyaKavalenka']
-              ],
+              dataAttr: [['href', 'https://github.com/AlyaKavalenka']],
               children: [
                 create({
                   tagName: 'img',
@@ -82,9 +80,7 @@ export class Footer {
             create({
               tagName: 'a',
               classNames: 'footer__link',
-              dataAttr: [
-                ['href', 'https://rs.school/js/']
-              ],
+              dataAttr: [['href', 'https://rs.school/js/']],
               children: [
                 create({
                   tagName: 'img',
@@ -100,6 +96,6 @@ export class Footer {
         })
       ],
       parent: this.parent
-    })
-  }
+    });
+  };
 }
