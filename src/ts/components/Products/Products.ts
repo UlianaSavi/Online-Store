@@ -1,11 +1,10 @@
 import { create } from '../../utils/create';
+import { IProduct } from '../../types';
 
 interface IProductsProps {
-  names: string[];
-  prices: number[];
-  stocks: number[];
+  items: IProduct[];
+  addToCartClickHandler?: (id: number) => void;
 }
-
 export class Products {
   parent: HTMLElement | null;
   component: HTMLElement | null;
@@ -300,16 +299,85 @@ export class Products {
       ]
     });
 
-    const addToCartBtn = create({
-      tagName: 'button',
-      classNames: 'btn',
-      children: 'Add to cart'
-    });
+    const productItem = props?.items.map((item) => {
+      const addToCartBtn = create({
+        tagName: 'button',
+        classNames: 'btn btn__right-padding',
+        children: 'Add to cart'
+      });
 
-    const detailsBtn = create({
-      tagName: 'button',
-      classNames: 'btn',
-      children: 'Details'
+      const detailsLink = create({
+        tagName: 'a',
+        classNames: 'btn',
+        dataAttr: [['href', `/item/${item.id}`]],
+        children: 'Details'
+      });
+
+      if (props.addToCartClickHandler) {
+        addToCartBtn.addEventListener('click', () => {
+          if (item.id) {
+            props?.addToCartClickHandler?.(item.id);
+          }
+        });
+      }
+
+      const items = create({
+        tagName: 'div',
+        classNames: 'products__table__item',
+        children: [
+          create({
+            tagName: 'div',
+            classNames: 'products__table__item-title',
+            children: item.name
+          }),
+          create({
+            tagName: 'div',
+            classNames: 'products__table__item-inner',
+            children: [
+              create({
+                tagName: 'div',
+                classNames: 'products__table__item-img',
+                children: [
+                  create({
+                    tagName: 'img',
+                    dataAttr: [['src', item?.images?.at(0) || '']] // img
+                  })
+                ]
+              }),
+              create({
+                tagName: 'div',
+                classNames: 'products__table__item-info',
+                children: [
+                  create({
+                    tagName: 'span',
+                    children: [
+                      'Price: ',
+                      create({
+                        tagName: 'i',
+                        children: `${item.price}` // price
+                      })
+                    ]
+                  }),
+                  create({
+                    tagName: 'span',
+                    children: [
+                      'Stock: ',
+                      create({
+                        tagName: 'i',
+                        children: `${item.stock}` // сюда подставь цену динамично
+                      })
+                    ]
+                  })
+                ]
+              }),
+              addToCartBtn,
+              detailsLink
+            ]
+          })
+        ]
+      });
+
+      return items;
     });
 
     this.component = create({
@@ -356,66 +424,7 @@ export class Products {
         create({
           tagName: 'div',
           classNames: 'products__table',
-          children: [
-            create({
-              tagName: 'div',
-              classNames: 'products__table__item',
-              children: [
-                create({
-                  tagName: 'div',
-                  classNames: 'products__table__item-title',
-                  children: 'item' // name
-                }),
-                create({
-                  tagName: 'div',
-                  classNames: 'products__table__item-inner',
-                  children: [
-                    create({
-                      tagName: 'div',
-                      classNames: 'products__table__item-img',
-                      children: [
-                        create({
-                          tagName: 'img',
-                          dataAttr: [['src', './assets/img/bloknotKlinok.jpg']] // img
-                        })
-                      ]
-                    }),
-                    create({
-                      tagName: 'div',
-                      classNames: 'products__table__item-info',
-                      children: [
-                        create({
-                          tagName: 'span',
-                          children: [
-                            'Price: ',
-                            create({
-                              tagName: 'i',
-                              children: '100' // price
-                            })
-                          ]
-                        }),
-                        create({
-                          tagName: 'span',
-                          children: [
-                            'Stock: ',
-                            create({
-                              tagName: 'i',
-                              children: '100' // сюда подставь цену динамично
-                            })
-                          ]
-                        })
-                      ]
-                    })
-                  ]
-                }),
-                create({
-                  tagName: 'div',
-                  classNames: 'products__table__item-buttons',
-                  children: [addToCartBtn, detailsBtn]
-                })
-              ]
-            })
-          ]
+          children: productItem
         })
       ],
       parent: this.parent

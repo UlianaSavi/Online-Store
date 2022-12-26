@@ -37,7 +37,6 @@ export class Catalog {
       if (isEqual(state.products, prevState?.products)) {
         return;
       }
-
       const categories = [
         ...new Set(state.products.map((item) => item.category).filter((item) => !!item))
       ];
@@ -51,16 +50,8 @@ export class Catalog {
       if (isEqual(state.products, prevState?.products)) {
         return;
       }
-      const names = [
-        ...new Set(state.products.map((item) => item.animeName).filter((item) => !!item))
-      ];
-      const prices = [
-        ...new Set(state.products.map((item) => item.price).filter((item) => !!item))
-      ];
-      const stocks = [
-        ...new Set(state.products.map((item) => item.stock).filter((item) => !!item))
-      ];
-      products.update({ names, prices, stocks });
+      const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
+      products.update({ items });
     });
 
     mounted && mounted();

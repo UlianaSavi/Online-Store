@@ -64,6 +64,10 @@ $white-opacity: rgba(255, 255, 255, 0.94);
   }
 }
 
+.btn__right-padding {
+  margin-right: 20px;
+}
+
 // input slider
 
 .slider {
@@ -248,11 +252,15 @@ input[type='range'] {
 
     &-title {
       width: 100%;
-      background: $grey;
+      min-height: 64px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: hsl(206deg, 6%, 25%);
       text-align: center;
       border-radius: 2px;
-      padding: 3px;
-      color: $white-opacity;
+      padding: 0 3px;
+      color: rgba(255, 255, 255, 0.94);
       font-size: 16px;
       margin-bottom: 10px;
     }

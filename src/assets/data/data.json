@@ -9,7 +9,7 @@
       "stock": 94,
       "animeName": "OnePunchMan",
       "category": "Stationery",
-      "images": ["./img/penalOnepunchMan1.jpg", "./img/penalOnepunchMan2.jpg"]
+      "images": ["./assets/img/penalOnepunchMan1.jpg", "./assets/img/penalOnepunchMan2.jpg"]
     },
     {
       "id": 2,
@@ -20,7 +20,7 @@
       "stock": 34,
       "animeName": "OnePiece",
       "category": "Stationery",
-      "images": ["./img/ruchkaOnePiece1.jpg", "./img/ruchkaOnePiece2.jpg"]
+      "images": ["./assets/img/ruchkaonePiece1.jpg", "./assets/img/ruchkaOnePiece2.jpg"]
     },
     {
       "id": 3,
@@ -31,7 +31,7 @@
       "stock": 36,
       "animeName": "DemonBlade",
       "category": "Stationery",
-      "images": ["./img/bloknotKlinok.jpg", "./img/bloknotKlinok2.jpg"]
+      "images": ["./assets/img/bloknotKlinok.jpg", "./assets/img/bloknotKlinok2.jpg"]
     },
     {
       "id": 4,
@@ -42,7 +42,7 @@
       "stock": 123,
       "animeName": "OnePunchMan",
       "category": "Stationery",
-      "images": ["./img/bookOnePunchMan1.jpg", "./img/bookOnePunchMan2.jpg"]
+      "images": ["./assets/img/bookOnePunchMan1.jpg", "./assets/img/bookOnePunchMan2.jpg"]
     },
     {
       "id": 5,
@@ -53,7 +53,7 @@
       "stock": 122,
       "animeName": "TokyoAvengers",
       "category": "Stationery",
-      "images": ["./img/BookTokyoAvengers1.jfif", "./img/BookTokyoAvengers2.jpg"]
+      "images": ["./assets/img/BookTokyoAvengers1.jfif", "./assets/img/BookTokyoAvengers2.jpg"]
     },
     {
       "id": 6,
@@ -64,7 +64,7 @@
       "stock": 82,
       "animeName": "TokyoAvengers",
       "category": "Stationery",
-      "images": ["./img/penalTokyoAvengers1.jpg", "./img/penalTokyoAvengers2.jpg"]
+      "images": ["./assets/img/penalTokyoAvengers1.jpg", "./assets/img/penalTokyoAvengers2.jpg"]
     },
     {
       "id": 7,
@@ -75,7 +75,7 @@
       "stock": 50,
       "animeName": "Bleach",
       "category": "Stationery",
-      "images": ["./img/BleachPenal1.jpg", "./img/BleachPenal1.jpg"]
+      "images": ["./assets/img/bleachPenal1.jpg", "./assets/img/bleachPenal2"]
     },
     {
       "id": 8,
@@ -86,7 +86,7 @@
       "stock": 78,
       "animeName": "Bleach",
       "category": "Stationery",
-      "images": ["./img/bookBleach1.jpg", "./img/bookBleach2.jpg"]
+      "images": ["./assets/img/bookBleach1.jpg", "./assets/img/bookBleach2.jpg"]
     },
     {
       "id": 9,
@@ -97,7 +97,7 @@
       "stock": 97,
       "animeName": "Bleach",
       "category": "Stationery",
-      "images": ["./img/nakleikiBleach1.jpg", "./img/nakleikiBleach1.jpg"]
+      "images": ["./assets/img/nakleikiBleach1.jpg", "./assets/img/nakleikiBleach1.jpg"]
     },
     {
       "id": 10,
@@ -108,7 +108,7 @@
       "stock": 89,
       "animeName": "Naruto",
       "category": "Stationery",
-      "images": ["./img/ruchkaNaruto1.jpg", "./img/ruchkaNaruto1.jpg"]
+      "images": ["./assets/img/ruchkaNaruto1.jpg", "./assets/img/ruchkaNaruto1.jpg"]
     },
     {
       "id": 11,
@@ -119,7 +119,7 @@
       "stock": 25,
       "animeName": "OnePunchMan",
       "category": "Manga",
-      "images": ["./img/mangaOnePunchMan1.jpg", "./img/mangaOnePunchMan2.jpg"]
+      "images": ["./assets/img/mangaOnePunchMan1.jpg", "./assets/img/mangaOnePunchMan2.jpg"]
     },
     {
       "id": 12,
@@ -130,7 +130,7 @@
       "stock": 52,
       "animeName": "OnePunchMan",
       "category": "Manga",
-      "images": ["./img/mangaOnePunchMan3.jpg", "./img/mangaOnePunchMan4.jpg"]
+      "images": ["./assets/img/mangaOnePunchMan3.jpg", "./assets/img/mangaOnePunchMan4.jpg"]
     },
     {
       "id": 13,
@@ -141,7 +141,7 @@
       "stock": 61,
       "animeName": "OnePiece",
       "category": "Manga",
-      "images": ["./img/mangaOnePiece1.jpeg", "./img/mangaOnePiece2.jpeg"]
+      "images": ["./assets/img/mangaonePiece1.jpeg", "./assets/img/mangaOnePiece2.jpeg"]
     },
     {
       "id": 14,
@@ -152,7 +152,7 @@
       "stock": 52,
       "animeName": "OnePiece",
       "category": "Manga",
-      "images": ["./img/mangaOnePiece3.jpeg", "./img/mangaOnePiece4.jpeg"]
+      "images": ["./assets/img/mangaonePiece3.jpeg", "./assets/img/mangaOnePiece4.jpeg"]
     },
     {
       "id": 15,
@@ -163,7 +163,7 @@
       "stock": 105,
       "animeName": "GTO",
       "category": "Manga",
-      "images": ["./img/mangaGTO1.jpg", "./img/mangaGTO2.jpg"]
+      "images": ["./assets/img/mangaGTO1.jpg", "./assets/img/mangaGTO2.jpg"]
     },
     {
       "id": 16,
@@ -174,7 +174,7 @@
       "stock": 110,
       "animeName": "Bleach",
       "category": "Manga",
-      "images": ["./img/mangaBleach1.jpg", "./img/mangaBleach2.jpg"]
+      "images": ["./assets/img/mangaBleach1.jpg", "./assets/img/mangaBleach2.jpg"]
     },
     {
       "id": 17,
@@ -185,7 +185,7 @@
       "stock": 78,
       "animeName": "GTO",
       "category": "Manga",
-      "images": ["./img/mangaGTO3.jpg", "./img/mangaGTO4.jpg"]
+      "images": ["./assets/img/mangaGTO3.jpg", "./assets/img/mangaGTO4.jpg"]
     },
     {
       "id": 18,
@@ -196,7 +196,7 @@
       "stock": 88,
       "animeName": "DemonBlade",
       "category": "Manga",
-      "images": ["./img/mangaKlinok1.jpg", "./img/mangaKlinok2.jpg"]
+      "images": ["./assets/img/mangaKlinok1.jpg", "./assets/img/mangaKlinok2.jpg"]
     },
     {
       "id": 19,
@@ -207,7 +207,7 @@
       "stock": 54,
       "animeName": "TokyoAvengers",
       "category": "Manga",
-      "images": ["./img/mangaTokyoAvengers1.jpg", "./img/mangaTokyoAvengers2.jpg"]
+      "images": ["./assets/img/mangaTokyoAvengers1.jpg", "./assets/img/mangaTokyoAvengers2.jpg"]
     },
     {
       "id": 20,
@@ -218,7 +218,7 @@
       "stock": 140,
       "animeName": "TokyoAvengers",
       "category": "Manga",
-      "images": ["./img/mangaTokyoAvengers3.jpg", "./img/mangaTokyoAvengers4.jpg"]
+      "images": ["./assets/img/mangaTokyoAvengers3.jpg", "./assets/img/mangaTokyoAvengers4.jpg"]
     },
     {
       "id": 21,
@@ -229,7 +229,7 @@
       "stock": 133,
       "animeName": "OnePunchMan",
       "category": "Figurines",
-      "images": ["./img/figurinesOnePunchMan1.jpg", "./img/figurinesOnePunchMan2.jpg"]
+      "images": ["./assets/img/figurinesOnePunchMan1.jpg", "./assets/img/figurinesOnePunchMan2.jpg"]
     },
     {
       "id": 22,
@@ -240,7 +240,7 @@
       "stock": 146,
       "animeName": "OnePunchMan",
       "category": "Figurines",
-      "images": ["./img/figurinesOnePunchMan3.jpg", "./img/figurinesOnePunchMan4.jpg"]
+      "images": ["./assets/img/figurinesOnePunchMan3.jpg", "./assets/img/figurinesOnePunchMan4.jpg"]
     },
     {
       "id": 23,
@@ -251,7 +251,7 @@
       "stock": 26,
       "animeName": "OnePiece",
       "category": "Figurines",
-      "images": ["./img/figurinesOnePiece1.jpg", "./img/figurinesOnePiece2.jpg"]
+      "images": ["./assets/img/figurinesOnePiece1.jpg", "./assets/img/figurinesOnePiece2.jpg"]
     },
     {
       "id": 24,
@@ -262,7 +262,7 @@
       "stock": 113,
       "animeName": "DemonBlade",
       "category": "Figurines",
-      "images": ["./img/figurinesDemonBlade1.jpg", "./img/figurinesDemonBlade2.jpg"]
+      "images": ["./assets/img/figurinesDemonBlade1.jpg", "./assets/img/figurinesDemonBlade2.jpg"]
     },
     {
       "id": 25,
@@ -273,7 +273,7 @@
       "stock": 47,
       "animeName": "DemonBlade",
       "category": "Figurines",
-      "images": ["./img/figurinesDemonBlade3.jpg", "./img/figurinesDemonBlade4.jpg"]
+      "images": ["./assets/img/figurinesDemonBlade3.jpg", "./assets/img/figurinesDemonBlade4.jpg"]
     },
     {
       "id": 26,
@@ -284,7 +284,10 @@
       "stock": 131,
       "animeName": "TokyoAvengers",
       "category": "Figurines",
-      "images": ["./img/figurinesTokyoAvengers1.jpg", "./img/figurinesTokyoAvengers2.jpg"]
+      "images": [
+        "./assets/img/figurinesTokyoAvengers1.jpg",
+        "./assets/img/figurinesTokyoAvengers2.jpg"
+      ]
     },
     {
       "id": 27,
@@ -295,7 +298,10 @@
       "stock": 17,
       "animeName": "TokyoAvengers",
       "category": "Figurines",
-      "images": ["./img/figurinesTokyoAvengers3.jpg", "./img/figurinesTokyoAvengers4.jpg"]
+      "images": [
+        "./assets/img/figurinesTokyoAvengers3.jpg",
+        "./assets/img/figurinesTokyoAvengers4.jpg"
+      ]
     },
     {
       "id": 28,
@@ -306,7 +312,7 @@
       "stock": 54,
       "animeName": "Bleach",
       "category": "Figurines",
-      "images": ["./img/figurinesBleanch1.jpg", "./img/figurinesBleanch2.jpg"]
+      "images": ["./assets/img/figurinesBleanch1.jpg", "./assets/img/figurinesBleanch2.jpg"]
     },
     {
       "id": 29,
@@ -317,7 +323,7 @@
       "stock": 7,
       "animeName": "Bleach",
       "category": "Figurines",
-      "images": ["./img/figurinesBleanch3.jpg", "./img/figurinesBleanch4.jpg"]
+      "images": ["./assets/img/figurinesBleanch3.jpg", "./assets/img/figurinesBleanch4.jpg"]
     },
     {
       "id": 30,
@@ -328,7 +334,7 @@
       "stock": 54,
       "animeName": "Naruto",
       "category": "Figurines",
-      "images": ["./img/figurinesNaruto1.jpg", "./img/figurinesNaruto2.jpg"]
+      "images": ["./assets/img/figurinesNaruto1.jpg", "./assets/img/figurinesNaruto2.jpg"]
     },
     {
       "id": 31,
@@ -339,7 +345,7 @@
       "stock": 140,
       "animeName": "OnePunchMan",
       "category": "Cosplay",
-      "images": ["./img/cosplayOnePunchMan1.jpg", "./img/cosplayOnePunchMan2.jpg"]
+      "images": ["./assets/img/cosplayOnePunchMan1.jpg", "./assets/img/cosplayOnePunchMan2.jpg"]
     },
     {
       "id": 32,
@@ -350,7 +356,7 @@
       "stock": 30,
       "animeName": "OnePunchMan",
       "category": "Cosplay",
-      "images": ["./img/cosplayOnePunchMan3.jpg", "./img/cosplayOnePunchMan4.jpg"]
+      "images": ["./assets/img/cosplayOnePunchMan3.jpg", "./assets/img/cosplayOnePunchMan4.jpg"]
     },
     {
       "id": 33,
@@ -361,7 +367,7 @@
       "stock": 106,
       "animeName": "DemonBlade",
       "category": "Cosplay",
-      "images": ["./img/cosplayDemonBlade1.jpg", "./img/cosplayDemonBlade2.jpg"]
+      "images": ["./assets/img/cosplayDemonBlade1.jpg", "./assets/img/cosplayDemonBlade2.jpg"]
     },
     {
       "id": 34,
@@ -372,7 +378,7 @@
       "stock": 136,
       "animeName": "DemonBlade",
       "category": "Cosplay",
-      "images": ["./img/cosplayDemonBlade3.jpg", "./img/cosplayDemonBlade4.jpg"]
+      "images": ["./assets/img/cosplayDemonBlade3.jpg", "./assets/img/cosplayDemonBlade4.jpg"]
     },
     {
       "id": 35,
@@ -383,7 +389,7 @@
       "stock": 68,
       "animeName": "TokyoAvengers",
       "category": "Cosplay",
-      "images": ["./img/cosplayTokyoAvengers1.jpg", "./img/cosplayTokyoAvengers2.jpg"]
+      "images": ["./assets/img/cosplayTokyoAvengers1.jpg", "./assets/img/cosplayTokyoAvengers2.jpg"]
     },
     {
       "id": 36,
@@ -394,7 +400,7 @@
       "stock": 39,
       "animeName": "TokyoAvengers",
       "category": "Cosplay",
-      "images": ["./img/cosplayTokyoAvengers3.jpg", "./img/cosplayTokyoAvengers4.jpg"]
+      "images": ["./assets/img/cosplayTokyoAvengers3.jpg", "./assets/img/cosplayTokyoAvengers4.jpg"]
     },
     {
       "id": 37,
@@ -405,9 +411,8 @@
       "stock": 12,
       "animeName": "Bleach",
       "category": "Cosplay",
-      "images": ["./img/cosplayBleach1.jpg", "./img/cosplayBleach2.jpg"]
+      "images": ["./assets/img/cosplayBleach1.jpg", "./assets/img/cosplayBleach2.jpg"]
     },
-    {},
     {
       "id": 38,
       "name": "Rukia Kuchiki Cosplay Costume",
@@ -417,7 +422,7 @@
       "stock": 14,
       "animeName": "Bleach",
       "category": "Cosplay",
-      "images": ["./img/cosplayBleach3.jpg", "./img/cosplayBleach4.jpg"]
+      "images": ["./assets/img/cosplayBleach3.jpg", "./assets/img/cosplayBleach4.jpg"]
     },
     {
       "id": 39,
@@ -428,7 +433,7 @@
       "stock": 20,
       "animeName": "Naruto",
       "category": "Cosplay",
-      "images": ["./img/cosplayNaruto1.jpg", "./img/cosplayNaruto2.jpg"]
+      "images": ["./assets/img/cosplayNaruto1.jpg", "./assets/img/cosplayNaruto2.jpg"]
     },
     {
       "id": 40,
@@ -439,7 +444,7 @@
       "stock": 21,
       "animeName": "Naruto",
       "category": "Cosplay",
-      "images": ["./img/cosplayNaruto3.jpg", "./img/cosplayNaruto4.jpg"]
+      "images": ["./assets/img/cosplayNaruto3.jpg", "./assets/img/cosplayNaruto4.jpg"]
     }
   ],
   "total": 40,
