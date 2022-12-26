@@ -45,7 +45,7 @@ export class Header {
               classNames: 'search__input',
               dataAttr: [
                 ['type', 'text'],
-                ['placeholder', 'Поиск']
+                ['placeholder', 'Search']
               ]
             }),
             create({
