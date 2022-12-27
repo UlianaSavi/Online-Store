@@ -14,9 +14,7 @@ export class App {
     page: {
       currentPage: START_PAGE
     },
-    count: {
-      count: 0
-    }
+    products: []
   };
   header: HTMLElement | null;
   main: HTMLElement | null;
@@ -47,6 +45,7 @@ export class App {
       tagName: 'footer',
       dataAttr: [['id', 'footer']],
       parent: this.root
+    });
     });
   };
 
