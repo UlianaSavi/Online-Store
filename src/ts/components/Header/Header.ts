@@ -1,4 +1,3 @@
-import { IAppState } from '../../types';
 import { create } from '../../utils/create';
 
 export class Header {
@@ -10,14 +9,11 @@ export class Header {
     this.component = null;
   }
 
-  update = (props: IAppState) => {
-    this.render(props);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render = (props?: IAppState) => {
+  unmount = () => {
     this.component?.remove();
-
+  };
+  
+  mount = () => {
     this.component = create({
       tagName: 'div',
       classNames: 'header__wrapper',

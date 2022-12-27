@@ -66,12 +66,12 @@ export class App {
     // const plus = new Button(this.header, controller);
     // const test = new Button(this.header, controller);
     const header = new Header(this.header);
-    header.render();
+    header.mount();
     const mainPage = new MainHTML(this.main);
     const filtersPage = new FilterPage(this.main);
     const page404 = new Page404(this.main);
     const footer = new Footer(this.footer);
-    footer.render();
+    footer.mount();
 
     const routes = {
       '404': {
