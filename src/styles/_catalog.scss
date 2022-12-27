@@ -16,45 +16,45 @@ $white-opacity: rgba(255, 255, 255, 0.94);
   width: 100%;
   height: 100%;
   background-color: $grey;
-  border-radius: 5px;
+  border-radius: 0.3em;
   font-size: medium;
   color: $white-opacity;
 }
 
 .filters {
-  max-width: 320px;
-  max-height: 828px;
-  margin-right: 20px;
-  padding: 12px 8px 10px 8px;
+  max-width: 20em;
+  max-height: 51.75em;
+  margin-right: 1.25em;
+  padding: 0.75em 0.5em 0.625em 0.5em;
 
   &__item {
-    margin: 8px 0;
-    padding: 5px;
-    border-radius: 5px;
+    margin: 0.5em 0;
+    padding: 0.3125em;
+    border-radius: 0.3em;
     background-color: $dark-grey;
 
     &__title {
       text-align: center;
-      margin: 8px 0;
+      margin: 0.5em 0;
     }
 
     &__list__item {
       display: flex;
-      padding-bottom: 12px;
+      padding-bottom: 0.75em;
     }
 
     &__title__subline {
       width: 100%;
       height: 1px;
       background: #ffa50030;
-      margin: 5px 0 13px 0;
+      margin: 0.3125em 0 0.8125em 0;
     }
   }
 
   .reset {
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375em;
   }
 
   .list__name {
@@ -65,7 +65,7 @@ $white-opacity: rgba(255, 255, 255, 0.94);
 }
 
 .btn__right-padding {
-  margin-right: 20px;
+  margin-right: 1.25em;
 }
 
 // input slider
@@ -83,56 +83,56 @@ $white-opacity: rgba(255, 255, 255, 0.94);
 }
 
 .range {
-  margin-bottom: 5px;
+  margin-bottom: 0.3125em;
 }
 
-label {
+.label {
   cursor: pointer;
 }
 
-input[type='checkbox'] {
+.custom__checkbox {
   cursor: pointer;
 }
 
-input[type='checkbox']:checked {
+.custom__checkbox:checked {
   accent-color: $orange;
 }
 
-input[type='range'] {
+.input-range {
   width: 100%;
-  max-width: 310px;
+  max-width: 19.375em;
   background: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 
   &::-webkit-slider-runnable-track {
-    border-radius: 10px;
+    border-radius: 0.625em;
     height: 100%;
-    max-height: 10px;
-    border: 2px solid $orange;
+    max-height: 0.625em;
+    border: 0.125em solid $orange;
     background-color: $lite-grey;
   }
   &::-webkit-slider-thumb {
     background: $grey;
-    border: 2px solid $orange;
+    border: 0.125em solid $orange;
     border-radius: 100%;
     cursor: pointer;
-    width: 15px;
-    height: 15px;
+    width: 0.9375em;
+    height: 0.9375em;
     -webkit-appearance: none;
-    margin-top: -4px;
+    margin-top: -0.25em;
   }
 }
 
 .range__text {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 10px;
+  margin-bottom: 0.625em;
 
-  & span {
+  &__span {
     width: 100%;
-    max-width: 105px;
+    max-width: 6.5625em;
     text-align: center;
   }
 }
@@ -141,17 +141,17 @@ input[type='range'] {
 
 .products {
   width: 100%;
-  max-width: 1200px;
-  padding: 8px;
+  max-width: 75em;
+  padding: 0.5em;
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    padding: 8px;
+    margin-bottom: 0.625em;
+    padding: 0.5em;
     background: $dark-grey;
-    border-radius: 5px;
+    border-radius: 0.3em;
 
     &__views {
       display: flex;
@@ -162,16 +162,16 @@ input[type='range'] {
     &__view-big {
       display: flex;
       flex-wrap: wrap;
-      max-width: 38px;
+      max-width: 2.375em;
       border: 1px solid rgba($orange, 0.5);
-      border-radius: 3px;
+      border-radius: 0.1875em;
       cursor: pointer;
       transition: all 0.5s;
     }
 
     &__view-main {
-      padding: 2px;
-      margin-right: 5px;
+      padding: 0.125em;
+      margin-right: 0.3125em;
     }
 
     &__view-main:hover,
@@ -182,23 +182,23 @@ input[type='range'] {
     }
 
     &__view-big {
-      padding: 2px 2px 2px 3px;
+      padding: 0.125em 0.1875em;
     }
   }
 }
 
 .view-active {
-  box-shadow: 0 0 0 2px rgba($orange, 0.7);
+  box-shadow: 0 0 0 0.125em rgba($orange, 0.7);
 }
 
 .sort__list__btn {
   display: flex;
   align-items: center;
-  padding: 8px 10px 8px 15px;
+  padding: 0.5em 0.625em 0.5em 0.9375em;
 }
 
 .sort__list__btn-text {
-  margin-right: 25px;
+  margin-right: 1.5625em;
 }
 
 // shapes
@@ -211,23 +211,23 @@ input[type='range'] {
   border-radius: 100%;
   overflow: hidden;
   margin: 1px;
-  font-size: 24px;
+  font-size: 1em;
   white-space: nowrap;
   user-select: none;
 }
 
 .round__shape.little {
-  width: 3px;
-  height: 3px;
+  width: 0.1875em;
+  height: 0.1875em;
 }
 
 .triangle-down {
-  width: 15px;
-  height: 15px;
-  margin: 0 10px 7px 0;
+  width: 0.9375em;
+  height: 0.9375em;
+  margin: 0 0.625em 0.4375em 0;
   background: none;
-  border-top: 2.5px solid $dark-grey;
-  border-right: 2.5px solid $dark-grey;
+  border-top: 0.15625em solid $dark-grey;
+  border-right: 0.15625em solid $dark-grey;
   transform: rotate(135deg);
 }
 
@@ -238,39 +238,40 @@ input[type='range'] {
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: rgba(39, 41, 43, 0.6);
-  border-radius: 5px;
-  padding: 8px;
+  border-radius: 0.3em;
+  padding: 0.5em;
 
   &__item {
     width: 100%;
     height: 100%;
     max-width: 23%;
     background-color: $dark-grey;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 8px;
+    border-radius: 0.3em;
+    margin-bottom: 1.25em;
+    padding: 0.5em;
 
     &-title {
       width: 100%;
-      min-height: 64px;
+      min-height: 4em;
       display: flex;
       justify-content: center;
       align-items: center;
       background: hsl(206deg, 6%, 25%);
       text-align: center;
-      border-radius: 2px;
-      padding: 0 3px;
+      border-radius: 0.125em;
+      padding: 0 0.1875em;
       color: rgba(255, 255, 255, 0.94);
-      font-size: 16px;
-      margin-bottom: 10px;
+      font-size: 1em;
+      margin-bottom: 0.625em;
     }
 
     &-info {
       display: flex;
       flex-direction: column;
       background: $dark-grey;
-      span {
-        margin-bottom: 8px;
+
+      .span {
+        margin-bottom: 0.5em;
       }
     }
 
@@ -278,11 +279,11 @@ input[type='range'] {
       display: flex;
       align-items: center;
       justify-content: center;
-      max-height: 200px;
+      max-height: 12.5em;
       overflow: hidden;
-      margin-bottom: 10px;
+      margin-bottom: 0.625em;
 
-      img {
+      .img {
         width: 100%;
       }
     }
@@ -291,7 +292,7 @@ input[type='range'] {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2px;
+      margin-bottom: 0.125em;
     }
   }
 }

@@ -23,280 +23,31 @@ export class Products {
 
     this.component?.remove();
 
+    const roundsMainCount = 16;
+    const roundsBigCount = 36;
+
     const viewMain = create({
       tagName: 'div',
       classNames: 'products__header__view-main view-active',
-      children: [
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape',
-          children: '.'
-        }),
+      children: new Array(roundsMainCount).fill(null).map(() =>
         create({
           tagName: 'div',
           classNames: 'round__shape',
           children: '.'
         })
-      ]
+      )
     });
 
     const viewBig = create({
       tagName: 'div',
       classNames: 'products__header__view-big',
-      children: [
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'round__shape little',
-          children: '.'
-        }),
+      children: new Array(roundsBigCount).fill(null).map(() =>
         create({
           tagName: 'div',
           classNames: 'round__shape little',
           children: '.'
         })
-      ]
+      )
     });
 
     const productItem = props?.items.map((item) => {
@@ -340,6 +91,7 @@ export class Products {
                 children: [
                   create({
                     tagName: 'img',
+                    classNames: 'img',
                     dataAttr: [['src', item?.images?.at(0) || '']] // img
                   })
                 ]
@@ -350,21 +102,23 @@ export class Products {
                 children: [
                   create({
                     tagName: 'span',
+                    classNames: 'span',
                     children: [
                       'Price: ',
                       create({
                         tagName: 'i',
-                        children: `${item.price}` // price
+                        children: `${item.price}`
                       })
                     ]
                   }),
                   create({
                     tagName: 'span',
+                    classNames: 'span',
                     children: [
                       'Stock: ',
                       create({
                         tagName: 'i',
-                        children: `${item.stock}` // сюда подставь цену динамично
+                        children: `${item.stock}`
                       })
                     ]
                   })

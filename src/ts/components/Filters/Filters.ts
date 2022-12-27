@@ -51,6 +51,7 @@ export class Filters {
           }),
           create({
             tagName: 'label',
+            classNames: 'label',
             dataAttr: [['for', item]],
             children: item
           }),
@@ -78,6 +79,7 @@ export class Filters {
           }),
           create({
             tagName: 'label',
+            classNames: 'label',
             dataAttr: [['for', item]],
             children: item
           }),
@@ -162,7 +164,7 @@ export class Filters {
                       children: [
                         create({
                           tagName: 'span',
-                          classNames: 'range__text',
+                          classNames: 'range__text__span',
                           children: [
                             'From ',
                             create({
@@ -189,7 +191,7 @@ export class Filters {
                     create({
                       tagName: 'div',
                       children: `
-                        <input data-role="doubleslider" class="ultra-thin cycle-marker"/>
+                        <input data-role="doubleslider" class="input-range ultra-thin cycle-marker"/>
                         `
                     })
                   ]
@@ -216,7 +218,7 @@ export class Filters {
                       children: [
                         create({
                           tagName: 'span',
-                          classNames: 'range__text',
+                          classNames: 'range__text__span',
                           children: [
                             'From ',
                             create({
@@ -243,7 +245,7 @@ export class Filters {
                     create({
                       tagName: 'div',
                       children: `
-                      <input data-role="doubleslider" class="ultra-thin cycle-marker"/>
+                      <input data-role="doubleslider" class="input-range ultra-thin cycle-marker"/>
                       `
                     })
                   ]
