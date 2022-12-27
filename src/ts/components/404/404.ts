@@ -1,4 +1,3 @@
-import { IAppState } from '../../types';
 import { create } from '../../utils/create';
 
 export class Page404 {
@@ -10,23 +9,21 @@ export class Page404 {
     this.component = null;
   }
 
-  update = (props: IAppState) => {
-    this.render(props);
+  unmount = () => {
+    this.component?.remove();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render = (props?: IAppState) => {
-    this.component?.remove();
-
+  mount = () => {
     this.component = create({
       tagName: 'div',
       classNames: 'main__wrapper',
       children: [
-        create({
-          tagName: 'h2',
-          classNames: 'main__header',
-          children: '404 page'
-        })
+        // create({
+        //   tagName: 'h2',
+        //   classNames: 'main__header',
+        //   children: ['404 page']
+        // })
+        `404 page`
       ],
       parent: this.parent
     })

@@ -1,4 +1,3 @@
-import { IAppState } from '../../types';
 import { create } from '../../utils/create';
 
 
@@ -17,14 +16,11 @@ export class MainHTML {
     this.component = null;
   }
 
-  update = (props: IAppState) => {
-    this.render(props);
+  unmount = () => {
+    this.component?.remove();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render = (props?: IAppState) => {
-    this.component?.remove();
-
+  mount = () => {
     this.component = create({
       tagName: 'div',
       classNames: 'main__wrapper',

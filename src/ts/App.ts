@@ -11,6 +11,8 @@ import { Header } from './components/Header/Header';
 import { MainHTML } from './components/MainHTML/MainHTML';
 import { Footer } from './components/Footer/Footer';
 import { Router } from './Router/Router';
+import { FilterPage } from './components/FilterPage/FilterPage';
+import { Page404 } from './components/404/404';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -55,7 +57,6 @@ export class App {
 
   init = () => {
     this.createDefaultLayer();
-    this.router = new Router(this.main);
 
     const model = new Model(this.BASE_STATE);
     // const controller = new Controller(model);
@@ -66,11 +67,26 @@ export class App {
     // const test = new Button(this.header, controller);
     const header = new Header(this.header);
     header.render();
-    const mainHTML = new MainHTML(this.main);
-    mainHTML.render();
+    const mainPage = new MainHTML(this.main);
+    const filtersPage = new FilterPage(this.main);
+    const page404 = new Page404(this.main);
     const footer = new Footer(this.footer);
     footer.render();
 
+    const routes = {
+      '404': {
+        mount: page404.mount,
+        unmount: page404.unmount
+      },
+      '/': {
+         mount: mainPage.mount,
+         unmount: mainPage.unmount
+       },
+      '/filter': {
+         mount: filtersPage.mount,
+         unmount: filtersPage.unmount
+       }
+     };
     // Dinamic components
     // const counter = new Counter(this.header, controller);
 
@@ -98,6 +114,7 @@ export class App {
     // });
 
     model.fire();
+    this.router = new Router(this.main, routes);
     this.router.initRouter();
     // this.router.enableRouteChange();
   };
