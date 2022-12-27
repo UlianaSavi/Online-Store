@@ -35,6 +35,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src/assets'),
           to: path.resolve(__dirname, 'dist/assets')
+        },
+        {
+          from: path.resolve(__dirname, 'src/netlify.toml'),
+          to: path.resolve(__dirname, 'dist/netlify.toml')
         }
       ]
     }),
@@ -84,5 +88,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js']
-  }
+  },
+  devServer: {    historyApiFallback: true,  },
 };
