@@ -45,7 +45,6 @@ export class Router {
     let path = window.location.pathname;
 
     if (Object.prototype.hasOwnProperty.call(this.routes, path) === false) {
-      console.log(Object.prototype.hasOwnProperty.call(this.routes, path) === false);
       path = '404';
     }
 
