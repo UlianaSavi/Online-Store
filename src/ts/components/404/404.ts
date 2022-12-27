@@ -17,14 +17,7 @@ export class Page404 {
     this.component = create({
       tagName: 'div',
       classNames: 'main__wrapper',
-      children: [
-        // create({
-        //   tagName: 'h2',
-        //   classNames: 'main__header',
-        //   children: ['404 page']
-        // })
-        `404 page`
-      ],
+      children: [`404 page`],
       parent: this.parent
     })
     return this.component;

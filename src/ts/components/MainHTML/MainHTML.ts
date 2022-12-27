@@ -38,27 +38,6 @@ export class MainHTML {
               tagName: 'ul',
               classNames: 'catalog-list',
               children: [
-                // create({
-                //   tagName: 'li',
-                //   classNames: "catalog-list__category",
-                //   children: 'Канцелярия'
-                // }),
-                // create({
-                //   tagName: 'li',
-                //   classNames: "catalog-list__category",
-                //   children: 'Фигурки'
-                // }),
-                // create({
-                //   tagName: 'li',
-                //   classNames: "catalog-list__category",
-                //   children: 'Манга'
-                // }),
-                // create({
-                //   tagName: 'li',
-                //   classNames: "catalog-list__category",
-                //   children: 'Косплей'
-                // }),
-                // Временно
                 create({
                   tagName: 'li',
                   classNames: "catalog-list__category",
