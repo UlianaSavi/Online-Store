@@ -36,7 +36,7 @@ export class PageDetails {
         return;
       }
       const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
-      details.update({ items });
+      details.update({ item: items[0] });
     });
 
     mounted && mounted();

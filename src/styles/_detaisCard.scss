@@ -34,6 +34,7 @@ $black-opacity: rgb(0 0 0 / 70%);
   }
 
   &-item {
+    text-decoration: none;
     margin: 0 1.875em;
   }
 }
@@ -60,7 +61,6 @@ $black-opacity: rgb(0 0 0 / 70%);
       max-height: 4.25em;
       overflow: hidden;
       margin: 0 0 0.625em 0.625em;
-      border: 1px solid $orange;
       border-radius: 0.3125em;
       cursor: pointer;
     }
