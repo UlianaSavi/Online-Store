@@ -3,11 +3,11 @@ import { IAppState } from './types';
 import { START_PAGE } from './contains';
 import { create } from './utils/create';
 import { Header } from './components/Header/Header';
-import { PageMain } from './components/PageMain/PageMain';
+import { PageMain } from './pages/PageMain/PageMain';
 import { Footer } from './components/Footer/Footer';
 import { Router } from './Router/Router';
-import { PageFilter } from './components/PageFilter/PageFilter';
-import { Page404 } from './components/Page404/Page404';
+import { PageFilter } from './pages/PageFilter/PageFilter';
+import { Page404 } from './pages/Page404/Page404';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -45,7 +45,6 @@ export class App {
       tagName: 'footer',
       dataAttr: [['id', 'footer']],
       parent: this.root
-    });
     });
   };
 

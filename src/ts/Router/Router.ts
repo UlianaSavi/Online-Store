@@ -1,4 +1,4 @@
-import { filter } from '../components/PageMain/PageMain';
+import { filter } from '../pages/PageMain/PageMain';
 
 interface IRoutes {
   [key: string]: {

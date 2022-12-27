@@ -55,8 +55,7 @@ export class Header {
               `
             })
           ]
-        }),
-        card
+        })
       ],
       parent: this.parent
     });

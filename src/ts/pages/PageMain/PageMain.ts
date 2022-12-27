@@ -1,5 +1,12 @@
 import { create } from '../../utils/create';
 
+
+export const filter = create({
+  tagName: 'a',
+  children: `Let's shopping!`,
+  dataAttr: [['id', 'filter'], ['href', '/filter']]
+})
+
 export class PageMain {
   parent: HTMLElement | null;
   component: HTMLElement | null;
@@ -33,24 +40,9 @@ export class PageMain {
               children: [
                 create({
                   tagName: 'li',
-                  classNames: 'catalog-list__category',
-                  children: 'Канцелярия'
+                  classNames: "catalog-list__category",
+                  children: [filter]
                 }),
-                create({
-                  tagName: 'li',
-                  classNames: 'catalog-list__category',
-                  children: 'Фигурки'
-                }),
-                create({
-                  tagName: 'li',
-                  classNames: 'catalog-list__category',
-                  children: 'Манга'
-                }),
-                create({
-                  tagName: 'li',
-                  classNames: 'catalog-list__category',
-                  children: 'Косплей'
-                })
               ]
             })
           ]
@@ -62,23 +54,23 @@ export class PageMain {
         }),
         create({
           tagName: 'article',
-          classNames: 'main__popular-items',
+          classNames: "main__popular-items",
           children: [
             create({
               tagName: 'div',
-              classNames: 'popular-items__wrapper',
+              classNames: "popular-items__wrapper",
               children: [
                 create({
                   tagName: 'div',
-                  classNames: 'popular-items__most-popular-item',
+                  classNames: "popular-items__most-popular-item",
                   children: [
                     create({
                       tagName: 'div',
-                      classNames: 'popular-items__item',
+                      classNames: "popular-items__item",
                       children: [
                         create({
                           tagName: 'img',
-                          classNames: 'popular-items__img',
+                          classNames: "popular-items__img",
                           dataAttr: [
                             ['src', './assets/img/bloknotKlinok.jpg'],
                             ['alt', 'item photo']
@@ -86,7 +78,7 @@ export class PageMain {
                         }),
                         create({
                           tagName: 'div',
-                          classNames: 'popular-items__name-and-price',
+                          classNames: "popular-items__name-and-price",
                           children: [
                             create({
                               tagName: 'div',
@@ -101,18 +93,18 @@ export class PageMain {
                 }),
                 create({
                   tagName: 'div',
-                  classNames: 'popular-items__others-popular-items',
+                  classNames: "popular-items__others-popular-items",
                   children: [
                     create({
                       tagName: 'div',
-                      classNames: 'popular-items__item',
+                      classNames: "popular-items__item",
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/figurinesBleanch1.jpg'],
-                            ['alt', 'item photo']
+                            ['src', "./assets/img/figurinesBleanch1.jpg"],
+                            ['alt', "item photo"]
                           ]
                         }),
                         create({
@@ -136,14 +128,14 @@ export class PageMain {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: 'popular-items__item',
+                      classNames: "popular-items__item",
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/bookOnePunchMan2.jpg'],
-                            ['alt', 'item photo']
+                            ['src', "./assets/img/bookOnePunchMan2.jpg"],
+                            ['alt', "item photo"]
                           ]
                         }),
                         create({
@@ -167,14 +159,14 @@ export class PageMain {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: 'popular-items__item',
+                      classNames: "popular-items__item",
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/cosplayNaruto3.jpg'],
-                            ['alt', 'item photo']
+                            ['src', "./assets/img/cosplayNaruto3.jpg"],
+                            ['alt', "item photo"]
                           ]
                         }),
                         create({
@@ -198,14 +190,14 @@ export class PageMain {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: 'popular-items__item',
+                      classNames: "popular-items__item",
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/mangaonePiece2.jpeg'],
-                            ['alt', 'item photo']
+                            ['src', "./assets/img/mangaonePiece2.jpeg"],
+                            ['alt', "item photo"]
                           ]
                         }),
                         create({
@@ -235,6 +227,7 @@ export class PageMain {
         })
       ],
       parent: this.parent
-    });
-  };
+    })
+    return this.component;
+  }
 }
