@@ -1,6 +1,6 @@
 import { create } from '../../utils/create';
 
-export class FilterPage {
+export class PageFilter {
   parent: HTMLElement | null;
   component: HTMLElement | null;
 

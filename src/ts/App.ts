@@ -3,11 +3,11 @@ import { IAppState } from './types';
 import { START_PAGE } from './contains';
 import { create } from './utils/create';
 import { Header } from './components/Header/Header';
-import { MainHTML } from './components/MainHTML/MainHTML';
+import { PageMain } from './components/PageMain/PageMain';
 import { Footer } from './components/Footer/Footer';
 import { Router } from './Router/Router';
-import { FilterPage } from './components/FilterPage/FilterPage';
-import { Page404 } from './components/404/404';
+import { PageFilter } from './components/PageFilter/PageFilter';
+import { Page404 } from './components/Page404/Page404';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -47,7 +47,7 @@ export class App {
       tagName: 'footer',
       dataAttr: [['id', 'footer']],
       parent: this.root
-    })
+    });
   };
 
   init = () => {
@@ -60,8 +60,8 @@ export class App {
     header.mount();
     const footer = new Footer(this.footer);
     footer.mount();
-    const mainPage = new MainHTML(this.main);
-    const filtersPage = new FilterPage(this.main);
+    const pageMain = new PageMain(this.main);
+    const pageFilter = new PageFilter(this.main);
     const page404 = new Page404(this.main);
 
     const routes = {
@@ -70,17 +70,17 @@ export class App {
         unmount: page404.unmount
       },
       '/': {
-         mount: mainPage.mount,
-         unmount: mainPage.unmount
-       },
+        mount: pageMain.mount,
+        unmount: pageMain.unmount
+      },
       '/filter': {
-         mount: filtersPage.mount,
-         unmount: filtersPage.unmount
-       }
-     };
+        mount: pageFilter.mount,
+        unmount: pageFilter.unmount
+      }
+    };
 
     // Dinamic components
-  
+
     model.fire();
     this.router = new Router(this.main, routes);
     this.router.initRouter();

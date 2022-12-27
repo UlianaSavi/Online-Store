@@ -7,7 +7,7 @@ export const filter = create({
   dataAttr: [['id', 'filter'], ['href', '/filter']]
 })
 
-export class MainHTML {
+export class PageMain {
   parent: HTMLElement | null;
   component: HTMLElement | null;
 
