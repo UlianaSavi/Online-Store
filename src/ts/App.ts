@@ -1,24 +1,19 @@
-import { Model } from './models/model';
-// import { PageController } from './controllers/page.controller';
-// import { Controller } from './controllers/controller';
-import { IAppState } from './types';
+// import { Model } from './models/model';
+import { IAppState /* IProductsResponse */ } from './types';
 import { START_PAGE } from './contains';
 import { create } from './utils/create';
-// import { Button } from './components/Button/Button';
-// import { Counter } from './components/Counter/Counter';
-// import { isEqual } from './utils/objects';
 import { Header } from './components/Header/Header';
-import { MainHTML } from './components/MainHTML/MainHTML';
+import { PageMain } from './pages/PageMain/PageMain';
 import { Footer } from './components/Footer/Footer';
+// import { Catalog } from './pages/PageCatalog/PageCatalog';
+// import { Controller } from './controllers/controller';
 
 export class App {
   BASE_STATE: IAppState = {
     page: {
       currentPage: START_PAGE
     },
-    count: {
-      count: 0
-    }
+    products: []
   };
   header: HTMLElement | null;
   main: HTMLElement | null;
@@ -47,52 +42,34 @@ export class App {
       tagName: 'footer',
       dataAttr: [['id', 'footer']],
       parent: this.root
-    })
+    });
   };
 
   init = () => {
     this.createDefaultLayer();
 
-    const model = new Model(this.BASE_STATE);
+    // const model = new Model(this.BASE_STATE);
     // const controller = new Controller(model);
 
     // Static components
-    // const minus = new Button(this.header, controller);
-    // const plus = new Button(this.header, controller);
-    // const test = new Button(this.header, controller);
     const header = new Header(this.header);
     header.render();
-    const mainHTML = new MainHTML(this.main);
-    mainHTML.render();
     const footer = new Footer(this.footer);
     footer.render();
 
     // Dinamic components
-    // const counter = new Counter(this.header, controller);
+    const pageMain = new PageMain(this.main);
+    pageMain.mount(); // это тоже потом переместится в роутер, пока оставляю тут
 
-    // Subscribers
-    // model.subscribe((state, prevState) => {
-    //   if (isEqual(state.count, prevState?.count)) {
-    //     return;
+    // рендером будет управлять роутер поэтому пока оставляю рендером каталога закоментированным
+
+    // const catalog = new Catalog(this.main, model);
+    // catalog.mount({
+    //   mounted: () => {
+    //     fetch('../assets/data/data.json')
+    //       .then((data) => data.json())
+    //       .then((data: IProductsResponse) => controller.setData(data.products)); // controller.setData(data) - а начале страница ( кроме хедера и футера ) будет пустая и рендерится только при обновлении, но ты будешь цеплять данные и рендерить их в компоненты страницы и тк в компонентых появятся появятся данные, то есть апдейт - страница отрендерится ( тк компоненты подписаны в странице на изменения)
     //   }
-    //   counter.update(state.count.count);
     // });
-    // model.subscribe((state) => {
-    //   minus.update(state, 'Minus', () => {
-    //     controller.minus();
-    //   });
-    // });
-    // model.subscribe((state) => {
-    //   plus.update(state, 'Plus', () => {
-    //     controller.plus();
-    //   });
-    // });
-    // model.subscribe((state) => {
-    //   test.update(state, 'Free', () => {
-    //     controller.freeUpdate();
-    //   });
-    // });
-
-    model.fire();
   };
 }
