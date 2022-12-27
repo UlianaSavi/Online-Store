@@ -1,6 +1,6 @@
 import { create } from '../../utils/create';
 
-export class MainHTML {
+export class PageMain {
   parent: HTMLElement | null;
   component: HTMLElement | null;
 
