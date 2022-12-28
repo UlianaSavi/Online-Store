@@ -33,6 +33,7 @@ align-items: center;
 .footer__signature, .footer__course {
 display: flex;
 flex-direction: column;
+color: $text-color;
 }
 .footer__date {
 padding-top: 0.8em;
