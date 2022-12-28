@@ -1,0 +1,34 @@
+@import 'global';
+
+$orange: #ffbd59;
+
+.page404 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.text {
+  color: $text-color;
+  white-space: nowrap;
+
+  &__h1 {
+    font-size: 2em;
+  }
+
+  &__link-to-main{
+    display: inline-block;
+    padding: 0.5em;
+    margin: 1em 0;
+    border: 2px solid $text-color;
+    border-radius: 0.5em;
+    text-transform: uppercase;
+    color: $text-color;
+    // add transition for hover
+
+    &:hover {
+      color:  $orange;
+      border-color: $orange;
+    }
+  }
+}
