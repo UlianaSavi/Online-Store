@@ -169,7 +169,7 @@ export class Filters {
                             'From ',
                             create({
                               tagName: 'span',
-                              children: '10 ₽',
+                              children: '10 $',
                               dataAttr: [['id', 'min__range']]
                             })
                           ]
@@ -181,7 +181,7 @@ export class Filters {
                             'To  ',
                             create({
                               tagName: 'span',
-                              children: '10000 ₽',
+                              children: '10000 $',
                               dataAttr: [['id', 'max__range']]
                             })
                           ]

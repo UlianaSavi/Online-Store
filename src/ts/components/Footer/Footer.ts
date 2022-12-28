@@ -12,7 +12,7 @@ export class Footer {
   unmount = () => {
     this.component?.remove();
   };
-  
+
   mount = () => {
     this.component = create({
       tagName: 'div',
@@ -20,14 +20,12 @@ export class Footer {
       children: [
         create({
           tagName: 'section',
-          classNames: "footer__signature",
+          classNames: 'footer__signature',
           children: [
             create({
               tagName: 'a',
               classNames: 'footer__link',
-              dataAttr: [
-                ['href', 'https://github.com/AlyaKavalenka']
-              ],
+              dataAttr: [['href', 'https://github.com/AlyaKavalenka']],
               children: [
                 create({
                   tagName: 'img',
@@ -78,9 +76,7 @@ export class Footer {
             create({
               tagName: 'a',
               classNames: 'footer__link',
-              dataAttr: [
-                ['href', 'https://rs.school/js/']
-              ],
+              dataAttr: [['href', 'https://rs.school/js/']],
               children: [
                 create({
                   tagName: 'img',
@@ -96,6 +92,6 @@ export class Footer {
         })
       ],
       parent: this.parent
-    })
-  }
+    });
+  };
 }

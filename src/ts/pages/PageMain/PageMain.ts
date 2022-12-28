@@ -1,11 +1,13 @@
 import { create } from '../../utils/create';
 
-
 export const filter = create({
   tagName: 'a',
   children: `Let's shopping!`,
-  dataAttr: [['id', 'filter'], ['href', '/filter']]
-})
+  dataAttr: [
+    ['id', 'filter'],
+    ['href', '/filter']
+  ]
+});
 
 export class PageMain {
   parent: HTMLElement | null;
@@ -28,7 +30,7 @@ export class PageMain {
         create({
           tagName: 'h2',
           classNames: 'main__header',
-          children: 'Каталог'
+          children: 'Catalog'
         }),
         create({
           tagName: 'aside',
@@ -40,9 +42,9 @@ export class PageMain {
               children: [
                 create({
                   tagName: 'li',
-                  classNames: "catalog-list__category",
+                  classNames: 'catalog-list__category',
                   children: [filter]
-                }),
+                })
               ]
             })
           ]
@@ -50,27 +52,27 @@ export class PageMain {
         create({
           tagName: 'h3',
           classNames: 'main__header',
-          children: 'Хиты продаж'
+          children: 'Sales hits'
         }),
         create({
           tagName: 'article',
-          classNames: "main__popular-items",
+          classNames: 'main__popular-items',
           children: [
             create({
               tagName: 'div',
-              classNames: "popular-items__wrapper",
+              classNames: 'popular-items__wrapper',
               children: [
                 create({
                   tagName: 'div',
-                  classNames: "popular-items__most-popular-item",
+                  classNames: 'popular-items__most-popular-item',
                   children: [
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
-                          classNames: "popular-items__img",
+                          classNames: 'popular-items__img',
                           dataAttr: [
                             ['src', './assets/img/bloknotKlinok.jpg'],
                             ['alt', 'item photo']
@@ -78,12 +80,12 @@ export class PageMain {
                         }),
                         create({
                           tagName: 'div',
-                          classNames: "popular-items__name-and-price",
+                          classNames: 'popular-items__name-and-price',
                           children: [
                             create({
                               tagName: 'div',
                               classNames: 'popular-items__name-and-price-wrapper',
-                              children: `Блокнот охотника на демонов  325 р.`
+                              children: `The notebook of the demon hunter 325 $`
                             })
                           ]
                         })
@@ -93,18 +95,18 @@ export class PageMain {
                 }),
                 create({
                   tagName: 'div',
-                  classNames: "popular-items__others-popular-items",
+                  classNames: 'popular-items__others-popular-items',
                   children: [
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', "./assets/img/figurinesBleanch1.jpg"],
-                            ['alt', "item photo"]
+                            ['src', './assets/img/figurinesBleanch1.jpg'],
+                            ['alt', 'item photo']
                           ]
                         }),
                         create({
@@ -118,7 +120,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Фигурка из аниме «Блич» 120 р.`
+                                  children: `Figure from the anime «Bleach» 120 $`
                                 })
                               ]
                             })
@@ -128,14 +130,14 @@ export class PageMain {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', "./assets/img/bookOnePunchMan2.jpg"],
-                            ['alt', "item photo"]
+                            ['src', './assets/img/bookOnePunchMan2.jpg'],
+                            ['alt', 'item photo']
                           ]
                         }),
                         create({
@@ -149,7 +151,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Плакат Гароу 304 р.`
+                                  children: `Garowe Poster 304 $`
                                 })
                               ]
                             })
@@ -159,14 +161,14 @@ export class PageMain {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', "./assets/img/cosplayNaruto3.jpg"],
-                            ['alt', "item photo"]
+                            ['src', './assets/img/cosplayNaruto3.jpg'],
+                            ['alt', 'item photo']
                           ]
                         }),
                         create({
@@ -180,7 +182,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Косплей костюм Какаши Хатаке 2990 р.`
+                                  children: `Kakashi Hatake Cosplay Costume 2990 $`
                                 })
                               ]
                             })
@@ -190,14 +192,14 @@ export class PageMain {
                     }),
                     create({
                       tagName: 'div',
-                      classNames: "popular-items__item",
+                      classNames: 'popular-items__item',
                       children: [
                         create({
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', "./assets/img/mangaonePiece2.jpeg"],
-                            ['alt', "item photo"]
+                            ['src', './assets/img/mangaonePiece2.jpeg'],
+                            ['alt', 'item photo']
                           ]
                         }),
                         create({
@@ -211,7 +213,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Манга One Piece. Большой куш. Кн.4. Ода Э. 927 р.`
+                                  children: `Manga One Piece.The Big jackpot. Book 4. Ode to E. 927 $`
                                 })
                               ]
                             })
@@ -227,7 +229,7 @@ export class PageMain {
         })
       ],
       parent: this.parent
-    })
+    });
     return this.component;
-  }
+  };
 }
