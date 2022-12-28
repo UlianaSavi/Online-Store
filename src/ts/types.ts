@@ -21,3 +21,7 @@ export interface IProduct {
 export interface IProductsResponse {
   products: IProduct[];
 }
+
+export interface IPageProps {
+  mounted?: () => void;
+}

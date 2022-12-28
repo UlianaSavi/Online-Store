@@ -1,13 +1,15 @@
 import { Model } from './models/model';
-import { IAppState } from './types';
+import { Controller } from './controllers/controller';
+import { IAppState, IProductsResponse } from './types';
 import { START_PAGE } from './contains';
 import { create } from './utils/create';
 import { Header } from './components/Header/Header';
-import { PageMain } from './pages/PageMain/PageMain';
 import { Footer } from './components/Footer/Footer';
 import { Router } from './Router/Router';
+import { PageMain } from './pages/PageMain/PageMain';
 import { PageFilter } from './pages/PageFilter/PageFilter';
 import { Page404 } from './pages/Page404/Page404';
+import { PageDetails } from './pages/PageDetails/PageDetails';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -52,15 +54,19 @@ export class App {
     this.createDefaultLayer();
 
     const model = new Model(this.BASE_STATE);
+    const controller = new Controller(model);
 
     // Static components
     const header = new Header(this.header);
     header.mount();
     const footer = new Footer(this.footer);
     footer.mount();
+
+    // Dinamic components
     const pageMain = new PageMain(this.main);
     const pageFilter = new PageFilter(this.main);
     const page404 = new Page404(this.main);
+    const pageDetails = new PageDetails(this.main, model);
 
     const routes = {
       '404': {
@@ -74,12 +80,23 @@ export class App {
       '/filter': {
         mount: pageFilter.mount,
         unmount: pageFilter.unmount
+      },
+      '/details': {
+        mount: pageDetails.mount,
+        unmount: pageDetails.unmount,
+        mountedProps: {
+          mounted: () => {
+            fetch('../assets/data/data.json')
+              .then((data) => data.json())
+              .then((data: IProductsResponse) => controller.setData(data.products));
+          }
+        }
       }
     };
 
-    // Dinamic components
-
     model.fire();
+
+    // Router
     this.router = new Router(this.main, routes);
     this.router.initRouter();
   };

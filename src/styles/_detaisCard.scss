@@ -1,0 +1,136 @@
+@import 'global';
+
+$grey: hsl(206deg, 6%, 25%);
+$dark-grey: rgb(39, 41, 43);
+$orange: #ffbd59;
+$lite-grey: rgb(255 255 255 / 39%);
+$white-opacity: rgba(255, 255, 255, 0.94);
+$black-opacity: rgb(0 0 0 / 70%);
+
+.details__wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  background-color: $grey;
+  border-radius: 0.3125em;
+  font-size: medium;
+  color: $white-opacity;
+  border-radius: 0.3125em;
+  overflow: hidden;
+}
+
+.link__nav {
+  display: flex;
+  align-items: center;
+  background: $dark-grey;
+  margin: 0.5em 0;
+  border-radius: 0.3125em;
+
+  &-wrapper {
+    min-height: 3.125em;
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+  }
+
+  &-item {
+    text-decoration: none;
+    margin: 0 1.875em;
+  }
+}
+
+.product__card-title {
+  text-align: center;
+}
+
+.product__card__info {
+  display: flex;
+  align-items: center;
+  background: $dark-grey;
+  padding: 1em;
+  border-radius: 0.3125em;
+
+  &-slides {
+    display: flex;
+    width: 10%;
+    flex-direction: column;
+
+    &-slide__container {
+      width: 100%;
+      max-width: 5em;
+      max-height: 4.25em;
+      overflow: hidden;
+      margin: 0 0 0.625em 0.625em;
+      border-radius: 0.3125em;
+      cursor: pointer;
+    }
+
+    &-slide__container.active {
+      box-shadow: #ffbd59 0px 0px 6px 0px;
+    }
+
+    .slides-image {
+      border-radius: 0.3125em;
+      width: 100%;
+    }
+  }
+}
+
+.product__card__img {
+  width: 35%;
+  height: 100%;
+
+  &-img {
+    border-radius: 0.3125em;
+    width: 90%;
+    box-shadow: $black-opacity 0px 0px 19px 0px;
+  }
+}
+
+.product__card__descr {
+  width: 40%;
+  margin-right: 20px;
+
+  &-item {
+    width: 100%;
+    background: $grey;
+    border: 1px solid $orange;
+    border-radius: 0.3125em;
+    margin-bottom: 0.5em;
+    overflow: hidden;
+    text-align: center;
+
+    &__title {
+      background: $dark-grey;
+      padding: 0.5em;
+    }
+  }
+
+  &-item__text {
+    padding: 0.5em;
+  }
+}
+
+.product__card__add {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  min-height: 280px;
+  background: #3c4044;
+  border: 1px solid orange;
+  border-radius: 0.3em;
+  box-shadow: $black-opacity 0px 0px 19px 0px;
+
+  &-price {
+    font-size: 2em;
+  }
+
+  .btn {
+    margin: 1.25em 0;
+    padding: 11px;
+  }
+}

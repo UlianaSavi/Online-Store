@@ -62,7 +62,6 @@ export class Page404 {
         })
       ],
       parent: this.parent
-    })
-    return this.component;
-  }
+    });
+  };
 }
