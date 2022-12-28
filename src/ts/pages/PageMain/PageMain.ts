@@ -30,7 +30,7 @@ export class PageMain {
         create({
           tagName: 'h2',
           classNames: 'main__header',
-          children: 'Каталог'
+          children: 'Catalog'
         }),
         create({
           tagName: 'aside',
@@ -52,7 +52,7 @@ export class PageMain {
         create({
           tagName: 'h3',
           classNames: 'main__header',
-          children: 'Хиты продаж'
+          children: 'Sales hits'
         }),
         create({
           tagName: 'article',
@@ -85,7 +85,7 @@ export class PageMain {
                             create({
                               tagName: 'div',
                               classNames: 'popular-items__name-and-price-wrapper',
-                              children: `Блокнот охотника на демонов  325 р.`
+                              children: `The notebook of the demon hunter 325 $`
                             })
                           ]
                         })
@@ -120,7 +120,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Фигурка из аниме «Блич» 120 р.`
+                                  children: `Figure from the anime «Bleach» 120 $`
                                 })
                               ]
                             })
@@ -151,7 +151,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Плакат Гароу 304 р.`
+                                  children: `Garowe Poster 304 $`
                                 })
                               ]
                             })
@@ -182,7 +182,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Косплей костюм Какаши Хатаке 2990 р.`
+                                  children: `Kakashi Hatake Cosplay Costume 2990 $`
                                 })
                               ]
                             })
@@ -213,7 +213,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Манга One Piece. Большой куш. Кн.4. Ода Э. 927 р.`
+                                  children: `Manga One Piece.The Big jackpot. Book 4. Ode to E. 927 $`
                                 })
                               ]
                             })
@@ -230,5 +230,6 @@ export class PageMain {
       ],
       parent: this.parent
     });
+    return this.component;
   };
 }
