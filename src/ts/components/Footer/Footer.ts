@@ -1,4 +1,3 @@
-import { IAppState } from '../../types';
 import { create } from '../../utils/create';
 
 export class Footer {
@@ -10,14 +9,11 @@ export class Footer {
     this.component = null;
   }
 
-  update = (props: IAppState) => {
-    this.render(props);
+  unmount = () => {
+    this.component?.remove();
   };
 
-  render = (props?: IAppState) => {
-    console.log(props);
-    this.component?.remove();
-
+  mount = () => {
     this.component = create({
       tagName: 'div',
       classNames: 'footer__wrapper',

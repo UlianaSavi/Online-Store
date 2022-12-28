@@ -35,6 +35,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src/assets'),
           to: path.resolve(__dirname, 'dist/assets')
+        },
+        {
+          from: path.resolve(__dirname, 'src/netlify.toml'),
+          to: path.resolve(__dirname, 'dist/netlify.toml')
         }
       ]
     }),
@@ -77,12 +81,13 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|json)$/i,
         type: 'asset/inline'
       }
     ]
   },
   resolve: {
     extensions: ['.ts', '.js']
-  }
+  },
+  devServer: {    historyApiFallback: true,  },
 };

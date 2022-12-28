@@ -1,7 +1,15 @@
-import { IAppState } from '../../types';
 import { create } from '../../utils/create';
 
-export class MainHTML {
+export const filter = create({
+  tagName: 'a',
+  children: `Let's shopping!`,
+  dataAttr: [
+    ['id', 'filter'],
+    ['href', '/filter']
+  ]
+});
+
+export class PageMain {
   parent: HTMLElement | null;
   component: HTMLElement | null;
 
@@ -10,14 +18,11 @@ export class MainHTML {
     this.component = null;
   }
 
-  update = (props: IAppState) => {
-    this.render(props);
+  unmount = () => {
+    this.component?.remove();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render = (props?: IAppState) => {
-    this.component?.remove();
-
+  mount = () => {
     this.component = create({
       tagName: 'div',
       classNames: 'main__wrapper',
@@ -38,22 +43,7 @@ export class MainHTML {
                 create({
                   tagName: 'li',
                   classNames: 'catalog-list__category',
-                  children: 'Chancellery'
-                }),
-                create({
-                  tagName: 'li',
-                  classNames: 'catalog-list__category',
-                  children: 'Figurines'
-                }),
-                create({
-                  tagName: 'li',
-                  classNames: 'catalog-list__category',
-                  children: 'Manga'
-                }),
-                create({
-                  tagName: 'li',
-                  classNames: 'catalog-list__category',
-                  children: 'Cosplay'
+                  children: [filter]
                 })
               ]
             })
@@ -240,5 +230,6 @@ export class MainHTML {
       ],
       parent: this.parent
     });
+    return this.component;
   };
 }
