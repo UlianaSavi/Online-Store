@@ -1,9 +1,12 @@
 import { filter } from '../pages/PageMain/PageMain';
+import { IPageProps } from '../types';
 
 interface IRoutes {
   [key: string]: {
-    mount: () => void;
+    mount: (props?: IPageProps) => void;
     unmount: () => void;
+
+    mountedProps?: IPageProps;
   };
 }
 
@@ -49,8 +52,13 @@ export class Router {
     }
 
     const route = this.routes[path];
+
     this.routes[this.activeRoute].unmount();
-    route.mount();
+    if (route?.mountedProps?.mounted) {
+      route.mount({ mounted: route.mountedProps.mounted });
+    } else {
+      route.mount();
+    }
     this.activeRoute = path;
   };
 }

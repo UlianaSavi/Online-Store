@@ -12,14 +12,13 @@ export class PageFilter {
   unmount = () => {
     this.component?.remove();
   };
-  
+
   mount = () => {
     this.component = create({
       tagName: 'div',
       classNames: 'main__wrapper',
       children: `This is filter page`,
       parent: this.parent
-    })
-    return this.component;
-  }
+    });
+  };
 }
