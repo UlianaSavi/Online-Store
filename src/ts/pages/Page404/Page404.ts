@@ -19,7 +19,6 @@ export class Page404 {
       classNames: 'main__wrapper',
       children: [`404 page`],
       parent: this.parent
-    })
-    return this.component;
-  }
+    });
+  };
 }

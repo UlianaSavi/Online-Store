@@ -1,5 +1,6 @@
 import { Details } from '../../components/Details/Details';
 import { Model } from '../../models/model';
+import { IPageProps } from '../../types';
 import { create } from '../../utils/create';
 import { isEqual } from '../../utils/objects';
 
@@ -26,7 +27,7 @@ export class PageDetails {
     this.section?.remove();
   };
 
-  mount = ({ mounted }: { mounted?: () => void }) => {
+  mount = (props?: IPageProps) => {
     this.createDefaultLayer();
 
     const details = new Details(this.section);
@@ -39,6 +40,6 @@ export class PageDetails {
       details.update({ item: items[0] });
     });
 
-    mounted && mounted();
+    props?.mounted && props?.mounted();
   };
 }
