@@ -85,7 +85,7 @@ export class PageMain {
                             create({
                               tagName: 'div',
                               classNames: 'popular-items__name-and-price-wrapper',
-                              children: `The notebook of the demon hunter 325 ₽`
+                              children: `The notebook of the demon hunter 325 $`
                             })
                           ]
                         })
@@ -120,7 +120,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Figure from the anime «Bleach» 120 ₽`
+                                  children: `Figure from the anime «Bleach» 120 $`
                                 })
                               ]
                             })
@@ -151,7 +151,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Garowe Poster 304 ₽`
+                                  children: `Garowe Poster 304 $`
                                 })
                               ]
                             })
@@ -182,7 +182,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Kakashi Hatake Cosplay Costume 2990 ₽`
+                                  children: `Kakashi Hatake Cosplay Costume 2990 $`
                                 })
                               ]
                             })
@@ -213,7 +213,7 @@ export class PageMain {
                                 create({
                                   tagName: 'span',
                                   classNames: 'popular-items__item-name',
-                                  children: `Manga One Piece.The Big jackpot. Book 4. Ode to E. 927 ₽`
+                                  children: `Manga One Piece.The Big jackpot. Book 4. Ode to E. 927 $`
                                 })
                               ]
                             })
