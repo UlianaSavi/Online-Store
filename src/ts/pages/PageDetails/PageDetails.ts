@@ -1,4 +1,5 @@
 import { Details } from '../../components/Details/Details';
+import { Controller } from '../../controllers/controller';
 import { Model } from '../../models/model';
 import { IPageProps } from '../../types';
 import { create } from '../../utils/create';
@@ -8,11 +9,20 @@ export class PageDetails {
   parent: HTMLElement | null;
   section: HTMLElement | null;
   model: Model;
+  controller: Controller;
+  go: (event: Event) => void;
 
-  constructor(parent: HTMLElement | null, model: Model) {
+  constructor(
+    parent: HTMLElement | null,
+    model: Model,
+    controller: Controller,
+    go: (event: Event) => void
+  ) {
     this.parent = parent;
     this.section = null;
     this.model = model;
+    this.go = go;
+    this.controller = controller;
   }
 
   createDefaultLayer = () => {
@@ -30,7 +40,14 @@ export class PageDetails {
   mount = (props?: IPageProps) => {
     this.createDefaultLayer();
 
-    const details = new Details(this.section);
+    const state = this.model.getState();
+    const product = state.products.at(0);
+
+    const details = new Details(this.section, this.go);
+
+    if (product) {
+      details.update({ item: product });
+    }
 
     this.model.subscribe((state, prevState) => {
       if (isEqual(state.products, prevState?.products)) {

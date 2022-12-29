@@ -18,8 +18,6 @@ export class Filters {
   };
 
   render = (props?: IFilterProps) => {
-    console.log(props);
-
     this.component?.remove();
 
     const btnReset = create({

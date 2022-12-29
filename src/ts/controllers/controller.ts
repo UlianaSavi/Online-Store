@@ -15,4 +15,12 @@ export class Controller {
       products: data
     });
   };
+
+  clearData = () => {
+    const state = this.model.getState();
+    this.model.setState({
+      ...state,
+      products: []
+    });
+  };
 }

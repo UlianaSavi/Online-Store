@@ -1,4 +1,3 @@
-import { filter } from '../pages/PageMain/PageMain';
 import { IPageProps } from '../types';
 
 interface IRoutes {
@@ -11,20 +10,17 @@ interface IRoutes {
 }
 
 export class Router {
-  routes: IRoutes;
+  routes: IRoutes = {};
   _mainTag: HTMLElement | null;
   activeRoute: string;
 
-  constructor(mainTag: HTMLElement | null, routes: IRoutes) {
+  constructor(mainTag: HTMLElement | null) {
     this._mainTag = mainTag;
-    this.routes = routes;
     this.activeRoute = '/';
   }
 
-  initRouter = () => {
-    if (filter !== null) {
-      filter.addEventListener('click', (event) => this.route(event));
-    }
+  initRouter = (routes: IRoutes) => {
+    this.routes = routes;
 
     window.addEventListener('popstate', () => {
       this.handleLocation();
