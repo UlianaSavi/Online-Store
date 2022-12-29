@@ -62,7 +62,7 @@ export class App {
     // Dinamic components
     const pageMain = new PageMain(this.main, this.router.route);
     const pageCatalog = new Catalog(this.main, model);
-    const page404 = new Page404(this.main);
+    const page404 = new Page404(this.main, this.router.route);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
 
     const routes = {
