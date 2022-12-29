@@ -1,9 +1,4 @@
-interface IPageState {
-  currentPage: string;
-}
-
 export interface IAppState {
-  page: IPageState;
   products: IProduct[];
 }
 

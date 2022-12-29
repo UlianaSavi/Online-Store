@@ -1,16 +1,17 @@
 import { create } from '../../utils/create';
 import { IProduct } from '../../types';
-
 interface IDetailsProps {
   item: IProduct;
 }
 export class Details {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  go: (event: Event) => void;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, go: (event: Event) => void) {
     this.parent = parent;
     this.component = null;
+    this.go = go;
   }
 
   update = (props?: IDetailsProps) => {
@@ -28,7 +29,7 @@ export class Details {
           tagName: 'img',
           classNames: 'slides-image',
           dataAttr: [
-            ['src', props?.item.images?.at(0) || ''], // позже добавим не такой url, а в зависимости от выбранного товара
+            ['src', props?.item?.images?.at(0) || ''], // позже добавим не такой url, а в зависимости от выбранного товара
             ['alt', 'Product image']
           ]
         })
@@ -43,7 +44,7 @@ export class Details {
           tagName: 'img',
           classNames: 'slides-image',
           dataAttr: [
-            ['src', props?.item.images?.at(1) || ''],
+            ['src', props?.item?.images?.at(1) || ''],
             ['alt', 'Product image']
           ]
         })
@@ -58,7 +59,7 @@ export class Details {
           tagName: 'img',
           classNames: 'product__card__img-img',
           dataAttr: [
-            ['src', props?.item.images?.at(0) || ''], // а тут url картинки еще и в зависимости от нажатого слайда
+            ['src', props?.item?.images?.at(0) || ''], // а тут url картинки еще и в зависимости от нажатого слайда
             ['alt', 'Main product image']
           ]
         })
@@ -92,7 +93,7 @@ export class Details {
           create({
             tagName: 'div',
             classNames: 'product__card__descr-item__text',
-            children: `${props?.item[key as keyof IProduct]}` // пункты, подобные этому позже добавим в зависимости от выбранного товара
+            children: `${props?.item?.[key as keyof IProduct]}` // пункты, подобные этому позже добавим в зависимости от выбранного товара
           })
         ]
       })
@@ -111,7 +112,7 @@ export class Details {
         create({
           tagName: 'span',
           classNames: 'product__card__add-price',
-          children: `${props?.item.price} ₽`
+          children: `${props?.item?.price} ₽`
         }),
         create({
           tagName: 'a',
@@ -132,6 +133,15 @@ export class Details {
       children: [slides, mainImg, description, add]
     });
 
+    const linkHome = create({
+      tagName: 'a',
+      classNames: 'link__nav-item',
+      dataAttr: [['href', '/']],
+      children: 'STORE'
+    });
+
+    linkHome.addEventListener('click', this.go);
+
     this.component = create({
       tagName: 'div',
       classNames: 'details__wrapper',
@@ -144,12 +154,7 @@ export class Details {
               tagName: 'div',
               classNames: 'link__nav-wrapper',
               children: [
-                create({
-                  tagName: 'a',
-                  classNames: 'link__nav-item',
-                  dataAttr: [['href', '/']],
-                  children: 'STORE'
-                }),
+                linkHome,
                 create({
                   tagName: 'span',
                   children: ' >> '

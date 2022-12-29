@@ -1,21 +1,17 @@
+// import { Controller } from '../../controllers/controller';
 import { create } from '../../utils/create';
-
-export const filter = create({
-  tagName: 'a',
-  children: `Let's shopping!`,
-  dataAttr: [
-    ['id', 'filter'],
-    ['href', '/filter']
-  ]
-});
 
 export class PageMain {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  // controller: Controller;
+  go: (event: Event) => void;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, go: (event: Event) => void) {
     this.parent = parent;
     this.component = null;
+    this.go = go;
+    // this.controller = Controller(this.model);
   }
 
   unmount = () => {
@@ -23,6 +19,17 @@ export class PageMain {
   };
 
   mount = () => {
+    const toFilterPageBtn = create({
+      tagName: 'a',
+      children: `Let's shopping!`,
+      dataAttr: [
+        ['id', 'filter'],
+        ['href', '/filter']
+      ]
+    });
+
+    toFilterPageBtn.addEventListener('click', this.go);
+
     this.component = create({
       tagName: 'div',
       classNames: 'main__wrapper',
@@ -43,7 +50,7 @@ export class PageMain {
                 create({
                   tagName: 'li',
                   classNames: 'catalog-list__category',
-                  children: [filter]
+                  children: [toFilterPageBtn]
                 })
               ]
             })
@@ -230,6 +237,5 @@ export class PageMain {
       ],
       parent: this.parent
     });
-    return this.component;
   };
 }

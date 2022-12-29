@@ -30,8 +30,4 @@ export class Model {
       callback(this.state, this.prevState);
     });
   };
-
-  clear = () => {
-    this.subscribers = [];
-  };
 }
