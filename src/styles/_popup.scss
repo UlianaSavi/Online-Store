@@ -2,7 +2,7 @@
 
 $popup-blackout: rgba(0, 0, 0, 0.8);
 $input-bg-color: hsl(206, 6%, 25%);
-$input-color: rgba(255,255,255, 0.94);
+$input-color: rgba(255, 255, 255, 0.94);
 $input-placeholder-color: rgba(255, 255, 255, 0.403);
 $orange: #ffbd59;
 
@@ -16,11 +16,38 @@ $container-radius: 0.5em;
   background-color: $popup-blackout;
   top: 0;
   left: 0;
-  // opacity: 0;
-  // visibility: hidden;
-  // overflow-y: auto;
-  // overflow-x: hidden;
-  // transition: all 0.8s ease 0s;
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.8s ease 0s;
+
+  &__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+  }
+
+  &__content {
+    background-color: $main-color;
+    max-width: 700px;
+    min-width: 300px;
+    position: relative;
+    border-radius: $container-radius;
+    transition: all 0.8s ease 0s;
+    opacity: 0;
+    transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+  }
+
+  .cross {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: large;
+    color: $orange;
+  }
 
   &__block {
     display: flex;
@@ -43,7 +70,7 @@ $container-radius: 0.5em;
     // add transition for hover
 
     &:hover {
-      color:  $orange;
+      color: $orange;
       border-color: $orange;
     }
   }
@@ -67,15 +94,15 @@ $container-radius: 0.5em;
   font-size: medium;
   color: $input-color;
   outline: none;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 
   &::placeholder {
     color: $input-placeholder-color;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 }
 
-.input:hover{
+.input:hover {
   border: 3px solid $border-hover-color;
   -webkit-box-shadow: 7px 7px 20px 0px $border-hover-color;
   -moz-box-shadow: 7px 7px 20px 0px $border-hover-color;
@@ -95,20 +122,23 @@ $container-radius: 0.5em;
   display: flex;
   flex-direction: column;
   padding: 0 1em;
-  
+
   &__image-n-input {
     display: grid;
     grid-template-columns: 10% 90%;
     align-items: center;
     gap: 0.5em;
   }
+  
   &__image-wrapper {
     background-color: $input-color;
     padding: 0.2em 0.2em;
   }
-  &__image{
+
+  &__image {
     width: 100%;
   }
+
   &__text {
     color: $input-color;
   }
@@ -117,123 +147,33 @@ $container-radius: 0.5em;
     display: flex;
     gap: 0.5em;
   }
-  &__text-n-input{
+
+  &__text-n-input {
     display: flex;
     align-items: center;
     white-space: nowrap;
     gap: 0.5em;
   }
+
   .input {
     background-color: rgba(255, 255, 255, 0.137);
   }
 }
 
-// .popup:target {
-//   opacity: 1;
-//   visibility: visible;
-// }
-// .popup:target .popup__content {
-//   transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-//   opacity: 1;
-// }
-// .popup__area {
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   top: 0;
-//   left: 0;
-// }
-.popup__body {
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 10px;
+.popup:target {
+  opacity: 1;
+  visibility: visible;
 }
-.popup__content {
-  background-color: $main-color;
-  max-width: 700px;
-  min-width: 300px;
-  position: relative;
-  border-radius: $container-radius;
-//   transition: all 0.8s ease 0s;
-//   opacity: 0;
-//   transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-//   a {
-//     color: #000000;
-//   }
-//   .popup__block {
-//     height: 100%;
 
-//     padding-left: 16px;
-//     padding-top: 15px;
-//     padding-right: 14px;
-//     padding-bottom: 19px;
-
-//     position: relative;
-//     border-radius: 20px;
-//     width: 268px;
-//     box-sizing: border-box;
-
-//     margin-right: 0.7%;
-//     margin-left: 0.7%;
-//     margin-top: 0.5%;
-//     margin-bottom: 1%;
-//     &::before {
-//       content: '';
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//       right: 0;
-//       bottom: 0;
-//       background-color: #f1f3f2;
-//       border-radius: 18px;
-//       z-index: 0;
-//     }
-//     &::after {
-//       content: '';
-//       position: absolute;
-//       border-radius: inherit;
-//       margin: -4px;
-//       top: 0;
-//       left: 0;
-//       right: 0;
-//       bottom: 0;
-//       z-index: -1;
-//       border-radius: 20px;
-//       background: linear-gradient(
-//           315.75deg,
-//           rgba(254, 189, 171, 0.74) 30.06%,
-//           rgba(243, 169, 248, 0.66) 50.74%,
-//           #e0d8f0 80.49%,
-//           #eaf7fe 127.9%,
-//           #eaf7fe 149.54%
-//         ),
-//         linear-gradient(
-//           315.75deg,
-//           rgba(254, 189, 171, 0.74) 30.06%,
-//           rgba(243, 169, 248, 0.66) 50.74%,
-//           #e0d8f0 80.49%,
-//           #eaf7fe 127.9%,
-//           #eaf7fe 149.54%
-//         );
-//     }
-//   }
+.popup__area {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
-// .popup__close {
-//   position: absolute;
-//   right: 10px;
-//   top: 12px;
-//   // background-image: url('../assets/icons/x_icon.png');
-//   display: block;
-//   width: 14px;
-//   height: 14px;
-// }
-// .popup__title {
-//   font-size: 40px;
-//   margin-bottom: 1em;
-// }
 
-// .body.lock{
-//   overflow: hidden;
-// }
+.popup:target .popup__content {
+  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+  opacity: 1;
+}
