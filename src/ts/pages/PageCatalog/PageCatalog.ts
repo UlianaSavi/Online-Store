@@ -37,7 +37,7 @@ export class Catalog {
 
     const state = this.model.getState();
 
-    const filters = new Filters(this.section, this.controller.filter);
+    const filters = new Filters(this.section, this.controller.setFilterByCategory);
     const products = new Products(this.section);
 
     if (this.mounted) {
@@ -49,7 +49,7 @@ export class Catalog {
       ];
       filters.update({ names, categories });
 
-      const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
+      const items = [...new Set(state.productsToShow.map((item) => item).filter((item) => !!item))];
       products.update({ items });
     }
 
@@ -68,10 +68,14 @@ export class Catalog {
     });
 
     this.model.subscribe((state, prevState) => {
-      if (isEqual(state.products, prevState?.products)) {
+      if (
+        isEqual(state.productsToShow, prevState?.productsToShow) &&
+        isEqual(state.categoryFilters, prevState?.categoryFilters)
+      ) {
         return;
       }
-      const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
+
+      const items = [...new Set(state.productsToShow.map((item) => item).filter((item) => !!item))];
       products.update({ items });
     });
 

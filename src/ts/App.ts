@@ -13,7 +13,9 @@ import { PageCart } from './pages/PageCart/PageCart';
 
 export class App {
   BASE_STATE: IAppState = {
-    products: []
+    products: [],
+    productsToShow: [],
+    categoryFilters: []
   };
   header: HTMLElement | null;
   main: HTMLElement | null;

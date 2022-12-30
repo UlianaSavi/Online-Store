@@ -12,7 +12,8 @@ export class Controller {
     const state = this.model.getState();
     this.model.setState({
       ...state,
-      products: data
+      products: data,
+      productsToShow: data
     });
   };
 
@@ -20,13 +21,44 @@ export class Controller {
     const state = this.model.getState();
     this.model.setState({
       ...state,
-      products: []
+      products: [],
+      categoryFilters: []
     });
   };
 
-  filter = (item: string) => {
-    console.log(item);
+  setFilterByCategory = (category: string, enabled = false) => {
+    if (enabled) {
+      this.addFilterByCategory(category);
+      return;
+    }
+    this.removeFilterByCategory(category);
+  };
 
-    // item.classList.add('hidden');
+  removeFilterByCategory = (category: string) => {
+    const state = this.model.getState();
+    const categoryFilters = state.categoryFilters.filter((cat) => cat !== category);
+    const productsToShow = categoryFilters.length
+      ? state.products.filter(({ category }) => categoryFilters.includes(category))
+      : state.products;
+
+    this.model.setState({
+      ...state,
+      categoryFilters,
+      productsToShow
+    });
+  };
+
+  addFilterByCategory = (category: string) => {
+    const state = this.model.getState();
+    const categoryFilters = [...state.categoryFilters, category];
+    const productsToShow = categoryFilters.length
+      ? state.products.filter(({ category }) => categoryFilters.includes(category))
+      : state.products;
+
+    this.model.setState({
+      ...state,
+      categoryFilters,
+      productsToShow
+    });
   };
 }

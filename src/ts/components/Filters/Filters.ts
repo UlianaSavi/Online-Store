@@ -7,9 +7,9 @@ interface IFilterProps {
 export class Filters {
   parent: HTMLElement | null;
   component: HTMLElement | null;
-  onFilterClick: (item: string) => void;
+  onFilterClick: (item: string, enabled: boolean) => void;
 
-  constructor(parent: HTMLElement | null, onFilterClick: (item: string) => void) {
+  constructor(parent: HTMLElement | null, onFilterClick: (item: string, enabled: boolean) => void) {
     this.parent = parent;
     this.component = null;
     this.onFilterClick = onFilterClick;
@@ -65,18 +65,19 @@ export class Filters {
     );
 
     const categoryItem = props?.categories.map((item) => {
+      const checkBox = create({
+        tagName: 'input',
+        classNames: 'custom__checkbox',
+        dataAttr: [
+          ['type', 'checkbox'],
+          ['id', item]
+        ]
+      }) as HTMLInputElement;
       const element = create({
         tagName: 'div',
         classNames: 'filters__item__list__item',
         children: [
-          create({
-            tagName: 'input',
-            classNames: 'custom__checkbox',
-            dataAttr: [
-              ['type', 'checkbox'],
-              ['id', item]
-            ]
-          }),
+          checkBox,
           create({
             tagName: 'label',
             classNames: 'label',
@@ -91,7 +92,7 @@ export class Filters {
         ]
       });
 
-      element.addEventListener('click', () => this.onFilterClick(item));
+      checkBox.addEventListener('click', () => this.onFilterClick(item, checkBox.checked));
 
       return element;
     });
