@@ -3,6 +3,7 @@ import { create } from '../../utils/create';
 import { isEqual } from '../../utils/objects';
 import { IPageProps } from '../../types';
 import { CartList } from '../../components/CartList/CartList';
+import { Total } from '../../components/CartTotal/CartTotal';
 
 export class PageCart {
   parent: HTMLElement | null;
@@ -20,7 +21,7 @@ export class PageCart {
   createDefaultLayer = () => {
     this.section = create({
       tagName: 'section',
-      classNames: 'cart container',
+      classNames: 'cart container cart__wrapper',
       parent: this.parent
     });
   };
@@ -33,6 +34,7 @@ export class PageCart {
     this.createDefaultLayer();
 
     const cartList = new CartList(this.section);
+    const total = new Total(this.section);
 
     this.model.subscribe((state, prevState) => {
       if (isEqual(state.products, prevState?.products)) {
@@ -40,6 +42,12 @@ export class PageCart {
       }
       const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
       cartList.update({ items });
+    });
+    this.model.subscribe((state, prevState) => {
+      if (isEqual(state.products, prevState?.products)) {
+        return;
+      }
+      total.update();
     });
 
     props?.mounted && props?.mounted();
