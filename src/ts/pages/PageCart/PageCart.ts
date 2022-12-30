@@ -38,7 +38,8 @@ export class PageCart {
       if (isEqual(state.products, prevState?.products)) {
         return;
       }
-      cartList.update();
+      const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
+      cartList.update({ items });
     });
 
     props?.mounted && props?.mounted();

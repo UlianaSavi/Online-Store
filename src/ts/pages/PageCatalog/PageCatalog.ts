@@ -67,7 +67,6 @@ export class Catalog {
 
     this.model.subscribe((state, prevState) => {
       if (isEqual(state.products, prevState?.products)) {
-        console.log(123);
         return;
       }
       const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];

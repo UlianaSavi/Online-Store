@@ -1,8 +1,8 @@
 import { create } from '../../utils/create';
+import { IProduct } from '../../types';
 
 interface ICartListProps {
-  categories: string[];
-  names: string[];
+  items: IProduct[];
 }
 export class CartList {
   parent: HTMLElement | null;
@@ -19,7 +19,6 @@ export class CartList {
 
   render = (props?: ICartListProps) => {
     this.component?.remove();
-    console.log(props);
 
     const header = create({
       tagName: 'div',
@@ -59,128 +58,134 @@ export class CartList {
       ]
     });
 
-    const productItem = create({
-      tagName: 'div',
-      classNames: 'product-list__item',
-      children: [
-        create({
+    console.log('props - ', props);
+
+    const productItem =
+      props?.items.map((item) => {
+        const items = create({
           tagName: 'div',
-          classNames: 'product-list__item__number',
-          children: '1'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'product-list__item__img',
+          classNames: 'product-list__item',
           children: [
             create({
-              tagName: 'img',
-              classNames: 'product-list__item__img-img',
-              dataAttr: [
-                ['src', './assets/img/bleachPenal1.jpg'],
-                ['alt', 'Image of product']
+              tagName: 'div',
+              classNames: 'product-list__item__number',
+              children: '1'
+            }),
+            create({
+              tagName: 'div',
+              classNames: 'product-list__item__img',
+              children: [
+                create({
+                  tagName: 'img',
+                  classNames: 'product-list__item__img-img',
+                  dataAttr: [
+                    ['src', `${item.images.at(0)}`],
+                    ['alt', 'Image of product']
+                  ]
+                })
               ]
-            })
-          ]
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'product-list__item__descr',
-          children: [
-            create({
-              tagName: 'div',
-              classNames: 'item__descr__name',
-              children: 'Name'
             }),
             create({
               tagName: 'div',
-              classNames: 'line'
-            }),
-            create({
-              tagName: 'div',
-              classNames: 'item__descr__text',
-              children: 'Some shit about this product about this product about this product'
-            }),
-            create({
-              tagName: 'div',
-              classNames: 'item__descr__other',
+              classNames: 'product-list__item__descr',
               children: [
                 create({
                   tagName: 'div',
+                  classNames: 'item__descr__name',
+                  children: `${item.name}`
+                }),
+                create({
+                  tagName: 'div',
+                  classNames: 'line'
+                }),
+                create({
+                  tagName: 'div',
+                  classNames: 'item__descr__text',
+                  children: `${item.description}`
+                }),
+                create({
+                  tagName: 'div',
+                  classNames: 'item__descr__other',
                   children: [
-                    `Discount: `,
+                    create({
+                      tagName: 'div',
+                      children: [
+                        `Discount: `,
+                        create({
+                          tagName: 'i',
+                          classNames: 'i',
+                          children: '10 %'
+                        })
+                      ]
+                    }),
+                    create({
+                      tagName: 'div',
+                      children: [
+                        `Popularity: `,
+                        create({
+                          tagName: 'i',
+                          classNames: 'i',
+                          children: `${item.popularity}`
+                        })
+                      ]
+                    })
+                  ]
+                })
+              ]
+            }),
+            create({
+              tagName: 'div',
+              classNames: 'product-list__item__details',
+              children: [
+                create({
+                  tagName: 'span',
+                  classNames: 'item__details__stock',
+                  children: [
+                    `Stock: `,
                     create({
                       tagName: 'i',
-                      classNames: 'i',
-                      children: '10 %'
+                      children: `${item.stock}`
                     })
                   ]
                 }),
                 create({
                   tagName: 'div',
+                  classNames: 'item__details__count-controls',
                   children: [
-                    `Popularity: `,
                     create({
-                      tagName: 'i',
-                      classNames: 'i',
-                      children: '5.0'
+                      tagName: 'button',
+                      classNames: 'btn',
+                      children: `&#10134;`
+                    }),
+                    create({
+                      tagName: 'span',
+                      classNames: 'item__details__count',
+                      children: `1`
+                    }),
+                    create({
+                      tagName: 'button',
+                      classNames: 'btn',
+                      children: `&#10133;`
                     })
                   ]
-                })
-              ]
-            })
-          ]
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'product-list__item__details',
-          children: [
-            create({
-              tagName: 'span',
-              classNames: 'item__details__stock',
-              children: [
-                `Stock: `,
-                create({
-                  tagName: 'i',
-                  children: '100'
-                })
-              ]
-            }),
-            create({
-              tagName: 'div',
-              classNames: 'item__details__count-controls',
-              children: [
-                create({
-                  tagName: 'button',
-                  classNames: 'btn',
-                  children: `&#10134;`
                 }),
                 create({
                   tagName: 'span',
-                  classNames: 'item__details__count',
-                  children: `1`
-                }),
-                create({
-                  tagName: 'button',
-                  classNames: 'btn',
-                  children: `&#10133;`
-                })
-              ]
-            }),
-            create({
-              tagName: 'span',
-              classNames: 'item__details__price',
-              children: [
-                `Price: `,
-                create({
-                  tagName: 'i',
-                  children: '1000$'
+                  classNames: 'item__details__price',
+                  children: [
+                    `Price: `,
+                    create({
+                      tagName: 'i',
+                      children: `${item.price}`
+                    })
+                  ]
                 })
               ]
             })
           ]
-        })
-      ]
-    });
+        });
+        return items;
+      }) || [];
 
     const buyBtn = create({
       tagName: 'button',
@@ -247,7 +252,7 @@ export class CartList {
     const productList = create({
       tagName: 'div',
       classNames: 'product-list',
-      children: [header, productItem]
+      children: [header, ...productItem]
     });
 
     this.component = create({
