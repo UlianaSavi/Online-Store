@@ -23,4 +23,10 @@ export class Controller {
       products: []
     });
   };
+
+  filter = (item: string) => {
+    console.log(item);
+
+    // item.classList.add('hidden');
+  };
 }

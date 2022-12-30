@@ -4,18 +4,20 @@ import { Filters } from '../../components/Filters/Filters';
 import { isEqual } from '../../utils/objects';
 import { Products } from '../../components/Products/Products';
 import { IPageProps } from '../../types';
-
+import { Controller } from '../../controllers/controller';
 export class Catalog {
   parent: HTMLElement | null;
   section: HTMLElement | null;
   model: Model;
   mounted: boolean;
+  controller: Controller;
 
-  constructor(parent: HTMLElement | null, model: Model) {
+  constructor(parent: HTMLElement | null, model: Model, controller: Controller) {
     this.parent = parent;
     this.section = null;
     this.model = model;
     this.mounted = false;
+    this.controller = controller;
   }
 
   createDefaultLayer = () => {
@@ -35,7 +37,7 @@ export class Catalog {
 
     const state = this.model.getState();
 
-    const filters = new Filters(this.section);
+    const filters = new Filters(this.section, this.controller.filter);
     const products = new Products(this.section);
 
     if (this.mounted) {

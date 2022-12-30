@@ -7,10 +7,12 @@ interface IFilterProps {
 export class Filters {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  onFilterClick: (item: string) => void;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, onFilterClick: (item: string) => void) {
     this.parent = parent;
     this.component = null;
+    this.onFilterClick = onFilterClick;
   }
 
   update = (props?: IFilterProps) => {
@@ -34,7 +36,7 @@ export class Filters {
       dataAttr: [['id', 'btnCopy']]
     });
 
-    const categoryItem = props?.names.map((item) =>
+    const nameItem = props?.names.map((item) =>
       create({
         tagName: 'div',
         classNames: 'filters__item__list__item',
@@ -62,8 +64,8 @@ export class Filters {
       })
     );
 
-    const nameItem = props?.categories.map((item) =>
-      create({
+    const categoryItem = props?.categories.map((item) => {
+      const element = create({
         tagName: 'div',
         classNames: 'filters__item__list__item',
         children: [
@@ -87,8 +89,12 @@ export class Filters {
             children: '(10/10)'
           })
         ]
-      })
-    );
+      });
+
+      element.addEventListener('click', () => this.onFilterClick(item));
+
+      return element;
+    });
 
     const titleSubline = create({
       tagName: 'div',
@@ -121,7 +127,7 @@ export class Filters {
                 create({
                   tagName: 'div',
                   classNames: 'filters__item__list',
-                  children: nameItem
+                  children: categoryItem
                 })
               ]
             }),
@@ -138,7 +144,7 @@ export class Filters {
                 create({
                   tagName: 'div',
                   classNames: 'filters__item__list',
-                  children: categoryItem
+                  children: nameItem
                 })
               ]
             }),
