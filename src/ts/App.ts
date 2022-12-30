@@ -10,6 +10,7 @@ import { PageMain } from './pages/PageMain/PageMain';
 import { PageFilter } from './pages/PageFilter/PageFilter';
 import { Page404 } from './pages/Page404/Page404';
 import { PageDetails } from './pages/PageDetails/PageDetails';
+import { Popup } from './components/Popup/Popup';
 
 export class App {
   BASE_STATE: IAppState = {

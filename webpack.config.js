@@ -30,10 +30,6 @@ module.exports = {
       template: path.join(pathToSrc, 'index.html'),
       filename: 'index.html'
     }),
-    new HtmlWebpackPlugin({
-      template: path.join(pathToSrc, '/ts/components/Popup/Popup.html'),
-      filename: 'popup.html'
-    }),
     new MiniCssExtractPlugin(),
     new CopyPlugin({
       patterns: [

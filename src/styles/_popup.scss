@@ -100,6 +100,14 @@ $container-radius: 0.5em;
     color: $input-placeholder-color;
     font-family: 'Roboto', sans-serif;
   }
+
+  //убираем стрелочки у типа number
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  -moz-appearance: textfield;
 }
 
 .input:hover {
