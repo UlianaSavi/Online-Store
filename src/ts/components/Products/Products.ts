@@ -19,8 +19,6 @@ export class Products {
   };
 
   render = (props?: IProductsProps) => {
-    console.log(props);
-
     this.component?.remove();
 
     const roundsMainCount = 16;
@@ -60,7 +58,7 @@ export class Products {
       const detailsLink = create({
         tagName: 'a',
         classNames: 'btn',
-        dataAttr: [['href', `/item/${item.id}`]],
+        dataAttr: [['href', `details/${item.id}`]],
         children: 'Details'
       });
 

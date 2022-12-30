@@ -3,10 +3,12 @@ import { create } from '../../utils/create';
 export class Page404 {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  go: (event: Event) => void;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null,  go: (event: Event) => void) {
     this.parent = parent;
     this.component = null;
+    this.go = go;
   }
 
   unmount = () => {
@@ -14,6 +16,16 @@ export class Page404 {
   };
 
   mount = () => {
+    const toPageMain = create({
+      tagName: 'a',
+      classNames: 'text__link-to-main',
+      dataAttr: [['href', '/']],
+      // children: 'Go back home'
+      children: 'Go back home'
+    });
+
+    toPageMain.addEventListener('click', this.go);
+
     this.component = create({
       tagName: 'div',
       classNames: 'main__wrapper',
@@ -36,12 +48,7 @@ export class Page404 {
                   classNames: 'text__h4',
                   children: `And you're it!<br>(Sorry, we can't find the page, too.)`
                 }),
-                create({
-                  tagName: 'a',
-                  classNames: 'text__link-to-main',
-                  dataAttr: [['href', '/']],
-                  children: 'Go back home'
-                })
+                toPageMain
               ]
             }),
             create({
