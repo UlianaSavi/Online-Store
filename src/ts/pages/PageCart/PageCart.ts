@@ -1,9 +1,8 @@
 import { Model } from '../../models/model';
 import { create } from '../../utils/create';
-// import { Filters } from '../../components/Filters/Filters';
-// import { isEqual } from '../../utils/objects';
-// import { Products } from '../../components/Products/Products';
+import { isEqual } from '../../utils/objects';
 import { IPageProps } from '../../types';
+import { CartList } from '../../components/CartList/CartList';
 
 export class PageCart {
   parent: HTMLElement | null;
@@ -21,7 +20,7 @@ export class PageCart {
   createDefaultLayer = () => {
     this.section = create({
       tagName: 'section',
-      classNames: 'cart container cart__wrapper',
+      classNames: 'cart container',
       parent: this.parent
     });
   };
@@ -32,6 +31,15 @@ export class PageCart {
 
   mount = (props?: IPageProps) => {
     this.createDefaultLayer();
+
+    const cartList = new CartList(this.section);
+
+    this.model.subscribe((state, prevState) => {
+      if (isEqual(state.products, prevState?.products)) {
+        return;
+      }
+      cartList.update();
+    });
 
     props?.mounted && props?.mounted();
   };

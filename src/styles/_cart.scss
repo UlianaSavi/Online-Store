@@ -44,6 +44,10 @@ $white-opacity: rgba(255, 255, 255, 0.94);
   transition: all 0.3s;
 }
 
+.page-input {
+  padding-left: 15px;
+}
+
 .total {
   height: 100%;
   min-height: 300px;
@@ -174,6 +178,7 @@ $white-opacity: rgba(255, 255, 255, 0.94);
 .item__details__count-controls {
   display: flex;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .item__details__stock {
