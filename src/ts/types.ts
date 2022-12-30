@@ -1,7 +1,9 @@
 export interface IAppState {
   products: IProduct[];
   productsToShow: IProduct[];
+  namesToShow: IProduct[];
   categoryFilters: string[];
+  nameFilters: string[];
 }
 
 export interface IProduct {

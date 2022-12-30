@@ -15,7 +15,9 @@ export class App {
   BASE_STATE: IAppState = {
     products: [],
     productsToShow: [],
-    categoryFilters: []
+    namesToShow: [],
+    categoryFilters: [],
+    nameFilters: []
   };
   header: HTMLElement | null;
   main: HTMLElement | null;

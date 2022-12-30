@@ -13,7 +13,8 @@ export class Controller {
     this.model.setState({
       ...state,
       products: data,
-      productsToShow: data
+      productsToShow: data,
+      namesToShow: data
     });
   };
 
@@ -22,9 +23,12 @@ export class Controller {
     this.model.setState({
       ...state,
       products: [],
-      categoryFilters: []
+      categoryFilters: [],
+      nameFilters: []
     });
   };
+
+  // FILTERS (by Category)
 
   setFilterByCategory = (category: string, enabled = false) => {
     if (enabled) {
@@ -58,6 +62,44 @@ export class Controller {
     this.model.setState({
       ...state,
       categoryFilters,
+      productsToShow
+    });
+  };
+
+  // FILTERS (by Name)
+
+  setFilterByName = (name: string, enabled = false) => {
+    if (enabled) {
+      this.addFilterByName(name);
+      return;
+    }
+    this.removeFilterByName(name);
+  };
+
+  removeFilterByName = (name: string) => {
+    const state = this.model.getState();
+    const nameFilters = state.nameFilters.filter((cat) => cat !== name);
+    const productsToShow = nameFilters.length
+      ? state.products.filter(({ name }) => nameFilters.includes(name))
+      : state.products;
+
+    this.model.setState({
+      ...state,
+      nameFilters,
+      productsToShow
+    });
+  };
+
+  addFilterByName = (name: string) => {
+    const state = this.model.getState();
+    const nameFilters = [...state.nameFilters, name];
+    const productsToShow = nameFilters.length
+      ? state.products.filter(({ animeName }) => nameFilters.includes(animeName))
+      : state.products;
+
+    this.model.setState({
+      ...state,
+      nameFilters,
       productsToShow
     });
   };

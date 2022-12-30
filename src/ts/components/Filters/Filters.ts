@@ -8,11 +8,17 @@ export class Filters {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   onFilterClick: (item: string, enabled: boolean) => void;
+  onNameClick: (item: string, enabled: boolean) => void;
 
-  constructor(parent: HTMLElement | null, onFilterClick: (item: string, enabled: boolean) => void) {
+  constructor(
+    parent: HTMLElement | null,
+    onFilterClick: (item: string, enabled: boolean) => void,
+    onNameClick: (item: string, enabled: boolean) => void
+  ) {
     this.parent = parent;
     this.component = null;
     this.onFilterClick = onFilterClick;
+    this.onNameClick = onNameClick;
   }
 
   update = (props?: IFilterProps) => {
@@ -36,19 +42,21 @@ export class Filters {
       dataAttr: [['id', 'btnCopy']]
     });
 
-    const nameItem = props?.names.map((item) =>
-      create({
+    const nameItem = props?.names.map((item) => {
+      const checkBox = create({
+        tagName: 'input',
+        classNames: 'custom__checkbox',
+        dataAttr: [
+          ['type', 'checkbox'],
+          ['id', item]
+        ]
+      }) as HTMLInputElement;
+
+      const element = create({
         tagName: 'div',
         classNames: 'filters__item__list__item',
         children: [
-          create({
-            tagName: 'input',
-            classNames: 'custom__checkbox',
-            dataAttr: [
-              ['type', 'checkbox'],
-              ['id', item]
-            ]
-          }),
+          checkBox,
           create({
             tagName: 'label',
             classNames: 'label',
@@ -61,8 +69,11 @@ export class Filters {
             children: '(10/10)'
           })
         ]
-      })
-    );
+      });
+
+      checkBox.addEventListener('click', () => this.onNameClick(item, checkBox.checked));
+      return element;
+    });
 
     const categoryItem = props?.categories.map((item) => {
       const checkBox = create({

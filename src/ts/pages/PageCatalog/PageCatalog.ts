@@ -37,7 +37,11 @@ export class Catalog {
 
     const state = this.model.getState();
 
-    const filters = new Filters(this.section, this.controller.setFilterByCategory);
+    const filters = new Filters(
+      this.section,
+      this.controller.setFilterByCategory,
+      this.controller.setFilterByName
+    );
     const products = new Products(this.section);
 
     if (this.mounted) {
