@@ -1,9 +1,8 @@
 @import 'global';
 
 $input-bg-color: hsl(206, 6%, 25%);
-$input-color: rgba(255,255,255, 0.94);
+$input-color: rgba(255, 255, 255, 0.94);
 $input-placeholder-color: rgba(255, 255, 255, 0.403);
-
 
 .header {
   &__wrapper {
@@ -17,7 +16,7 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
     width: 12vw;
     max-width: 180px;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
   }
 }
 
@@ -28,7 +27,7 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
   background-color: $input-bg-color;
   border-radius: 2.2rem;
   padding-right: 0.5em;
-  transition: all .5s;
+  transition: all 0.5s;
 
   &__input {
     background: none;
@@ -40,11 +39,11 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
     font-size: medium;
     color: $input-color;
     outline: none;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
 
     &::placeholder {
       color: $input-placeholder-color;
-      font-family: "Roboto", sans-serif;
+      font-family: 'Roboto', sans-serif;
     }
   }
   &__button {
@@ -76,10 +75,9 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
 }
 
 .cart-shopping {
-  
   &__wrapper {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
     align-self: center;
   }
   &__button {
@@ -89,7 +87,7 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
     max-width: 3em;
     cursor: pointer;
     min-width: 2em;
-    width: 3em;
+    width: 2em;
   }
   &__svg {
     fill: $svg-icons-color;

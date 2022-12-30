@@ -9,6 +9,7 @@ import { PageMain } from './pages/PageMain/PageMain';
 import { Page404 } from './pages/Page404/Page404';
 import { PageDetails } from './pages/PageDetails/PageDetails';
 import { Catalog } from './pages/PageCatalog/PageCatalog';
+import { PageCart } from './pages/PageCart/PageCart';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -54,7 +55,7 @@ export class App {
     this.router = new Router(this.main);
 
     // Static components
-    const header = new Header(this.header);
+    const header = new Header(this.header, this.router.route);
     header.mount();
     const footer = new Footer(this.footer);
     footer.mount();
@@ -62,6 +63,7 @@ export class App {
     // Dinamic components
     const pageMain = new PageMain(this.main, this.router.route);
     const pageCatalog = new Catalog(this.main, model);
+    const pageCart = new PageCart(this.main, model);
     const page404 = new Page404(this.main, this.router.route);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
 
@@ -88,6 +90,17 @@ export class App {
       '/details': {
         mount: pageDetails.mount,
         unmount: pageDetails.unmount,
+        mountedProps: {
+          mounted: () => {
+            fetch('../assets/data/data.json')
+              .then((data) => data.json())
+              .then((data: IProductsResponse) => controller.setData(data.products));
+          }
+        }
+      },
+      '/cart': {
+        mount: pageCart.mount,
+        unmount: pageCart.unmount,
         mountedProps: {
           mounted: () => {
             fetch('../assets/data/data.json')

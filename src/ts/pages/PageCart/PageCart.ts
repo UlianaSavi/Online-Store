@@ -1,0 +1,55 @@
+import { Model } from '../../models/model';
+import { create } from '../../utils/create';
+import { isEqual } from '../../utils/objects';
+import { IPageProps } from '../../types';
+import { CartList } from '../../components/CartList/CartList';
+import { Total } from '../../components/CartTotal/CartTotal';
+
+export class PageCart {
+  parent: HTMLElement | null;
+  section: HTMLElement | null;
+  model: Model;
+  mounted: boolean;
+
+  constructor(parent: HTMLElement | null, model: Model) {
+    this.parent = parent;
+    this.section = null;
+    this.model = model;
+    this.mounted = false;
+  }
+
+  createDefaultLayer = () => {
+    this.section = create({
+      tagName: 'section',
+      classNames: 'cart container cart__wrapper',
+      parent: this.parent
+    });
+  };
+
+  unmount = () => {
+    this.section?.remove();
+  };
+
+  mount = (props?: IPageProps) => {
+    this.createDefaultLayer();
+
+    const cartList = new CartList(this.section);
+    const total = new Total(this.section);
+
+    this.model.subscribe((state, prevState) => {
+      if (isEqual(state.products, prevState?.products)) {
+        return;
+      }
+      const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
+      cartList.update({ items });
+    });
+    this.model.subscribe((state, prevState) => {
+      if (isEqual(state.products, prevState?.products)) {
+        return;
+      }
+      total.update();
+    });
+
+    props?.mounted && props?.mounted();
+  };
+}
