@@ -41,9 +41,10 @@ export class Controller {
   removeFilterByCategory = (category: string) => {
     const state = this.model.getState();
     const categoryFilters = state.categoryFilters.filter((cat) => cat !== category);
-    const productsToShow = categoryFilters.length
-      ? state.products.filter(({ category }) => categoryFilters.includes(category))
-      : state.products;
+    const productsToShow =
+      categoryFilters.length || state.nameFilters.length
+        ? state.productsToShow.filter(({ category }) => categoryFilters.includes(category))
+        : state.products;
 
     this.model.setState({
       ...state,
@@ -55,15 +56,19 @@ export class Controller {
   addFilterByCategory = (category: string) => {
     const state = this.model.getState();
     const categoryFilters = [...state.categoryFilters, category];
-    const productsToShow = categoryFilters.length
-      ? state.products.filter(({ category }) => categoryFilters.includes(category))
-      : state.products;
+
+    const productsToShow =
+      categoryFilters.length || state.nameFilters.length
+        ? state.products.filter(({ category }) => categoryFilters.includes(category))
+        : state.products;
 
     this.model.setState({
       ...state,
       categoryFilters,
       productsToShow
     });
+
+    console.log(categoryFilters, productsToShow);
   };
 
   // FILTERS (by Name)
@@ -79,9 +84,10 @@ export class Controller {
   removeFilterByName = (name: string) => {
     const state = this.model.getState();
     const nameFilters = state.nameFilters.filter((cat) => cat !== name);
-    const productsToShow = nameFilters.length
-      ? state.products.filter(({ name }) => nameFilters.includes(name))
-      : state.products;
+    const productsToShow =
+      nameFilters.length || state.categoryFilters.length
+        ? state.productsToShow.filter(({ animeName }) => nameFilters.includes(animeName))
+        : state.products;
 
     this.model.setState({
       ...state,
@@ -93,14 +99,23 @@ export class Controller {
   addFilterByName = (name: string) => {
     const state = this.model.getState();
     const nameFilters = [...state.nameFilters, name];
-    const productsToShow = nameFilters.length
+    const productsToShow = state.categoryFilters.length
+      ? state.productsToShow.filter(({ animeName }) => nameFilters.includes(animeName)) // если выбрана категория, то фильтруй productsToShow
+      : state.products || (nameFilters.length && state.categoryFilters.length === 0) // если выбран фильтр по имени и не выбрано категории, то фильтруй state.products
       ? state.products.filter(({ animeName }) => nameFilters.includes(animeName))
       : state.products;
+
+    // нужно научиться фильтровать если уже выбран одни или нескошлько фидьтров из другого блока
+
+    // const test = state.products.filter(({ category }) => nameFilters.includes(category));
+    // console.log('test', test);
 
     this.model.setState({
       ...state,
       nameFilters,
       productsToShow
     });
+
+    // console.log(nameFilters, productsToShow);
   };
 }
