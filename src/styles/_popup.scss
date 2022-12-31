@@ -16,7 +16,7 @@ $container-radius: 0.5em;
   background-color: $popup-blackout;
   top: 0;
   left: 0;
-  opacity: 0;
+  // opacity: 0;
   visibility: hidden;
   overflow-y: auto;
   overflow-x: hidden;
@@ -169,7 +169,7 @@ $container-radius: 0.5em;
 }
 
 // .popup.open {
-.popup:target{
+.popup.active{
   opacity: 1;
   visibility: visible;
 }
@@ -182,10 +182,10 @@ $container-radius: 0.5em;
   left: 0;
 }
 
-.popup:target .popup__content {
-  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-  opacity: 1;
-}
+// .popup.active .popup__content {
+//   transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+//   opacity: 1;
+// }
 
 .body.lock {
   overflow: hidden;

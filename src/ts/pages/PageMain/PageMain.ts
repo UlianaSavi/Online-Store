@@ -35,12 +35,6 @@ export class PageMain {
       classNames: 'main__wrapper',
       children: [
         create({
-          tagName: 'a',
-          children: 'OPEN POPUP',
-          dataAttr: [['href', '#popup']]
-        })
-        ,
-        create({
           tagName: 'h2',
           classNames: 'main__header',
           children: 'Catalog'

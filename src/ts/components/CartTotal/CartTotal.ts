@@ -12,15 +12,25 @@ export class Total {
   update = () => {
     this.render();
   };
-
+  
   render = () => {
     this.component?.remove();
-
+    
     const buyBtn = create({
       tagName: 'button',
       classNames: 'btn',
       children: 'BUY NOW'
     });
+    
+    const popupBg = document.querySelector('.popup'); // Фон попап окна
+    // const popup = document.querySelector('popup__content'); // Само окно
+
+    buyBtn.addEventListener('click', (e) => {
+      console.log('click');
+      e.preventDefault(); // Предотвращаем дефолтное поведение браузера
+      popupBg?.classList.add('active'); // Добавляем класс 'active' для фона
+      // popup?.classList.add('active'); // И для самого окна
+    })
 
     this.component = create({
       tagName: 'div',

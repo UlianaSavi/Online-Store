@@ -14,6 +14,7 @@ export class Popup {
   };
 
   mount = () => {
+    console.log('in mount');
     const cardNumber = document.createElement('input');
     cardNumber.classList.add('input input__card-number');
     cardNumber.type = 'number';
@@ -38,8 +39,8 @@ export class Popup {
       dataAttr: [['id', 'popup']],
       children: [
         create({
-          tagName: 'a',
-          dataAttr: [['href', '##']],
+          tagName: 'div',
+          // dataAttr: [['href', '##']],
           classNames: 'popup__area'
         }),
         create({
@@ -51,9 +52,9 @@ export class Popup {
               classNames: 'popup__content',
               children: [
                 create({
-                  tagName: 'a',
+                  tagName: 'div',
                   classNames: 'cross close-popup',
-                  dataAttr: [['href', '#']],
+                  // dataAttr: [['href', '#']],
                   children: [`x`]
                 }),
                 create({
