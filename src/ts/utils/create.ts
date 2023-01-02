@@ -4,6 +4,7 @@ export interface ICreateProps {
   children?: string | Array<string> | number | Array<HTMLElement | string | null> | null;
   parent?: Element | null;
   dataAttr?: string[][];
+  value?: number;
 }
 
 export function create({

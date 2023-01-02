@@ -68,7 +68,7 @@ export class App {
     const page404 = new Page404(this.main, this.router.route);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
     const popup = new Popup(this.main);
-    popup.mount;
+    popup.mount();
 
     const routes = {
       '404': {

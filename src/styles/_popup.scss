@@ -169,9 +169,10 @@ $container-radius: 0.5em;
 }
 
 // .popup.open {
-.popup.active{
+.popup.active {
   opacity: 1;
   visibility: visible;
+  z-index: 10;
 }
 
 .popup__area {
@@ -182,10 +183,10 @@ $container-radius: 0.5em;
   left: 0;
 }
 
-// .popup.active .popup__content {
-//   transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-//   opacity: 1;
-// }
+.popup.active .popup__content {
+  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+  opacity: 1;
+}
 
 .body.lock {
   overflow: hidden;

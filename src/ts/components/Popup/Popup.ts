@@ -14,24 +14,33 @@ export class Popup {
   };
 
   mount = () => {
-    console.log('in mount');
-    const cardNumber = document.createElement('input');
-    cardNumber.classList.add('input input__card-number');
-    cardNumber.type = 'number';
-    cardNumber.placeholder = 'Card number';
+    // const cardNumber = document.createElement('input');
+    // cardNumber.classList.add('input input__card-number');
+    // cardNumber.type = 'number';
+    // cardNumber.placeholder = 'Card number';
 
-    cardNumber?.addEventListener('keypress', () => {
-      cardNumber.value = cardNumber.value.substring(0,15)
-    })
+    // cardNumber?.addEventListener('keypress', () => {
+    //   cardNumber.value = cardNumber.value.substring(0, 15);
+    // });
 
-    const payLogo = document.createElement('img');
-    payLogo.classList.add('credit-card__image');
-    payLogo.alt = 'pay logo';
+    const cart2 = create({
+      tagName: 'input',
+      // dataAttr: [['href', '##']],
+      classNames: 'input input__card-number'
+    }) as HTMLInputElement;
 
-    // visa
-    payLogo.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
-    // master card
-    // payLogo.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
+    cart2?.addEventListener('keypress', () => {
+      cart2.value = cart2.value.substring(0, 15);
+    });
+
+    // const payLogo = document.createElement('img');
+    // payLogo.classList.add('credit-card__image');
+    // payLogo.alt = 'pay logo';
+
+    // // visa
+    // payLogo.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
+    // // master card
+    // // payLogo.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
 
     this.component = create({
       tagName: 'section',
@@ -104,7 +113,7 @@ export class Popup {
                             ['type', 'email']
                           ]
                         })
-                      ]               
+                      ]
                     }),
                     create({
                       tagName: 'h4',
@@ -126,9 +135,9 @@ export class Popup {
                                 create({
                                   tagName: 'div',
                                   classNames: 'credit-card__image-wrapper',
-                                  children: [payLogo]
+                                  children: ['payLogo']
                                 }),
-                                cardNumber
+                                cart2
                               ]
                             }),
                             create({
@@ -147,7 +156,10 @@ export class Popup {
                                     create({
                                       tagName: 'input',
                                       classNames: 'input input__date',
-                                      dataAttr: [['type', 'text'], ['placeholder', '12/23']]
+                                      dataAttr: [
+                                        ['type', 'text'],
+                                        ['placeholder', '12/23']
+                                      ]
                                     })
                                   ]
                                 }),
@@ -163,7 +175,10 @@ export class Popup {
                                     create({
                                       tagName: 'input',
                                       classNames: 'input input__cvv',
-                                      dataAttr: [['type', 'text'], ['placeholder', '132']]
+                                      dataAttr: [
+                                        ['type', 'text'],
+                                        ['placeholder', '132']
+                                      ]
                                     })
                                   ]
                                 })
@@ -171,14 +186,14 @@ export class Popup {
                             })
                           ]
                         })
-                      ]               
+                      ]
                     }),
                     create({
                       tagName: 'a',
                       classNames: 'popup__confirm close-popup',
                       dataAttr: [['href', '#']],
                       children: [`Confirm`]
-                    }),
+                    })
                   ]
                 })
               ]
