@@ -111,4 +111,9 @@ export class Controller {
       productsToShow: products
     });
   };
+
+  checkEmpty = () => {
+    const state = this.model.getState();
+    return state.productsToShow.length ? true : false;
+  };
 }

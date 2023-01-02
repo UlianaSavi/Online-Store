@@ -98,13 +98,12 @@ export class Filters {
           create({
             tagName: 'span',
             classNames: 'list__name',
-            children: '(10/10)'
+            children: `(${10}/10)`
           })
         ]
       });
 
       checkBox.addEventListener('click', () => this.onFilterClick(item, checkBox.checked));
-
       return element;
     });
 

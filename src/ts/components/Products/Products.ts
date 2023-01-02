@@ -4,6 +4,7 @@ import { IProduct } from '../../types';
 interface IProductsProps {
   items: IProduct[];
   addToCartClickHandler?: (id: number) => void;
+  showEmptyTitle?: (div: HTMLElement) => void;
 }
 export class Products {
   parent: HTMLElement | null;
@@ -23,6 +24,14 @@ export class Products {
 
     const roundsMainCount = 16;
     const roundsBigCount = 36;
+
+    const titleEmpty = !props?.items.length
+      ? create({
+          tagName: 'h2',
+          classNames: 'empty__title',
+          children: 'NOT PRODUCTS FOUND &#128579;'
+        })
+      : null;
 
     const viewMain = create({
       tagName: 'div',
@@ -159,10 +168,10 @@ export class Products {
               tagName: 'span',
               classNames: 'sort__items__count',
               children: [
-                'Found:',
+                'Found: ',
                 create({
                   tagName: 'i',
-                  children: ' 40'
+                  children: `${props?.items.length}`
                 })
               ]
             }),
@@ -177,7 +186,8 @@ export class Products {
           tagName: 'div',
           classNames: 'products__table',
           children: productItem
-        })
+        }),
+        titleEmpty
       ],
       parent: this.parent
     });
