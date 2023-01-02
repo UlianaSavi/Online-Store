@@ -72,7 +72,7 @@ export class Controller {
 
   removeFilterByName = (name: string) => {
     const state = this.model.getState();
-    const nameFilters = state.nameFilters.filter((cat) => cat !== name);
+    const nameFilters = state.nameFilters.filter((itemName) => itemName !== name);
 
     this.model.setState({
       ...state,
@@ -96,20 +96,19 @@ export class Controller {
     const state = this.model.getState();
     const categoryFilters = [...state.categoryFilters];
     const nameFilters = [...state.nameFilters];
+    let products = [...state.products];
 
-    const productsToShow =
-      categoryFilters.length && nameFilters.length
-        ? state.products.filter(
-            ({ category, animeName }) =>
-              categoryFilters.includes(category) && nameFilters.includes(animeName)
-          )
-        : state.products.filter(({ category }) => categoryFilters.includes(category));
+    if (categoryFilters.length) {
+      products = products.filter(({ category }) => categoryFilters.includes(category));
+    }
 
-    console.log(productsToShow, state.nameFilters, state.categoryFilters);
+    if (nameFilters.length) {
+      products = products.filter(({ animeName }) => nameFilters.includes(animeName));
+    }
 
     this.model.setState({
       ...state,
-      productsToShow
+      productsToShow: products
     });
   };
 }
