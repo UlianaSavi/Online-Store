@@ -73,6 +73,17 @@ export class Popup {
     inputAddress.title ='Must contain at least three words, each at least 5 characters long';
     inputAddress.pattern = '[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}';
 
+    const inputEmail = create({
+      tagName: 'input',
+      classNames: 'input input__email',
+      dataAttr: [
+        ['placeholder', 'E-mail'],
+        ['type', 'email']
+      ]
+    }) as HTMLInputElement;
+    inputEmail.title ='Please enter the correct email address';
+    inputEmail.pattern = '^[A-Za-z0-9]*[@][A-Za-z0-9]*[.][A-Za-z]*';
+
     const cardNumber = create({
       tagName: 'input',
       dataAttr: [
@@ -120,15 +131,7 @@ export class Popup {
                 inputName,
                 inputPhone,
                 inputAddress,
-                create({
-                  tagName: 'input',
-                  classNames: 'input input__email',
-                  dataAttr: [
-                    ['placeholder', 'E-mail'],
-                    ['type', 'email'],
-                    ['required']
-                  ]
-                })
+                inputEmail
               ]
             }),
             create({
