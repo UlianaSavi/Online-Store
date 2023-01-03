@@ -47,11 +47,11 @@ export class Popup {
       classNames: 'popup',
       dataAttr: [['id', 'popup']],
       children: [
-        create({
-          tagName: 'div',
-          // dataAttr: [['href', '##']],
-          classNames: 'popup__area'
-        }),
+        // create({
+        //   tagName: 'div',
+        //   // dataAttr: [['href', '##']],
+        //   classNames: 'popup__area'
+        // }),
         create({
           tagName: 'div',
           classNames: 'popup__body',
@@ -191,7 +191,7 @@ export class Popup {
                     create({
                       tagName: 'a',
                       classNames: 'popup__confirm close-popup',
-                      dataAttr: [['href', '#']],
+                      // dataAttr: [['href', '#']],
                       children: [`Confirm`]
                     })
                   ]

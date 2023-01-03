@@ -23,7 +23,8 @@ export class Total {
     });
 
     const popupBg = document.querySelector('.popup'); // Фон попап окна
-    // const popup = document.querySelector('popup__content'); // Само окно
+    const popup = document.querySelector('.popup__content'); // Само окно
+    const closePopupButton = document.querySelectorAll('.close-popup'); // Кнопка для скрытия окна
 
     buyBtn.addEventListener('click', (e) => {
       console.log('click');
@@ -31,7 +32,19 @@ export class Total {
 
       e.preventDefault(); // Предотвращаем дефолтное поведение браузера
       popupBg?.classList.add('active'); // Добавляем класс 'active' для фона
-      // popup?.classList.add('active'); // И для самого окна
+      popup?.classList.add('active'); // И для самого окна
+    });
+
+    closePopupButton?.forEach((item) => item.addEventListener('click',() => { // Вешаем обработчик на крестик
+      popupBg?.classList.remove('active'); // Убираем активный класс с фона
+      popup?.classList.remove('active'); // И с окна
+    }));
+    
+    document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
+      if(e.target === popupBg || e.target === document.querySelector('.popup__body')) { // Если цель клика - фот, то:
+          popupBg?.classList.remove('active'); // Убираем активный класс с фона
+          popup?.classList.remove('active'); // И с окна
+      }
     });
 
     this.component = create({
