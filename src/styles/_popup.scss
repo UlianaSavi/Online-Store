@@ -110,7 +110,8 @@ $container-radius: 0.5em;
   -moz-appearance: textfield;
 }
 
-.input:hover {
+.input:hover,
+.input:focus {
   border: 3px solid $border-hover-color;
   -webkit-box-shadow: 7px 7px 20px 0px $border-hover-color;
   -moz-box-shadow: 7px 7px 20px 0px $border-hover-color;
@@ -190,4 +191,31 @@ $container-radius: 0.5em;
 
 .body.lock {
   overflow: hidden;
+}
+
+
+// validity
+.popup {
+  .input + span {
+    position: relative;
+  }
+  
+  .input + span::before {
+    position: absolute;
+    right: -20px;
+    top: 5px;
+  }
+  
+  .input:invalid {
+    border: 2px solid red;
+  }
+  
+  .input:focus:invalid {
+    border: 2px solid red;
+  }
+  
+  .input:invalid + span::before {
+    content: "✖";
+    color: red;
+  }
 }

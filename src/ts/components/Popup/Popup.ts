@@ -19,11 +19,43 @@ export class Popup {
   };
 
   mount = () => {
+    // open/close popup
+    const closePopupButtonX = create({
+      tagName: 'div',
+      classNames: 'cross close-popup',
+      children: [`x`]
+    })
+
+    closePopupButtonX.addEventListener('click', this.controller.closePopup);
+
+    const closePopupButtonConfirm = create({
+      tagName: 'a',
+      classNames: 'popup__confirm close-popup',
+      children: [`Confirm`]
+    })
+
+    closePopupButtonConfirm.addEventListener('click', this.controller.closePopup);
+
+    // input validation
+    const inputName = create({
+      tagName: 'input',
+      classNames: 'input input__name',
+      dataAttr: [
+        ['placeholder', 'Name and Surname'],
+        ['type', 'text']
+      ]
+    }) as HTMLInputElement;
+    inputName.title = 'Must contain at least two words, each at least 3 characters long';
+    inputName.pattern = '[A-Za-z]{3,}\\b.+?[A-Za-z]{3,}';
+
+    console.log(inputName.validity);
+
     const cardNumber = create({
       tagName: 'input',
       dataAttr: [
         ['type', 'number'],
-        ['placeholder', 'Card number']
+        ['placeholder', 'Card number'],
+        ['required']
       ],
       classNames: 'input input__card-number'
     }) as HTMLInputElement;
@@ -43,22 +75,7 @@ export class Popup {
     // master card
     // payLogo.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
 
-    const closePopupButtonX = create({
-      tagName: 'div',
-      classNames: 'cross close-popup',
-      children: [`x`]
-    })
-
-    closePopupButtonX.addEventListener('click', this.controller.closePopup);
-
-    const closePopupButtonConfirm = create({
-      tagName: 'a',
-      classNames: 'popup__confirm close-popup',
-      children: [`Confirm`]
-    })
-
-    closePopupButtonConfirm.addEventListener('click', this.controller.closePopup);
-
+    // create elements
     this.popupContent = create({
       tagName: 'div',
       classNames: 'popup__content',
@@ -77,14 +94,7 @@ export class Popup {
               tagName: 'div',
               classNames: 'input-container',
               children: [
-                create({
-                  tagName: 'input',
-                  classNames: 'input input__name',
-                  dataAttr: [
-                    ['placeholder', 'Name and Surname'],
-                    ['type', 'text']
-                  ]
-                }),
+                inputName,
                 create({
                   tagName: 'input',
                   classNames: 'input input__phone',
@@ -92,7 +102,8 @@ export class Popup {
                     ['placeholder', 'Phone number'],
                     ['type', 'tel'],
                     ['value', '+'],
-                    ['minlength', '10']
+                    ['minlength', '10'],
+                    ['required']
                   ]
                 }),
                 create({
@@ -100,7 +111,8 @@ export class Popup {
                   classNames: 'input input__address',
                   dataAttr: [
                     ['placeholder', 'Delivery address'],
-                    ['type', 'text']
+                    ['type', 'text'],
+                    ['required']
                   ]
                 }),
                 create({
@@ -108,7 +120,8 @@ export class Popup {
                   classNames: 'input input__email',
                   dataAttr: [
                     ['placeholder', 'E-mail'],
-                    ['type', 'email']
+                    ['type', 'email'],
+                    ['required']
                   ]
                 })
               ]
@@ -156,7 +169,8 @@ export class Popup {
                               classNames: 'input input__date',
                               dataAttr: [
                                 ['type', 'text'],
-                                ['placeholder', '12/23']
+                                ['placeholder', '12/23'],
+                                ['required']
                               ]
                             })
                           ]
@@ -175,7 +189,8 @@ export class Popup {
                               classNames: 'input input__cvv',
                               dataAttr: [
                                 ['type', 'text'],
-                                ['placeholder', '132']
+                                ['placeholder', '132'],
+                                ['required']
                               ]
                             })
                           ]
@@ -208,6 +223,7 @@ export class Popup {
     
     this.component = popup;
 
+    // close popup
     document.addEventListener('click', (e) => {
       if(e.target === popup || e.target === popupBody) {
         this.controller.closePopup();
