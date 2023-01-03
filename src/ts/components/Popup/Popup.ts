@@ -103,11 +103,22 @@ export class Popup {
       classNames: 'credit-card__image',
       dataAttr: [['alt', 'pay logo']]
     }) as HTMLImageElement;
-
-    // visa
-    payLogo.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
-    // master card
-    // payLogo.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
+    if (cardNumber.value === ''){
+      payLogo.src = 'assets/icons/credit-card-regular.svg';
+    }
+    cardNumber?.addEventListener('input', () => {
+      if (cardNumber.value[0] !== undefined) {
+        if (cardNumber.value[0].toString() === '4') {
+          payLogo.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
+        } else if (cardNumber.value[0].toString() === '5') {
+          payLogo.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
+        } else if (cardNumber.value[0].toString() === '3'){
+          payLogo.src = 'assets/icons/pngwing.com.png';
+        }
+      } else {
+        payLogo.src = 'assets/icons/credit-card-regular.svg';
+      }
+    });
 
     // create elements
     this.popupContent = create({
