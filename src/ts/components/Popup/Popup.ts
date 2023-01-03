@@ -62,6 +62,17 @@ export class Popup {
       if (inputPhone.value === '') inputPhone.value = '+';
     })
 
+    const inputAddress = create({
+      tagName: 'input',
+      classNames: 'input input__address',
+      dataAttr: [
+        ['placeholder', 'Delivery address'],
+        ['type', 'text']
+      ]
+    }) as HTMLInputElement;
+    inputAddress.title ='Must contain at least three words, each at least 5 characters long';
+    inputAddress.pattern = '[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}';
+
     const cardNumber = create({
       tagName: 'input',
       dataAttr: [
@@ -108,15 +119,7 @@ export class Popup {
               children: [
                 inputName,
                 inputPhone,
-                create({
-                  tagName: 'input',
-                  classNames: 'input input__address',
-                  dataAttr: [
-                    ['placeholder', 'Delivery address'],
-                    ['type', 'text'],
-                    ['required']
-                  ]
-                }),
+                inputAddress,
                 create({
                   tagName: 'input',
                   classNames: 'input input__email',
