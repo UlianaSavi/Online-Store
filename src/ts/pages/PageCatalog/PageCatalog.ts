@@ -45,12 +45,22 @@ export class Catalog {
     const products = new Products(this.section);
 
     if (this.mounted) {
-      const categories = [
+      const categoriesSet = [
         ...new Set(state.products.map((item) => item.category).filter((item) => !!item))
       ];
-      const names = [
+      const namesSet = [
         ...new Set(state.products.map((item) => item.animeName).filter((item) => !!item))
       ];
+      const categories = categoriesSet.map((name) => {
+        const count = state.productsToShow.filter((item) => item.category === name).length;
+        const baseCount = state.products.filter((item) => item.category === name).length;
+        return { name, count, baseCount };
+      });
+      const names = namesSet.map((name) => {
+        const count = state.productsToShow.filter((item) => item.animeName === name).length;
+        const baseCount = state.products.filter((item) => item.animeName === name).length;
+        return { name, count, baseCount };
+      });
       filters.update({ names, categories });
 
       const items = [...new Set(state.productsToShow.map((item) => item).filter((item) => !!item))];
@@ -58,17 +68,45 @@ export class Catalog {
     }
 
     this.model.subscribe((state, prevState) => {
-      if (isEqual(state.products, prevState?.products)) {
+      if (
+        isEqual(state.products, prevState?.products) &&
+        isEqual(state.productsToShow, prevState?.productsToShow)
+      ) {
         return;
       }
-      const categories = [
+      const categoriesSet = [
         ...new Set(state.products.map((item) => item.category).filter((item) => !!item))
       ];
-      const names = [
+      const namesSet = [
         ...new Set(state.products.map((item) => item.animeName).filter((item) => !!item))
       ];
 
-      filters.update({ names, categories });
+      const stateNumbers = state.productsToShow.map((item) => item.price);
+
+      const categories = categoriesSet.map((name) => {
+        const count = state.productsToShow.filter((item) => item.category === name).length;
+        const baseCount = state.products.filter((item) => item.category === name).length;
+        return { name, count, baseCount };
+      });
+      const names = namesSet.map((name) => {
+        const count = state.productsToShow.filter((item) => item.animeName === name).length;
+        const baseCount = state.products.filter((item) => item.animeName === name).length;
+        return { name, count, baseCount };
+      });
+
+      const maxVal = Math.max(...stateNumbers);
+      const minVal = Math.min(...stateNumbers);
+
+      const props = {
+        names,
+        categories,
+        maxVal,
+        minVal,
+        activeCategoriesFilters: state.categoryFilters,
+        activeNameFiltrs: state.nameFilters
+      };
+
+      filters.update(props);
     });
 
     this.model.subscribe((state, prevState) => {

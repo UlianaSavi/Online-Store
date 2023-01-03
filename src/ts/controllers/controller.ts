@@ -1,6 +1,5 @@
 import { Model } from '../models/model';
 import { IProduct } from '../types';
-
 export class Controller {
   model: Model;
 
