@@ -48,7 +48,19 @@ export class Popup {
     inputName.title = 'Must contain at least two words, each at least 3 characters long';
     inputName.pattern = '[A-Za-z]{3,}\\b.+?[A-Za-z]{3,}';
 
-    console.log(inputName.validity);
+    const inputPhone = create({
+      tagName: 'input',
+      classNames: 'input input__phone',
+      dataAttr: [
+        ['placeholder', 'Phone number'],
+        ['type', 'tel']
+      ]
+    }) as HTMLInputElement;
+    inputPhone.title = 'Must start with '+', contain only digits and be no shorter than 9 digits';
+    inputPhone.pattern = '[+][0-9]{9,}';
+    inputPhone.addEventListener('click', () => {
+      if (inputPhone.value === '') inputPhone.value = '+';
+    })
 
     const cardNumber = create({
       tagName: 'input',
@@ -95,17 +107,7 @@ export class Popup {
               classNames: 'input-container',
               children: [
                 inputName,
-                create({
-                  tagName: 'input',
-                  classNames: 'input input__phone',
-                  dataAttr: [
-                    ['placeholder', 'Phone number'],
-                    ['type', 'tel'],
-                    ['value', '+'],
-                    ['minlength', '10'],
-                    ['required']
-                  ]
-                }),
+                inputPhone,
                 create({
                   tagName: 'input',
                   classNames: 'input input__address',
