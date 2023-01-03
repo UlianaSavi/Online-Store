@@ -14,44 +14,35 @@ export class Popup {
   };
 
   mount = () => {
-    // const cardNumber = document.createElement('input');
-    // cardNumber.classList.add('input input__card-number');
-    // cardNumber.type = 'number';
-    // cardNumber.placeholder = 'Card number';
-
-    // cardNumber?.addEventListener('keypress', () => {
-    //   cardNumber.value = cardNumber.value.substring(0, 15);
-    // });
-
-    const cart2 = create({
+    const cardNumber = create({
       tagName: 'input',
-      // dataAttr: [['href', '##']],
+      dataAttr: [
+        ['type', 'number'],
+        ['placeholder', 'Card number']
+      ],
       classNames: 'input input__card-number'
     }) as HTMLInputElement;
 
-    cart2?.addEventListener('keypress', () => {
-      cart2.value = cart2.value.substring(0, 15);
+    cardNumber?.addEventListener('keypress', () => {
+      cardNumber.value = cardNumber.value.substring(0, 15);
     });
 
-    // const payLogo = document.createElement('img');
-    // payLogo.classList.add('credit-card__image');
-    // payLogo.alt = 'pay logo';
+    const payLogo = create({
+      tagName: 'img',
+      classNames: 'credit-card__image',
+      dataAttr: [['alt', 'pay logo']]
+    }) as HTMLImageElement;
 
-    // // visa
-    // payLogo.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
-    // // master card
-    // // payLogo.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
+    // visa
+    payLogo.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
+    // master card
+    // payLogo.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
 
     this.component = create({
       tagName: 'section',
       classNames: 'popup',
       dataAttr: [['id', 'popup']],
       children: [
-        // create({
-        //   tagName: 'div',
-        //   // dataAttr: [['href', '##']],
-        //   classNames: 'popup__area'
-        // }),
         create({
           tagName: 'div',
           classNames: 'popup__body',
@@ -63,7 +54,6 @@ export class Popup {
                 create({
                   tagName: 'div',
                   classNames: 'cross close-popup',
-                  // dataAttr: [['href', '#']],
                   children: [`x`]
                 }),
                 create({
@@ -135,9 +125,9 @@ export class Popup {
                                 create({
                                   tagName: 'div',
                                   classNames: 'credit-card__image-wrapper',
-                                  children: ['payLogo']
+                                  children: [payLogo]
                                 }),
-                                cart2
+                                cardNumber
                               ]
                             }),
                             create({
@@ -191,7 +181,6 @@ export class Popup {
                     create({
                       tagName: 'a',
                       classNames: 'popup__confirm close-popup',
-                      // dataAttr: [['href', '#']],
                       children: [`Confirm`]
                     })
                   ]
