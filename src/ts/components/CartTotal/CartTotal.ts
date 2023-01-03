@@ -1,12 +1,15 @@
 import { create } from '../../utils/create';
+import { Controller } from '../../controllers/controller';
 
 export class Total {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  controller: Controller;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, controller: Controller) {
     this.parent = parent;
     this.component = null;
+    this.controller = controller;
   }
 
   update = () => {
@@ -22,29 +25,9 @@ export class Total {
       children: 'BUY NOW'
     });
 
-    const popupBg = document.querySelector('.popup'); // Фон попап окна
-    const popup = document.querySelector('.popup__content'); // Само окно
-    const closePopupButton = document.querySelectorAll('.close-popup'); // Кнопка для скрытия окна
-
     buyBtn.addEventListener('click', (e) => {
-      console.log('click');
-      console.log(popupBg);
-
-      e.preventDefault(); // Предотвращаем дефолтное поведение браузера
-      popupBg?.classList.add('active'); // Добавляем класс 'active' для фона
-      popup?.classList.add('active'); // И для самого окна
-    });
-
-    closePopupButton?.forEach((item) => item.addEventListener('click',() => { // Вешаем обработчик на крестик
-      popupBg?.classList.remove('active'); // Убираем активный класс с фона
-      popup?.classList.remove('active'); // И с окна
-    }));
-    
-    document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
-      if(e.target === popupBg || e.target === document.querySelector('.popup__body')) { // Если цель клика - фот, то:
-          popupBg?.classList.remove('active'); // Убираем активный класс с фона
-          popup?.classList.remove('active'); // И с окна
-      }
+      e.preventDefault();
+      this.controller.openPopup();
     });
 
     this.component = create({
