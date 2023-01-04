@@ -19,23 +19,6 @@ export class Popup {
   };
 
   mount = () => {
-    // open/close popup
-    const closePopupButtonX = create({
-      tagName: 'div',
-      classNames: 'cross',
-      children: [`x`]
-    });
-
-    closePopupButtonX.addEventListener('click', this.controller.closePopup);
-
-    const closePopupButtonConfirm = create({
-      tagName: 'button',
-      classNames: 'popup__confirm',
-      children: [`Confirm`]
-    });
-
-    closePopupButtonConfirm.addEventListener('click', this.controller.closePopup);
-
     // input validation
     const inputName = create({
       tagName: 'input',
@@ -156,87 +139,101 @@ export class Popup {
     });
 
     // create elements
-    this.popupContent = create({
+    const closePopupButtonX = create({
       tagName: 'div',
-      classNames: 'popup__content',
+      classNames: 'cross',
+      children: [`x`]
+    });
+
+    const closePopupButtonConfirm = create({
+      tagName: 'button',
+      classNames: 'popup__confirm',
+      children: [`Confirm`]
+    });
+
+    const popupForm = create({
+      tagName: 'form',
+      classNames: 'popup__form',
       children: [
-        closePopupButtonX,
         create({
-          tagName: 'form',
-          classNames: 'popup__form',
+          tagName: 'h4',
+          classNames: 'popup__h4',
+          children: [`Personal details`]
+        }),
+        create({
+          tagName: 'div',
+          classNames: 'input-container',
+          children: [inputName, inputPhone, inputAddress, inputEmail]
+        }),
+        create({
+          tagName: 'h4',
+          classNames: 'popup__h4',
+          children: [`Credit card details`]
+        }),
+        create({
+          tagName: 'div',
+          classNames: 'credit-card-container',
           children: [
             create({
-              tagName: 'h4',
-              classNames: 'popup__h4',
-              children: [`Personal details`]
-            }),
-            create({
               tagName: 'div',
-              classNames: 'input-container',
-              children: [inputName, inputPhone, inputAddress, inputEmail]
-            }),
-            create({
-              tagName: 'h4',
-              classNames: 'popup__h4',
-              children: [`Credit card details`]
-            }),
-            create({
-              tagName: 'div',
-              classNames: 'credit-card-container',
+              classNames: 'credit-card',
               children: [
                 create({
                   tagName: 'div',
-                  classNames: 'credit-card',
+                  classNames: 'credit-card__image-n-input',
                   children: [
                     create({
                       tagName: 'div',
-                      classNames: 'credit-card__image-n-input',
+                      classNames: 'credit-card__image-wrapper',
+                      children: [payLogo]
+                    }),
+                    cardNumber
+                  ]
+                }),
+                create({
+                  tagName: 'div',
+                  classNames: 'credit-card__date-n-cvv',
+                  children: [
+                    create({
+                      tagName: 'div',
+                      classNames: 'credit-card__text-n-input',
                       children: [
                         create({
-                          tagName: 'div',
-                          classNames: 'credit-card__image-wrapper',
-                          children: [payLogo]
+                          tagName: 'span',
+                          classNames: 'credit-card__text',
+                          children: 'Expiration date'
                         }),
-                        cardNumber
+                        inputDate
                       ]
                     }),
                     create({
                       tagName: 'div',
-                      classNames: 'credit-card__date-n-cvv',
+                      classNames: 'credit-card__text-n-input',
                       children: [
                         create({
-                          tagName: 'div',
-                          classNames: 'credit-card__text-n-input',
-                          children: [
-                            create({
-                              tagName: 'span',
-                              classNames: 'credit-card__text',
-                              children: 'Expiration date'
-                            }),
-                            inputDate
-                          ]
+                          tagName: 'span',
+                          classNames: 'credit-card__text',
+                          children: 'CVV'
                         }),
-                        create({
-                          tagName: 'div',
-                          classNames: 'credit-card__text-n-input',
-                          children: [
-                            create({
-                              tagName: 'span',
-                              classNames: 'credit-card__text',
-                              children: 'CVV'
-                            }),
-                            inputCVV
-                          ]
-                        })
+                        inputCVV
                       ]
                     })
                   ]
                 })
               ]
-            }),
-            closePopupButtonConfirm
+            })
           ]
-        })
+        }),
+        closePopupButtonConfirm
+      ]
+    });
+
+    this.popupContent = create({
+      tagName: 'div',
+      classNames: 'popup__content',
+      children: [
+        closePopupButtonX,
+        popupForm
       ]
     });
 
@@ -256,7 +253,9 @@ export class Popup {
 
     this.component = popup;
 
-    // close popup
+    // open/close popup
+    closePopupButtonX.addEventListener('click', this.controller.closePopup);
+
     document.addEventListener('click', (e) => {
       if (e.target === popup || e.target === popupBody) {
         this.controller.closePopup();
