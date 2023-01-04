@@ -22,7 +22,7 @@ export class Popup {
     // open/close popup
     const closePopupButtonX = create({
       tagName: 'div',
-      classNames: 'cross close-popup',
+      classNames: 'cross',
       children: [`x`]
     })
 
@@ -30,7 +30,7 @@ export class Popup {
 
     const closePopupButtonConfirm = create({
       tagName: 'a',
-      classNames: 'popup__confirm close-popup',
+      classNames: 'popup__confirm',
       children: [`Confirm`]
     })
 
