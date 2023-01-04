@@ -1,5 +1,9 @@
 export interface IAppState {
   products: IProduct[];
+  productsToShow: IProduct[];
+  namesToShow: IProduct[];
+  categoryFilters: string[];
+  nameFilters: string[];
 }
 
 export interface IProduct {
@@ -10,6 +14,7 @@ export interface IProduct {
   popularity: number;
   stock: number;
   animeName: string;
+  filtered: boolean;
   category: string;
   images: string[];
 }

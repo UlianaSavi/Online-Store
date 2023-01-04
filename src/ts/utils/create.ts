@@ -40,7 +40,7 @@ export function create({
       if (attrName === '') {
         htmlElement.setAttribute(attrName, '');
       }
-      if (attrName?.match(/value|id|placeholder|href|src|type|for|disabled|min|max|step/)) {
+      if (attrName?.match(/value|id|placeholder|href|src|type|for|disabled|min|max|step|checked/)) {
         htmlElement.setAttribute(attrName, attrValue);
       } else {
         htmlElement.dataset[attrName] = attrValue;

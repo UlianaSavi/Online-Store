@@ -1,16 +1,30 @@
 import { create } from '../../utils/create';
 
 interface IFilterProps {
-  categories: string[];
-  names: string[];
+  categories: Array<{ name: string; count: number; baseCount: number }>;
+  names: Array<{ name: string; count: number; baseCount: number }>;
+  activeCategoriesFilters?: string[];
+  activeNameFiltrs?: string[];
+  maxVal?: number;
+  minVal?: number;
+  maxStocks?: number;
+  minStocks?: number;
 }
 export class Filters {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  onFilterClick: (item: string, enabled: boolean) => void;
+  onNameClick: (item: string, enabled: boolean) => void;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(
+    parent: HTMLElement | null,
+    onFilterClick: (item: string, enabled: boolean) => void,
+    onNameClick: (item: string, enabled: boolean) => void
+  ) {
     this.parent = parent;
     this.component = null;
+    this.onFilterClick = onFilterClick;
+    this.onNameClick = onNameClick;
   }
 
   update = (props?: IFilterProps) => {
@@ -34,65 +48,114 @@ export class Filters {
       dataAttr: [['id', 'btnCopy']]
     });
 
-    const categoryItem = props?.names.map((item) =>
-      create({
-        tagName: 'div',
-        classNames: 'filters__item__list__item',
-        children: [
-          create({
-            tagName: 'input',
-            classNames: 'custom__checkbox',
-            dataAttr: [
-              ['type', 'checkbox'],
-              ['id', item]
-            ]
-          }),
-          create({
-            tagName: 'label',
-            classNames: 'label',
-            dataAttr: [['for', item]],
-            children: item
-          }),
-          create({
-            tagName: 'span',
-            classNames: 'list__name',
-            children: '(10/10)'
-          })
-        ]
-      })
-    );
+    const nameItem = props?.names.map((item) => {
+      const dataAttr = [
+        ['type', 'checkbox'],
+        ['id', item.name]
+      ];
 
-    const nameItem = props?.categories.map((item) =>
-      create({
+      if (props?.activeNameFiltrs?.includes(item.name)) {
+        dataAttr.push(['checked', '']);
+      }
+      const checkBox = create({
+        tagName: 'input',
+        classNames: 'custom__checkbox',
+        dataAttr
+      }) as HTMLInputElement;
+
+      const element = create({
         tagName: 'div',
         classNames: 'filters__item__list__item',
         children: [
-          create({
-            tagName: 'input',
-            classNames: 'custom__checkbox',
-            dataAttr: [
-              ['type', 'checkbox'],
-              ['id', item]
-            ]
-          }),
+          checkBox,
           create({
             tagName: 'label',
             classNames: 'label',
-            dataAttr: [['for', item]],
-            children: item
+            dataAttr: [['for', item.name]],
+            children: item.name
           }),
           create({
             tagName: 'span',
             classNames: 'list__name',
-            children: '(10/10)'
+            children: `(${item.count}/${item.baseCount})`
           })
         ]
-      })
-    );
+      });
+
+      checkBox.addEventListener('click', () => this.onNameClick(item.name, checkBox.checked));
+      return element;
+    });
+
+    const categoryItem = props?.categories.map((item) => {
+      const dataAttr = [
+        ['type', 'checkbox'],
+        ['id', item.name]
+      ];
+
+      if (props?.activeCategoriesFilters?.includes(item.name)) {
+        dataAttr.push(['checked', '']);
+      }
+      const checkBox = create({
+        tagName: 'input',
+        classNames: 'custom__checkbox',
+        dataAttr
+      }) as HTMLInputElement;
+      const element = create({
+        tagName: 'div',
+        classNames: 'filters__item__list__item',
+        children: [
+          checkBox,
+          create({
+            tagName: 'label',
+            classNames: 'label',
+            dataAttr: [['for', item.name]],
+            children: item.name
+          }),
+          create({
+            tagName: 'span',
+            classNames: 'list__name',
+            children: `(${item.count}/${item.baseCount})`
+          })
+        ]
+      });
+
+      checkBox.addEventListener('click', () => this.onFilterClick(item.name, checkBox.checked));
+      return element;
+    });
 
     const titleSubline = create({
       tagName: 'div',
       classNames: 'filters__item__title__subline'
+    });
+
+    const rangeInputPrice = create({
+      tagName: 'div',
+      children: `
+        <input
+         ${props?.minVal ? `data-value-min="${props.minVal}"` : ''}
+         ${props?.maxVal ? `data-value-max="${props.maxVal}"` : ''}
+          data-min="14"
+          data-max="4180"
+          data-role="doubleslider"
+          class="input-range ultra-thin cycle-marker"
+          id="priceDoubleSlider"
+        />
+      `
+    });
+
+    const rangeInputStock = create({
+      tagName: 'div',
+      children: `
+      <input
+       ${props?.maxStocks ? `data-value-min="${props.minStocks}"` : ''}
+       ${props?.maxStocks ? `data-value-max="${props.maxStocks}"` : ''}
+        data-min="7"
+        data-max="146"
+        data-role="doubleslider"
+        class="input-range ultra-thin cycle-marker"
+        id="stockDoubleSlider"
+      />
+    `
     });
 
     this.component = create({
@@ -121,7 +184,7 @@ export class Filters {
                 create({
                   tagName: 'div',
                   classNames: 'filters__item__list',
-                  children: nameItem
+                  children: categoryItem
                 })
               ]
             }),
@@ -138,7 +201,7 @@ export class Filters {
                 create({
                   tagName: 'div',
                   classNames: 'filters__item__list',
-                  children: categoryItem
+                  children: nameItem
                 })
               ]
             }),
@@ -167,7 +230,7 @@ export class Filters {
                             'From ',
                             create({
                               tagName: 'span',
-                              children: '10 $',
+                              children: `${props?.minVal ? props.minVal : '14'} $`,
                               dataAttr: [['id', 'min__range']]
                             })
                           ]
@@ -179,19 +242,14 @@ export class Filters {
                             'To  ',
                             create({
                               tagName: 'span',
-                              children: '10000 $',
+                              children: `${props?.maxVal ? props.maxVal : '4180'} $`,
                               dataAttr: [['id', 'max__range']]
                             })
                           ]
                         })
                       ]
                     }),
-                    create({
-                      tagName: 'div',
-                      children: `
-                        <input data-role="doubleslider" class="input-range ultra-thin cycle-marker"/>
-                        `
-                    })
+                    rangeInputPrice
                   ]
                 })
               ]
@@ -221,7 +279,7 @@ export class Filters {
                             'From ',
                             create({
                               tagName: 'span',
-                              children: '2.',
+                              children: `${props?.maxStocks ? props.minStocks : '2'}`,
                               dataAttr: [['id', 'min__range2']]
                             })
                           ]
@@ -233,19 +291,14 @@ export class Filters {
                             'To  ',
                             create({
                               tagName: 'span',
-                              children: '1000.',
+                              children: `${props?.maxStocks ? props.maxStocks : '500'}`,
                               dataAttr: [['id', 'max__range2']]
                             })
                           ]
                         })
                       ]
                     }),
-                    create({
-                      tagName: 'div',
-                      children: `
-                      <input data-role="doubleslider" class="input-range ultra-thin cycle-marker"/>
-                      `
-                    })
+                    rangeInputStock
                   ]
                 })
               ]

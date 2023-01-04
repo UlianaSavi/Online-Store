@@ -236,7 +236,7 @@ $white-opacity: rgba(255, 255, 255, 0.94);
 .products__table {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   background-color: rgba(39, 41, 43, 0.6);
   border-radius: 0.3em;
   padding: 0.5em;
@@ -247,6 +247,7 @@ $white-opacity: rgba(255, 255, 255, 0.94);
     max-width: 23%;
     background-color: $dark-grey;
     border-radius: 0.3em;
+    margin-right: 1.2rem;
     margin-bottom: 1.25em;
     padding: 0.5em;
 
@@ -294,5 +295,15 @@ $white-opacity: rgba(255, 255, 255, 0.94);
       justify-content: space-between;
       margin-bottom: 0.125em;
     }
+  }
+}
+
+.empty__title {
+  text-align: center;
+}
+
+.slider.cycle-marker {
+  .marker {
+    pointer-events: none;
   }
 }
