@@ -19,6 +19,11 @@ export class CartList {
 
   render = (props?: ICartListProps) => {
     this.component?.remove();
+    const inputLimit = create({
+      tagName: 'input',
+      dataAttr: [['type', 'number'], ['min', '1'], ['max', '6'], ['placeholder', "LIMIT"]],
+      classNames: 'page-input'
+    }) as HTMLInputElement;
 
     const header = create({
       tagName: 'div',
@@ -32,7 +37,7 @@ export class CartList {
         create({
           tagName: 'div',
           classNames: 'product-list__header__limit',
-          children: `<input type="number" min="1" max="6" class="page-input" placeholder="LIMIT"></input>`
+          children: [inputLimit]
         }),
         create({
           tagName: 'div',
