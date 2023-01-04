@@ -50,7 +50,7 @@ $container-radius: 0.5em;
     cursor: pointer;
   }
 
-  &__block {
+  &__form {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -61,14 +61,15 @@ $container-radius: 0.5em;
   }
 
   &__confirm {
-    display: inline-block;
+    background: none;
     padding: 0.5em;
     margin: 1em 0;
     border: 2px solid $text-color;
-    border-radius: 0.5em;
+    border-radius: $container-radius;
     text-transform: uppercase;
     color: $text-color;
     cursor: pointer;
+    font-family: "Roboto", sans-serif;
     // add transition for hover
 
     &:hover {

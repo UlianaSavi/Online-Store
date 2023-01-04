@@ -24,15 +24,15 @@ export class Popup {
       tagName: 'div',
       classNames: 'cross',
       children: [`x`]
-    })
+    });
 
     closePopupButtonX.addEventListener('click', this.controller.closePopup);
 
     const closePopupButtonConfirm = create({
-      tagName: 'a',
+      tagName: 'button',
       classNames: 'popup__confirm',
       children: [`Confirm`]
-    })
+    });
 
     closePopupButtonConfirm.addEventListener('click', this.controller.closePopup);
 
@@ -58,11 +58,11 @@ export class Popup {
       ]
     }) as HTMLInputElement;
     inputPhone.required = true;
-    inputPhone.title = 'Must start with '+', contain only digits and be no shorter than 9 digits';
+    inputPhone.title = 'Must start with ' + ', contain only digits and be no shorter than 9 digits';
     inputPhone.pattern = '[+][0-9]{9,}';
     inputPhone.addEventListener('click', () => {
       if (inputPhone.value === '') inputPhone.value = '+';
-    })
+    });
 
     const inputAddress = create({
       tagName: 'input',
@@ -73,7 +73,7 @@ export class Popup {
       ]
     }) as HTMLInputElement;
     inputAddress.required = true;
-    inputAddress.title ='Must contain at least three words, each at least 5 characters long';
+    inputAddress.title = 'Must contain at least three words, each at least 5 characters long';
     inputAddress.pattern = '[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}';
 
     const inputEmail = create({
@@ -85,16 +85,12 @@ export class Popup {
       ]
     }) as HTMLInputElement;
     inputEmail.required = true;
-    inputEmail.title ='Please enter the correct email address';
+    inputEmail.title = 'Please enter the correct email address';
     inputEmail.pattern = '^[A-Za-z0-9]*[@][A-Za-z0-9]*[.][A-Za-z]*';
 
     const cardNumber = create({
       tagName: 'input',
-      dataAttr: [
-        ['type', 'number'],
-        ['placeholder', 'Card number'],
-        ['required']
-      ],
+      dataAttr: [['type', 'number'], ['placeholder', 'Card number'], ['required']],
       classNames: 'input input__card-number'
     }) as HTMLInputElement;
     cardNumber.required = true;
@@ -110,8 +106,9 @@ export class Popup {
         if (cardNumber.value[0].toString() === '4') {
           payLogo.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
         } else if (cardNumber.value[0].toString() === '5') {
-          payLogo.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
-        } else if (cardNumber.value[0].toString() === '3'){
+          payLogo.src =
+            'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
+        } else if (cardNumber.value[0].toString() === '3') {
           payLogo.src = 'assets/icons/pngwing.com.png';
         }
       } else {
@@ -131,14 +128,18 @@ export class Popup {
     inputDate.required = true;
     inputDate.pattern = '(([0][1-9]|[1][0-2])/([2-9][0-9]))';
     inputDate.addEventListener('keyup', (event) => {
-      if (event.code !== 'Backspace' && inputDate.value.indexOf('/') === -1 && inputDate.value.length > 1) {
+      if (
+        event.code !== 'Backspace' &&
+        inputDate.value.indexOf('/') === -1 &&
+        inputDate.value.length > 1
+      ) {
         const arr: string[] = [];
         inputDate.value.split('').map((item) => arr.push(item));
-        arr.splice(2, 0, '/')
-        inputDate.value = arr.join('');     
+        arr.splice(2, 0, '/');
+        inputDate.value = arr.join('');
       }
       inputDate.value = inputDate.value.substring(0, 5);
-    })
+    });
 
     const inputCVV = create({
       tagName: 'input',
@@ -152,17 +153,17 @@ export class Popup {
     inputCVV.pattern = '[0-9]*';
     inputCVV.addEventListener('input', () => {
       inputCVV.value = inputCVV.value.substring(0, 3);
-    })
+    });
 
     // create elements
     this.popupContent = create({
       tagName: 'div',
       classNames: 'popup__content',
-      children: [ 
+      children: [
         closePopupButtonX,
         create({
-          tagName: 'div',
-          classNames: 'popup__block',
+          tagName: 'form',
+          classNames: 'popup__form',
           children: [
             create({
               tagName: 'h4',
@@ -172,12 +173,7 @@ export class Popup {
             create({
               tagName: 'div',
               classNames: 'input-container',
-              children: [
-                inputName,
-                inputPhone,
-                inputAddress,
-                inputEmail
-              ]
+              children: [inputName, inputPhone, inputAddress, inputEmail]
             }),
             create({
               tagName: 'h4',
@@ -242,13 +238,13 @@ export class Popup {
           ]
         })
       ]
-    })
+    });
 
     const popupBody = create({
       tagName: 'div',
       classNames: 'popup__body',
       children: [this.popupContent]
-    })
+    });
 
     const popup = create({
       tagName: 'section',
@@ -257,12 +253,12 @@ export class Popup {
       children: [popupBody],
       parent: this.parent
     });
-    
+
     this.component = popup;
 
     // close popup
     document.addEventListener('click', (e) => {
-      if(e.target === popup || e.target === popupBody) {
+      if (e.target === popup || e.target === popupBody) {
         this.controller.closePopup();
       }
     });
