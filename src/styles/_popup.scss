@@ -47,6 +47,7 @@ $container-radius: 0.5em;
     top: 12px;
     font-size: large;
     color: $orange;
+    cursor: pointer;
   }
 
   &__block {
@@ -67,6 +68,7 @@ $container-radius: 0.5em;
     border-radius: 0.5em;
     text-transform: uppercase;
     color: $text-color;
+    cursor: pointer;
     // add transition for hover
 
     &:hover {
