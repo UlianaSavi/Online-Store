@@ -147,13 +147,13 @@ export class Filters {
       tagName: 'div',
       children: `
       <input
-       ${props?.minVal ? `data-value-min="${props.minVal}"` : ''}
-       ${props?.maxVal ? `data-value-max="${props.maxVal}"` : ''}
-        data-min="14"
-        data-max="4180"
+       ${props?.maxStocks ? `data-value-min="${props.minStocks}"` : ''}
+       ${props?.maxStocks ? `data-value-max="${props.maxStocks}"` : ''}
+        data-min="7"
+        data-max="146"
         data-role="doubleslider"
         class="input-range ultra-thin cycle-marker"
-        id="priceDoubleSlider"
+        id="stockDoubleSlider"
       />
     `
     });
