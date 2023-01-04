@@ -10,6 +10,7 @@ import { Page404 } from './pages/Page404/Page404';
 import { PageDetails } from './pages/PageDetails/PageDetails';
 import { Catalog } from './pages/PageCatalog/PageCatalog';
 import { PageCart } from './pages/PageCart/PageCart';
+import { Popup } from './components/Popup/Popup';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -57,19 +58,22 @@ export class App {
     const model = new Model(this.BASE_STATE);
     const controller = new Controller(model);
     this.router = new Router(this.main);
-
+    
     // Static components
     const header = new Header(this.header, this.router.route);
     header.mount();
     const footer = new Footer(this.footer);
     footer.mount();
-
+    
     // Dinamic components
     const pageMain = new PageMain(this.main, this.router.route);
     const pageCatalog = new Catalog(this.main, model, controller);
-    const pageCart = new PageCart(this.main, model);
+    const pageCart = new PageCart(this.main, model, controller);
     const page404 = new Page404(this.main, this.router.route);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
+    const popup = new Popup(this.main, controller);
+    popup.mount();
+    controller.setPopup(popup);
 
     const routes = {
       '404': {
