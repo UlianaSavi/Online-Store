@@ -218,4 +218,9 @@ $container-radius: 0.5em;
     content: "✖";
     color: red;
   }
+
+  .input:invalid:required {
+    border: none;
+    border-bottom: 2px solid $orange;
+  }
 }

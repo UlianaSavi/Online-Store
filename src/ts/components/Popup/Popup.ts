@@ -45,6 +45,7 @@ export class Popup {
         ['type', 'text']
       ]
     }) as HTMLInputElement;
+    inputName.required = true;
     inputName.title = 'Must contain at least two words, each at least 3 characters long';
     inputName.pattern = '[A-Za-z]{3,}\\b.+?[A-Za-z]{3,}';
 
@@ -56,6 +57,7 @@ export class Popup {
         ['type', 'tel']
       ]
     }) as HTMLInputElement;
+    inputPhone.required = true;
     inputPhone.title = 'Must start with '+', contain only digits and be no shorter than 9 digits';
     inputPhone.pattern = '[+][0-9]{9,}';
     inputPhone.addEventListener('click', () => {
@@ -70,6 +72,7 @@ export class Popup {
         ['type', 'text']
       ]
     }) as HTMLInputElement;
+    inputAddress.required = true;
     inputAddress.title ='Must contain at least three words, each at least 5 characters long';
     inputAddress.pattern = '[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}';
 
@@ -81,6 +84,7 @@ export class Popup {
         ['type', 'email']
       ]
     }) as HTMLInputElement;
+    inputEmail.required = true;
     inputEmail.title ='Please enter the correct email address';
     inputEmail.pattern = '^[A-Za-z0-9]*[@][A-Za-z0-9]*[.][A-Za-z]*';
 
@@ -93,19 +97,14 @@ export class Popup {
       ],
       classNames: 'input input__card-number'
     }) as HTMLInputElement;
-
-    cardNumber?.addEventListener('keypress', () => {
-      cardNumber.value = cardNumber.value.substring(0, 15);
-    });
+    cardNumber.required = true;
 
     const payLogo = create({
       tagName: 'img',
       classNames: 'credit-card__image',
       dataAttr: [['alt', 'pay logo']]
     }) as HTMLImageElement;
-    if (cardNumber.value === ''){
-      payLogo.src = 'assets/icons/credit-card-regular.svg';
-    }
+    payLogo.src = 'assets/icons/credit-card-regular.svg';
     cardNumber?.addEventListener('input', () => {
       if (cardNumber.value[0] !== undefined) {
         if (cardNumber.value[0].toString() === '4') {
@@ -118,6 +117,7 @@ export class Popup {
       } else {
         payLogo.src = 'assets/icons/credit-card-regular.svg';
       }
+      cardNumber.value = cardNumber.value.substring(0, 15);
     });
 
     const inputDate = create({
@@ -128,6 +128,7 @@ export class Popup {
         ['placeholder', '04/23']
       ]
     }) as HTMLInputElement;
+    inputDate.required = true;
     inputDate.pattern = '(([0][1-9]|[1][0-2])/([2-9][0-9]))';
     inputDate.addEventListener('keyup', (event) => {
       if (event.code !== 'Backspace' && inputDate.value.indexOf('/') === -1 && inputDate.value.length > 1) {
@@ -147,6 +148,7 @@ export class Popup {
         ['placeholder', '132']
       ]
     }) as HTMLInputElement;
+    inputCVV.required = true;
     inputCVV.pattern = '[0-9]*';
     inputCVV.addEventListener('input', () => {
       inputCVV.value = inputCVV.value.substring(0, 3);
