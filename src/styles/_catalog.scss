@@ -301,3 +301,9 @@ $white-opacity: rgba(255, 255, 255, 0.94);
 .empty__title {
   text-align: center;
 }
+
+.slider.cycle-marker {
+  .marker {
+    pointer-events: none;
+  }
+}

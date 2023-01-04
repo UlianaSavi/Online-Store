@@ -7,6 +7,8 @@ interface IFilterProps {
   activeNameFiltrs?: string[];
   maxVal?: number;
   minVal?: number;
+  maxStocks?: number;
+  minStocks?: number;
 }
 export class Filters {
   parent: HTMLElement | null;
@@ -141,6 +143,21 @@ export class Filters {
       `
     });
 
+    const rangeInputStock = create({
+      tagName: 'div',
+      children: `
+      <input
+       ${props?.minVal ? `data-value-min="${props.minVal}"` : ''}
+       ${props?.maxVal ? `data-value-max="${props.maxVal}"` : ''}
+        data-min="14"
+        data-max="4180"
+        data-role="doubleslider"
+        class="input-range ultra-thin cycle-marker"
+        id="priceDoubleSlider"
+      />
+    `
+    });
+
     this.component = create({
       tagName: 'div',
       classNames: 'filters',
@@ -262,7 +279,7 @@ export class Filters {
                             'From ',
                             create({
                               tagName: 'span',
-                              children: '2.',
+                              children: `${props?.maxStocks ? props.minStocks : '2'}`,
                               dataAttr: [['id', 'min__range2']]
                             })
                           ]
@@ -274,19 +291,14 @@ export class Filters {
                             'To  ',
                             create({
                               tagName: 'span',
-                              children: '1000.',
+                              children: `${props?.maxStocks ? props.maxStocks : '500'}`,
                               dataAttr: [['id', 'max__range2']]
                             })
                           ]
                         })
                       ]
                     }),
-                    create({
-                      tagName: 'div',
-                      children: `
-                      <input data-role="doubleslider" class="input-range ultra-thin cycle-marker"/>
-                      `
-                    })
+                    rangeInputStock
                   ]
                 })
               ]

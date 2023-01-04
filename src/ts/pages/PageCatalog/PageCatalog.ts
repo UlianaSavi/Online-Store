@@ -82,6 +82,7 @@ export class Catalog {
       ];
 
       const stateNumbers = state.productsToShow.map((item) => item.price);
+      const stateStocks = state.productsToShow.map((item) => item.stock);
 
       const categories = categoriesSet.map((name) => {
         const count = state.productsToShow.filter((item) => item.category === name).length;
@@ -96,12 +97,16 @@ export class Catalog {
 
       const maxVal = Math.max(...stateNumbers);
       const minVal = Math.min(...stateNumbers);
+      const maxStocks = Math.max(...stateStocks);
+      const minStocks = Math.min(...stateStocks);
 
       const props = {
         names,
         categories,
         maxVal,
         minVal,
+        maxStocks,
+        minStocks,
         activeCategoriesFilters: state.categoryFilters,
         activeNameFiltrs: state.nameFilters
       };
