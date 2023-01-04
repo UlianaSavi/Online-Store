@@ -1,6 +1,7 @@
 import { Model } from '../models/model';
 import { IProduct } from '../types';
 import { Popup } from '../components/Popup/Popup';
+import { create } from '../utils/create';
 
 export class Controller {
   model: Model;
@@ -39,5 +40,22 @@ export class Controller {
   closePopup = () => {
     this.popup?.component?.classList.remove('active');
     this.popup?.popupContent?.classList.remove('active');
+  }
+
+  confirmPopup = (form: HTMLElement, cross: HTMLElement) => {
+    const confirmText = create({
+      tagName: 'h2',
+      classNames: 'confirm-text',
+      children: `The order has been placed`
+    });
+
+    setTimeout(() => {
+      form.innerHTML = ``;
+      cross.innerHTML = ``;
+      form.parentNode?.appendChild(confirmText);
+      setTimeout(() => {
+        window.location.pathname = '/'
+      }, 1100);
+    }, 700)
   }
 }

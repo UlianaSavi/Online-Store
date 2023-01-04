@@ -16,7 +16,7 @@ $container-radius: 0.5em;
   background-color: $popup-blackout;
   top: 0;
   left: 0;
-  // opacity: 0;
+  opacity: 0;
   visibility: hidden;
   overflow-y: auto;
   overflow-x: hidden;
@@ -70,7 +70,7 @@ $container-radius: 0.5em;
     color: $text-color;
     cursor: pointer;
     font-family: "Roboto", sans-serif;
-    // add transition for hover
+    transition: all .8s ease;
 
     &:hover {
       color: $orange;
@@ -116,8 +116,6 @@ $container-radius: 0.5em;
 .input:hover,
 .input:focus {
   border: 3px solid $border-hover-color;
-  -webkit-box-shadow: 7px 7px 20px 0px $border-hover-color;
-  -moz-box-shadow: 7px 7px 20px 0px $border-hover-color;
   box-shadow: 7px 7px 20px 0px $border-hover-color;
 }
 
@@ -179,67 +177,21 @@ $container-radius: 0.5em;
   z-index: 10;
 }
 
-.popup__area {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
 .popup.active .popup__content {
   transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
   opacity: 1;
 }
 
-.body.lock {
-  overflow: hidden;
-}
-
-
 // validity
 .popup {
-  .input + span {
-    position: relative;
-  }
-  
-  .input + span::before {
-    position: absolute;
-    right: -20px;
-    top: 5px;
-  }
-  
-  .input:invalid {
-    border: 2px solid red;
-  }
-  
-  .input:focus:invalid {
-    border: 2px solid red;
-  }
-  
-  .input:invalid + span::before {
-    content: "✖";
-    color: red;
-  }
-
   .input:invalid:required {
     border: none;
     border-bottom: 2px solid $orange;
   }
+}
 
-  /* Стилизация сообщений об ошибках */
-  .error {
-    width  : 100%;
-    padding: 0;
-
-    font-size: 80%;
-    color: white;
-    background-color: #900;
-    border-radius: 0 0 5px 5px;
-    box-sizing: border-box;
-  }
-
-  .error.active {
-    padding: 0.3em;
-  }
+// confirm
+.confirm-text {
+  padding: 2em 1.5em;
+  color: $orange;
 }

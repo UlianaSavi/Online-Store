@@ -145,10 +145,11 @@ export class Popup {
       children: [`x`]
     });
 
-    const closePopupButtonConfirm = create({
+    const btnConfirm = create({
       tagName: 'button',
       classNames: 'popup__confirm',
-      children: [`Confirm`]
+      children: [`Confirm`],
+      dataAttr: [['type', 'submit']]
     });
 
     const popupForm = create({
@@ -224,9 +225,9 @@ export class Popup {
             })
           ]
         }),
-        closePopupButtonConfirm
+        btnConfirm
       ]
-    });
+    }) as HTMLFormElement;
 
     this.popupContent = create({
       tagName: 'div',
@@ -261,5 +262,11 @@ export class Popup {
         this.controller.closePopup();
       }
     });
+
+    // confirm popup
+    popupForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      this.controller.confirmPopup(popupForm, closePopupButtonX);
+    })
   };
 }
