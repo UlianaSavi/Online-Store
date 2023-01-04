@@ -14,7 +14,11 @@ import { Popup } from './components/Popup/Popup';
 
 export class App {
   BASE_STATE: IAppState = {
-    products: []
+    products: [],
+    productsToShow: [],
+    namesToShow: [],
+    categoryFilters: [],
+    nameFilters: []
   };
   header: HTMLElement | null;
   main: HTMLElement | null;
@@ -63,7 +67,7 @@ export class App {
     
     // Dinamic components
     const pageMain = new PageMain(this.main, this.router.route);
-    const pageCatalog = new Catalog(this.main, model);
+    const pageCatalog = new Catalog(this.main, model, controller);
     const pageCart = new PageCart(this.main, model, controller);
     const page404 = new Page404(this.main, this.router.route);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
