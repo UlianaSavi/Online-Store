@@ -41,7 +41,7 @@ export class Popup {
       ]
     }) as HTMLInputElement;
     inputPhone.required = true;
-    inputPhone.title = 'Must start with ' + ', contain only digits and be no shorter than 9 digits';
+    inputPhone.title = `Must start with '+', contain only digits and be no shorter than 9 digits`;
     inputPhone.pattern = '[+][0-9]{9,}';
     inputPhone.addEventListener('click', () => {
       if (inputPhone.value === '') inputPhone.value = '+';
