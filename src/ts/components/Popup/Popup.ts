@@ -120,6 +120,25 @@ export class Popup {
       }
     });
 
+    const inputDate = create({
+      tagName: 'input',
+      classNames: 'input input__date',
+      dataAttr: [
+        ['type', 'text'],
+        ['placeholder', '04/23']
+      ]
+    }) as HTMLInputElement;
+    inputDate.pattern = '(([0][1-9]|[1][0-2])/([2-9][0-9]))';
+    inputDate.addEventListener('keyup', (event) => {
+      if (event.code !== 'Backspace' && inputDate.value.indexOf('/') === -1 && inputDate.value.length > 1) {
+        const arr: string[] = [];
+        inputDate.value.split('').map((item) => arr.push(item));
+        arr.splice(2, 0, '/')
+        inputDate.value = arr.join('');     
+      }
+      inputDate.value = inputDate.value.substring(0, 5);
+    })
+
     // create elements
     this.popupContent = create({
       tagName: 'div',
@@ -183,15 +202,7 @@ export class Popup {
                               classNames: 'credit-card__text',
                               children: 'Expiration date'
                             }),
-                            create({
-                              tagName: 'input',
-                              classNames: 'input input__date',
-                              dataAttr: [
-                                ['type', 'text'],
-                                ['placeholder', '12/23'],
-                                ['required']
-                              ]
-                            })
+                            inputDate
                           ]
                         }),
                         create({
