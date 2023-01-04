@@ -139,6 +139,19 @@ export class Popup {
       inputDate.value = inputDate.value.substring(0, 5);
     })
 
+    const inputCVV = create({
+      tagName: 'input',
+      classNames: 'input input__cvv',
+      dataAttr: [
+        ['type', 'number'],
+        ['placeholder', '132']
+      ]
+    }) as HTMLInputElement;
+    inputCVV.pattern = '[0-9]*';
+    inputCVV.addEventListener('input', () => {
+      inputCVV.value = inputCVV.value.substring(0, 3);
+    })
+
     // create elements
     this.popupContent = create({
       tagName: 'div',
@@ -214,15 +227,7 @@ export class Popup {
                               classNames: 'credit-card__text',
                               children: 'CVV'
                             }),
-                            create({
-                              tagName: 'input',
-                              classNames: 'input input__cvv',
-                              dataAttr: [
-                                ['type', 'text'],
-                                ['placeholder', '132'],
-                                ['required']
-                              ]
-                            })
+                            inputCVV
                           ]
                         })
                       ]
