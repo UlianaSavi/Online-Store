@@ -115,6 +115,7 @@ export class Controller {
     });
   };
 
+  // POPUP
   setPopup = (popup: Popup) => {
     this.popup = popup;
   }
@@ -142,7 +143,14 @@ export class Controller {
       form.parentNode?.appendChild(confirmText);
       setTimeout(() => {
         window.location.pathname = '/'
+
+        // TODO: Clean Cart 
+        this.cleanCart();
       }, 1100);
     }, 700)
+  }
+
+  cleanCart = () => {
+    // TODO: Clean Cart 
   }
 }
