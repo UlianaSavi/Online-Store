@@ -9,11 +9,15 @@ export class CartList {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   controller: Controller;
+  pageCounter: number;
+  itemsLimit: number;
 
   constructor(parent: HTMLElement | null, controller: Controller) {
     this.parent = parent;
     this.component = null;
     this.controller = controller;
+    this.pageCounter = 1;
+    this.itemsLimit = 3;
   }
 
   update = (props?: ICartListProps) => {
@@ -24,7 +28,7 @@ export class CartList {
     this.component?.remove();
     const inputLimit = create({
       tagName: 'input',
-      dataAttr: [['type', 'number'], ['min', '1'], ['max', '6'], ['placeholder', "LIMIT"], ['value', '3']],
+      dataAttr: [['type', 'number'], ['min', '1'], ['max', '6'], ['placeholder', "LIMIT"], ['value', `${this.itemsLimit}`]],
       classNames: 'page-input'
     }) as HTMLInputElement;
     
@@ -199,44 +203,44 @@ export class CartList {
         return items;
       }) || [];
 
-    this.component = create({
-      tagName: 'div',
-      classNames: 'product-list',
-      children: [header, ...productItem],
-      parent: this.parent
-    });
-
     // pagination
-    // numInList
-    // inputLimit
-    // productItem
-    // let countOfPages = 1;
-    let pageCounter = 1;
-    pageNumber.textContent = `${pageCounter}`
+    const lastItem = this.itemsLimit * this.pageCounter;
+    const firstItem = lastItem - this.itemsLimit;
+    const currentItems = productItem.slice(firstItem, lastItem);
     let countOfPages = Math.ceil(numInList / +inputLimit.value);
 
-    this.controller.isDisabled(countOfPages, pageCounter, btnLeft, btnRight);
+    pageNumber.textContent = `${this.pageCounter}`
+
+    this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
     
     btnRight.addEventListener('click', () => {
-      if (pageCounter !== countOfPages) {
-        pageNumber.textContent = `${++pageCounter}`;
+      if (this.pageCounter !== countOfPages) {
+        pageNumber.textContent = `${++this.pageCounter}`;
       }
-      this.controller.isDisabled(countOfPages, pageCounter, btnLeft, btnRight);  
+      this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
+      this.render(props);
     })
-
+    
     btnLeft.addEventListener('click', () => {
-      if (pageCounter !== 1) {
-        pageNumber.textContent = `${--pageCounter}`;
+      if (this.pageCounter !== 1) {
+        pageNumber.textContent = `${--this.pageCounter}`;
       }
-      this.controller.isDisabled(countOfPages, pageCounter, btnLeft, btnRight);  
+      this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);  
+      this.render(props);
     })    
     
     inputLimit.addEventListener('input', () => {
       if (inputLimit.value) {
         countOfPages = Math.ceil(numInList / +inputLimit.value);
       }
+      this.itemsLimit = +inputLimit.value;
     })
-    console.log('count of pages ' + countOfPages);
-    
+
+    this.component = create({
+      tagName: 'div',
+      classNames: 'product-list',
+      children: [header, ...currentItems],
+      parent: this.parent
+    });
   };
 }
