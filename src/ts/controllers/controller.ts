@@ -1,5 +1,6 @@
 import { Model } from '../models/model';
 import { IProduct } from '../types';
+import { setUrlParams } from '../utils/url';
 import { Popup } from '../components/Popup/Popup';
 import { create } from '../utils/create';
 export class Controller {
@@ -10,6 +11,8 @@ export class Controller {
     this.model = model;
     this.popup = null;
   }
+
+  // data
 
   setData = (data: IProduct[]) => {
     const state = this.model.getState();
@@ -30,7 +33,6 @@ export class Controller {
       nameFilters: []
     });
   };
-
   // FILTERS (by Category)
 
   setFilterByCategory = (category: string, enabled = false) => {
@@ -95,19 +97,27 @@ export class Controller {
     this.prepareProductsToShow();
   };
 
+  // ProductsToShow
+
   prepareProductsToShow = () => {
     const state = this.model.getState();
     const categoryFilters = [...state.categoryFilters];
     const nameFilters = [...state.nameFilters];
     let products = [...state.products];
 
+    const params: { [s: string]: string[] } = {};
+
     if (categoryFilters.length) {
+      params.categoryFilters = categoryFilters;
       products = products.filter(({ category }) => categoryFilters.includes(category));
     }
 
     if (nameFilters.length) {
+      params.nameFilters = nameFilters;
       products = products.filter(({ animeName }) => nameFilters.includes(animeName));
     }
+
+    setUrlParams(params);
 
     this.model.setState({
       ...state,
@@ -118,17 +128,17 @@ export class Controller {
   // POPUP
   setPopup = (popup: Popup) => {
     this.popup = popup;
-  }
+  };
 
   openPopup = () => {
     this.popup?.component?.classList.add('active');
     this.popup?.popupContent?.classList.add('active');
-  }
+  };
 
   closePopup = () => {
     this.popup?.component?.classList.remove('active');
     this.popup?.popupContent?.classList.remove('active');
-  }
+  };
 
   confirmPopup = (form: HTMLElement, cross: HTMLElement) => {
     const confirmText = create({
@@ -142,15 +152,15 @@ export class Controller {
       cross.innerHTML = ``;
       form.parentNode?.appendChild(confirmText);
       setTimeout(() => {
-        window.location.pathname = '/'
+        window.location.pathname = '/';
 
-        // TODO: Clean Cart 
+        // TODO: Clean Cart
         this.cleanCart();
       }, 1100);
-    }, 700)
-  }
+    }, 700);
+  };
 
   cleanCart = () => {
-    // TODO: Clean Cart 
-  }
+    // TODO: Clean Cart
+  };
 }
