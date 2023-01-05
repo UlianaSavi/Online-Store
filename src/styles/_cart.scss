@@ -242,3 +242,7 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
   background-color: $grey;
   cursor: not-allowed;
 }
+
+.no-items {
+  color: $white-opacity;
+}
