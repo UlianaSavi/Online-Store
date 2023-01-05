@@ -232,6 +232,11 @@ export class CartList {
     inputLimit.addEventListener('input', () => {
       if (inputLimit.value) {
         countOfPages = Math.ceil(numInList / +inputLimit.value);
+        if (countOfPages < this.pageCounter) {
+          this.pageCounter = countOfPages;
+          this.itemsLimit = +inputLimit.value;
+          this.render(props);
+        }
       }
       this.itemsLimit = +inputLimit.value;
     })
