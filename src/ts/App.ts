@@ -60,13 +60,13 @@ export class App {
     const model = new Model(this.BASE_STATE);
     const controller = new Controller(model);
     this.router = new Router(this.main);
-    
+
     // Static components
     const header = new Header(this.header, this.router.route);
     header.mount();
     const footer = new Footer(this.footer);
     footer.mount();
-    
+
     // Dinamic components
     const pageMain = new PageMain(this.main, this.router.route);
     const pageCatalog = new Catalog(this.main, model, controller);
@@ -107,7 +107,12 @@ export class App {
       },
       '/filter': {
         mount: pageCatalog.mount,
-        unmount: pageCatalog.unmount
+        unmount: pageCatalog.unmount,
+        mountedProps: {
+          mounted: () => {
+            model.fire();
+          }
+        }
       },
       '/details': {
         mount: pageDetails.mount,
