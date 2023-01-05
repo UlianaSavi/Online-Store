@@ -150,7 +150,7 @@ export class Filters {
        ${props?.maxStocks ? `data-value-min="${props.minStocks}"` : ''}
        ${props?.maxStocks ? `data-value-max="${props.maxStocks}"` : ''}
         data-min="7"
-        data-max="146"
+        data-max="200"
         data-role="doubleslider"
         class="input-range ultra-thin cycle-marker"
         id="stockDoubleSlider"

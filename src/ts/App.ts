@@ -2,6 +2,7 @@ import { Model } from './models/model';
 import { Controller } from './controllers/controller';
 import { IAppState, IProductsResponse } from './types';
 import { create } from './utils/create';
+import { parseUrlParams } from './utils/url';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Router } from './Router/Router';
@@ -19,6 +20,7 @@ export class App {
     categoryFilters: [],
     nameFilters: []
   };
+
   header: HTMLElement | null;
   main: HTMLElement | null;
   footer: HTMLElement | null;
@@ -71,6 +73,25 @@ export class App {
     const page404 = new Page404(this.main, this.router.route);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
 
+    const params = parseUrlParams();
+
+    fetch('../assets/data/data.json')
+      .then((data) => data.json())
+      .then((data: IProductsResponse) => controller.setData(data.products))
+      .then(() => {
+        if (params?.categoryFilters?.length) {
+          params.categoryFilters.forEach((category) => {
+            controller.addFilterByCategory(category);
+          });
+        }
+
+        if (params?.nameFilters?.length) {
+          params.nameFilters.forEach((name) => {
+            controller.addFilterByName(name);
+          });
+        }
+      });
+
     const routes = {
       '404': {
         mount: page404.mount,
@@ -82,36 +103,15 @@ export class App {
       },
       '/filter': {
         mount: pageCatalog.mount,
-        unmount: pageCatalog.unmount,
-        mountedProps: {
-          mounted: () => {
-            fetch('../assets/data/data.json')
-              .then((data) => data.json())
-              .then((data: IProductsResponse) => controller.setData(data.products));
-          }
-        }
+        unmount: pageCatalog.unmount
       },
       '/details': {
         mount: pageDetails.mount,
-        unmount: pageDetails.unmount,
-        mountedProps: {
-          mounted: () => {
-            fetch('../assets/data/data.json')
-              .then((data) => data.json())
-              .then((data: IProductsResponse) => controller.setData(data.products));
-          }
-        }
+        unmount: pageDetails.unmount
       },
       '/cart': {
         mount: pageCart.mount,
-        unmount: pageCart.unmount,
-        mountedProps: {
-          mounted: () => {
-            fetch('../assets/data/data.json')
-              .then((data) => data.json())
-              .then((data: IProductsResponse) => controller.setData(data.products));
-          }
-        }
+        unmount: pageCart.unmount
       }
     };
 

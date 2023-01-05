@@ -1,11 +1,14 @@
 import { Model } from '../models/model';
 import { IProduct } from '../types';
+import { setUrlParams } from '../utils/url';
 export class Controller {
   model: Model;
 
   constructor(model: Model) {
     this.model = model;
   }
+
+  // data
 
   setData = (data: IProduct[]) => {
     const state = this.model.getState();
@@ -26,7 +29,6 @@ export class Controller {
       nameFilters: []
     });
   };
-
   // FILTERS (by Category)
 
   setFilterByCategory = (category: string, enabled = false) => {
@@ -91,19 +93,27 @@ export class Controller {
     this.prepareProductsToShow();
   };
 
+  // ProductsToShow
+
   prepareProductsToShow = () => {
     const state = this.model.getState();
     const categoryFilters = [...state.categoryFilters];
     const nameFilters = [...state.nameFilters];
     let products = [...state.products];
 
+    const params: { [s: string]: string[] } = {};
+
     if (categoryFilters.length) {
+      params.categoryFilters = categoryFilters;
       products = products.filter(({ category }) => categoryFilters.includes(category));
     }
 
     if (nameFilters.length) {
+      params.nameFilters = nameFilters;
       products = products.filter(({ animeName }) => nameFilters.includes(animeName));
     }
+
+    setUrlParams(params);
 
     this.model.setState({
       ...state,
