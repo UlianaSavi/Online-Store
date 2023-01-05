@@ -21,9 +21,26 @@ export class CartList {
     this.component?.remove();
     const inputLimit = create({
       tagName: 'input',
-      dataAttr: [['type', 'number'], ['min', '1'], ['max', '6'], ['placeholder', "LIMIT"]],
+      dataAttr: [['type', 'number'], ['min', '1'], ['max', '6'], ['placeholder', "LIMIT"], ['value', '3']],
       classNames: 'page-input'
     }) as HTMLInputElement;
+    
+    const btnLeft = create({
+      tagName: 'button',
+      classNames: 'btn',
+      children: `&#10094;`
+    }) as HTMLButtonElement;
+
+    const btnRight = create({
+      tagName: 'button',
+      classNames: 'btn',
+      children: `&#10095;`
+    }) as HTMLButtonElement;
+
+    const pageNumber = create({
+      tagName: 'span',
+      classNames: 'page-numbers__number'
+    });
 
     const header = create({
       tagName: 'div',
@@ -43,21 +60,9 @@ export class CartList {
           tagName: 'div',
           classNames: 'product-list__header__page-numbers',
           children: [
-            create({
-              tagName: 'button',
-              classNames: 'btn',
-              children: `&#10094;`
-            }),
-            create({
-              tagName: 'span',
-              classNames: 'page-numbers__number',
-              children: '1'
-            }),
-            create({
-              tagName: 'button',
-              classNames: 'btn',
-              children: `&#10095;`
-            })
+            btnLeft,
+            pageNumber,
+            btnRight
           ]
         })
       ]
@@ -197,5 +202,39 @@ export class CartList {
       children: [header, ...productItem],
       parent: this.parent
     });
+
+    // pagination
+    // numInList
+    // inputLimit
+    // productItem
+    // let countOfPages = 1;
+    let pageCounter = 1;
+    pageNumber.textContent = `${pageCounter}`
+    let countOfPages = Math.ceil(numInList / +inputLimit.value);
+    
+    btnRight.addEventListener('click', () => {
+      if (pageCounter !== countOfPages) {
+        pageNumber.textContent = `${++pageCounter}`;
+      }
+    })
+
+    btnLeft.addEventListener('click', () => {
+      if (pageCounter !== 1) {
+        pageNumber.textContent = `${--pageCounter}`;
+      }
+    })
+
+
+    // if (pageCounter === 1) btnLeft.disabled = true;
+    // if (countOfPages === 1) btnRight.disabled = true;
+    
+    
+    // inputLimit.addEventListener('input', () => {
+    //   if (inputLimit.value) {
+    //     countOfPages = Math.ceil(numInList / +inputLimit.value);
+    //   }
+    // })
+    console.log('count of pages ' + countOfPages);
+    
   };
 }

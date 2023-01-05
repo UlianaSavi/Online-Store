@@ -5,6 +5,7 @@ $dark-grey: rgb(39, 41, 43);
 $orange: #ffbd59;
 $lite-grey: rgb(255 255 255 / 39%);
 $white-opacity: rgba(255, 255, 255, 0.94);
+$white-opacity-disabled: rgba(255, 255, 255, 0.308);
 
 // MAIN
 
@@ -228,4 +229,16 @@ $white-opacity: rgba(255, 255, 255, 0.94);
 
 .systems {
   margin-bottom: 8px;
+}
+
+// pagination
+
+.btn:disabled {
+  color: $white-opacity-disabled;
+}
+
+.btn:disabled:hover {
+  color: $white-opacity-disabled;
+  background-color: $grey;
+  cursor: not-allowed;
 }
