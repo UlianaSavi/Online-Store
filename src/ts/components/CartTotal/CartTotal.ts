@@ -1,12 +1,15 @@
 import { create } from '../../utils/create';
+import { Controller } from '../../controllers/controller';
 
 export class Total {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  controller: Controller;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, controller: Controller) {
     this.parent = parent;
     this.component = null;
+    this.controller = controller;
   }
 
   update = () => {
@@ -20,6 +23,11 @@ export class Total {
       tagName: 'button',
       classNames: 'btn',
       children: 'BUY NOW'
+    });
+
+    buyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.controller.openPopup();
     });
 
     this.component = create({

@@ -27,7 +27,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(pathToSrc, 'index.html')
+      template: path.join(pathToSrc, 'index.html'),
+      filename: 'index.html'
     }),
     new MiniCssExtractPlugin(),
     new CopyPlugin({
