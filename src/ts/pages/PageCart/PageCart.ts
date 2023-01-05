@@ -36,7 +36,7 @@ export class PageCart {
   mount = (props?: IPageProps) => {
     this.createDefaultLayer();
 
-    const cartList = new CartList(this.section);
+    const cartList = new CartList(this.section, this.controller);
     const total = new Total(this.section, this.controller);
 
     this.model.subscribe((state, prevState) => {

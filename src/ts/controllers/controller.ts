@@ -153,4 +153,19 @@ export class Controller {
   cleanCart = () => {
     // TODO: Clean Cart 
   }
+
+  // pagination
+  isDisabled = (countOfPages: number, pageCounter: number, btnLeft: HTMLButtonElement, btnRight: HTMLButtonElement) => {
+    if (pageCounter > 1) {
+      btnLeft.disabled = false;
+    } else {
+      btnLeft.disabled = true;
+    }
+
+    if (countOfPages === 1 || countOfPages === pageCounter) {
+      btnRight.disabled = true;
+    } else {
+      btnRight.disabled = false;
+    }
+  }
 }

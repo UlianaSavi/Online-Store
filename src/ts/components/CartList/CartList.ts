@@ -1,5 +1,6 @@
 import { create } from '../../utils/create';
 import { IProduct } from '../../types';
+import { Controller } from '../../controllers/controller';
 
 interface ICartListProps {
   items: IProduct[];
@@ -7,10 +8,12 @@ interface ICartListProps {
 export class CartList {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  controller: Controller;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, controller: Controller) {
     this.parent = parent;
     this.component = null;
+    this.controller = controller;
   }
 
   update = (props?: ICartListProps) => {
@@ -211,29 +214,28 @@ export class CartList {
     let pageCounter = 1;
     pageNumber.textContent = `${pageCounter}`
     let countOfPages = Math.ceil(numInList / +inputLimit.value);
+
+    this.controller.isDisabled(countOfPages, pageCounter, btnLeft, btnRight);
     
     btnRight.addEventListener('click', () => {
       if (pageCounter !== countOfPages) {
         pageNumber.textContent = `${++pageCounter}`;
       }
+      this.controller.isDisabled(countOfPages, pageCounter, btnLeft, btnRight);  
     })
 
     btnLeft.addEventListener('click', () => {
       if (pageCounter !== 1) {
         pageNumber.textContent = `${--pageCounter}`;
       }
+      this.controller.isDisabled(countOfPages, pageCounter, btnLeft, btnRight);  
+    })    
+    
+    inputLimit.addEventListener('input', () => {
+      if (inputLimit.value) {
+        countOfPages = Math.ceil(numInList / +inputLimit.value);
+      }
     })
-
-
-    // if (pageCounter === 1) btnLeft.disabled = true;
-    // if (countOfPages === 1) btnRight.disabled = true;
-    
-    
-    // inputLimit.addEventListener('input', () => {
-    //   if (inputLimit.value) {
-    //     countOfPages = Math.ceil(numInList / +inputLimit.value);
-    //   }
-    // })
     console.log('count of pages ' + countOfPages);
     
   };
