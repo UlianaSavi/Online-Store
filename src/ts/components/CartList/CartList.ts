@@ -1,6 +1,7 @@
 import { create } from '../../utils/create';
 import { IProduct } from '../../types';
 import { Controller } from '../../controllers/controller';
+import { Total } from '../CartTotal/CartTotal';
 
 interface ICartListProps {
   items: IProduct[];
@@ -11,13 +12,15 @@ export class CartList {
   controller: Controller;
   pageCounter: number;
   itemsLimit: number;
+  total: Total;
 
-  constructor(parent: HTMLElement | null, controller: Controller) {
+  constructor(parent: HTMLElement | null, controller: Controller, total: Total) {
     this.parent = parent;
     this.component = null;
     this.controller = controller;
     this.pageCounter = 1;
     this.itemsLimit = 3;
+    this.total = total;
   }
 
   update = (props?: ICartListProps) => {
@@ -247,5 +250,6 @@ export class CartList {
       children: [header, ...currentItems],
       parent: this.parent
     });
+    this.total.update();
   };
 }

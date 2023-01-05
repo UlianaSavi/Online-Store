@@ -36,8 +36,8 @@ export class PageCart {
   mount = (props?: IPageProps) => {
     this.createDefaultLayer();
 
-    const cartList = new CartList(this.section, this.controller);
     const total = new Total(this.section, this.controller);
+    const cartList = new CartList(this.section, this.controller, total);
 
     this.model.subscribe((state, prevState) => {
       if (isEqual(state.products, prevState?.products)) {
