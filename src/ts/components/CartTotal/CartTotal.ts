@@ -23,6 +23,14 @@ export class Total {
   render = () => {
     this.component?.remove();
 
+    const promoArr = ['SHIT', 'SHIT2'];
+
+    const inputPromo = create ({
+      tagName: 'input',
+      classNames: 'total__info__promo-code promo-input input',
+      dataAttr: [['type', 'search'], ['name', 'search-promo'], ['placeholder', 'Enter promo code']]
+    }) as HTMLInputElement;
+
     const buyBtn = create({
       tagName: 'button',
       classNames: 'btn',
@@ -71,7 +79,7 @@ export class Total {
             }),
             create({
               tagName: 'div',
-              children: `<input class="total__info__promo-code promo-input input" type="search" name="search-promo" id="" placeholder="Enter promo code">`
+              children: [inputPromo]
             }),
             create({
               tagName: 'div',
@@ -80,7 +88,7 @@ export class Total {
                 `Promo for test: `,
                 create({
                   tagName: 'i',
-                  children: [`"SHIT", "SHIT2"`]
+                  children: `${promoArr.join(', ')}`
                 })
               ]
             }),
