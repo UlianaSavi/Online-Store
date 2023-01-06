@@ -1,6 +1,6 @@
 import { Model } from '../../models/model';
 import { create } from '../../utils/create';
-import { isEqual } from '../../utils/objects';
+// import { isEqual } from '../../utils/objects';
 import { IPageProps } from '../../types';
 import { CartList } from '../../components/CartList/CartList';
 import { Total } from '../../components/CartTotal/CartTotal';
@@ -48,17 +48,20 @@ export class PageCart {
     // for case when no items
     // if (this.items.length !== 0) {
     
-    this.model.subscribe((state, prevState) => {
-        if (isEqual(state.products, prevState?.products)) {
-          return;
-        }
+    this.model.subscribe((state /* prevState*/) => {
+        // В местах этих проверок будет не state и prevState, а дополнительное значение, которое будет создано при работе с функционалом корзины
+      // Поэтому на данном этапе оставляю эти проверки законментированными, но их наличие **обязательно** при дальнейшей работе
+
+      // if (isEqual(state.products, prevState?.products)) {
+        //   return;
+        // }
         const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
         cartList.update({ items });
       });
-      this.model.subscribe((state, prevState) => {
-        if (isEqual(state.products, prevState?.products)) {
-          return;
-        }
+      this.model.subscribe((/* state, prevState */) => {
+        // if (isEqual(state.products, prevState?.products)) {
+        //   return;
+        // }
         total.update();
       });
       
