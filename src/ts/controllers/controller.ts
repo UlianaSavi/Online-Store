@@ -163,4 +163,26 @@ export class Controller {
   cleanCart = () => {
     // TODO: Clean Cart
   };
+
+  // pagination
+  isDisabled = (countOfPages: number, pageCounter: number, btnLeft: HTMLButtonElement, btnRight: HTMLButtonElement) => {
+    if (pageCounter > 1) {
+      btnLeft.disabled = false;
+    } else {
+      btnLeft.disabled = true;
+    }
+
+    if (countOfPages === 1 || countOfPages === pageCounter) {
+      btnRight.disabled = true;
+    } else {
+      btnRight.disabled = false;
+    }
+  }
+
+  cartQuery = (page: number, pageSize: number) => {
+    const params: { [s: string]: string[] } = {};
+    params.page = [`${page}`];
+    params.pageSize = [`${pageSize}`];
+    setUrlParams(params);
+  }
 }
