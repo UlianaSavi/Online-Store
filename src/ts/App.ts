@@ -19,7 +19,8 @@ export class App {
     productsToShow: [],
     namesToShow: [],
     categoryFilters: [],
-    nameFilters: []
+    nameFilters: [],
+    sort: []
   };
 
   header: HTMLElement | null;

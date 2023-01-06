@@ -103,6 +103,7 @@ export class Controller {
     const state = this.model.getState();
     const categoryFilters = [...state.categoryFilters];
     const nameFilters = [...state.nameFilters];
+    const sort = [...state.sort];
     let products = [...state.products];
 
     const params: { [s: string]: string[] } = {};
@@ -115,6 +116,10 @@ export class Controller {
     if (nameFilters.length) {
       params.nameFilters = nameFilters;
       products = products.filter(({ animeName }) => nameFilters.includes(animeName));
+    }
+
+    if (sort.length) {
+      params.sort = sort;
     }
 
     setUrlParams(params);
@@ -162,5 +167,34 @@ export class Controller {
 
   cleanCart = () => {
     // TODO: Clean Cart
+  };
+
+  // Sorting
+
+  sort = (str: string) => {
+    const state = this.model.getState();
+
+    const sort = [str];
+
+    switch (str) {
+      case 'chaepAtFirst':
+        state.productsToShow.sort((a, b) => (a.price > b.price ? 1 : -1));
+        break;
+      case 'expensiveFirst':
+        state.productsToShow.sort((a, b) => (b.price > a.price ? 1 : -1));
+        break;
+      case 'MoreInStock':
+        state.productsToShow.sort((a, b) => (b.stock > a.stock ? 1 : -1));
+        break;
+
+      default:
+        break;
+    }
+
+    this.model.setState({
+      ...state,
+      sort
+    });
+    this.prepareProductsToShow();
   };
 }

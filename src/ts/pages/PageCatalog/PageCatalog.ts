@@ -42,7 +42,7 @@ export class Catalog {
       this.controller.setFilterByCategory,
       this.controller.setFilterByName
     );
-    const products = new Products(this.section);
+    const products = new Products(this.section, this.controller.sort);
 
     if (this.mounted) {
       const categoriesSet = [

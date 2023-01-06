@@ -7,6 +7,12 @@ $svg-icons-color: #ffbd59;
 // $svg-icons-color:  #c1b550bb;
 $border-hover-color: #7a5f3c73;
 
+$grey: hsl(206deg, 6%, 25%);
+$dark-grey: rgb(39, 41, 43);
+$orange: #ffbd59;
+$lite-grey: rgb(255 255 255 / 39%);
+$white-opacity: rgba(255, 255, 255, 0.94);
+
 .body {
   background-color: $main-color;
   font-family: 'Roboto', sans-serif;
@@ -42,5 +48,12 @@ ul {
 .btn:hover {
   color: $svg-icons-color;
   background-color: $text-color-dark;
+  transition: all 0.5s;
+}
+
+.hidden {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
   transition: all 0.5s;
 }
