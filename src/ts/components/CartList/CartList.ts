@@ -1,5 +1,8 @@
 import { create } from '../../utils/create';
 import { IProduct } from '../../types';
+import { Controller } from '../../controllers/controller';
+import { Total } from '../CartTotal/CartTotal';
+import { parseUrlParams } from '../../utils/url';
 
 interface ICartListProps {
   items: IProduct[];
@@ -7,10 +10,18 @@ interface ICartListProps {
 export class CartList {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  controller: Controller;
+  pageCounter: number;
+  itemsLimit: number;
+  total: Total;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, controller: Controller, total: Total) {
     this.parent = parent;
     this.component = null;
+    this.controller = controller;
+    this.pageCounter = 1;
+    this.itemsLimit = 3;
+    this.total = total;
   }
 
   update = (props?: ICartListProps) => {
@@ -18,46 +29,6 @@ export class CartList {
   };
 
   render = (props?: ICartListProps) => {
-    this.component?.remove();
-
-    const header = create({
-      tagName: 'div',
-      classNames: 'product-list__header',
-      children: [
-        create({
-          tagName: 'h3',
-          classNames: 'product-list__header__title h3',
-          children: 'TITLE'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'product-list__header__limit',
-          children: `<input type="number" min="1" max="6" class="page-input" placeholder="LIMIT"></input>`
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'product-list__header__page-numbers',
-          children: [
-            create({
-              tagName: 'button',
-              classNames: 'btn',
-              children: `&#10094;`
-            }),
-            create({
-              tagName: 'span',
-              classNames: 'page-numbers__number',
-              children: '1'
-            }),
-            create({
-              tagName: 'button',
-              classNames: 'btn',
-              children: `&#10095;`
-            })
-          ]
-        })
-      ]
-    });
-
     let numInList = 0;
     const productItem =
       props?.items.map((item) => {
@@ -186,11 +157,110 @@ export class CartList {
         return items;
       }) || [];
 
+    this.component?.remove();
+    const inputLimit = create({
+      tagName: 'input',
+      dataAttr: [['type', 'number'], ['min', '1'], ['max', `${productItem.length}`], ['placeholder', "LIMIT"], ['value', `${this.itemsLimit}`]],
+      classNames: 'page-input'
+    }) as HTMLInputElement;
+    
+    const btnLeft = create({
+      tagName: 'button',
+      classNames: 'btn',
+      children: `&#10094;`
+    }) as HTMLButtonElement;
+
+    const btnRight = create({
+      tagName: 'button',
+      classNames: 'btn',
+      children: `&#10095;`
+    }) as HTMLButtonElement;
+
+    const pageNumber = create({
+      tagName: 'span',
+      classNames: 'page-numbers__number'
+    });
+
+    const header = create({
+      tagName: 'div',
+      classNames: 'product-list__header',
+      children: [
+        create({
+          tagName: 'h3',
+          classNames: 'product-list__header__title h3',
+          children: 'TITLE'
+        }),
+        create({
+          tagName: 'div',
+          classNames: 'product-list__header__limit',
+          children: [inputLimit]
+        }),
+        create({
+          tagName: 'div',
+          classNames: 'product-list__header__page-numbers',
+          children: [
+            btnLeft,
+            pageNumber,
+            btnRight
+          ]
+        })
+      ]
+    });
+
+    // pagination
+    const params = parseUrlParams();
+    const lastItem = this.itemsLimit * this.pageCounter;
+    const firstItem = lastItem - this.itemsLimit;
+    const currentItems = productItem.slice(firstItem, lastItem);
+    let countOfPages = Math.ceil(numInList / +inputLimit.value);
+
+    pageNumber.textContent = `${this.pageCounter}`
+
+    this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
+
+    if (params.page) this.pageCounter = +params.page;
+    if (params.pageSize) this.itemsLimit = +params.pageSize;
+    
+    btnRight.addEventListener('click', () => {
+      if (this.pageCounter !== countOfPages) {
+        pageNumber.textContent = `${++this.pageCounter}`;
+      }
+      this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
+      this.controller.cartQuery(this.pageCounter, this.itemsLimit);
+      this.render(props);
+    })
+    
+    btnLeft.addEventListener('click', () => {
+      if (this.pageCounter !== 1) {
+        pageNumber.textContent = `${--this.pageCounter}`;
+      }
+      this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
+      this.controller.cartQuery(this.pageCounter, this.itemsLimit);
+      this.render(props);
+    })    
+    
+    inputLimit.addEventListener('input', () => {
+      if (inputLimit.value) {
+        countOfPages = Math.ceil(numInList / +inputLimit.value);
+        if (countOfPages < this.pageCounter) {
+          this.pageCounter = countOfPages;
+          this.itemsLimit = +inputLimit.value;
+          this.controller.cartQuery(this.pageCounter, this.itemsLimit);
+          this.render(props);
+        }
+      }
+      this.itemsLimit = +inputLimit.value;
+      this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
+      this.controller.cartQuery(this.pageCounter, this.itemsLimit);
+      this.render(props);
+    })
+
     this.component = create({
       tagName: 'div',
       classNames: 'product-list',
-      children: [header, ...productItem],
+      children: [header, ...currentItems],
       parent: this.parent
     });
+    this.total.update();
   };
 }
