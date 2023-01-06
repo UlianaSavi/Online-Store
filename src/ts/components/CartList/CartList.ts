@@ -252,6 +252,7 @@ export class CartList {
       this.itemsLimit = +inputLimit.value;
       this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
       this.controller.cartQuery(this.pageCounter, this.itemsLimit);
+      this.render(props);
     })
 
     this.component = create({
