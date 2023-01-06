@@ -68,12 +68,12 @@ export class Catalog {
     }
 
     this.model.subscribe((state, prevState) => {
-      // if (
-      //   isEqual(state.products, prevState?.products) &&
-      //   isEqual(state.productsToShow, prevState?.productsToShow)
-      // ) {
-      //   return;
-      // }
+      if (
+        isEqual(state.products, prevState?.products) &&
+        isEqual(state.productsToShow, prevState?.productsToShow)
+      ) {
+        return;
+      }
       const categoriesSet = [
         ...new Set(state.products.map((item) => item.category).filter((item) => !!item))
       ];
@@ -115,12 +115,12 @@ export class Catalog {
     });
 
     this.model.subscribe((state, prevState) => {
-      // if (
-      //   isEqual(state.productsToShow, prevState?.productsToShow) &&
-      //   isEqual(state.categoryFilters, prevState?.categoryFilters)
-      // ) {
-      //   return;
-      // }
+      if (
+        isEqual(state.productsToShow, prevState?.productsToShow) &&
+        isEqual(state.categoryFilters, prevState?.categoryFilters)
+      ) {
+        return;
+      }
 
       const items = [...new Set(state.productsToShow.map((item) => item).filter((item) => !!item))];
       products.update({ items });

@@ -116,11 +116,21 @@ export class App {
       },
       '/details': {
         mount: pageDetails.mount,
-        unmount: pageDetails.unmount
+        unmount: pageDetails.unmount,
+        mountedProps: {
+          mounted: () => {
+            model.fire();
+          }
+        }
       },
       '/cart': {
         mount: pageCart.mount,
-        unmount: pageCart.unmount
+        unmount: pageCart.unmount,
+        mountedProps: {
+          mounted: () => {
+            model.fire();
+          }
+        }
       }
     };
 
