@@ -2,6 +2,7 @@ import { create } from '../../utils/create';
 import { IProduct } from '../../types';
 import { Controller } from '../../controllers/controller';
 import { Total } from '../CartTotal/CartTotal';
+import { parseUrlParams } from '../../utils/url';
 
 interface ICartListProps {
   items: IProduct[];
@@ -207,6 +208,7 @@ export class CartList {
       }) || [];
 
     // pagination
+    const params = parseUrlParams();
     const lastItem = this.itemsLimit * this.pageCounter;
     const firstItem = lastItem - this.itemsLimit;
     const currentItems = productItem.slice(firstItem, lastItem);
@@ -215,12 +217,16 @@ export class CartList {
     pageNumber.textContent = `${this.pageCounter}`
 
     this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
+
+    if (params.page) this.pageCounter = +params.page;
+    if (params.pageSize) this.itemsLimit = +params.pageSize;
     
     btnRight.addEventListener('click', () => {
       if (this.pageCounter !== countOfPages) {
         pageNumber.textContent = `${++this.pageCounter}`;
       }
       this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
+      this.controller.cartQuery(this.pageCounter, this.itemsLimit);
       this.render(props);
     })
     
@@ -228,7 +234,8 @@ export class CartList {
       if (this.pageCounter !== 1) {
         pageNumber.textContent = `${--this.pageCounter}`;
       }
-      this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);  
+      this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
+      this.controller.cartQuery(this.pageCounter, this.itemsLimit);
       this.render(props);
     })    
     
@@ -238,10 +245,12 @@ export class CartList {
         if (countOfPages < this.pageCounter) {
           this.pageCounter = countOfPages;
           this.itemsLimit = +inputLimit.value;
+          this.controller.cartQuery(this.pageCounter, this.itemsLimit);
           this.render(props);
         }
       }
       this.itemsLimit = +inputLimit.value;
+      this.controller.cartQuery(this.pageCounter, this.itemsLimit);
     })
 
     this.component = create({

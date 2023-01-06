@@ -178,4 +178,11 @@ export class Controller {
       btnRight.disabled = false;
     }
   }
+
+  cartQuery = (page: number, pageSize: number) => {
+    const params: { [s: string]: string[] } = {};
+    params.page = [`${page}`];
+    params.pageSize = [`${pageSize}`];
+    setUrlParams(params);
+  }
 }
