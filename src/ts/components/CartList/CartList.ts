@@ -261,6 +261,9 @@ export class CartList {
       children: [header, ...currentItems],
       parent: this.parent
     });
+    this.total.countItems = productItem.length;
+    const productItemPrices = props?.items.map((item) => item.price);
+    if (productItemPrices) this.total.totalSum = productItemPrices.reduce((prev, curr) => prev + curr, 0);
     this.total.update();
   };
 }

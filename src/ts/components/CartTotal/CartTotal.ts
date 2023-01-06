@@ -5,11 +5,15 @@ export class Total {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   controller: Controller;
+  countItems: number;
+  totalSum: number;
 
   constructor(parent: HTMLElement | null, controller: Controller) {
     this.parent = parent;
     this.component = null;
     this.controller = controller;
+    this.countItems = 10;
+    this.totalSum = 1000;
   }
 
   update = () => {
@@ -50,7 +54,7 @@ export class Total {
                 `Products: `,
                 create({
                   tagName: 'i',
-                  children: '10'
+                  children: `${this.countItems}`
                 })
               ]
             }),
@@ -61,7 +65,7 @@ export class Total {
                 `Total: `,
                 create({
                   tagName: 'i',
-                  children: '1000$'
+                  children: `${this.totalSum}$`
                 })
               ]
             }),
