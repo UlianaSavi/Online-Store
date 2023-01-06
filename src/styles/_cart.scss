@@ -224,6 +224,20 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
       text-transform: initial;
     }
   }
+
+  &__num_through {
+    text-decoration: line-through;
+  }
+
+  &__num_new-total {
+    opacity: 0;
+
+    transition: all .8s ease;
+  }
+
+  &__num_new-total_active {
+    opacity: 1;
+  }
 }
 
 .promo-info {

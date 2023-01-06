@@ -32,8 +32,8 @@ export class Total {
     this.component?.remove();
 
     const promoArr = [
-      {name: 'SHIT', discount: '10%'}, 
-      {name: '2SHIT', discount: '20%'}
+      {name: 'SHIT', discount: '10'}, 
+      {name: '2SHIT', discount: '20'}
     ];
 
     const inputPromo = create ({
@@ -51,12 +51,47 @@ export class Total {
             setTimeout(() => this.render(), 400)
             break;
           } else {
-            this.addPromoWrapper?.classList.remove('input-promo-wrapper_active');
-            this.addPromo?.classList.remove('add-promo_active');
+            this.controller.removePromo(this.addPromoWrapper, this.addPromo);
           } 
         }
       } 
     });
+
+    const totalBlock = create({
+      tagName: 'div',
+      classNames: 'total__info__num',
+      children: [
+        `Total: `,
+        create({
+          tagName: 'i',
+          children: `${this.totalSum}$`
+        })
+      ]
+    });
+
+    const newTotalBlock = create({
+      tagName: 'div',
+      classNames: 'total__info__num_new-total',
+      children: [
+        `Total: `,
+        create({
+          tagName: 'i',
+          children: `${this.totalSum - this.totalSum * +this.currPromoDiscount / 100}$`
+        })
+      ]
+    })
+
+    const addPromoBtn = create({
+      tagName: 'button',
+      classNames: 'add-promo__btn',
+      children: '+'
+    });
+
+    addPromoBtn.addEventListener('click', () => {
+      totalBlock.classList.add('total__info__num_through');
+      newTotalBlock.classList.add('total__info__num_new-total_active');
+      this.controller.removePromo(this.addPromoWrapper, this.addPromo);
+    })
 
     this.addPromo = create({
       tagName: 'div',
@@ -64,13 +99,9 @@ export class Total {
       children: [
         create({
           tagName: 'span',
-          children: `${this.currPromoName} - ${this.currPromoDiscount}`
+          children: `${this.currPromoName} - ${this.currPromoDiscount}%`
         }),
-        create({
-          tagName: 'button',
-          classNames: 'add-promo__btn',
-          children: '+'
-        })
+        addPromoBtn
       ]
     }) as HTMLDivElement;
 
@@ -125,17 +156,8 @@ export class Total {
                 })
               ]
             }),
-            create({
-              tagName: 'div',
-              classNames: 'total__info__num',
-              children: [
-                `Total: `,
-                create({
-                  tagName: 'i',
-                  children: `${this.totalSum}$`
-                })
-              ]
-            }),
+            totalBlock,
+            newTotalBlock,
             this.addPromoWrapper,
             create({
               tagName: 'div',
