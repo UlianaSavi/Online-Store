@@ -32,9 +32,9 @@ export class Header {
 
     cart.addEventListener('click', this.go);
 
-    this.component = create({
-      tagName: 'div',
-      classNames: 'header__wrapper',
+    const linkToMain = create({
+      tagName: 'a',
+      dataAttr: [['href', '/']],
       children: [
         create({
           tagName: 'h1',
@@ -49,7 +49,17 @@ export class Header {
               ]
             })
           ]
-        }),
+        })
+      ]
+    });
+
+    linkToMain.addEventListener('click', this.go);
+
+    this.component = create({
+      tagName: 'div',
+      classNames: 'header__wrapper',
+      children: [
+        linkToMain,
         create({
           tagName: 'div',
           classNames: 'search',
