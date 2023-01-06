@@ -103,6 +103,7 @@ export class Controller {
     const state = this.model.getState();
     const categoryFilters = [...state.categoryFilters];
     const nameFilters = [...state.nameFilters];
+    const sort = state.sort;
     let products = [...state.products];
 
     const params: { [s: string]: string[] } = {};
@@ -115,6 +116,25 @@ export class Controller {
     if (nameFilters.length) {
       params.nameFilters = nameFilters;
       products = products.filter(({ animeName }) => nameFilters.includes(animeName));
+    }
+
+    if (sort.length) {
+      params.sort = [sort];
+
+      switch (sort) {
+        case 'chaepAtFirst':
+          products = products.sort((a, b) => (a.price > b.price ? 1 : -1));
+          break;
+        case 'expensiveFirst':
+          products = products.sort((a, b) => (b.price > a.price ? 1 : -1));
+          break;
+        case 'MoreInStock':
+          products = products.sort((a, b) => (b.stock > a.stock ? 1 : -1));
+          break;
+
+        default:
+          break;
+      }
     }
 
     setUrlParams(params);
@@ -164,8 +184,26 @@ export class Controller {
     // TODO: Clean Cart
   };
 
+  // Sorting
+
+  addSorting = (str: string) => {
+    const state = this.model.getState();
+    const sort = str;
+
+    this.model.setState({
+      ...state,
+      sort
+    });
+    this.prepareProductsToShow();
+  };
+
   // pagination
-  isDisabled = (countOfPages: number, pageCounter: number, btnLeft: HTMLButtonElement, btnRight: HTMLButtonElement) => {
+  isDisabled = (
+    countOfPages: number,
+    pageCounter: number,
+    btnLeft: HTMLButtonElement,
+    btnRight: HTMLButtonElement
+  ) => {
     if (pageCounter > 1) {
       btnLeft.disabled = false;
     } else {
@@ -177,12 +215,12 @@ export class Controller {
     } else {
       btnRight.disabled = false;
     }
-  }
+  };
 
   cartQuery = (page: number, pageSize: number) => {
     const params: { [s: string]: string[] } = {};
     params.page = [`${page}`];
     params.pageSize = [`${pageSize}`];
     setUrlParams(params);
-  }
+  };
 }
