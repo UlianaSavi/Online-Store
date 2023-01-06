@@ -20,7 +20,7 @@ export class App {
     namesToShow: [],
     categoryFilters: [],
     nameFilters: [],
-    sort: []
+    sort: ''
   };
 
   header: HTMLElement | null;
@@ -94,6 +94,10 @@ export class App {
           params.nameFilters.forEach((name) => {
             controller.addFilterByName(name);
           });
+        }
+
+        if (params?.sort) {
+          controller.addSorting(params.sort.toString());
         }
       });
 

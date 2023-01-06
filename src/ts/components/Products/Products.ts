@@ -4,17 +4,18 @@ import { sortItems } from '../../contains';
 
 interface IProductsProps {
   items: IProduct[];
+  sort?: string;
   addToCartClickHandler?: (id: number) => void;
 }
 export class Products {
   parent: HTMLElement | null;
   component: HTMLElement | null;
-  sort: (str: string) => void;
+  addSorting: (str: string) => void;
 
-  constructor(parent: HTMLElement | null, sort: (str: string) => void) {
+  constructor(parent: HTMLElement | null, addSorting: (str: string) => void) {
     this.parent = parent;
     this.component = null;
-    this.sort = sort;
+    this.addSorting = addSorting;
   }
 
   update = (props?: IProductsProps) => {
@@ -150,7 +151,10 @@ export class Products {
         children: val
       });
 
-      item.addEventListener('click', () => this.sort(key));
+      item.addEventListener('click', () => {
+        this.addSorting(key);
+      });
+
       return item;
     });
 
@@ -160,15 +164,17 @@ export class Products {
       children: sortItemsArr
     });
 
+    const sortBtnTitle = create({
+      tagName: 'span',
+      classNames: 'sort__list__btn-text',
+      children: `Sort by: ${(props?.sort && sortItems[props.sort]) || ''}`
+    });
+
     const sortBtn = create({
       tagName: 'div',
       classNames: 'sort__list__btn btn',
       children: [
-        create({
-          tagName: 'span',
-          classNames: 'sort__list__btn-text',
-          children: ['Sort by:']
-        }),
+        sortBtnTitle,
         create({
           tagName: 'div',
           classNames: 'triangle-down'

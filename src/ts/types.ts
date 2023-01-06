@@ -4,7 +4,7 @@ export interface IAppState {
   namesToShow: IProduct[];
   categoryFilters: string[];
   nameFilters: string[];
-  sort: string[];
+  sort: string;
 }
 
 export interface IProduct {

@@ -103,7 +103,7 @@ export class Controller {
     const state = this.model.getState();
     const categoryFilters = [...state.categoryFilters];
     const nameFilters = [...state.nameFilters];
-    const sort = [...state.sort];
+    const sort = state.sort;
     let products = [...state.products];
 
     const params: { [s: string]: string[] } = {};
@@ -119,7 +119,22 @@ export class Controller {
     }
 
     if (sort.length) {
-      params.sort = sort;
+      params.sort = [sort];
+
+      switch (sort) {
+        case 'chaepAtFirst':
+          products = products.sort((a, b) => (a.price > b.price ? 1 : -1));
+          break;
+        case 'expensiveFirst':
+          products = products.sort((a, b) => (b.price > a.price ? 1 : -1));
+          break;
+        case 'MoreInStock':
+          products = products.sort((a, b) => (b.stock > a.stock ? 1 : -1));
+          break;
+
+        default:
+          break;
+      }
     }
 
     setUrlParams(params);
@@ -171,25 +186,9 @@ export class Controller {
 
   // Sorting
 
-  sort = (str: string) => {
+  addSorting = (str: string) => {
     const state = this.model.getState();
-
-    const sort = [str];
-
-    switch (str) {
-      case 'chaepAtFirst':
-        state.productsToShow.sort((a, b) => (a.price > b.price ? 1 : -1));
-        break;
-      case 'expensiveFirst':
-        state.productsToShow.sort((a, b) => (b.price > a.price ? 1 : -1));
-        break;
-      case 'MoreInStock':
-        state.productsToShow.sort((a, b) => (b.stock > a.stock ? 1 : -1));
-        break;
-
-      default:
-        break;
-    }
+    const sort = str;
 
     this.model.setState({
       ...state,
