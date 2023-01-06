@@ -215,6 +215,14 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
   .promo-info {
     margin-bottom: 10px;
   }
+
+  &__promo-code {
+    text-transform: uppercase;
+
+    &::placeholder {
+      text-transform: initial;
+    }
+  }
 }
 
 .promo-info {
