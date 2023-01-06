@@ -7,6 +7,10 @@ export class Total {
   controller: Controller;
   countItems: number;
   totalSum: number;
+  currPromoName: string;
+  currPromoDiscount: string;
+  addPromo: HTMLDivElement | null;
+  addPromoWrapper: HTMLElement | null;
 
   constructor(parent: HTMLElement | null, controller: Controller) {
     this.parent = parent;
@@ -14,6 +18,10 @@ export class Total {
     this.controller = controller;
     this.countItems = 10;
     this.totalSum = 1000;
+    this.currPromoName = '';
+    this.currPromoDiscount = '';
+    this.addPromo = null;
+    this.addPromoWrapper = null;
   }
 
   update = () => {
@@ -23,13 +31,64 @@ export class Total {
   render = () => {
     this.component?.remove();
 
-    const promoArr = ['SHIT', 'SHIT2'];
+    const promoArr = [
+      {name: 'SHIT', discount: '10%'}, 
+      {name: '2SHIT', discount: '20%'}
+    ];
 
     const inputPromo = create ({
       tagName: 'input',
       classNames: 'total__info__promo-code promo-input input',
       dataAttr: [['type', 'search'], ['name', 'search-promo'], ['placeholder', 'Enter promo code']]
     }) as HTMLInputElement;
+
+    inputPromo.addEventListener('input', () => {
+      if (inputPromo.value) {
+        for (let index = 0; index < promoArr.length; index++) {
+          if (promoArr[index].name === inputPromo.value.toUpperCase()) {
+            this.currPromoName = promoArr[index].name;
+            this.currPromoDiscount = promoArr[index].discount;
+            setTimeout(() => this.render(), 400)
+            break;
+          } else {
+            this.addPromoWrapper?.classList.remove('input-promo-wrapper_active');
+            this.addPromo?.classList.remove('add-promo_active');
+          } 
+        }
+      } 
+    });
+
+    this.addPromo = create({
+      tagName: 'div',
+      classNames: 'add-promo',
+      children: [
+        create({
+          tagName: 'span',
+          children: `${this.currPromoName} - ${this.currPromoDiscount}`
+        }),
+        create({
+          tagName: 'button',
+          classNames: 'add-promo__btn',
+          children: '+'
+        })
+      ]
+    }) as HTMLDivElement;
+
+    this.addPromoWrapper = create({
+      tagName: 'div',
+      classNames: 'input-promo-wrapper',
+      children: [
+        inputPromo,
+        this.addPromo
+      ]
+    }) as HTMLDivElement;
+
+    if (this.currPromoName.length !== 0) {
+      setTimeout(() => {
+        this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
+        this.addPromo?.classList.add('add-promo_active');
+      }, 600)
+    }
 
     const buyBtn = create({
       tagName: 'button',
@@ -77,10 +136,7 @@ export class Total {
                 })
               ]
             }),
-            create({
-              tagName: 'div',
-              children: [inputPromo]
-            }),
+            this.addPromoWrapper,
             create({
               tagName: 'div',
               classNames: 'total__info__promo-code-hint',
@@ -88,7 +144,7 @@ export class Total {
                 `Promo for test: `,
                 create({
                   tagName: 'i',
-                  children: `${promoArr.join(', ')}`
+                  children: `${promoArr.map((item) => item.name).join(', ')}`
                 })
               ]
             }),
