@@ -29,56 +29,6 @@ export class CartList {
   };
 
   render = (props?: ICartListProps) => {
-    this.component?.remove();
-    const inputLimit = create({
-      tagName: 'input',
-      dataAttr: [['type', 'number'], ['min', '1'], ['max', '6'], ['placeholder', "LIMIT"], ['value', `${this.itemsLimit}`]],
-      classNames: 'page-input'
-    }) as HTMLInputElement;
-    
-    const btnLeft = create({
-      tagName: 'button',
-      classNames: 'btn',
-      children: `&#10094;`
-    }) as HTMLButtonElement;
-
-    const btnRight = create({
-      tagName: 'button',
-      classNames: 'btn',
-      children: `&#10095;`
-    }) as HTMLButtonElement;
-
-    const pageNumber = create({
-      tagName: 'span',
-      classNames: 'page-numbers__number'
-    });
-
-    const header = create({
-      tagName: 'div',
-      classNames: 'product-list__header',
-      children: [
-        create({
-          tagName: 'h3',
-          classNames: 'product-list__header__title h3',
-          children: 'TITLE'
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'product-list__header__limit',
-          children: [inputLimit]
-        }),
-        create({
-          tagName: 'div',
-          classNames: 'product-list__header__page-numbers',
-          children: [
-            btnLeft,
-            pageNumber,
-            btnRight
-          ]
-        })
-      ]
-    });
-
     let numInList = 0;
     const productItem =
       props?.items.map((item) => {
@@ -206,6 +156,56 @@ export class CartList {
         });
         return items;
       }) || [];
+
+    this.component?.remove();
+    const inputLimit = create({
+      tagName: 'input',
+      dataAttr: [['type', 'number'], ['min', '1'], ['max', `${productItem.length}`], ['placeholder', "LIMIT"], ['value', `${this.itemsLimit}`]],
+      classNames: 'page-input'
+    }) as HTMLInputElement;
+    
+    const btnLeft = create({
+      tagName: 'button',
+      classNames: 'btn',
+      children: `&#10094;`
+    }) as HTMLButtonElement;
+
+    const btnRight = create({
+      tagName: 'button',
+      classNames: 'btn',
+      children: `&#10095;`
+    }) as HTMLButtonElement;
+
+    const pageNumber = create({
+      tagName: 'span',
+      classNames: 'page-numbers__number'
+    });
+
+    const header = create({
+      tagName: 'div',
+      classNames: 'product-list__header',
+      children: [
+        create({
+          tagName: 'h3',
+          classNames: 'product-list__header__title h3',
+          children: 'TITLE'
+        }),
+        create({
+          tagName: 'div',
+          classNames: 'product-list__header__limit',
+          children: [inputLimit]
+        }),
+        create({
+          tagName: 'div',
+          classNames: 'product-list__header__page-numbers',
+          children: [
+            btnLeft,
+            pageNumber,
+            btnRight
+          ]
+        })
+      ]
+    });
 
     // pagination
     const params = parseUrlParams();
