@@ -6,6 +6,7 @@ export interface IAppState {
   nameFilters: string[];
   sort: string;
   search: string;
+  view: string;
 }
 
 export interface IProduct {
