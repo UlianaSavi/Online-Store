@@ -162,12 +162,24 @@ export class Total {
         this.addPromo
       ]
     }) as HTMLDivElement;
-
+    
     if (this.currPromoName.length !== 0) {
-      setTimeout(() => {
-        this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
-        this.addPromo?.classList.add('add-promo_active');
-      }, 600)
+      if (this.addedPromoArr.length === 0) {
+        setTimeout(() => {
+          this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
+          this.addPromo?.classList.add('add-promo_active');
+        }, 600)
+      } else {
+        const filtredArr = this.addedPromoArr.map((item) => item.name).filter((item) => item === this.currPromoName);
+        if (filtredArr.length === 0) {
+          setTimeout(() => {
+            this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
+            this.addPromo?.classList.add('add-promo_active');
+          }, 600)
+        } else {
+          inputPromo.autofocus = true;
+        }
+      }
     }
 
     const buyBtn = create({
