@@ -69,15 +69,25 @@ export class Header {
     }) as HTMLInputElement;
 
     searchInput.addEventListener('keyup', () => {
-      if (
-        this.parent?.children.item(2)?.classList.contains('catalog') ||
-        this.parent?.children.item(3)?.classList.contains('catalog')
-      ) {
-        localStorage.setItem('searchInput', searchInput.value);
-        this.controller.addSearching(searchInput.value);
-      } else {
-        searchInput.value = '';
-      }
+      localStorage.setItem('searchInput', searchInput.value);
+      this.controller.addSearching(searchInput.value);
+      // const nodelist = this.parent?.children;
+      // const divyArray = Array.prototype.slice.call(nodelist);
+      // console.log(...divyArray);
+
+      // if (divyArray.map((item) => item.classList.contains('catalog'))) {
+      //   localStorage.setItem('searchInput', searchInput.value);
+      //   this.controller.addSearching(searchInput.value);
+      // } else {
+      //   searchInput.value = '';
+      // }
+
+      // if (this.parent?.children.item(0 - 4)?.classList.contains('catalog')) {
+      //   localStorage.setItem('searchInput', searchInput.value);
+      //   this.controller.addSearching(searchInput.value);
+      // } else {
+      //   searchInput.value = '';
+      // }
     });
 
     this.component = create({
