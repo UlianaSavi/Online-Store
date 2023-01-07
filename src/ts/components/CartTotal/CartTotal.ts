@@ -1,6 +1,11 @@
 import { create } from '../../utils/create';
 import { Controller } from '../../controllers/controller';
 
+interface PromoArr {
+  name: string,
+  discount: string
+}
+
 export class Total {
   parent: HTMLElement | null;
   component: HTMLElement | null;
@@ -11,6 +16,7 @@ export class Total {
   currPromoDiscount: string;
   addPromo: HTMLDivElement | null;
   addPromoWrapper: HTMLElement | null;
+  addedPromoArr: PromoArr[];
 
   constructor(parent: HTMLElement | null, controller: Controller) {
     this.parent = parent;
@@ -22,6 +28,7 @@ export class Total {
     this.currPromoDiscount = '';
     this.addPromo = null;
     this.addPromoWrapper = null;
+    this.addedPromoArr = [];
   }
 
   update = () => {
@@ -31,7 +38,7 @@ export class Total {
   render = () => {
     this.component?.remove();
 
-    const promoArr = [
+    const promoArr: PromoArr[] = [
       {name: 'SHIT', discount: '10'}, 
       {name: '2SHIT', discount: '20'}
     ];
@@ -76,10 +83,38 @@ export class Total {
         `Total: `,
         create({
           tagName: 'i',
-          children: `${this.totalSum - this.totalSum * +this.currPromoDiscount / 100}$`
+          children: `${this.totalSum - this.totalSum * this.addedPromoArr.reduce((prev, curr) => prev + +curr.discount, 0) / 100}$`
         })
       ]
-    })
+    });
+
+    const addedPromo = create({
+      tagName: 'div',
+      classNames: `added-promo__promo-list`,
+    });
+    
+    const addedPromoBlock = create({
+      tagName: 'div',
+      classNames: 'added-promo',
+    });
+
+    for (let index = 0; index < this.addedPromoArr.length; index++) {
+      addedPromo.appendChild(
+        create({
+          tagName: 'div',
+          classNames: 'added-promo__promo',
+          children: [
+            `${this.addedPromoArr[index].name} - ${this.addedPromoArr[index].discount}%`, 
+            create({
+              tagName: 'button',
+              classNames: 'added-promo__btn',
+              children: '+'
+            })
+          ]
+        })
+      )    
+    }
+
 
     const addPromoBtn = create({
       tagName: 'button',
@@ -88,11 +123,25 @@ export class Total {
     });
 
     addPromoBtn.addEventListener('click', () => {
-      totalBlock.classList.add('total__info__num_through');
-      newTotalBlock.classList.add('total__info__num_new-total_active');
+      this.addedPromoArr.push({name: this.currPromoName, discount: this.currPromoDiscount})
       this.controller.removePromo(this.addPromoWrapper, this.addPromo);
+      this.currPromoName = '';
+      this.render();
     })
 
+    if (this.addedPromoArr.length > 0) {
+      totalBlock.classList.add('total__info__num_through');
+      newTotalBlock.classList.add('total__info__num_new-total_active');
+      addedPromoBlock.appendChild(
+        create({
+          tagName: 'div',
+          classNames: 'added-promo__header',
+          children: `Added promo codes:`
+        })
+      )
+      addedPromoBlock.appendChild(addedPromo);
+    }
+    
     this.addPromo = create({
       tagName: 'div',
       classNames: 'add-promo',
@@ -158,6 +207,7 @@ export class Total {
             }),
             totalBlock,
             newTotalBlock,
+            addedPromoBlock,
             this.addPromoWrapper,
             create({
               tagName: 'div',

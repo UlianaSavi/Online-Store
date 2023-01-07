@@ -188,7 +188,6 @@ export class Controller {
 
   // promo
   removePromo = (promoWrapper: HTMLElement | null, promo: HTMLDivElement | null) => {
-    console.log('in remove')
     promoWrapper?.classList.remove('input-promo-wrapper_active');
     promo?.classList.remove('add-promo_active');
   }
