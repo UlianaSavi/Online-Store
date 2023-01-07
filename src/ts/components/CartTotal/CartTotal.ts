@@ -53,21 +53,6 @@ export class Total {
       ]
     }) as HTMLInputElement;
 
-    inputPromo.addEventListener('input', () => {
-      if (inputPromo.value) {
-        for (let index = 0; index < promoArr.length; index++) {
-          if (promoArr[index].name === inputPromo.value.toUpperCase()) {
-            this.currPromoName = promoArr[index].name;
-            this.currPromoDiscount = promoArr[index].discount;
-            setTimeout(() => this.render(), 400);
-            break;
-          } else {
-            this.controller.removePromo(this.addPromoWrapper, this.addPromo);
-          }
-        }
-      }
-    });
-
     const totalBlock = create({
       tagName: 'div',
       classNames: 'total__info__num',
@@ -106,55 +91,11 @@ export class Total {
       classNames: 'added-promo'
     });
 
-    for (let index = 0; index < this.addedPromoArr.length; index++) {
-      const removePromoBtn = create({
-        tagName: 'button',
-        classNames: 'added-promo__btn',
-        children: '+'
-      });
-
-      removePromoBtn.addEventListener('click', () => {
-        this.addedPromoArr.splice(index, 1);
-        this.render();
-      });
-
-      addedPromo.appendChild(
-        create({
-          tagName: 'div',
-          classNames: 'added-promo__promo',
-          children: [
-            `${this.addedPromoArr[index].name} - ${this.addedPromoArr[index].discount}%`,
-            removePromoBtn
-          ]
-        })
-      );
-    }
-
     const addPromoBtn = create({
       tagName: 'button',
       classNames: 'add-promo__btn',
       children: '+'
     });
-
-    addPromoBtn.addEventListener('click', () => {
-      this.addedPromoArr.push({ name: this.currPromoName, discount: this.currPromoDiscount });
-      this.controller.removePromo(this.addPromoWrapper, this.addPromo);
-      this.currPromoName = '';
-      this.render();
-    });
-
-    if (this.addedPromoArr.length > 0) {
-      totalBlock.classList.add('total__info__num_through');
-      newTotalBlock.classList.add('total__info__num_new-total_active');
-      addedPromoBlock.appendChild(
-        create({
-          tagName: 'div',
-          classNames: 'added-promo__header',
-          children: `Added promo codes:`
-        })
-      );
-      addedPromoBlock.appendChild(addedPromo);
-    }
 
     this.addPromo = create({
       tagName: 'div',
@@ -174,36 +115,10 @@ export class Total {
       children: [inputPromo, this.addPromo]
     }) as HTMLDivElement;
 
-    if (this.currPromoName.length !== 0) {
-      if (this.addedPromoArr.length === 0) {
-        setTimeout(() => {
-          this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
-          this.addPromo?.classList.add('add-promo_active');
-        }, 600);
-      } else {
-        const filtredArr = this.addedPromoArr
-          .map((item) => item.name)
-          .filter((item) => item === this.currPromoName);
-        if (filtredArr.length === 0) {
-          setTimeout(() => {
-            this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
-            this.addPromo?.classList.add('add-promo_active');
-          }, 600);
-        } else {
-          inputPromo.autofocus = true;
-        }
-      }
-    }
-
     const buyBtn = create({
       tagName: 'button',
       classNames: 'btn',
       children: 'BUY NOW'
-    });
-
-    buyBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.controller.openPopup();
     });
 
     this.component = create({
@@ -250,6 +165,92 @@ export class Total {
         })
       ],
       parent: this.parent
+    });
+
+    inputPromo.addEventListener('input', () => {
+      if (inputPromo.value) {
+        for (let index = 0; index < promoArr.length; index++) {
+          if (promoArr[index].name === inputPromo.value.toUpperCase()) {
+            this.currPromoName = promoArr[index].name;
+            this.currPromoDiscount = promoArr[index].discount;
+            setTimeout(() => this.render(), 400);
+            break;
+          } else {
+            this.controller.removePromo(this.addPromoWrapper, this.addPromo);
+          }
+        }
+      }
+    });
+
+    for (let index = 0; index < this.addedPromoArr.length; index++) {
+      const removePromoBtn = create({
+        tagName: 'button',
+        classNames: 'added-promo__btn',
+        children: '+'
+      });
+
+      removePromoBtn.addEventListener('click', () => {
+        this.addedPromoArr.splice(index, 1);
+        this.render();
+      });
+
+      addedPromo.appendChild(
+        create({
+          tagName: 'div',
+          classNames: 'added-promo__promo',
+          children: [
+            `${this.addedPromoArr[index].name} - ${this.addedPromoArr[index].discount}%`,
+            removePromoBtn
+          ]
+        })
+      );
+    }
+
+    
+    addPromoBtn.addEventListener('click', () => {
+      this.addedPromoArr.push({ name: this.currPromoName, discount: this.currPromoDiscount });
+      this.controller.removePromo(this.addPromoWrapper, this.addPromo);
+      this.currPromoName = '';
+      this.render();
+    });
+
+    if (this.addedPromoArr.length > 0) {
+      totalBlock.classList.add('total__info__num_through');
+      newTotalBlock.classList.add('total__info__num_new-total_active');
+      addedPromoBlock.appendChild(
+        create({
+          tagName: 'div',
+          classNames: 'added-promo__header',
+          children: `Added promo codes:`
+        })
+      );
+      addedPromoBlock.appendChild(addedPromo);
+    }
+
+    if (this.currPromoName.length !== 0) {
+      if (this.addedPromoArr.length === 0) {
+        setTimeout(() => {
+          this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
+          this.addPromo?.classList.add('add-promo_active');
+        }, 600);
+      } else {
+        const filtredArr = this.addedPromoArr
+          .map((item) => item.name)
+          .filter((item) => item === this.currPromoName);
+        if (filtredArr.length === 0) {
+          setTimeout(() => {
+            this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
+            this.addPromo?.classList.add('add-promo_active');
+          }, 600);
+        } else {
+          inputPromo.autofocus = true;
+        }
+      }
+    }
+    
+    buyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.controller.openPopup();
     });
   };
 }
