@@ -99,22 +99,27 @@ export class Total {
     });
 
     for (let index = 0; index < this.addedPromoArr.length; index++) {
+      const removePromoBtn = create({
+        tagName: 'button',
+        classNames: 'added-promo__btn',
+        children: '+'
+      });
+
+      removePromoBtn.addEventListener('click', () => {
+        this.addedPromoArr.splice(index, 1);
+        this.render();
+      })
+      
       addedPromo.appendChild(
         create({
           tagName: 'div',
           classNames: 'added-promo__promo',
           children: [
-            `${this.addedPromoArr[index].name} - ${this.addedPromoArr[index].discount}%`, 
-            create({
-              tagName: 'button',
-              classNames: 'added-promo__btn',
-              children: '+'
-            })
+            `${this.addedPromoArr[index].name} - ${this.addedPromoArr[index].discount}%`, removePromoBtn
           ]
         })
-      )    
+      )
     }
-
 
     const addPromoBtn = create({
       tagName: 'button',
