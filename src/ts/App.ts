@@ -19,7 +19,8 @@ export class App {
     productsToShow: [],
     namesToShow: [],
     categoryFilters: [],
-    nameFilters: []
+    nameFilters: [],
+    sort: ''
   };
 
   header: HTMLElement | null;
@@ -93,6 +94,10 @@ export class App {
           params.nameFilters.forEach((name) => {
             controller.addFilterByName(name);
           });
+        }
+
+        if (params?.sort) {
+          controller.addSorting(params.sort.toString());
         }
       });
 

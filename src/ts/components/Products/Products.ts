@@ -1,18 +1,21 @@
 import { create } from '../../utils/create';
 import { IProduct } from '../../types';
+import { sortItems } from '../../contains';
 
 interface IProductsProps {
   items: IProduct[];
+  sort?: string;
   addToCartClickHandler?: (id: number) => void;
-  showEmptyTitle?: (div: HTMLElement) => void;
 }
 export class Products {
   parent: HTMLElement | null;
   component: HTMLElement | null;
+  addSorting: (str: string) => void;
 
-  constructor(parent: HTMLElement | null) {
+  constructor(parent: HTMLElement | null, addSorting: (str: string) => void) {
     this.parent = parent;
     this.component = null;
+    this.addSorting = addSorting;
   }
 
   update = (props?: IProductsProps) => {
@@ -141,6 +144,50 @@ export class Products {
       return items;
     });
 
+    const sortItemsArr = Object.entries(sortItems).map(([key, val]) => {
+      const item = create({
+        tagName: 'li',
+        classNames: 'sort__list__items__item',
+        children: val
+      });
+
+      item.addEventListener('click', () => {
+        this.addSorting(key);
+      });
+
+      return item;
+    });
+
+    const sortList = create({
+      tagName: 'ul',
+      classNames: 'sort__list__items hidden',
+      children: sortItemsArr
+    });
+
+    const sortBtnTitle = create({
+      tagName: 'span',
+      classNames: 'sort__list__btn-text',
+      children: `Sort by: ${(props?.sort && sortItems[props.sort]) || ''}`
+    });
+
+    const sortBtn = create({
+      tagName: 'div',
+      classNames: 'sort__list__btn btn',
+      children: [
+        sortBtnTitle,
+        create({
+          tagName: 'div',
+          classNames: 'triangle-down'
+        })
+      ]
+    });
+
+    sortBtn.addEventListener('click', () => {
+      sortList.classList.contains('hidden')
+        ? sortList.classList.remove('hidden')
+        : sortList.classList.add('hidden');
+    });
+
     this.component = create({
       tagName: 'div',
       classNames: 'products',
@@ -149,21 +196,8 @@ export class Products {
           tagName: 'div',
           classNames: 'products__header',
           children: [
-            create({
-              tagName: 'div',
-              classNames: 'sort__list__btn btn',
-              children: [
-                create({
-                  tagName: 'span',
-                  classNames: 'sort__list__btn-text',
-                  children: ['Sort by:']
-                }),
-                create({
-                  tagName: 'div',
-                  classNames: 'triangle-down'
-                })
-              ]
-            }),
+            sortBtn,
+            sortList,
             create({
               tagName: 'span',
               classNames: 'sort__items__count',
