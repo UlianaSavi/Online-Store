@@ -53,6 +53,16 @@ export class Filters {
       dataAttr: [['id', 'btnCopy']]
     });
 
+    btnCopy.addEventListener('click', () => {
+      btnCopy.style.color = 'red';
+      btnCopy.style.backgroundColor = 'rgb(83, 83, 83)';
+      setTimeout(() => {
+        btnCopy.style.color = 'rgb(83, 83, 83)';
+        btnCopy.style.backgroundColor = '#ffbd59';
+        navigator.clipboard.writeText(window.location.href);
+      }, 1000);
+    });
+
     const nameItem = props?.names.map((item) => {
       const dataAttr = [
         ['type', 'checkbox'],
