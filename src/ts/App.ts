@@ -3,7 +3,6 @@ import { Controller } from './controllers/controller';
 import { IAppState, IProductsResponse } from './types';
 import { create } from './utils/create';
 import { parseUrlParams } from './utils/url';
-import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Router } from './Router/Router';
 import { PageMain } from './pages/PageMain/PageMain';
@@ -12,6 +11,7 @@ import { PageDetails } from './pages/PageDetails/PageDetails';
 import { Catalog } from './pages/PageCatalog/PageCatalog';
 import { PageCart } from './pages/PageCart/PageCart';
 import { Popup } from './components/Popup/Popup';
+import { Header } from './components/Header/Header';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -20,10 +20,10 @@ export class App {
     namesToShow: [],
     categoryFilters: [],
     nameFilters: [],
-    sort: ''
+    sort: '',
+    search: ''
   };
 
-  header: HTMLElement | null;
   main: HTMLElement | null;
   footer: HTMLElement | null;
   root: HTMLElement;
@@ -31,18 +31,17 @@ export class App {
 
   constructor(root: HTMLElement) {
     this.root = root;
-    this.header = null;
     this.main = null;
     this.footer = null;
     this.router = null;
   }
 
   createDefaultLayer = () => {
-    this.header = create({
-      tagName: 'header',
-      dataAttr: [['id', 'header']],
-      parent: this.root
-    });
+    // this.header = create({
+    //   tagName: 'header',
+    //   dataAttr: [['id', 'header']],
+    //   parent: this.root
+    // });
     this.main = create({
       tagName: 'main',
       dataAttr: [['id', 'main']],
@@ -63,13 +62,14 @@ export class App {
     this.router = new Router(this.main);
 
     // Static components
-    const header = new Header(this.header, this.router.route);
-    header.mount();
     const footer = new Footer(this.footer);
     footer.mount();
 
     // Dinamic components
-    const pageMain = new PageMain(this.main, this.router.route);
+
+    const header = new Header(this.main, this.router.route, controller);
+    header.update();
+    const pageMain = new PageMain(model, this.main, this.router.route, controller);
     const pageCatalog = new Catalog(this.main, model, controller);
     const pageCart = new PageCart(this.main, model, controller);
     const page404 = new Page404(this.main, this.router.route);
@@ -98,6 +98,9 @@ export class App {
 
         if (params?.sort) {
           controller.addSorting(params.sort.toString());
+        }
+        if (params?.search) {
+          controller.addSearching(params?.search.toString());
         }
       });
 

@@ -12,7 +12,7 @@ export class Controller {
     this.popup = null;
   }
 
-  // data
+  // data (main)
 
   setData = (data: IProduct[]) => {
     const state = this.model.getState();
@@ -26,14 +26,20 @@ export class Controller {
 
   clearData = () => {
     const state = this.model.getState();
+    const params: { [s: string]: string[] } = {};
+    setUrlParams(params);
+    localStorage.clear();
     this.model.setState({
       ...state,
-      products: [],
+      productsToShow: state.products,
       categoryFilters: [],
-      nameFilters: []
+      nameFilters: [],
+      sort: '',
+      search: ''
     });
+    console.log(state);
   };
-  // FILTERS (by Category)
+  // FILTERS (by Category) (filter page)
 
   setFilterByCategory = (category: string, enabled = false) => {
     if (enabled) {
@@ -65,7 +71,7 @@ export class Controller {
     this.prepareProductsToShow();
   };
 
-  // FILTERS (by Name)
+  // FILTERS (by Name) (filter page)
 
   setFilterByName = (name: string, enabled = false) => {
     if (enabled) {
@@ -97,13 +103,14 @@ export class Controller {
     this.prepareProductsToShow();
   };
 
-  // ProductsToShow
+  // ProductsToShow (filter page)
 
   prepareProductsToShow = () => {
     const state = this.model.getState();
     const categoryFilters = [...state.categoryFilters];
     const nameFilters = [...state.nameFilters];
     const sort = state.sort;
+    const search = state.search;
     let products = [...state.products];
 
     const params: { [s: string]: string[] } = {};
@@ -135,6 +142,33 @@ export class Controller {
         default:
           break;
       }
+    }
+
+    if (search.length) {
+      params.search = [search];
+      products = products.filter(
+        ({ name, description, price, animeName, category, popularity, stock }) => {
+          const nameStr = name.toLocaleLowerCase();
+          const descriptionStr = description.toLocaleLowerCase();
+          const animeNameStr = animeName.toLocaleLowerCase();
+          const categoryStr = category.toLocaleLowerCase();
+
+          const stockStr = stock.toString();
+          const priceStr = price.toString();
+          const popularityStr = popularity.toString();
+
+          const searchStr = search.toLocaleLowerCase();
+          return (
+            nameStr.match(searchStr) ||
+            stockStr.match(searchStr) ||
+            descriptionStr.match(searchStr) ||
+            animeNameStr.match(searchStr) ||
+            categoryStr.match(searchStr) ||
+            priceStr.match(searchStr) ||
+            popularityStr.match(searchStr)
+          );
+        }
+      );
     }
 
     setUrlParams(params);
@@ -184,7 +218,7 @@ export class Controller {
     // TODO: Clean Cart
   };
 
-  // Sorting
+  // Sorting (filter page)
 
   addSorting = (str: string) => {
     const state = this.model.getState();
@@ -193,6 +227,19 @@ export class Controller {
     this.model.setState({
       ...state,
       sort
+    });
+    this.prepareProductsToShow();
+  };
+
+  // search (filter page)
+
+  addSearching = (str: string) => {
+    const state = this.model.getState();
+    const search = str;
+
+    this.model.setState({
+      ...state,
+      search
     });
     this.prepareProductsToShow();
   };

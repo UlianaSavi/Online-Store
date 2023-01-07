@@ -40,7 +40,8 @@ export class Catalog {
     const filters = new Filters(
       this.section,
       this.controller.setFilterByCategory,
-      this.controller.setFilterByName
+      this.controller.setFilterByName,
+      this.controller.clearData
     );
     const products = new Products(this.section, this.controller.addSorting);
 

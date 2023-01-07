@@ -15,16 +15,19 @@ export class Filters {
   component: HTMLElement | null;
   onFilterClick: (item: string, enabled: boolean) => void;
   onNameClick: (item: string, enabled: boolean) => void;
+  onReSetClick: () => void;
 
   constructor(
     parent: HTMLElement | null,
     onFilterClick: (item: string, enabled: boolean) => void,
-    onNameClick: (item: string, enabled: boolean) => void
+    onNameClick: (item: string, enabled: boolean) => void,
+    onReSetClick: () => void
   ) {
     this.parent = parent;
     this.component = null;
     this.onFilterClick = onFilterClick;
     this.onNameClick = onNameClick;
+    this.onReSetClick = onReSetClick;
   }
 
   update = (props?: IFilterProps) => {
@@ -41,11 +44,23 @@ export class Filters {
       dataAttr: [['id', 'btnReset']]
     });
 
+    btnReset.addEventListener('click', () => this.onReSetClick());
+
     const btnCopy = create({
       tagName: 'button',
       classNames: 'btn',
       children: 'Copy',
       dataAttr: [['id', 'btnCopy']]
+    });
+
+    btnCopy.addEventListener('click', () => {
+      btnCopy.style.color = 'red';
+      btnCopy.style.backgroundColor = 'rgb(83, 83, 83)';
+      setTimeout(() => {
+        btnCopy.style.color = 'rgb(83, 83, 83)';
+        btnCopy.style.backgroundColor = '#ffbd59';
+        navigator.clipboard.writeText(window.location.href);
+      }, 1000);
     });
 
     const nameItem = props?.names.map((item) => {

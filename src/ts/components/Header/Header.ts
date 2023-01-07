@@ -1,21 +1,24 @@
+import { Controller } from '../../controllers/controller';
 import { create } from '../../utils/create';
 
 export class Header {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   go: (event: Event) => void;
+  controller: Controller;
 
-  constructor(parent: HTMLElement | null, go: (event: Event) => void) {
+  constructor(parent: HTMLElement | null, go: (event: Event) => void, controller: Controller) {
     this.parent = parent;
     this.component = null;
     this.go = go;
+    this.controller = controller;
   }
 
-  unmount = () => {
-    this.component?.remove();
+  update = () => {
+    this.render();
   };
 
-  mount = () => {
+  render = () => {
     const cart = create({
       tagName: 'a',
       classNames: 'cart-shopping__button',
@@ -55,6 +58,38 @@ export class Header {
 
     linkToMain.addEventListener('click', this.go);
 
+    const searchInput = create({
+      tagName: 'input',
+      classNames: 'search__input',
+      dataAttr: [
+        ['type', 'text'],
+        ['placeholder', 'Search'],
+        ['value', `${localStorage.getItem('searchInput') || ''}`]
+      ]
+    }) as HTMLInputElement;
+
+    searchInput.addEventListener('keyup', () => {
+      localStorage.setItem('searchInput', searchInput.value);
+      this.controller.addSearching(searchInput.value);
+      // const nodelist = this.parent?.children;
+      // const divyArray = Array.prototype.slice.call(nodelist);
+      // console.log(...divyArray);
+
+      // if (divyArray.map((item) => item.classList.contains('catalog'))) {
+      //   localStorage.setItem('searchInput', searchInput.value);
+      //   this.controller.addSearching(searchInput.value);
+      // } else {
+      //   searchInput.value = '';
+      // }
+
+      // if (this.parent?.children.item(0 - 4)?.classList.contains('catalog')) {
+      //   localStorage.setItem('searchInput', searchInput.value);
+      //   this.controller.addSearching(searchInput.value);
+      // } else {
+      //   searchInput.value = '';
+      // }
+    });
+
     this.component = create({
       tagName: 'div',
       classNames: 'header__wrapper',
@@ -64,14 +99,7 @@ export class Header {
           tagName: 'div',
           classNames: 'search',
           children: [
-            create({
-              tagName: 'input',
-              classNames: 'search__input',
-              dataAttr: [
-                ['type', 'text'],
-                ['placeholder', 'Search']
-              ]
-            }),
+            searchInput,
             create({
               tagName: 'button',
               classNames: 'search__button',
