@@ -270,4 +270,10 @@ export class Controller {
     params.pageSize = [`${pageSize}`];
     setUrlParams(params);
   };
+
+  // promo
+  removePromo = (promoWrapper: HTMLElement | null, promo: HTMLDivElement | null) => {
+    promoWrapper?.classList.remove('input-promo-wrapper_active');
+    promo?.classList.remove('add-promo_active');
+  }
 }
