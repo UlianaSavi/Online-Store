@@ -1,14 +1,17 @@
+import { Controller } from '../../controllers/controller';
 import { create } from '../../utils/create';
 
 export class Header {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   go: (event: Event) => void;
+  controller: Controller;
 
-  constructor(parent: HTMLElement | null, go: (event: Event) => void) {
+  constructor(parent: HTMLElement | null, go: (event: Event) => void, controller: Controller) {
     this.parent = parent;
     this.component = null;
     this.go = go;
+    this.controller = controller;
   }
 
   update = () => {
@@ -60,11 +63,15 @@ export class Header {
       classNames: 'search__input',
       dataAttr: [
         ['type', 'text'],
-        ['placeholder', 'Search']
+        ['placeholder', 'Search'],
+        ['value', `${localStorage.getItem('searchInput') || ''}`]
       ]
     }) as HTMLInputElement;
 
-    searchInput.addEventListener('keydown', () => console.log(searchInput.value));
+    searchInput.addEventListener('keyup', () => {
+      localStorage.setItem('searchInput', searchInput.value);
+      this.controller.addSearching(searchInput.value);
+    });
 
     this.component = create({
       tagName: 'div',
