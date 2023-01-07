@@ -3,7 +3,6 @@ import { Controller } from './controllers/controller';
 import { IAppState, IProductsResponse } from './types';
 import { create } from './utils/create';
 import { parseUrlParams } from './utils/url';
-import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Router } from './Router/Router';
 import { PageMain } from './pages/PageMain/PageMain';
@@ -12,6 +11,7 @@ import { PageDetails } from './pages/PageDetails/PageDetails';
 import { Catalog } from './pages/PageCatalog/PageCatalog';
 import { PageCart } from './pages/PageCart/PageCart';
 import { Popup } from './components/Popup/Popup';
+import { Header } from './components/Header/Header';
 
 export class App {
   BASE_STATE: IAppState = {
@@ -66,6 +66,9 @@ export class App {
     footer.mount();
 
     // Dinamic components
+
+    const header = new Header(this.main, this.router.route);
+    header.update();
     const pageMain = new PageMain(model, this.main, this.router.route, controller);
     const pageCatalog = new Catalog(this.main, model, controller);
     const pageCart = new PageCart(this.main, model, controller);

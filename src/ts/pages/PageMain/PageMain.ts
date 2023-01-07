@@ -1,4 +1,3 @@
-import { Header } from '../../components/Header/Header';
 import { Controller } from '../../controllers/controller';
 import { Model } from '../../models/model';
 import { create } from '../../utils/create';
@@ -25,10 +24,6 @@ export class PageMain {
     this.controller = controller;
   }
 
-  unmount = () => {
-    this.component?.remove();
-  };
-
   createDefaultLayer = () => {
     this.section = create({
       tagName: 'section',
@@ -37,11 +32,12 @@ export class PageMain {
     });
   };
 
+  unmount = () => {
+    this.component?.remove();
+  };
+
   mount = () => {
     this.createDefaultLayer();
-
-    const header = new Header(this.section, this.go);
-    header.update();
 
     const toFilterPageBtn = create({
       tagName: 'a',
