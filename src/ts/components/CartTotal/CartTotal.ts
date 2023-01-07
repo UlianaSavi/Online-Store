@@ -2,8 +2,8 @@ import { create } from '../../utils/create';
 import { Controller } from '../../controllers/controller';
 
 interface PromoArr {
-  name: string,
-  discount: string
+  name: string;
+  discount: string;
 }
 
 export class Total {
@@ -39,14 +39,18 @@ export class Total {
     this.component?.remove();
 
     const promoArr: PromoArr[] = [
-      {name: 'SHIT', discount: '10'}, 
-      {name: '2SHIT', discount: '20'}
+      { name: 'SHIT', discount: '10' },
+      { name: '2SHIT', discount: '20' }
     ];
 
-    const inputPromo = create ({
+    const inputPromo = create({
       tagName: 'input',
       classNames: 'total__info__promo-code promo-input input',
-      dataAttr: [['type', 'search'], ['name', 'search-promo'], ['placeholder', 'Enter promo code']]
+      dataAttr: [
+        ['type', 'search'],
+        ['name', 'search-promo'],
+        ['placeholder', 'Enter promo code']
+      ]
     }) as HTMLInputElement;
 
     inputPromo.addEventListener('input', () => {
@@ -55,13 +59,13 @@ export class Total {
           if (promoArr[index].name === inputPromo.value.toUpperCase()) {
             this.currPromoName = promoArr[index].name;
             this.currPromoDiscount = promoArr[index].discount;
-            setTimeout(() => this.render(), 400)
+            setTimeout(() => this.render(), 400);
             break;
           } else {
             this.controller.removePromo(this.addPromoWrapper, this.addPromo);
-          } 
+          }
         }
-      } 
+      }
     });
 
     const totalBlock = create({
@@ -83,19 +87,23 @@ export class Total {
         `Total: `,
         create({
           tagName: 'i',
-          children: `${this.totalSum - this.totalSum * this.addedPromoArr.reduce((prev, curr) => prev + +curr.discount, 0) / 100}$`
+          children: `${
+            this.totalSum -
+            (this.totalSum * this.addedPromoArr.reduce((prev, curr) => prev + +curr.discount, 0)) /
+              100
+          }$`
         })
       ]
     });
 
     const addedPromo = create({
       tagName: 'div',
-      classNames: `added-promo__promo-list`,
+      classNames: `added-promo__promo-list`
     });
-    
+
     const addedPromoBlock = create({
       tagName: 'div',
-      classNames: 'added-promo',
+      classNames: 'added-promo'
     });
 
     for (let index = 0; index < this.addedPromoArr.length; index++) {
@@ -108,17 +116,18 @@ export class Total {
       removePromoBtn.addEventListener('click', () => {
         this.addedPromoArr.splice(index, 1);
         this.render();
-      })
-      
+      });
+
       addedPromo.appendChild(
         create({
           tagName: 'div',
           classNames: 'added-promo__promo',
           children: [
-            `${this.addedPromoArr[index].name} - ${this.addedPromoArr[index].discount}%`, removePromoBtn
+            `${this.addedPromoArr[index].name} - ${this.addedPromoArr[index].discount}%`,
+            removePromoBtn
           ]
         })
-      )
+      );
     }
 
     const addPromoBtn = create({
@@ -128,11 +137,11 @@ export class Total {
     });
 
     addPromoBtn.addEventListener('click', () => {
-      this.addedPromoArr.push({name: this.currPromoName, discount: this.currPromoDiscount})
+      this.addedPromoArr.push({ name: this.currPromoName, discount: this.currPromoDiscount });
       this.controller.removePromo(this.addPromoWrapper, this.addPromo);
       this.currPromoName = '';
       this.render();
-    })
+    });
 
     if (this.addedPromoArr.length > 0) {
       totalBlock.classList.add('total__info__num_through');
@@ -143,10 +152,10 @@ export class Total {
           classNames: 'added-promo__header',
           children: `Added promo codes:`
         })
-      )
+      );
       addedPromoBlock.appendChild(addedPromo);
     }
-    
+
     this.addPromo = create({
       tagName: 'div',
       classNames: 'add-promo',
@@ -162,25 +171,24 @@ export class Total {
     this.addPromoWrapper = create({
       tagName: 'div',
       classNames: 'input-promo-wrapper',
-      children: [
-        inputPromo,
-        this.addPromo
-      ]
+      children: [inputPromo, this.addPromo]
     }) as HTMLDivElement;
-    
+
     if (this.currPromoName.length !== 0) {
       if (this.addedPromoArr.length === 0) {
         setTimeout(() => {
           this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
           this.addPromo?.classList.add('add-promo_active');
-        }, 600)
+        }, 600);
       } else {
-        const filtredArr = this.addedPromoArr.map((item) => item.name).filter((item) => item === this.currPromoName);
+        const filtredArr = this.addedPromoArr
+          .map((item) => item.name)
+          .filter((item) => item === this.currPromoName);
         if (filtredArr.length === 0) {
           setTimeout(() => {
             this.addPromoWrapper?.classList.add('input-promo-wrapper_active');
             this.addPromo?.classList.add('add-promo_active');
-          }, 600)
+          }, 600);
         } else {
           inputPromo.autofocus = true;
         }
