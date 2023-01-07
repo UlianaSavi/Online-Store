@@ -26,12 +26,18 @@ export class Controller {
 
   clearData = () => {
     const state = this.model.getState();
+    const params: { [s: string]: string[] } = {};
+    setUrlParams(params);
+    localStorage.clear();
     this.model.setState({
       ...state,
-      products: [],
+      productsToShow: state.products,
       categoryFilters: [],
-      nameFilters: []
+      nameFilters: [],
+      sort: '',
+      search: ''
     });
+    console.log(state);
   };
   // FILTERS (by Category) (filter page)
 

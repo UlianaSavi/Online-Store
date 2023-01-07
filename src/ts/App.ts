@@ -68,7 +68,7 @@ export class App {
     // Dinamic components
 
     const header = new Header(this.main, this.router.route, controller);
-    header.update(); // тк хедер изначально создали как статичный компонент нужно больше времени на то, чтобы его переделать "по красоте", пока так
+    header.update();
     const pageMain = new PageMain(model, this.main, this.router.route, controller);
     const pageCatalog = new Catalog(this.main, model, controller);
     const pageCart = new PageCart(this.main, model, controller);

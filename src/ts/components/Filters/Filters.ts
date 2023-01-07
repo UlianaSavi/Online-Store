@@ -15,16 +15,19 @@ export class Filters {
   component: HTMLElement | null;
   onFilterClick: (item: string, enabled: boolean) => void;
   onNameClick: (item: string, enabled: boolean) => void;
+  onReSetClick: () => void;
 
   constructor(
     parent: HTMLElement | null,
     onFilterClick: (item: string, enabled: boolean) => void,
-    onNameClick: (item: string, enabled: boolean) => void
+    onNameClick: (item: string, enabled: boolean) => void,
+    onReSetClick: () => void
   ) {
     this.parent = parent;
     this.component = null;
     this.onFilterClick = onFilterClick;
     this.onNameClick = onNameClick;
+    this.onReSetClick = onReSetClick;
   }
 
   update = (props?: IFilterProps) => {
@@ -40,6 +43,8 @@ export class Filters {
       children: 'Reset Filters',
       dataAttr: [['id', 'btnReset']]
     });
+
+    btnReset.addEventListener('click', () => this.onReSetClick());
 
     const btnCopy = create({
       tagName: 'button',
