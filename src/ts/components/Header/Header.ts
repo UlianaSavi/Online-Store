@@ -11,11 +11,11 @@ export class Header {
     this.go = go;
   }
 
-  unmount = () => {
-    this.component?.remove();
+  update = () => {
+    this.render();
   };
 
-  mount = () => {
+  render = () => {
     const cart = create({
       tagName: 'a',
       classNames: 'cart-shopping__button',
@@ -55,6 +55,17 @@ export class Header {
 
     linkToMain.addEventListener('click', this.go);
 
+    const searchInput = create({
+      tagName: 'input',
+      classNames: 'search__input',
+      dataAttr: [
+        ['type', 'text'],
+        ['placeholder', 'Search']
+      ]
+    }) as HTMLInputElement;
+
+    searchInput.addEventListener('keydown', () => console.log(searchInput.value));
+
     this.component = create({
       tagName: 'div',
       classNames: 'header__wrapper',
@@ -64,14 +75,7 @@ export class Header {
           tagName: 'div',
           classNames: 'search',
           children: [
-            create({
-              tagName: 'input',
-              classNames: 'search__input',
-              dataAttr: [
-                ['type', 'text'],
-                ['placeholder', 'Search']
-              ]
-            }),
+            searchInput,
             create({
               tagName: 'button',
               classNames: 'search__button',

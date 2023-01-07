@@ -1,24 +1,48 @@
-// import { Controller } from '../../controllers/controller';
+import { Header } from '../../components/Header/Header';
+import { Controller } from '../../controllers/controller';
+import { Model } from '../../models/model';
 import { create } from '../../utils/create';
 
 export class PageMain {
+  model: Model;
   parent: HTMLElement | null;
   component: HTMLElement | null;
-  // controller: Controller;
+  section: HTMLElement | null;
   go: (event: Event) => void;
+  controller: Controller;
 
-  constructor(parent: HTMLElement | null, go: (event: Event) => void) {
+  constructor(
+    model: Model,
+    parent: HTMLElement | null,
+    go: (event: Event) => void,
+    controller: Controller
+  ) {
+    this.model = model;
     this.parent = parent;
     this.component = null;
+    this.section = null;
     this.go = go;
-    // this.controller = Controller(this.model);
+    this.controller = controller;
   }
 
   unmount = () => {
     this.component?.remove();
   };
 
+  createDefaultLayer = () => {
+    this.section = create({
+      tagName: 'section',
+      classNames: 'header',
+      parent: this.parent
+    });
+  };
+
   mount = () => {
+    this.createDefaultLayer();
+
+    const header = new Header(this.section, this.go);
+    header.update();
+
     const toFilterPageBtn = create({
       tagName: 'a',
       children: `Let's shopping!`,

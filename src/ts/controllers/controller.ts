@@ -12,7 +12,7 @@ export class Controller {
     this.popup = null;
   }
 
-  // data
+  // data (main)
 
   setData = (data: IProduct[]) => {
     const state = this.model.getState();
@@ -33,7 +33,7 @@ export class Controller {
       nameFilters: []
     });
   };
-  // FILTERS (by Category)
+  // FILTERS (by Category) (filter page)
 
   setFilterByCategory = (category: string, enabled = false) => {
     if (enabled) {
@@ -65,7 +65,7 @@ export class Controller {
     this.prepareProductsToShow();
   };
 
-  // FILTERS (by Name)
+  // FILTERS (by Name) (filter page)
 
   setFilterByName = (name: string, enabled = false) => {
     if (enabled) {
@@ -97,7 +97,7 @@ export class Controller {
     this.prepareProductsToShow();
   };
 
-  // ProductsToShow
+  // ProductsToShow (filter page)
 
   prepareProductsToShow = () => {
     const state = this.model.getState();
@@ -184,7 +184,7 @@ export class Controller {
     // TODO: Clean Cart
   };
 
-  // Sorting
+  // Sorting (filter page)
 
   addSorting = (str: string) => {
     const state = this.model.getState();
@@ -193,6 +193,19 @@ export class Controller {
     this.model.setState({
       ...state,
       sort
+    });
+    this.prepareProductsToShow();
+  };
+
+  // search (filter page)
+
+  addSearching = (str: string) => {
+    const state = this.model.getState();
+    const search = str;
+
+    this.model.setState({
+      ...state,
+      search
     });
     this.prepareProductsToShow();
   };
