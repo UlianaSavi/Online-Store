@@ -6,6 +6,7 @@ interface IProductsProps {
   items: IProduct[];
   sort?: string;
   view?: string;
+  currProductID?: number;
 }
 export class Products {
   parent: HTMLElement | null;
@@ -85,17 +86,11 @@ export class Products {
       const detailsLink = create({
         tagName: 'a',
         classNames: 'btn',
-        dataAttr: [['href', '/details']],
+        dataAttr: [['href', `/details/${item.id}`]],
         children: 'Details'
       });
 
       detailsLink.addEventListener('click', this.go);
-
-      detailsLink.addEventListener('click', () => {
-        if (item.id) {
-          console.log(item.id);
-        }
-      });
 
       const items = create({
         tagName: 'div',

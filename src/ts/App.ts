@@ -128,7 +128,7 @@ export class App {
           }
         }
       },
-      '/details': {
+      '/details/:id': {
         mount: pageDetails.mount,
         unmount: pageDetails.unmount,
         mountedProps: {

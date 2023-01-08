@@ -322,6 +322,11 @@ $transparent-orange: #ffbd594d;
 
   &__item.view__big {
     max-width: 18%;
+
+    .img {
+      height: 100%;
+      max-height: 150px;
+    }
   }
 }
 
