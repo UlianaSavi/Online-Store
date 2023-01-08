@@ -1,7 +1,7 @@
 import { Model } from '../../models/model';
 import { create } from '../../utils/create';
 // import { isEqual } from '../../utils/objects';
-import { IPageProps, IProduct } from '../../types';
+import { ICartProduct, IPageProps} from '../../types';
 import { CartList } from '../../components/CartList/CartList';
 import { Total } from '../../components/CartTotal/CartTotal';
 import { Controller } from '../../controllers/controller';
@@ -12,7 +12,7 @@ export class PageCart {
   model: Model;
   mounted: boolean;
   controller: Controller;
-  items: IProduct[];
+  items: ICartProduct[];
 
   constructor(parent: HTMLElement | null, model: Model, controller: Controller) {
     this.parent = parent;
@@ -51,7 +51,7 @@ export class PageCart {
         //   return;
         // }
         const items = this.items;
-        cartList.update({ items });
+        cartList.update(items);
       });
       this.model.subscribe((/* state, prevState */) => {
         // if (isEqual(state.products, prevState?.products)) {
