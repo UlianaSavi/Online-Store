@@ -5,19 +5,23 @@ import { isEqual } from '../../utils/objects';
 import { Products } from '../../components/Products/Products';
 import { IPageProps } from '../../types';
 import { Controller } from '../../controllers/controller';
+import { PageCart } from '../../pages/PageCart/PageCart';
+
 export class Catalog {
   parent: HTMLElement | null;
   section: HTMLElement | null;
   model: Model;
   mounted: boolean;
   controller: Controller;
+  pageCart: PageCart;
 
-  constructor(parent: HTMLElement | null, model: Model, controller: Controller) {
+  constructor(parent: HTMLElement | null, model: Model, controller: Controller, pageCart: PageCart) {
     this.parent = parent;
     this.section = null;
     this.model = model;
     this.mounted = false;
     this.controller = controller;
+    this.pageCart = pageCart;
   }
 
   createDefaultLayer = () => {
@@ -43,7 +47,7 @@ export class Catalog {
       this.controller.setFilterByName,
       this.controller.clearData
     );
-    const products = new Products(this.section, this.controller.addSorting);
+    const products = new Products(this.section, this.controller.addSorting, this.pageCart);
 
     if (this.mounted) {
       const categoriesSet = [

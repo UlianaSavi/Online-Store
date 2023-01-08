@@ -1,12 +1,10 @@
 import { Model } from '../../models/model';
 import { create } from '../../utils/create';
 // import { isEqual } from '../../utils/objects';
-import { IPageProps } from '../../types';
+import { IPageProps, IProduct } from '../../types';
 import { CartList } from '../../components/CartList/CartList';
 import { Total } from '../../components/CartTotal/CartTotal';
 import { Controller } from '../../controllers/controller';
-
-// for case when no items -- should be uncomment when add delete or add items in cart
 
 export class PageCart {
   parent: HTMLElement | null;
@@ -14,8 +12,7 @@ export class PageCart {
   model: Model;
   mounted: boolean;
   controller: Controller;
-  // for case when no items
-  // items: IProduct[];
+  items: IProduct[];
 
   constructor(parent: HTMLElement | null, model: Model, controller: Controller) {
     this.parent = parent;
@@ -23,8 +20,7 @@ export class PageCart {
     this.model = model;
     this.mounted = false;
     this.controller = controller;
-    // for case when no items
-    // this.items = [];
+    this.items = [];
   }
 
   createDefaultLayer = () => {
@@ -45,17 +41,16 @@ export class PageCart {
     const total = new Total(this.section, this.controller);
     const cartList = new CartList(this.section, this.controller, total);
     
-    // for case when no items
-    // if (this.items.length !== 0) {
+    if (this.items.length !== 0) {
     
-    this.model.subscribe((state /* prevState*/) => {
+    this.model.subscribe((/*state*/ /* prevState*/) => {
         // В местах этих проверок будет не state и prevState, а дополнительное значение, которое будет создано при работе с функционалом корзины
       // Поэтому на данном этапе оставляю эти проверки законментированными, но их наличие **обязательно** при дальнейшей работе
 
       // if (isEqual(state.products, prevState?.products)) {
         //   return;
         // }
-        const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
+        const items = this.items;
         cartList.update({ items });
       });
       this.model.subscribe((/* state, prevState */) => {
@@ -64,15 +59,14 @@ export class PageCart {
         // }
         total.update();
       });
-      
-    // for case when no items
-    // } else {
-      // this.section?.appendChild(create({
-        // tagName: 'h1',
-        // classNames: 'no-items',
-        // children: `Your shopping cart is empty :(`
-      // }))
-    // }
+
+    } else {
+      this.section?.appendChild(create({
+        tagName: 'h1',
+        classNames: 'no-items',
+        children: `Your shopping cart is empty :(`
+      }))
+    }
 
     props?.mounted && props?.mounted();
   };

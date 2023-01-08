@@ -6,12 +6,14 @@ export class Header {
   component: HTMLElement | null;
   go: (event: Event) => void;
   controller: Controller;
+  goodsCounter: number;
 
   constructor(parent: HTMLElement | null, go: (event: Event) => void, controller: Controller) {
     this.parent = parent;
     this.component = null;
     this.go = go;
     this.controller = controller;
+    this.goodsCounter = 0;
   }
 
   update = () => {
@@ -90,6 +92,12 @@ export class Header {
       // }
     });
 
+    const goodsCounterBlock = create({
+      tagName: 'div',
+      classNames: 'cart-shopping__goods-counter-wrapper',
+      children: [`${this.goodsCounter}`]
+    })
+
     this.component = create({
       tagName: 'div',
       classNames: 'header__wrapper',
@@ -115,7 +123,7 @@ export class Header {
         create({
           tagName: 'div',
           classNames: 'cart-shopping__wrapper',
-          children: [cart]
+          children: [cart, goodsCounterBlock]
         })
       ],
       parent: this.parent

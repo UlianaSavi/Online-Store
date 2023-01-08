@@ -1,6 +1,7 @@
 import { create } from '../../utils/create';
 import { IProduct } from '../../types';
 import { sortItems } from '../../contains';
+import { PageCart } from '../../pages/PageCart/PageCart';
 
 interface IProductsProps {
   items: IProduct[];
@@ -11,11 +12,13 @@ export class Products {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   addSorting: (str: string) => void;
+  pageCart: PageCart;
 
-  constructor(parent: HTMLElement | null, addSorting: (str: string) => void) {
+  constructor(parent: HTMLElement | null, addSorting: (str: string) => void, pageCart: PageCart) {
     this.parent = parent;
     this.component = null;
     this.addSorting = addSorting;
+    this.pageCart = pageCart;
   }
 
   update = (props?: IProductsProps) => {
@@ -66,6 +69,8 @@ export class Products {
         classNames: 'btn btn__right-padding',
         children: 'Add to cart'
       });
+
+      addToCartBtn.addEventListener('click', () => this.pageCart.items.push(item))
 
       const detailsLink = create({
         tagName: 'a',
