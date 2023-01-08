@@ -1,5 +1,5 @@
 import { create } from '../../utils/create';
-import { IProduct } from '../../types';
+import { ICartProduct, IProduct } from '../../types';
 import { sortItems } from '../../contains';
 import { PageCart } from '../../pages/PageCart/PageCart';
 
@@ -87,10 +87,14 @@ export class Products {
 
       addToCartBtn.addEventListener('click', () => {
         if (addToCartBtn.textContent === 'Add to cart') {
-          this.pageCart.items.push(item);
+          const cartProduct: ICartProduct = {
+            product: item,
+            amount: 1
+          }
+          this.pageCart.items.push(cartProduct);
         } else {
           this.pageCart.items.map((i, index) => {
-            if (i === item) {
+            if (i.product === item) {
               this.pageCart.items.splice(index, 1);
             }
           });
@@ -101,7 +105,7 @@ export class Products {
       if (this.pageCart.items.length === 0) {
         addToCartBtn.textContent = 'Add to cart';
       } else {
-        if (this.pageCart.items.includes(item)) {
+        if (this.pageCart.items.filter((i) => i.product === item).length !== 0) {
           addToCartBtn.textContent = 'Drop from cart';
         } else {
           addToCartBtn.textContent = 'Add to cart';
