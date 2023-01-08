@@ -79,7 +79,7 @@ export class Products {
     const productItem = props?.items.map((item) => {
       const addToCartBtn = create({
         tagName: 'button',
-        classNames: 'btn btn__right-padding',
+        classNames: 'btn',
         children: 'Add to cart'
       });
 
@@ -147,8 +147,11 @@ export class Products {
                   })
                 ]
               }),
-              addToCartBtn,
-              detailsLink
+              create({
+                tagName: 'div',
+                classNames: 'buttons-wrapper',
+                children: [addToCartBtn, detailsLink]
+              })
             ]
           })
         ]
