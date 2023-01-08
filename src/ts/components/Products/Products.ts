@@ -1,6 +1,7 @@
 import { create } from '../../utils/create';
 import { IProduct } from '../../types';
 import { sortItems } from '../../contains';
+import { PageCart } from '../../pages/PageCart/PageCart';
 
 interface IProductsProps {
   items: IProduct[];
@@ -14,18 +15,20 @@ export class Products {
   addSorting: (str: string) => void;
   go: (event: Event) => void;
   changeView: (str: string) => void;
+  pageCart: PageCart;
 
   constructor(
     parent: HTMLElement | null,
     addSorting: (str: string) => void,
     go: (event: Event) => void,
-    changeView: (str: string) => void
-  ) {
+    changeView: (str: string) => void, 
+    pageCart: PageCart) {
     this.parent = parent;
     this.component = null;
     this.addSorting = addSorting;
     this.go = go;
     this.changeView = changeView;
+    this.pageCart = pageCart;
   }
 
   update = (props?: IProductsProps) => {
@@ -79,9 +82,31 @@ export class Products {
     const productItem = props?.items.map((item) => {
       const addToCartBtn = create({
         tagName: 'button',
-        classNames: 'btn',
-        children: 'Add to cart'
+        classNames: 'btn'
       });
+
+      addToCartBtn.addEventListener('click', () => {
+        if (addToCartBtn.textContent === 'Add to cart') {
+          this.pageCart.items.push(item);
+        } else {
+          this.pageCart.items.map((i, index) => {
+            if (i === item) {
+              this.pageCart.items.splice(index, 1);
+            }
+          });
+        }
+        this.render(props);
+      });
+
+      if (this.pageCart.items.length === 0) {
+        addToCartBtn.textContent = 'Add to cart';
+      } else {
+        if (this.pageCart.items.includes(item)) {
+          addToCartBtn.textContent = 'Drop from cart';
+        } else {
+          addToCartBtn.textContent = 'Add to cart';
+        }
+      }
 
       const detailsLink = create({
         tagName: 'a',

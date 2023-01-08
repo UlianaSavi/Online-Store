@@ -5,6 +5,8 @@ import { isEqual } from '../../utils/objects';
 import { Products } from '../../components/Products/Products';
 import { IPageProps } from '../../types';
 import { Controller } from '../../controllers/controller';
+import { PageCart } from '../../pages/PageCart/PageCart';
+
 export class Catalog {
   parent: HTMLElement | null;
   section: HTMLElement | null;
@@ -12,12 +14,14 @@ export class Catalog {
   mounted: boolean;
   controller: Controller;
   go: (event: Event) => void;
+  pageCart: PageCart;
 
   constructor(
     parent: HTMLElement | null,
     model: Model,
     controller: Controller,
-    go: (event: Event) => void
+    go: (event: Event) => void,
+    pageCart: PageCart
   ) {
     this.parent = parent;
     this.section = null;
@@ -25,6 +29,7 @@ export class Catalog {
     this.mounted = false;
     this.controller = controller;
     this.go = go;
+    this.pageCart = pageCart;
   }
 
   createDefaultLayer = () => {
@@ -55,7 +60,7 @@ export class Catalog {
       this.controller.addSorting,
       this.go,
       this.controller.changeView
-    );
+    , this.pageCart);
 
     if (this.mounted) {
       const categoriesSet = [
