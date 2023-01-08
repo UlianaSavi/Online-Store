@@ -70,7 +70,15 @@ export class Products {
       });
 
       addToCartBtn.addEventListener('click', () => {
-        this.pageCart.items.push(item);
+        if (addToCartBtn.textContent === 'Add to cart') {
+          this.pageCart.items.push(item);
+        } else {
+          this.pageCart.items.map((i, index) => {
+            if (i === item) {
+              this.pageCart.items.splice(index, 1);
+            }
+          })
+        }
         this.render(props);
       })
 
