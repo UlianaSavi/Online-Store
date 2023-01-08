@@ -16,6 +16,7 @@ import { Header } from './components/Header/Header';
 export class App {
   BASE_STATE: IAppState = {
     products: [],
+    currProductID: 0,
     productsToShow: [],
     namesToShow: [],
     categoryFilters: [],
@@ -71,7 +72,7 @@ export class App {
     const header = new Header(this.main, this.router.route, controller);
     header.update();
     const pageMain = new PageMain(model, this.main, this.router.route, controller);
-    const pageCatalog = new Catalog(this.main, model, controller);
+    const pageCatalog = new Catalog(this.main, model, controller, this.router.route);
     const pageCart = new PageCart(this.main, model, controller);
     const page404 = new Page404(this.main, this.router.route);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
@@ -79,18 +80,17 @@ export class App {
     popup.mount();
     controller.setPopup(popup);
 
-    const params = parseUrlParams();
-
     fetch('../assets/data/data.json')
       .then((data) => data.json())
       .then((data: IProductsResponse) => controller.setData(data.products))
       .then(() => {
+        const params = parseUrlParams();
+
         if (params?.categoryFilters?.length) {
           params.categoryFilters.forEach((category) => {
             controller.addFilterByCategory(category);
           });
         }
-
         if (params?.nameFilters?.length) {
           params.nameFilters.forEach((name) => {
             controller.addFilterByName(name);
@@ -100,9 +100,11 @@ export class App {
         if (params?.sort) {
           controller.addSorting(params.sort.toString());
         }
+
         if (params?.search) {
           controller.addSearching(params?.search.toString());
         }
+
         if (params?.view) {
           controller.changeView(params?.view.toString());
         }
@@ -126,7 +128,7 @@ export class App {
           }
         }
       },
-      '/details': {
+      '/details/:id': {
         mount: pageDetails.mount,
         unmount: pageDetails.unmount,
         mountedProps: {

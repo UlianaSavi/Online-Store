@@ -6,22 +6,25 @@ interface IProductsProps {
   items: IProduct[];
   sort?: string;
   view?: string;
-  addToCartClickHandler?: (id: number) => void;
+  currProductID?: number;
 }
 export class Products {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   addSorting: (str: string) => void;
+  go: (event: Event) => void;
   changeView: (str: string) => void;
 
   constructor(
     parent: HTMLElement | null,
     addSorting: (str: string) => void,
+    go: (event: Event) => void,
     changeView: (str: string) => void
   ) {
     this.parent = parent;
     this.component = null;
     this.addSorting = addSorting;
+    this.go = go;
     this.changeView = changeView;
   }
 
@@ -76,24 +79,18 @@ export class Products {
     const productItem = props?.items.map((item) => {
       const addToCartBtn = create({
         tagName: 'button',
-        classNames: 'btn btn__right-padding',
+        classNames: 'btn',
         children: 'Add to cart'
       });
 
       const detailsLink = create({
         tagName: 'a',
         classNames: 'btn',
-        dataAttr: [['href', `details/${item.id}`]],
+        dataAttr: [['href', `/details/${item.id}`]],
         children: 'Details'
       });
 
-      if (props.addToCartClickHandler) {
-        addToCartBtn.addEventListener('click', () => {
-          if (item.id) {
-            props?.addToCartClickHandler?.(item.id);
-          }
-        });
-      }
+      detailsLink.addEventListener('click', this.go);
 
       const items = create({
         tagName: 'div',
@@ -150,8 +147,11 @@ export class Products {
                   })
                 ]
               }),
-              addToCartBtn,
-              detailsLink
+              create({
+                tagName: 'div',
+                classNames: 'buttons-wrapper',
+                children: [addToCartBtn, detailsLink]
+              })
             ]
           })
         ]

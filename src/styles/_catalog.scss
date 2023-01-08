@@ -60,10 +60,6 @@ $transparent-orange: #ffbd594d;
   }
 }
 
-.btn__right-padding {
-  margin-right: 1.25em;
-}
-
 // input slider
 
 .slider {
@@ -308,20 +304,24 @@ $transparent-orange: #ffbd594d;
       }
     }
 
-    &-buttons {
+    .buttons-wrapper {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.125em;
+      flex-wrap: wrap;
+      gap: 0.3em;
     }
-
     .btn {
-      margin-bottom: 10px;
+      flex-grow: 1;
+      text-align: center;
     }
   }
 
   &__item.view__big {
     max-width: 18%;
+
+    .img {
+      object-fit: cover;
+      max-height: 150px;
+    }
   }
 }
 
