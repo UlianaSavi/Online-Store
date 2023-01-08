@@ -66,11 +66,23 @@ export class Products {
     const productItem = props?.items.map((item) => {
       const addToCartBtn = create({
         tagName: 'button',
-        classNames: 'btn btn__right-padding',
-        children: 'Add to cart'
+        classNames: 'btn btn__right-padding'
       });
 
-      addToCartBtn.addEventListener('click', () => this.pageCart.items.push(item))
+      addToCartBtn.addEventListener('click', () => {
+        this.pageCart.items.push(item);
+        this.render(props);
+      })
+
+      if (this.pageCart.items.length === 0) {
+        addToCartBtn.textContent = 'Add to cart';
+      } else {
+        if (this.pageCart.items.includes(item)) {
+          addToCartBtn.textContent = 'Drop from cart';
+        } else {
+          addToCartBtn.textContent = 'Add to cart';
+        }
+      }
 
       const detailsLink = create({
         tagName: 'a',
