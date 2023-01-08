@@ -32,6 +32,7 @@ export class Router {
   route = (event: Event) => {
     event = event || window.event;
     event.preventDefault();
+
     const target = event.target as HTMLElement | null;
     const link = target?.closest('a');
 
@@ -44,6 +45,11 @@ export class Router {
 
   handleLocation = async () => {
     let path = window.location.pathname;
+
+    // const [rootPath, id = null] = path.split('/').filter((item) => !!item);
+    // if (this.routes[`/${rootPath}/:id`]) {
+    //   path = `${rootPath}/${id}`;
+    // }
 
     if (Object.prototype.hasOwnProperty.call(this.routes, path) === false) {
       path = '404';

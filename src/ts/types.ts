@@ -1,11 +1,13 @@
 export interface IAppState {
   products: IProduct[];
+  currProductID: number;
   productsToShow: IProduct[];
   namesToShow: IProduct[];
   categoryFilters: string[];
   nameFilters: string[];
   sort: string;
   search: string;
+  view: string;
 }
 
 export interface IProduct {

@@ -6,18 +6,28 @@ import { PageCart } from '../../pages/PageCart/PageCart';
 interface IProductsProps {
   items: IProduct[];
   sort?: string;
-  addToCartClickHandler?: (id: number) => void;
+  view?: string;
+  currProductID?: number;
 }
 export class Products {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   addSorting: (str: string) => void;
+  go: (event: Event) => void;
+  changeView: (str: string) => void;
   pageCart: PageCart;
 
-  constructor(parent: HTMLElement | null, addSorting: (str: string) => void, pageCart: PageCart) {
+  constructor(
+    parent: HTMLElement | null,
+    addSorting: (str: string) => void,
+    go: (event: Event) => void,
+    changeView: (str: string) => void, 
+    pageCart: PageCart) {
     this.parent = parent;
     this.component = null;
     this.addSorting = addSorting;
+    this.go = go;
+    this.changeView = changeView;
     this.pageCart = pageCart;
   }
 
@@ -41,7 +51,10 @@ export class Products {
 
     const viewMain = create({
       tagName: 'div',
-      classNames: 'products__header__view-main view-active',
+      classNames:
+        !props?.view || props?.view === 'viewMain'
+          ? 'products__header__view-main view-active'
+          : 'products__header__view-main',
       children: new Array(roundsMainCount).fill(null).map(() =>
         create({
           tagName: 'div',
@@ -53,7 +66,10 @@ export class Products {
 
     const viewBig = create({
       tagName: 'div',
-      classNames: 'products__header__view-big',
+      classNames:
+        props?.view === 'viewBig'
+          ? 'products__header__view-big view-active'
+          : 'products__header__view-big',
       children: new Array(roundsBigCount).fill(null).map(() =>
         create({
           tagName: 'div',
@@ -66,7 +82,7 @@ export class Products {
     const productItem = props?.items.map((item) => {
       const addToCartBtn = create({
         tagName: 'button',
-        classNames: 'btn btn__right-padding'
+        classNames: 'btn'
       });
 
       addToCartBtn.addEventListener('click', () => {
@@ -95,21 +111,18 @@ export class Products {
       const detailsLink = create({
         tagName: 'a',
         classNames: 'btn',
-        dataAttr: [['href', `details/${item.id}`]],
+        dataAttr: [['href', `/details/${item.id}`]],
         children: 'Details'
       });
 
-      if (props.addToCartClickHandler) {
-        addToCartBtn.addEventListener('click', () => {
-          if (item.id) {
-            props?.addToCartClickHandler?.(item.id);
-          }
-        });
-      }
+      detailsLink.addEventListener('click', this.go);
 
       const items = create({
         tagName: 'div',
-        classNames: 'products__table__item',
+        classNames:
+          !props?.view || props?.view === 'viewMain'
+            ? 'products__table__item'
+            : 'products__table__item view__big',
         children: [
           create({
             tagName: 'div',
@@ -159,14 +172,25 @@ export class Products {
                   })
                 ]
               }),
-              addToCartBtn,
-              detailsLink
+              create({
+                tagName: 'div',
+                classNames: 'buttons-wrapper',
+                children: [addToCartBtn, detailsLink]
+              })
             ]
           })
         ]
       });
 
       return items;
+    });
+
+    viewBig.addEventListener('click', () => {
+      this.changeView('viewBig');
+    });
+
+    viewMain.addEventListener('click', () => {
+      this.changeView('viewMain');
     });
 
     const sortItemsArr = Object.entries(sortItems).map(([key, val]) => {
