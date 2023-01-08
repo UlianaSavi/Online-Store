@@ -28,4 +28,7 @@ export interface IProductsResponse {
 
 export interface IPageProps {
   mounted?: () => void;
+  params?: {
+    productId?: number;
+  };
 }

@@ -45,24 +45,40 @@ export class Router {
 
   handleLocation = async () => {
     let path = window.location.pathname;
+    let route = this.routes[path];
 
-    // const [rootPath, id = null] = path.split('/').filter((item) => !!item);
-    // if (this.routes[`/${rootPath}/:id`]) {
-    //   path = `${rootPath}/${id}`;
-    // }
+    const [rootPath, id = null] = path.split('/').filter((item) => !!item);
 
-    if (Object.prototype.hasOwnProperty.call(this.routes, path) === false) {
+    if (
+      !Object.prototype.hasOwnProperty.call(this.routes, path) &&
+      !this.routes[`/${rootPath}/:id`]
+    ) {
       path = '404';
     }
 
-    const route = this.routes[path];
+    if (this.routes[`/${rootPath}/:id`]) {
+      route = this.routes[`/${rootPath}/:id`];
+      path = `/${rootPath}/:id`;
+    }
 
     this.routes[this.activeRoute].unmount();
+
     if (route?.mountedProps?.mounted) {
-      route.mount({ mounted: route.mountedProps.mounted });
+      const props: IPageProps = {
+        mounted: route.mountedProps.mounted
+      };
+
+      if (id) {
+        props.params = {
+          productId: +id
+        };
+      }
+
+      route.mount(props);
     } else {
       route.mount();
     }
+
     this.activeRoute = path;
   };
 }
