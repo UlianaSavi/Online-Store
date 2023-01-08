@@ -1,5 +1,6 @@
 export interface IAppState {
   products: IProduct[];
+  currProductID: number;
   productsToShow: IProduct[];
   namesToShow: IProduct[];
   categoryFilters: string[];

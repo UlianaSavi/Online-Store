@@ -37,7 +37,6 @@ export class Controller {
       sort: '',
       search: ''
     });
-    console.log(state);
   };
   // FILTERS (by Category) (filter page)
 
@@ -107,6 +106,7 @@ export class Controller {
 
   prepareProductsToShow = () => {
     const state = this.model.getState();
+    const url = window.location.pathname;
     const categoryFilters = [...state.categoryFilters];
     const nameFilters = [...state.nameFilters];
     const sort = state.sort;
@@ -176,7 +176,9 @@ export class Controller {
       params.view = [view];
     }
 
-    setUrlParams(params);
+    if (url === '/filter') {
+      setUrlParams(params);
+    }
 
     this.model.setState({
       ...state,
