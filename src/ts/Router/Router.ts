@@ -32,6 +32,7 @@ export class Router {
   route = (event: Event) => {
     event = event || window.event;
     event.preventDefault();
+
     const target = event.target as HTMLElement | null;
     const link = target?.closest('a');
 

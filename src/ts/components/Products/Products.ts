@@ -89,7 +89,7 @@ export class Products {
         children: 'Details'
       });
 
-      detailsLink.addEventListener('click', () => this.go);
+      detailsLink.addEventListener('click', this.go);
 
       const items = create({
         tagName: 'div',
