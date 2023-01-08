@@ -43,7 +43,11 @@ export class Catalog {
       this.controller.setFilterByName,
       this.controller.clearData
     );
-    const products = new Products(this.section, this.controller.addSorting);
+    const products = new Products(
+      this.section,
+      this.controller.addSorting,
+      this.controller.changeView
+    );
 
     if (this.mounted) {
       const categoriesSet = [
@@ -119,13 +123,14 @@ export class Catalog {
       if (
         isEqual(state.productsToShow, prevState?.productsToShow) &&
         isEqual(state.categoryFilters, prevState?.categoryFilters) &&
-        state.sort !== prevState?.sort
+        state.sort !== prevState?.sort &&
+        state.view !== prevState?.view
       ) {
         return;
       }
 
       const items = [...new Set(state.productsToShow.map((item) => item).filter((item) => !!item))];
-      products.update({ items, sort: state.sort });
+      products.update({ items, sort: state.sort, view: state.view });
     });
 
     this.mounted = true;

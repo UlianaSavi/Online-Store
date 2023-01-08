@@ -111,6 +111,7 @@ export class Controller {
     const nameFilters = [...state.nameFilters];
     const sort = state.sort;
     const search = state.search;
+    const view = state.view;
     let products = [...state.products];
 
     const params: { [s: string]: string[] } = {};
@@ -169,6 +170,10 @@ export class Controller {
           );
         }
       );
+    }
+
+    if (view.length) {
+      params.view = [view];
     }
 
     setUrlParams(params);
@@ -244,6 +249,19 @@ export class Controller {
     this.prepareProductsToShow();
   };
 
+  // change view  (filter page)
+
+  changeView = (viewStr: string) => {
+    const state = this.model.getState();
+    const view = viewStr;
+
+    this.model.setState({
+      ...state,
+      view
+    });
+    this.prepareProductsToShow();
+  };
+
   // pagination
   isDisabled = (
     countOfPages: number,
@@ -275,5 +293,5 @@ export class Controller {
   removePromo = (promoWrapper: HTMLElement | null, promo: HTMLDivElement | null) => {
     promoWrapper?.classList.remove('input-promo-wrapper_active');
     promo?.classList.remove('add-promo_active');
-  }
+  };
 }

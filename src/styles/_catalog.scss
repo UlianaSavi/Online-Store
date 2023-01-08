@@ -314,6 +314,14 @@ $transparent-orange: #ffbd594d;
       justify-content: space-between;
       margin-bottom: 0.125em;
     }
+
+    .btn {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__item.view__big {
+    max-width: 18%;
   }
 }
 
