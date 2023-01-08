@@ -46,8 +46,8 @@ export class PageDetails {
     const details = new Details(this.section, this.go);
 
     if (product) {
-      // if (!items.find((item) => item.id === props?.params?.productId)) {
-      // redirect to 404
+      // if (!state.products.find((item) => item.id === props?.params?.productId)) {
+      //   console.log(props?.params?.productId);
       // }
       details.update({ item: product });
     }
@@ -56,8 +56,9 @@ export class PageDetails {
       if (isEqual(state.products, prevState?.products)) {
         return;
       }
-      // if (!items.find((item) => item.id === props?.params?.productId)) {
-      // redirect to 404
+      // if (!state.products.find((item) => item.id === props?.params?.productId)) {
+      //   console.log(state.products.find((item) => item.id));
+      //   window.location.pathname = '404'
       // }
       const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
       details.update({
