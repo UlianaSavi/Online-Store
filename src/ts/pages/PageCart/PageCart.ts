@@ -40,14 +40,14 @@ export class PageCart {
 
     const total = new Total(this.section, this.controller);
     const cartList = new CartList(this.section, this.controller, total);
-    
-    if (this.items.length !== 0) {
-    
-    this.model.subscribe((/*state*/ /* prevState*/) => {
-        // В местах этих проверок будет не state и prevState, а дополнительное значение, которое будет создано при работе с функционалом корзины
-      // Поэтому на данном этапе оставляю эти проверки законментированными, но их наличие **обязательно** при дальнейшей работе
 
-      // if (isEqual(state.products, prevState?.products)) {
+    if (this.items.length !== 0) {
+      this.model.subscribe((/*state*/
+      /* prevState*/) => {
+        // В местах этих проверок будет не state и prevState, а дополнительное значение, которое будет создано при работе с функционалом корзины
+        // Поэтому на данном этапе оставляю эти проверки законментированными, но их наличие **обязательно** при дальнейшей работе
+
+        // if (isEqual(state.products, prevState?.products)) {
         //   return;
         // }
         const items = this.items;
@@ -59,13 +59,14 @@ export class PageCart {
         // }
         total.update();
       });
-
     } else {
-      this.section?.appendChild(create({
-        tagName: 'h1',
-        classNames: 'no-items',
-        children: `Your shopping cart is empty :(`
-      }))
+      this.section?.appendChild(
+        create({
+          tagName: 'h1',
+          classNames: 'no-items',
+          children: `Your shopping cart is empty :(`
+        })
+      );
     }
 
     props?.mounted && props?.mounted();

@@ -96,7 +96,7 @@ export class Header {
       tagName: 'div',
       classNames: 'cart-shopping__goods-counter-wrapper',
       children: [`${this.goodsCounter}`]
-    })
+    });
 
     this.component = create({
       tagName: 'div',

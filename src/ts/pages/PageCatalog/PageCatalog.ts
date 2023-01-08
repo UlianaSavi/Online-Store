@@ -15,7 +15,12 @@ export class Catalog {
   controller: Controller;
   pageCart: PageCart;
 
-  constructor(parent: HTMLElement | null, model: Model, controller: Controller, pageCart: PageCart) {
+  constructor(
+    parent: HTMLElement | null,
+    model: Model,
+    controller: Controller,
+    pageCart: PageCart
+  ) {
     this.parent = parent;
     this.section = null;
     this.model = model;

@@ -77,10 +77,10 @@ export class Products {
             if (i === item) {
               this.pageCart.items.splice(index, 1);
             }
-          })
+          });
         }
         this.render(props);
-      })
+      });
 
       if (this.pageCart.items.length === 0) {
         addToCartBtn.textContent = 'Add to cart';
