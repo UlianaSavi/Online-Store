@@ -5,22 +5,26 @@ import { sortItems } from '../../contains';
 interface IProductsProps {
   items: IProduct[];
   sort?: string;
+  view?: string;
 }
 export class Products {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   addSorting: (str: string) => void;
   go: (event: Event) => void;
+  changeView: (str: string) => void;
 
   constructor(
     parent: HTMLElement | null,
     addSorting: (str: string) => void,
-    go: (event: Event) => void
+    go: (event: Event) => void,
+    changeView: (str: string) => void
   ) {
     this.parent = parent;
     this.component = null;
     this.addSorting = addSorting;
     this.go = go;
+    this.changeView = changeView;
   }
 
   update = (props?: IProductsProps) => {
@@ -43,7 +47,10 @@ export class Products {
 
     const viewMain = create({
       tagName: 'div',
-      classNames: 'products__header__view-main view-active',
+      classNames:
+        !props?.view || props?.view === 'viewMain'
+          ? 'products__header__view-main view-active'
+          : 'products__header__view-main',
       children: new Array(roundsMainCount).fill(null).map(() =>
         create({
           tagName: 'div',
@@ -55,7 +62,10 @@ export class Products {
 
     const viewBig = create({
       tagName: 'div',
-      classNames: 'products__header__view-big',
+      classNames:
+        props?.view === 'viewBig'
+          ? 'products__header__view-big view-active'
+          : 'products__header__view-big',
       children: new Array(roundsBigCount).fill(null).map(() =>
         create({
           tagName: 'div',
@@ -83,7 +93,10 @@ export class Products {
 
       const items = create({
         tagName: 'div',
-        classNames: 'products__table__item',
+        classNames:
+          !props?.view || props?.view === 'viewMain'
+            ? 'products__table__item'
+            : 'products__table__item view__big',
         children: [
           create({
             tagName: 'div',
@@ -141,6 +154,14 @@ export class Products {
       });
 
       return items;
+    });
+
+    viewBig.addEventListener('click', () => {
+      this.changeView('viewBig');
+    });
+
+    viewMain.addEventListener('click', () => {
+      this.changeView('viewMain');
     });
 
     const sortItemsArr = Object.entries(sortItems).map(([key, val]) => {

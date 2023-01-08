@@ -21,7 +21,8 @@ export class App {
     categoryFilters: [],
     nameFilters: [],
     sort: '',
-    search: ''
+    search: '',
+    view: 'viewMain'
   };
 
   main: HTMLElement | null;
@@ -101,6 +102,9 @@ export class App {
         }
         if (params?.search) {
           controller.addSearching(params?.search.toString());
+        }
+        if (params?.view) {
+          controller.changeView(params?.view.toString());
         }
       });
 

@@ -111,6 +111,7 @@ export class Controller {
     const nameFilters = [...state.nameFilters];
     const sort = state.sort;
     const search = state.search;
+    const view = state.view;
     let products = [...state.products];
 
     const params: { [s: string]: string[] } = {};
@@ -169,6 +170,10 @@ export class Controller {
           );
         }
       );
+    }
+
+    if (view.length) {
+      params.view = [view];
     }
 
     setUrlParams(params);
@@ -240,6 +245,19 @@ export class Controller {
     this.model.setState({
       ...state,
       search
+    });
+    this.prepareProductsToShow();
+  };
+
+  // change view  (filter page)
+
+  changeView = (viewStr: string) => {
+    const state = this.model.getState();
+    const view = viewStr;
+
+    this.model.setState({
+      ...state,
+      view
     });
     this.prepareProductsToShow();
   };
