@@ -29,7 +29,7 @@ export class Details {
           tagName: 'img',
           classNames: 'slides-image',
           dataAttr: [
-            ['src', props?.item?.images?.at(0) || ''], // позже добавим не такой url, а в зависимости от выбранного товара
+            ['src', props?.item?.images?.at(0) || ''],
             ['alt', 'Product image']
           ]
         })
@@ -59,7 +59,7 @@ export class Details {
           tagName: 'img',
           classNames: 'product__card__img-img',
           dataAttr: [
-            ['src', props?.item?.images?.at(0) || ''], // а тут url картинки еще и в зависимости от нажатого слайда
+            ['src', props?.item?.images?.at(0) || ''],
             ['alt', 'Main product image']
           ]
         })
@@ -93,7 +93,7 @@ export class Details {
           create({
             tagName: 'div',
             classNames: 'product__card__descr-item__text',
-            children: `${props?.item?.[key as keyof IProduct]}` // пункты, подобные этому позже добавим в зависимости от выбранного товара
+            children: `${props?.item?.[key as keyof IProduct]}`
           })
         ]
       })

@@ -5,17 +5,22 @@ import { sortItems } from '../../contains';
 interface IProductsProps {
   items: IProduct[];
   sort?: string;
-  addToCartClickHandler?: (id: number) => void;
 }
 export class Products {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   addSorting: (str: string) => void;
+  go: (event: Event) => void;
 
-  constructor(parent: HTMLElement | null, addSorting: (str: string) => void) {
+  constructor(
+    parent: HTMLElement | null,
+    addSorting: (str: string) => void,
+    go: (event: Event) => void
+  ) {
     this.parent = parent;
     this.component = null;
     this.addSorting = addSorting;
+    this.go = go;
   }
 
   update = (props?: IProductsProps) => {
@@ -70,17 +75,11 @@ export class Products {
       const detailsLink = create({
         tagName: 'a',
         classNames: 'btn',
-        dataAttr: [['href', `details/${item.id}`]],
+        dataAttr: [['href', '/details']],
         children: 'Details'
       });
 
-      if (props.addToCartClickHandler) {
-        addToCartBtn.addEventListener('click', () => {
-          if (item.id) {
-            props?.addToCartClickHandler?.(item.id);
-          }
-        });
-      }
+      detailsLink.addEventListener('click', () => this.go);
 
       const items = create({
         tagName: 'div',

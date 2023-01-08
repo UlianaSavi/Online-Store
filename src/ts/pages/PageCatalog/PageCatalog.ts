@@ -11,13 +11,20 @@ export class Catalog {
   model: Model;
   mounted: boolean;
   controller: Controller;
+  go: (event: Event) => void;
 
-  constructor(parent: HTMLElement | null, model: Model, controller: Controller) {
+  constructor(
+    parent: HTMLElement | null,
+    model: Model,
+    controller: Controller,
+    go: (event: Event) => void
+  ) {
     this.parent = parent;
     this.section = null;
     this.model = model;
     this.mounted = false;
     this.controller = controller;
+    this.go = go;
   }
 
   createDefaultLayer = () => {
@@ -43,7 +50,7 @@ export class Catalog {
       this.controller.setFilterByName,
       this.controller.clearData
     );
-    const products = new Products(this.section, this.controller.addSorting);
+    const products = new Products(this.section, this.controller.addSorting, this.go);
 
     if (this.mounted) {
       const categoriesSet = [
