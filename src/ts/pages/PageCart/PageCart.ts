@@ -46,8 +46,10 @@ export class PageCart {
 
     if (this.controller.getCurrentCartProducts().length !== 0) {
       this.subsIndex = this.model.subscribe((state, prevState) => {
-        if (isEqual(state.cartProducts, prevState?.cartProducts)) {
-          return;
+        if (localStorage.length === 0) {
+          if (isEqual(state.cartProducts, prevState?.cartProducts)) {
+            return;
+          }
         }
         this.section?.remove();
         this.header.renderCartWrapper();
