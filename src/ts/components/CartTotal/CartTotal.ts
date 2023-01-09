@@ -206,7 +206,6 @@ export class Total {
       );
     }
 
-    
     addPromoBtn.addEventListener('click', () => {
       this.addedPromoArr.push({ name: this.currPromoName, discount: this.currPromoDiscount });
       this.controller.removePromo(this.addPromoWrapper, this.addPromo);
@@ -247,7 +246,7 @@ export class Total {
         }
       }
     }
-    
+
     buyBtn.addEventListener('click', (e) => {
       e.preventDefault();
       this.controller.openPopup();

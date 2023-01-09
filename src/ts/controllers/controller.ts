@@ -1,5 +1,5 @@
 import { Model } from '../models/model';
-import { IProduct } from '../types';
+import { IProduct, ICartProduct } from '../types';
 import { setUrlParams } from '../utils/url';
 import { Popup } from '../components/Popup/Popup';
 import { create } from '../utils/create';
@@ -296,4 +296,65 @@ export class Controller {
     promoWrapper?.classList.remove('input-promo-wrapper_active');
     promo?.classList.remove('add-promo_active');
   };
+
+  //Cart
+
+  getCurrentCartProducts = () => {
+    return this.model.getState().cartProducts;
+  };
+
+  pushNewCartProduct = (cartProduct: ICartProduct) => {
+    const state = this.model.getState();
+    const currCartProd = state.cartProducts;
+
+    currCartProd.push(cartProduct);
+
+    this.model.setState({
+      ...state,
+      cartProducts: currCartProd
+    });
+  };
+
+  removeCartProduct = (index: number) => { 
+    const state = this.model.getState();
+    const currCartProd = state.cartProducts;
+
+    currCartProd.splice(index, 1);
+
+    this.model.setState({
+      ...state,
+      cartProducts: currCartProd
+    });
+  };
+
+  increaseAmountOfExistingCartProduct = (product: IProduct, amountToAdd: number) => {
+    const state = this.model.getState();
+    const currCartProd = state.cartProducts;
+    const found = currCartProd.find((item) => item.product.id === product.id);
+    if (found !== undefined) {
+      found.amount += amountToAdd;
+    }
+    this.model.setState({
+      ...state,
+      cartProducts: currCartProd
+    });
+  };
+
+  decreaseAmountOfExistingCartProduct = (product: IProduct, amountToAdd: number) => {
+    const state = this.model.getState();
+    const currCartProd = state.cartProducts;
+    const found = currCartProd.find((item) => item.product.id === product.id);
+    const foundIndex = currCartProd.findIndex((item) => item.product.id === product.id);
+    if (found !== undefined) {
+      if (found.amount > 1) {
+        found.amount -= amountToAdd;
+      } else {
+        currCartProd.splice(foundIndex, 1);
+      }
+    }
+    this.model.setState({
+      ...state,
+      cartProducts: currCartProd
+    });
+  }
 }

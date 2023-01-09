@@ -8,6 +8,7 @@ export interface IAppState {
   sort: string;
   search: string;
   view: string;
+  cartProducts: ICartProduct[];
 }
 
 export interface IProduct {
@@ -22,8 +23,14 @@ export interface IProduct {
   category: string;
   images: string[];
 }
+
 export interface IProductsResponse {
   products: IProduct[];
+}
+
+export interface ICartProduct {
+  product: IProduct;
+  amount: number;
 }
 
 export interface IPageProps {

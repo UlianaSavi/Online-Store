@@ -1,5 +1,6 @@
 import { Controller } from '../../controllers/controller';
 import { create } from '../../utils/create';
+import { CartInHeader } from './CartInHeader';
 
 export class Header {
   parent: HTMLElement | null;
@@ -7,6 +8,8 @@ export class Header {
   go: (event: Event) => void;
   controller: Controller;
   goodsCounter: number;
+  cartInHeader: CartInHeader;
+  cardWrapper: HTMLElement | null;
 
   constructor(parent: HTMLElement | null, go: (event: Event) => void, controller: Controller) {
     this.parent = parent;
@@ -14,6 +17,8 @@ export class Header {
     this.go = go;
     this.controller = controller;
     this.goodsCounter = 0;
+    this.cartInHeader = new CartInHeader(controller, go);
+    this.cardWrapper = null;
   }
 
   update = () => {
@@ -21,21 +26,8 @@ export class Header {
   };
 
   render = () => {
-    const cart = create({
-      tagName: 'a',
-      classNames: 'cart-shopping__button',
-      dataAttr: [['href', '/cart']],
-      children: `
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 576 512"
-        class="cart-shopping__svg">
-        <path
-          d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-      </svg>`
-    });
-
-    cart.addEventListener('click', this.go);
+    this.component?.remove();
+    this.cartInHeader.render();
 
     const linkToMain = create({
       tagName: 'a',
@@ -92,10 +84,10 @@ export class Header {
       // }
     });
 
-    const goodsCounterBlock = create({
+    this.cardWrapper = create({
       tagName: 'div',
-      classNames: 'cart-shopping__goods-counter-wrapper',
-      children: [`${this.goodsCounter}`]
+      classNames: 'cart-shopping__wrapper',
+      children: [this.cartInHeader.cart, this.cartInHeader.goodsCounterBlock]
     });
 
     this.component = create({
@@ -120,13 +112,22 @@ export class Header {
             })
           ]
         }),
-        create({
-          tagName: 'div',
-          classNames: 'cart-shopping__wrapper',
-          children: [cart, goodsCounterBlock]
-        })
+        this.cardWrapper
       ],
       parent: this.parent
     });
+  };
+
+  renderCartWrapper = () => {
+    this.cartInHeader.render();
+    if (this.cardWrapper !== null) {
+      this.component?.removeChild(this.cardWrapper);
+      this.cardWrapper = create({
+        tagName: 'div',
+        classNames: 'cart-shopping__wrapper',
+        children: [this.cartInHeader.cart, this.cartInHeader.goodsCounterBlock, this.cartInHeader.goodsTotalSumBlock]
+      });
+      this.component?.appendChild(this.cardWrapper);
+    }
   };
 }
