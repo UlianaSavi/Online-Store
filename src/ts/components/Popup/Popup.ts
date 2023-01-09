@@ -233,7 +233,6 @@ export class Popup {
       tagName: 'div',
       classNames: 'popup__content',
       children: [
-        closePopupButtonX,
         popupForm
       ]
     });
@@ -256,6 +255,9 @@ export class Popup {
 
     // open/close popup
     closePopupButtonX.addEventListener('click', this.controller.closePopup);
+    setTimeout(() => {
+      popupBody.appendChild(closePopupButtonX)
+    }, 1500)
 
     document.addEventListener('click', (e) => {
       if (e.target === popup || e.target === popupBody) {
