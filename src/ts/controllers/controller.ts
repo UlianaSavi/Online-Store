@@ -315,7 +315,7 @@ export class Controller {
     });
   };
 
-  removeCartProduct = (index: number) => {
+  removeCartProduct = (index: number) => { 
     const state = this.model.getState();
     const currCartProd = state.cartProducts;
 
@@ -339,4 +339,22 @@ export class Controller {
       cartProducts: currCartProd
     });
   };
+
+  decreaseAmountOfExistingCartProduct = (product: IProduct, amountToAdd: number) => {
+    const state = this.model.getState();
+    const currCartProd = state.cartProducts;
+    const found = currCartProd.find((item) => item.product.id === product.id);
+    const foundIndex = currCartProd.findIndex((item) => item.product.id === product.id);
+    if (found !== undefined) {
+      if (found.amount > 1) {
+        found.amount -= amountToAdd;
+      } else {
+        currCartProd.splice(foundIndex, 1);
+      }
+    }
+    this.model.setState({
+      ...state,
+      cartProducts: currCartProd
+    });
+  }
 }

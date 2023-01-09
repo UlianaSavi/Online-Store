@@ -33,6 +33,7 @@ export class CartList {
   }
 
   update = () => {
+    console.log('in update')
     this.render();
   };
 
@@ -51,6 +52,11 @@ export class CartList {
           classNames: 'btn',
           children: `&#10133;`
         });
+
+        minusBtn.addEventListener('click', () => {
+          this.controller.decreaseAmountOfExistingCartProduct(item.product, 1);
+        })
+
         plusBtn.addEventListener('click', () => {
           if (item.product.stock > item.amount) {
             this.controller.increaseAmountOfExistingCartProduct(item.product, 1);
