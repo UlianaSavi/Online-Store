@@ -129,7 +129,7 @@ export class Details {
     const linkHome = create({
       tagName: 'a',
       classNames: 'link__nav-item',
-      dataAttr: [['href', '/']],
+      dataAttr: [['href', '/filter']],
       children: 'STORE'
     });
 
