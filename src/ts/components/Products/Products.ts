@@ -2,6 +2,7 @@ import { create } from '../../utils/create';
 import { ICartProduct, IProduct } from '../../types';
 import { sortItems } from '../../contains';
 import { PageCart } from '../../pages/PageCart/PageCart';
+import { Controller } from '../../controllers/controller';
 
 interface IProductsProps {
   items: IProduct[];
@@ -16,19 +17,22 @@ export class Products {
   go: (event: Event) => void;
   changeView: (str: string) => void;
   pageCart: PageCart;
+  controller: Controller;
 
   constructor(
     parent: HTMLElement | null,
     addSorting: (str: string) => void,
     go: (event: Event) => void,
     changeView: (str: string) => void, 
-    pageCart: PageCart) {
+    pageCart: PageCart,
+    controller: Controller) {
     this.parent = parent;
     this.component = null;
     this.addSorting = addSorting;
     this.go = go;
     this.changeView = changeView;
     this.pageCart = pageCart;
+    this.controller = controller;
   }
 
   update = (props?: IProductsProps) => {
@@ -91,21 +95,21 @@ export class Products {
             product: item,
             amount: 1
           }
-          this.pageCart.items.push(cartProduct);
+          this.controller.pushNewCartProduct(cartProduct);
         } else {
-          this.pageCart.items.map((i, index) => {
-            if (i.product === item) {
-              this.pageCart.items.splice(index, 1);
+          this.controller.getCurrentCartProducts().map((i, index) => {
+            if (i.product.id === item.id) {
+              this.controller.removeCartProduct(index);
             }
           });
         }
         this.render(props);
       });
 
-      if (this.pageCart.items.length === 0) {
+      if (this.controller.getCurrentCartProducts().length === 0) {
         addToCartBtn.textContent = 'Add to cart';
       } else {
-        if (this.pageCart.items.filter((i) => i.product === item).length !== 0) {
+        if (this.controller.getCurrentCartProducts().filter((i) => i.product.id === item.id).length !== 0) {
           addToCartBtn.textContent = 'Drop from cart';
         } else {
           addToCartBtn.textContent = 'Add to cart';

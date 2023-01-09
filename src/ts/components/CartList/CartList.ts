@@ -1,8 +1,9 @@
 import { create } from '../../utils/create';
-import { ICartProduct } from '../../types';
 import { Controller } from '../../controllers/controller';
 import { Total } from '../CartTotal/CartTotal';
 import { parseUrlParams } from '../../utils/url';
+import { Header } from '../Header/Header';
+import { PageCart } from '../../pages/PageCart/PageCart';
 
 export class CartList {
   parent: HTMLElement | null;
@@ -11,24 +12,29 @@ export class CartList {
   pageCounter: number;
   itemsLimit: number;
   total: Total;
+  header: Header;
+  cartPage: PageCart;
 
-  constructor(parent: HTMLElement | null, controller: Controller, total: Total) {
+  constructor(parent: HTMLElement | null, controller: Controller, total: Total, header: Header, pageCart: PageCart) {
     this.parent = parent;
     this.component = null;
     this.controller = controller;
     this.pageCounter = 1;
     this.itemsLimit = 3;
     this.total = total;
+    this.header = header;
+    this.cartPage = pageCart;
   }
 
-  update = (props?: ICartProduct[]) => {
-    this.render(props);
+  update = () => {
+    console.log("updating list")
+    this.render();
   };
 
-  render = (props?: ICartProduct[]) => {
+  render = () => {
     let numInList = 0;
     const productItem =
-      props?.map((item) => {
+    this.controller.getCurrentCartProducts().map((item) => {
         const minusBtn = create({
           tagName: 'button',
           classNames: 'btn',
@@ -42,9 +48,12 @@ export class CartList {
         });
         plusBtn.addEventListener('click', () => {
           if (item.product.stock > item.amount) {
-            item.amount += 1;
-            this.render(props);
-            this.total.update();
+            this.controller.increaseAmountOfExistingCartProduct(item.product, 1);
+            // this.header.update();
+            // this.cartPage.unmount();
+            // this.cartPage.mount();
+            // this.render(props);
+            // this.total.update();
           }
         });
 
@@ -237,7 +246,7 @@ export class CartList {
       }
       this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
       this.controller.cartQuery(this.pageCounter, this.itemsLimit);
-      this.render(props);
+      this.render();
     });
 
     btnLeft.addEventListener('click', () => {
@@ -246,7 +255,7 @@ export class CartList {
       }
       this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
       this.controller.cartQuery(this.pageCounter, this.itemsLimit);
-      this.render(props);
+      this.render();
     });
 
     inputLimit.addEventListener('input', () => {
@@ -256,13 +265,13 @@ export class CartList {
           this.pageCounter = countOfPages;
           this.itemsLimit = +inputLimit.value;
           this.controller.cartQuery(this.pageCounter, this.itemsLimit);
-          this.render(props);
+          this.render();
         }
       }
       this.itemsLimit = +inputLimit.value;
       this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
       this.controller.cartQuery(this.pageCounter, this.itemsLimit);
-      this.render(props);
+      this.render();
     });
 
     this.component = create({
@@ -271,9 +280,9 @@ export class CartList {
       children: [header, ...currentItems],
       parent: this.parent
     });
-    const amounts = props?.map((item) => item.amount);
+    const amounts = this.controller.getCurrentCartProducts().map((item) => item.amount);
     if (amounts) this.total.countItems = amounts.reduce((prev, curr) => prev + curr, 0);
-    const productItemPrices = props?.map((item) => item.product.price * item.amount);
+    const productItemPrices = this.controller.getCurrentCartProducts().map((item) => item.product.price * item.amount);
     if (productItemPrices)
       this.total.totalSum = productItemPrices.reduce((prev, curr) => prev + curr, 0);
     this.total.update();

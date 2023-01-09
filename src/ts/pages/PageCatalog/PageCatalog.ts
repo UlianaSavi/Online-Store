@@ -6,6 +6,7 @@ import { Products } from '../../components/Products/Products';
 import { IPageProps } from '../../types';
 import { Controller } from '../../controllers/controller';
 import { PageCart } from '../../pages/PageCart/PageCart';
+import { Header } from '../../components/Header/Header';
 
 export class Catalog {
   parent: HTMLElement | null;
@@ -15,13 +16,16 @@ export class Catalog {
   controller: Controller;
   go: (event: Event) => void;
   pageCart: PageCart;
+  header: Header;
+  subsIndex: number | null;
 
   constructor(
     parent: HTMLElement | null,
     model: Model,
     controller: Controller,
     go: (event: Event) => void,
-    pageCart: PageCart
+    pageCart: PageCart,
+    header: Header,
   ) {
     this.parent = parent;
     this.section = null;
@@ -30,6 +34,8 @@ export class Catalog {
     this.controller = controller;
     this.go = go;
     this.pageCart = pageCart;
+    this.header = header;
+    this.subsIndex = null;
   }
 
   createDefaultLayer = () => {
@@ -41,6 +47,9 @@ export class Catalog {
   };
 
   unmount = () => {
+    if (this.subsIndex) {
+      this.model.unsubscribe(this.subsIndex);
+    }
     this.section?.remove();
   };
 
@@ -60,7 +69,7 @@ export class Catalog {
       this.controller.addSorting,
       this.go,
       this.controller.changeView
-    , this.pageCart);
+    , this.pageCart, this.controller);
 
     if (this.mounted) {
       const categoriesSet = [
@@ -84,6 +93,14 @@ export class Catalog {
       const items = [...new Set(state.productsToShow.map((item) => item).filter((item) => !!item))];
       products.update({ items });
     }
+
+    this.subsIndex = this.model.subscribe((state, prevState) => {
+
+      if (isEqual(state.cartProducts, prevState?.cartProducts)) {
+        return;
+      }
+      this.header.renderCartWrapper();
+    });
 
     this.model.subscribe((state, prevState) => {
       if (
