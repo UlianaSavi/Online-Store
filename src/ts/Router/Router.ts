@@ -29,7 +29,7 @@ export class Router {
     this.handleLocation();
   };
 
-  route = (event: Event) => {
+  route = (event: Event, func?: () => void) => {
     event = event || window.event;
     event.preventDefault();
 
@@ -40,7 +40,11 @@ export class Router {
       window.history.pushState({}, '', link.href);
     }
 
-    this.handleLocation();
+    if (func) {
+      this.handleLocation().then(func);
+    } else {
+      this.handleLocation();
+    }
   };
 
   handleLocation = async () => {

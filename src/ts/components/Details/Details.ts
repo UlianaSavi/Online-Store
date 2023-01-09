@@ -8,7 +8,7 @@ interface IDetailsProps {
 export class Details {
   parent: HTMLElement | null;
   component: HTMLElement | null;
-  go: (event: Event) => void;
+  go: (event: Event, func?: () => void) => void;
   controller: Controller;
 
   constructor(parent: HTMLElement | null, go: (event: Event) => void, controller: Controller) {
@@ -111,16 +111,15 @@ export class Details {
 
     const addToCartBtnDetails = create({
       tagName: 'a',
-      classNames: 'btn',
-      children: 'ADD TO CART'
+      classNames: 'btn'
     });
 
+    const cartProduct: ICartProduct = {
+      product: props?.item,
+      amount: 1
+    };
     addToCartBtnDetails.addEventListener('click', () => {
       if (addToCartBtnDetails.textContent === 'Add to cart') {
-        const cartProduct: ICartProduct = {
-          product: props?.item,
-          amount: 1
-        };
         this.controller.pushNewCartProduct(cartProduct);
       } else {
         this.controller.getCurrentCartProducts().map((i, index) => {
@@ -145,6 +144,21 @@ export class Details {
       }
     }
 
+    const buyNowBtn = create({
+      tagName: 'a',
+      dataAttr: [['href', '/cart']],
+      classNames: 'btn',
+      children: 'BUY NOW'
+    });
+
+    buyNowBtn.addEventListener('click', (e) => {
+      if (addToCartBtnDetails.textContent === 'Add to cart') {
+        this.controller.pushNewCartProduct(cartProduct);
+      }
+      this.go(e, () => this.controller.openPopup());
+      this.controller.openPopup();
+    });
+
     const add = create({
       tagName: 'div',
       classNames: 'product__card__add',
@@ -155,11 +169,7 @@ export class Details {
           children: `${props?.item?.price} $`
         }),
         addToCartBtnDetails,
-        create({
-          tagName: 'a',
-          classNames: 'btn',
-          children: 'BUY NOW'
-        })
+        buyNowBtn
       ]
     });
 
