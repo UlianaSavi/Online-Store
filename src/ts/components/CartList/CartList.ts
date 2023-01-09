@@ -15,7 +15,13 @@ export class CartList {
   header: Header;
   cartPage: PageCart;
 
-  constructor(parent: HTMLElement | null, controller: Controller, total: Total, header: Header, pageCart: PageCart) {
+  constructor(
+    parent: HTMLElement | null,
+    controller: Controller,
+    total: Total,
+    header: Header,
+    pageCart: PageCart
+  ) {
     this.parent = parent;
     this.component = null;
     this.controller = controller;
@@ -27,14 +33,13 @@ export class CartList {
   }
 
   update = () => {
-    console.log("updating list")
     this.render();
   };
 
   render = () => {
     let numInList = 0;
     const productItem =
-    this.controller.getCurrentCartProducts().map((item) => {
+      this.controller.getCurrentCartProducts().map((item) => {
         const minusBtn = create({
           tagName: 'button',
           classNames: 'btn',
@@ -49,11 +54,6 @@ export class CartList {
         plusBtn.addEventListener('click', () => {
           if (item.product.stock > item.amount) {
             this.controller.increaseAmountOfExistingCartProduct(item.product, 1);
-            // this.header.update();
-            // this.cartPage.unmount();
-            // this.cartPage.mount();
-            // this.render(props);
-            // this.total.update();
           }
         });
 
@@ -282,7 +282,9 @@ export class CartList {
     });
     const amounts = this.controller.getCurrentCartProducts().map((item) => item.amount);
     if (amounts) this.total.countItems = amounts.reduce((prev, curr) => prev + curr, 0);
-    const productItemPrices = this.controller.getCurrentCartProducts().map((item) => item.product.price * item.amount);
+    const productItemPrices = this.controller
+      .getCurrentCartProducts()
+      .map((item) => item.product.price * item.amount);
     if (productItemPrices)
       this.total.totalSum = productItemPrices.reduce((prev, curr) => prev + curr, 0);
     this.total.update();

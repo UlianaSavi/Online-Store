@@ -23,9 +23,10 @@ export class Products {
     parent: HTMLElement | null,
     addSorting: (str: string) => void,
     go: (event: Event) => void,
-    changeView: (str: string) => void, 
+    changeView: (str: string) => void,
     pageCart: PageCart,
-    controller: Controller) {
+    controller: Controller
+  ) {
     this.parent = parent;
     this.component = null;
     this.addSorting = addSorting;
@@ -94,7 +95,7 @@ export class Products {
           const cartProduct: ICartProduct = {
             product: item,
             amount: 1
-          }
+          };
           this.controller.pushNewCartProduct(cartProduct);
         } else {
           this.controller.getCurrentCartProducts().map((i, index) => {
@@ -109,7 +110,10 @@ export class Products {
       if (this.controller.getCurrentCartProducts().length === 0) {
         addToCartBtn.textContent = 'Add to cart';
       } else {
-        if (this.controller.getCurrentCartProducts().filter((i) => i.product.id === item.id).length !== 0) {
+        if (
+          this.controller.getCurrentCartProducts().filter((i) => i.product.id === item.id)
+            .length !== 0
+        ) {
           addToCartBtn.textContent = 'Drop from cart';
         } else {
           addToCartBtn.textContent = 'Add to cart';

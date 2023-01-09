@@ -25,7 +25,7 @@ export class Catalog {
     controller: Controller,
     go: (event: Event) => void,
     pageCart: PageCart,
-    header: Header,
+    header: Header
   ) {
     this.parent = parent;
     this.section = null;
@@ -68,8 +68,10 @@ export class Catalog {
       this.section,
       this.controller.addSorting,
       this.go,
-      this.controller.changeView
-    , this.pageCart, this.controller);
+      this.controller.changeView,
+      this.pageCart,
+      this.controller
+    );
 
     if (this.mounted) {
       const categoriesSet = [
@@ -95,7 +97,6 @@ export class Catalog {
     }
 
     this.subsIndex = this.model.subscribe((state, prevState) => {
-
       if (isEqual(state.cartProducts, prevState?.cartProducts)) {
         return;
       }

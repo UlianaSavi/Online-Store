@@ -1,5 +1,5 @@
-import { Controller } from "../../controllers/controller";
-import { create } from "../../utils/create";
+import { Controller } from '../../controllers/controller';
+import { create } from '../../utils/create';
 
 export class CartInHeader {
   controller: Controller;
@@ -31,12 +31,15 @@ export class CartInHeader {
 
     this.cart.addEventListener('click', this.go);
 
-    const amount = this.controller.getCurrentCartProducts().map((item) => item.amount).reduce((prev, curr) => prev + curr, 0);
-    
+    const amount = this.controller
+      .getCurrentCartProducts()
+      .map((item) => item.amount)
+      .reduce((prev, curr) => prev + curr, 0);
+
     this.goodsCounterBlock = create({
       tagName: 'div',
       classNames: 'cart-shopping__goods-counter-wrapper',
       children: [`${amount}`]
     });
-  }
+  };
 }

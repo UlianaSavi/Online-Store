@@ -23,11 +23,11 @@ export class Model {
 
   unsubscribe = (index: number) => {
     this.subscribers.splice(index, 1);
-  }
+  };
 
   subscribe = (callback: (state: IAppState, prevState?: IAppState | null) => void): number => {
     this.subscribers.push(callback);
-    return this.subscribers.length -  1;
+    return this.subscribers.length - 1;
   };
 
   fire = () => {

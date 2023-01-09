@@ -28,7 +28,6 @@ export class Header {
   render = () => {
     this.component?.remove();
     this.cartInHeader.render();
-    console.log("render header")
 
     const linkToMain = create({
       tagName: 'a',
@@ -89,7 +88,7 @@ export class Header {
       tagName: 'div',
       classNames: 'cart-shopping__wrapper',
       children: [this.cartInHeader.cart, this.cartInHeader.goodsCounterBlock]
-    })
+    });
 
     this.component = create({
       tagName: 'div',
@@ -120,14 +119,15 @@ export class Header {
   };
 
   renderCartWrapper = () => {
+    this.cartInHeader.render();
     if (this.cardWrapper !== null) {
       this.component?.removeChild(this.cardWrapper);
       this.cardWrapper = create({
         tagName: 'div',
         classNames: 'cart-shopping__wrapper',
         children: [this.cartInHeader.cart, this.cartInHeader.goodsCounterBlock]
-      })
+      });
       this.component?.appendChild(this.cardWrapper);
     }
-  }
+  };
 }

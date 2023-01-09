@@ -301,7 +301,7 @@ export class Controller {
 
   getCurrentCartProducts = () => {
     return this.model.getState().cartProducts;
-  }
+  };
 
   pushNewCartProduct = (cartProduct: ICartProduct) => {
     const state = this.model.getState();
@@ -313,7 +313,7 @@ export class Controller {
       ...state,
       cartProducts: currCartProd
     });
-  }
+  };
 
   removeCartProduct = (index: number) => {
     const state = this.model.getState();
@@ -325,7 +325,7 @@ export class Controller {
       ...state,
       cartProducts: currCartProd
     });
-  }
+  };
 
   increaseAmountOfExistingCartProduct = (product: IProduct, amountToAdd: number) => {
     const state = this.model.getState();
@@ -338,5 +338,5 @@ export class Controller {
       ...state,
       cartProducts: currCartProd
     });
-  }
+  };
 }
