@@ -111,17 +111,23 @@ export class Popup {
     inputDate.required = true;
     inputDate.pattern = '(([0][1-9]|[1][0-2])/([2-9][0-9]))';
     inputDate.addEventListener('keyup', (event) => {
-      if (
-        event.code !== 'Backspace' &&
-        inputDate.value.indexOf('/') === -1 &&
-        inputDate.value.length > 1
-      ) {
-        const arr: string[] = [];
-        inputDate.value.split('').map((item) => arr.push(item));
-        arr.splice(2, 0, '/');
-        inputDate.value = arr.join('');
+      if (event.code !== 'Backspace') {
+        if (
+          (event.which >= 48 && event.which <= 57) ||
+          (event.which >= 96 && event.which <= 105) ||
+          event.code === 'Slash' ||
+          event.code === 'NumpadDivide'
+        ) {
+          if (inputDate.value.indexOf('/') === -1 && inputDate.value.length > 1) {
+            const arr: string[] = [];
+            inputDate.value.split('').map((item) => arr.push(item));
+            arr.splice(2, 0, '/');
+            inputDate.value = arr.join('');
+          }
+        } else {
+          inputDate.value = '';
+        }
       }
-      inputDate.value = inputDate.value.substring(0, 5);
     });
 
     const inputCVV = create({
@@ -232,9 +238,7 @@ export class Popup {
     this.popupContent = create({
       tagName: 'div',
       classNames: 'popup__content',
-      children: [
-        popupForm
-      ]
+      children: [popupForm]
     });
 
     const popupBody = create({
@@ -256,8 +260,8 @@ export class Popup {
     // open/close popup
     closePopupButtonX.addEventListener('click', this.controller.closePopup);
     setTimeout(() => {
-      popupBody.appendChild(closePopupButtonX)
-    }, 1500)
+      popupBody.appendChild(closePopupButtonX);
+    }, 1500);
 
     document.addEventListener('click', (e) => {
       if (e.target === popup || e.target === popupBody) {
@@ -269,6 +273,6 @@ export class Popup {
     popupForm.addEventListener('submit', (event) => {
       event.preventDefault();
       this.controller.confirmPopup(popupForm, closePopupButtonX);
-    })
+    });
   };
 }
