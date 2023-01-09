@@ -43,7 +43,7 @@ export class PageDetails {
     const state = this.model.getState();
     const product = state.products.find((item) => item.id === props?.params?.productId);
 
-    const details = new Details(this.section, this.go);
+    const details = new Details(this.section, this.go, this.controller);
 
     if (product) {
       details.update({ item: product });
