@@ -214,15 +214,13 @@ export class Controller {
       form.parentNode?.appendChild(confirmText);
       setTimeout(() => {
         window.location.pathname = '/';
-
-        // TODO: Clean Cart
         this.cleanCart();
       }, 1100);
     }, 700);
   };
 
   cleanCart = () => {
-    // TODO: Clean Cart
+    localStorage.clear();
   };
 
   // Sorting (filter page)
@@ -308,6 +306,7 @@ export class Controller {
     const currCartProd = state.cartProducts;
 
     currCartProd.push(cartProduct);
+    localStorage.setItem('key', JSON.stringify(currCartProd));
 
     this.model.setState({
       ...state,
@@ -315,11 +314,12 @@ export class Controller {
     });
   };
 
-  removeCartProduct = (index: number) => { 
+  removeCartProduct = (index: number) => {
     const state = this.model.getState();
     const currCartProd = state.cartProducts;
 
     currCartProd.splice(index, 1);
+    localStorage.setItem('key', JSON.stringify(currCartProd));
 
     this.model.setState({
       ...state,
@@ -334,6 +334,7 @@ export class Controller {
     if (found !== undefined) {
       found.amount += amountToAdd;
     }
+    localStorage.setItem('key', JSON.stringify(currCartProd));
     this.model.setState({
       ...state,
       cartProducts: currCartProd
@@ -352,9 +353,23 @@ export class Controller {
         currCartProd.splice(foundIndex, 1);
       }
     }
+    localStorage.setItem('key', JSON.stringify(currCartProd));
     this.model.setState({
       ...state,
       cartProducts: currCartProd
     });
-  }
+  };
+
+  getCartItemsFromStorage = () => {
+    const state = this.model.getState();
+    const storageObject = localStorage.getItem('key');
+    let currCartProd = state.cartProducts;
+    if (storageObject !== null) {
+      currCartProd = JSON.parse(storageObject);
+    }
+    this.model.setState({
+      ...state,
+      cartProducts: currCartProd
+    });
+  };
 }

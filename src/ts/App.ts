@@ -64,6 +64,9 @@ export class App {
     const controller = new Controller(model);
     this.router = new Router(this.main);
 
+    if (localStorage.length !== 0) {
+      controller.getCartItemsFromStorage();
+    }
     // Static components
     const footer = new Footer(this.footer);
     footer.mount();
