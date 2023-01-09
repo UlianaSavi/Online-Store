@@ -21,8 +21,13 @@ export class Model {
     return structuredClone(this.state);
   };
 
-  subscribe = (callback: (state: IAppState, prevState?: IAppState | null) => void) => {
+  unsubscribe = (index: number) => {
+    this.subscribers.splice(index, 1, () => null);
+  };
+
+  subscribe = (callback: (state: IAppState, prevState?: IAppState | null) => void): number => {
     this.subscribers.push(callback);
+    return this.subscribers.length - 1;
   };
 
   fire = () => {

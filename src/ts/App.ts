@@ -23,7 +23,8 @@ export class App {
     nameFilters: [],
     sort: '',
     search: '',
-    view: 'viewMain'
+    view: 'viewMain',
+    cartProducts: []
   };
 
   main: HTMLElement | null;
@@ -72,8 +73,15 @@ export class App {
     const header = new Header(this.main, this.router.route, controller);
     header.update();
     const pageMain = new PageMain(model, this.main, this.router.route, controller);
-    const pageCart = new PageCart(this.main, model, controller);
-    const pageCatalog = new Catalog(this.main, model, controller, this.router.route, pageCart);
+    const pageCart = new PageCart(this.main, model, controller, header);
+    const pageCatalog = new Catalog(
+      this.main,
+      model,
+      controller,
+      this.router.route,
+      pageCart,
+      header
+    );
     const page404 = new Page404(this.main, this.router.route);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
     const popup = new Popup(this.main, controller);
