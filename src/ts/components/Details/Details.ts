@@ -21,55 +21,48 @@ export class Details {
   render = (props?: IDetailsProps) => {
     this.component?.remove();
 
-    const slideOne = create({
-      tagName: 'div',
-      classNames: 'product__card__info-slides-slide__container active',
-      children: [
-        create({
-          tagName: 'img',
-          classNames: 'slides-image',
-          dataAttr: [
-            ['src', props?.item?.images?.at(0) || ''],
-            ['alt', 'Product image']
-          ]
-        })
-      ]
-    });
-
-    const slideTwo = create({
-      tagName: 'div',
-      classNames: 'product__card__info-slides-slide__container',
-      children: [
-        create({
-          tagName: 'img',
-          classNames: 'slides-image',
-          dataAttr: [
-            ['src', props?.item?.images?.at(1) || ''],
-            ['alt', 'Product image']
-          ]
-        })
+    const img = create({
+      tagName: 'img',
+      classNames: 'product__card__img-img',
+      dataAttr: [
+        ['src', props?.item?.images?.at(0) || ''],
+        ['alt', 'Main product image']
       ]
     });
 
     const mainImg = create({
       tagName: 'div',
       classNames: 'product__card__img',
-      children: [
-        create({
-          tagName: 'img',
-          classNames: 'product__card__img-img',
-          dataAttr: [
-            ['src', props?.item?.images?.at(0) || ''],
-            ['alt', 'Main product image']
-          ]
-        })
-      ]
+      children: [img]
+    });
+
+    const slidesBlock = props?.item.images.map((image) => {
+      const slides = create({
+        tagName: 'div',
+        classNames: 'product__card__info-slides-slide__container',
+        children: [
+          create({
+            tagName: 'img',
+            classNames: 'slides-image',
+            dataAttr: [
+              ['src', image || ''],
+              ['alt', 'Product image']
+            ]
+          })
+        ]
+      });
+
+      slides.addEventListener('click', () => {
+        img.setAttribute('src', image);
+      });
+
+      return slides;
     });
 
     const slides = create({
       tagName: 'div',
       classNames: 'product__card__info-slides',
-      children: [slideOne, slideTwo]
+      children: slidesBlock
     });
 
     const descriptioFields = {
@@ -112,7 +105,7 @@ export class Details {
         create({
           tagName: 'span',
           classNames: 'product__card__add-price',
-          children: `${props?.item?.price} $`
+          children: `${props?.item?.price} ₽`
         }),
         create({
           tagName: 'a',

@@ -50,6 +50,7 @@ $black-opacity: rgb(0 0 0 / 70%);
   background: $dark-grey;
   padding: 1em;
   border-radius: 0.3125em;
+  align-content: center;
 
   &-slides {
     display: flex;
@@ -79,12 +80,16 @@ $black-opacity: rgb(0 0 0 / 70%);
 
 .product__card__img {
   width: 35%;
-  height: 100%;
+  display: flex;
+  margin-right: 20px;
+  height: 500px;
 
   &-img {
     border-radius: 0.3125em;
-    width: 90%;
-    box-shadow: $black-opacity 0px 0px 19px 0px;
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+    box-shadow: rgb(0 0 0 / 70%) 0px 0px 19px 0px;
   }
 }
 
