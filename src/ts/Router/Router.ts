@@ -55,7 +55,6 @@ export class Router {
     ) {
       path = '404';
     }
-
     if (this.routes[`/${rootPath}/:id`]) {
       route = this.routes[`/${rootPath}/:id`];
       path = `/${rootPath}/:id`;
@@ -73,9 +72,9 @@ export class Router {
           productId: +id
         };
       }
-
       route.mount(props);
     } else {
+      route = this.routes[path];
       route.mount();
     }
 

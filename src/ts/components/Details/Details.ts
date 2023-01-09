@@ -162,7 +162,7 @@ export class Details {
                 create({
                   tagName: 'a',
                   classNames: 'link__nav-item',
-                  children: 'CATEGORY'
+                  children: `${props?.item.category}`
                 }),
                 create({
                   tagName: 'span',
@@ -171,7 +171,7 @@ export class Details {
                 create({
                   tagName: 'a',
                   classNames: 'link__nav-item',
-                  children: 'NAME'
+                  children: `${props?.item.animeName}`
                 }),
                 create({
                   tagName: 'span',
@@ -180,7 +180,7 @@ export class Details {
                 create({
                   tagName: 'a',
                   classNames: 'link__nav-item',
-                  children: 'TITLE'
+                  children: `${props?.item.name}`
                 })
               ]
             })
@@ -196,7 +196,7 @@ export class Details {
               children: [
                 create({
                   tagName: 'h1',
-                  children: 'NAME'
+                  children: `${props?.item.name}`
                 })
               ]
             }),
