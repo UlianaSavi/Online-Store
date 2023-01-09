@@ -41,7 +41,7 @@ export class PageDetails {
     this.createDefaultLayer();
 
     const state = this.model.getState();
-    const product = state.products.at(0);
+    const product = state.products.find((item) => item.id === props?.params?.productId);
 
     const details = new Details(this.section, this.go);
 
@@ -53,8 +53,14 @@ export class PageDetails {
       if (isEqual(state.products, prevState?.products)) {
         return;
       }
+      // if (!state.products.find((item) => item.id === props?.params?.productId)) {
+      //   window.location.pathname = '404';
+      // }
       const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
-      details.update({ item: items[0] });
+
+      details.update({
+        item: items.find((item) => item.id === props?.params?.productId) || items[0]
+      });
     });
 
     props?.mounted && props?.mounted();

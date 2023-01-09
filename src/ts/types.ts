@@ -35,4 +35,7 @@ export interface ICartProduct {
 
 export interface IPageProps {
   mounted?: () => void;
+  params?: {
+    productId?: number;
+  };
 }

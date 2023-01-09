@@ -101,7 +101,7 @@ export class PageMain {
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/bloknotKlinok.jpg'],
+                            ['src', '/assets/img/bloknotKlinok.jpg'],
                             ['alt', 'item photo']
                           ]
                         }),
@@ -132,7 +132,7 @@ export class PageMain {
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/figurinesBleanch1.jpg'],
+                            ['src', '/assets/img/figurinesBleanch1.jpg'],
                             ['alt', 'item photo']
                           ]
                         }),
@@ -163,7 +163,7 @@ export class PageMain {
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/bookOnePunchMan2.jpg'],
+                            ['src', '/assets/img/bookOnePunchMan2.jpg'],
                             ['alt', 'item photo']
                           ]
                         }),
@@ -194,7 +194,7 @@ export class PageMain {
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/cosplayNaruto3.jpg'],
+                            ['src', '/assets/img/cosplayNaruto3.jpg'],
                             ['alt', 'item photo']
                           ]
                         }),
@@ -225,7 +225,7 @@ export class PageMain {
                           tagName: 'img',
                           classNames: 'popular-items__img',
                           dataAttr: [
-                            ['src', './assets/img/mangaonePiece2.jpeg'],
+                            ['src', '/assets/img/mangaonePiece2.jpeg'],
                             ['alt', 'item photo']
                           ]
                         }),

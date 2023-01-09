@@ -41,7 +41,7 @@ export class Header {
               tagName: 'img',
               classNames: 'header__logo-img',
               dataAttr: [
-                ['src', './assets/img/AnimeOz-removebg-preview.png'],
+                ['src', '/assets/img/AnimeOz-removebg-preview.png'],
                 ['alt', 'logo']
               ]
             })

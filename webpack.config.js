@@ -16,14 +16,15 @@ module.exports = {
   mode: mode,
   devServer: {
     open: true,
-    port: 9000,
+    port: 8080,
     hot: false,
     client: {
       overlay: true,
       progress: true
     },
     liveReload: true,
-    watchFiles: ['src/*.html']
+    watchFiles: ['src/*.html'],
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -49,7 +50,9 @@ module.exports = {
     // Для изображений отведём отдельную папку в *dist*
     assetModuleFilename: 'assets/[name][ext]',
     filename: '[name].[contenthash].js',
-    clean: true
+    clean: true,
+    publicPath: '/',
+    path: path.resolve(__dirname, 'dist')
   },
   devtool: 'source-map',
   module: {
@@ -89,6 +92,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js']
-  },
-  devServer: {    historyApiFallback: true,  },
+  }
 };

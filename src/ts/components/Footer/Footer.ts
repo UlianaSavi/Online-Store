@@ -31,7 +31,7 @@ export class Footer {
                   tagName: 'img',
                   classNames: 'footer__github-logo',
                   dataAttr: [
-                    ['src', './assets/icons/github.svg'],
+                    ['src', '/assets/icons/github.svg'],
                     ['alt', 'github']
                   ]
                 }),
@@ -51,7 +51,7 @@ export class Footer {
                   tagName: 'img',
                   classNames: 'footer__github-logo',
                   dataAttr: [
-                    ['src', './assets/icons/github.svg'],
+                    ['src', '/assets/icons/github.svg'],
                     ['alt', 'github']
                   ]
                 }),
@@ -82,7 +82,7 @@ export class Footer {
                   tagName: 'img',
                   classNames: 'footer__course-logo',
                   dataAttr: [
-                    ['src', './assets/icons/rsschool.svg'],
+                    ['src', '/assets/icons/rsschool.svg'],
                     ['alt', 'course-logo']
                   ]
                 })
