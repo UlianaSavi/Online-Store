@@ -112,7 +112,7 @@ export class Details {
         create({
           tagName: 'span',
           classNames: 'product__card__add-price',
-          children: `${props?.item?.price} ₽`
+          children: `${props?.item?.price} $`
         }),
         create({
           tagName: 'a',
