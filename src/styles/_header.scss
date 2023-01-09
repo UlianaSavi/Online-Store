@@ -111,5 +111,14 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
     color: $text-color;
 
     position: absolute;
+    left: 35%;
+    bottom: 0;
+  }
+
+  &__goods-total-wrapper {
+    color: $text-color;
+
+    position: absolute;
+    right: 0;
   }
 }

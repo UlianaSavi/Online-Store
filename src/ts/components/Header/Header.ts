@@ -125,7 +125,7 @@ export class Header {
       this.cardWrapper = create({
         tagName: 'div',
         classNames: 'cart-shopping__wrapper',
-        children: [this.cartInHeader.cart, this.cartInHeader.goodsCounterBlock]
+        children: [this.cartInHeader.cart, this.cartInHeader.goodsCounterBlock, this.cartInHeader.goodsTotalSumBlock]
       });
       this.component?.appendChild(this.cardWrapper);
     }

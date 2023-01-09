@@ -6,12 +6,14 @@ export class CartInHeader {
   go: (event: Event) => void;
   cart: HTMLElement | null;
   goodsCounterBlock: HTMLElement | null;
+  goodsTotalSumBlock: HTMLElement | null;
 
   constructor(controller: Controller, go: (event: Event) => void) {
     this.controller = controller;
     this.go = go;
     this.cart = null;
     this.goodsCounterBlock = null;
+    this.goodsTotalSumBlock = null;
   }
 
   render = () => {
@@ -41,5 +43,16 @@ export class CartInHeader {
       classNames: 'cart-shopping__goods-counter-wrapper',
       children: [`${amount}`]
     });
+
+    const productItemPrices = this.controller
+      .getCurrentCartProducts()
+      .map((item) => item.product.price * item.amount);
+    const totalSumInHeader = productItemPrices.reduce((prev, curr) => prev + curr, 0);
+
+    this.goodsTotalSumBlock = create({
+      tagName: 'div',
+      classNames: 'cart-shopping__goods-total-wrapper',
+      children: [`${totalSumInHeader}$`]
+    })
   };
 }
