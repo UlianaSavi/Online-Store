@@ -22,7 +22,7 @@ export class Model {
   };
 
   unsubscribe = (index: number) => {
-    this.subscribers.splice(index, 1);
+    this.subscribers.splice(index, 1, () => null);
   };
 
   subscribe = (callback: (state: IAppState, prevState?: IAppState | null) => void): number => {
