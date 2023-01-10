@@ -180,6 +180,11 @@ export class CartList {
       }) || [];
 
     this.component?.remove();
+
+    const params = parseUrlParams();
+    if (params.page) this.pageCounter = +params.page;
+    if (params.pageSize) this.itemsLimit = +params.pageSize;
+
     const inputLimit = create({
       tagName: 'input',
       dataAttr: [
@@ -232,18 +237,17 @@ export class CartList {
     });
 
     // pagination
-    const params = parseUrlParams();
+    if (this.itemsLimit * this.pageCounter - this.itemsLimit >= numInList) {
+      this.pageCounter = Math.ceil(numInList / +inputLimit.value);
+    }
     const lastItem = this.itemsLimit * this.pageCounter;
     const firstItem = lastItem - this.itemsLimit;
     const currentItems = productItem.slice(firstItem, lastItem);
     let countOfPages = Math.ceil(numInList / +inputLimit.value);
+    this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
 
     pageNumber.textContent = `${this.pageCounter}`;
 
-    this.controller.isDisabled(countOfPages, this.pageCounter, btnLeft, btnRight);
-
-    if (params.page) this.pageCounter = +params.page;
-    if (params.pageSize) this.itemsLimit = +params.pageSize;
 
     btnRight.addEventListener('click', () => {
       if (this.pageCounter !== countOfPages) {
