@@ -1,15 +1,27 @@
-// import { isEqual } from '../utils/objects';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const isEqual = require('../utils/objects');
+import { isEqual } from '../utils/objects';
 
-test('Should return true if two objects is equal', () => {
-  const obj1 = {
-    a: 1,
-    b: 2
-  };
-  const obj2 = {
-    a: 1,
-    b: 2
-  };
-  expect(isEqual(obj1, obj2)).toBe(true);
+describe('IsEqual: ', () => {
+  test('Should return true if two objects is equal', () => {
+    const obj1 = {
+      a: 'aaa',
+      b: 'aaa'
+    };
+    const obj2 = {
+      a: 'aaa',
+      b: 'aaa'
+    };
+    expect(isEqual(obj1, obj2)).toBe(true);
+  });
+
+  test('Should return false if two objects is not equal', () => {
+    const obj1 = {
+      a: 'aaa',
+      b: 'aaa'
+    };
+    const obj2 = {
+      a: 'bbb',
+      b: 'bbb'
+    };
+    expect(isEqual(obj1, obj2)).toBe(false);
+  });
 });
