@@ -14,50 +14,60 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
 }
 
 .line {
-  height: 2px;
   width: 80%;
+  height: 2px;
+  margin: 8px auto;
+
   background: $lite-grey;
   border-radius: 5px;
-  margin: 8px auto;
 }
 
 .promo-input,
 .page-input {
-  border-radius: 8px;
-  border: none;
   padding: 5px;
+
   background: $white-opacity;
+  border: none;
+  border-radius: 8px;
+
   transition: all 0.3s;
 }
 
 .promo-input:focus,
 .page-input:focus-visible {
   background: $grey;
+
   transition: all 0.3s;
 }
 
 .page-input {
-  padding-left: 15px;
   width: 8vw;
-  text-align: center;
-  font-family: "Roboto", sans-serif;
+  padding-left: 15px;
+
   font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+
   background-color: $white-opacity;
 }
 
 .total {
+  width: 30%;
   height: 100%;
   min-height: 300px;
-  width: 30%;
+
   background: $dark-grey;
 }
 
 .cart {
   min-height: 300px;
   height: 100%;
+
   color: white;
   border-radius: 8px;
+
   overflow: hidden;
+
   &__wrapper {
     display: flex;
     justify-content: space-around;
@@ -67,9 +77,10 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
 
 .total,
 .product-list {
+  padding: 16px;
+
   background: $dark-grey;
   border-radius: 8px;
-  padding: 16px;
 }
 
 // PRODUCT BLOCK
@@ -78,22 +89,25 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
   width: 60%;
 
   &__header {
-    width: 100%;
-    align-items: center;
     display: flex;
     justify-content: space-between;
-    background: $grey;
+    align-items: center;
+    width: 100%;
     margin-bottom: 10px;
     padding: 8px;
+
+    background: $grey;
     border-radius: 5px;
 
     &__page-numbers {
       .btn {
         min-width: 42px;
-        background: none;
-        font-size: 20px;
-        color: $white-opacity;
         padding: 5px;
+
+        font-size: 20px;
+
+        background: none;
+        color: $white-opacity;
       }
 
       .btn:hover {
@@ -104,16 +118,18 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
 
   .limit__title {
     margin-right: 10px;
+
     vertical-align: middle;
   }
 
   &__item {
-    background: $grey;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     padding: 16px;
+
+    background: $grey;
     border-radius: 5px;
 
     &__number {
@@ -125,7 +141,9 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
       width: 24%;
       max-width: 120px;
       max-height: 200px;
+
       border-radius: 5px;
+
       overflow: hidden;
       &-img {
         width: 100%;
@@ -134,10 +152,10 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
     }
 
     &__details {
-      width: 18%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 18%;
     }
 
     &__descr {
@@ -156,15 +174,17 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
 .item__descr__text {
   width: 100%;
   max-width: 360px;
+  margin-bottom: 25px;
+
   font-size: 14px;
   text-align: center;
-  margin-bottom: 25px;
 }
 
 .item__descr__other {
-  width: 100%;
   display: flex;
   justify-content: space-around;
+  width: 100%;
+
   color: $lite-grey;
 
   .i {
@@ -189,9 +209,10 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
 // TOTAL BLOCK
 
 .total__title {
-  background: $grey;
   margin-bottom: 25px;
   padding: 8px;
+
+  background: $grey;
   border-radius: 5px;
 }
 
@@ -223,19 +244,21 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
   &__num_new-total {
     opacity: 0;
 
-    transition: all .8s ease;
+    transition: all 0.8s ease;
   }
 
   &__num_new-total_active {
-    opacity: 1;
     padding-bottom: 0.5em;
+
+    opacity: 1;
   }
 }
 
 .promo-info {
+  padding: 8px;
+
   background: #3c4044;
   border-radius: 5px;
-  padding: 8px;
 }
 
 .applied-promo-title {
@@ -255,6 +278,7 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
 .btn:disabled:hover {
   color: $white-opacity-disabled;
   background-color: $grey;
+
   cursor: not-allowed;
 }
 
@@ -274,23 +298,20 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
 }
 
 .add-promo {
-  background-color: $orange;
-  border-bottom-left-radius: 1.2em;
-  border-bottom-right-radius: 1.2em;
-  
   position: absolute;
   top: 50%;
 
-  width: 100%;
-  height: 3.2em;
-
-  padding-bottom: 0.5em;
-
   display: flex;
-  gap: 1em;
   justify-content: center;
   align-items: flex-end;
+  gap: 1em;
+  width: 100%;
+  height: 3.2em;
+  padding-bottom: 0.5em;
 
+  background-color: $orange;
+  border-bottom-left-radius: 1.2em;
+  border-bottom-right-radius: 1.2em;
   opacity: 0;
 
   transition: all 0.8s ease;
@@ -300,19 +321,19 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
   }
 
   &__btn {
-    color: $white-opacity;
+    margin: 0;
+    padding: 0;
+
     font-weight: bolder;
     font-size: larger;
 
-    border: none;
+    color: $white-opacity;
     background-color: $orange;
-    
-    padding: 0;
-    margin: 0;
-
-    cursor: pointer;
+    border: none;
 
     transition: all 0.5s ease;
+
+    cursor: pointer;
 
     &:hover {
       color: $grey;
@@ -326,6 +347,7 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
   &__header {
     padding-top: 0.5em;
     padding-bottom: 0.3em;
+
     border-top: 3px solid $lite-grey;
     border-radius: 30%;
   }
@@ -338,10 +360,10 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
   &__promo {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    border-bottom: 1px solid $lite-grey;
-
     padding-top: 0.3em;
     padding-bottom: 0.3em;
+
+    border-bottom: 1px solid $lite-grey;
 
     &:last-child {
       border-bottom: 3px solid $lite-grey;
@@ -350,20 +372,20 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
   }
 
   &__btn {
-    color: $orange;
+    margin: 0;
+    padding: 0;
+
     font-weight: bolder;
     font-size: larger;
 
+    color: $orange;
     border: none;
     background-color: rgba(255, 255, 255, 0);
-    
-    padding: 0 0 0 0;
-    margin: 0;
+
+    transition: all 0.5s ease;
+    transform: rotate(45deg);
 
     cursor: pointer;
-
-    transform: rotate(45deg);
-    transition: all 0.5s ease;
 
     &:hover {
       color: $white-opacity;
