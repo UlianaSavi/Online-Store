@@ -302,6 +302,7 @@ export class Controller {
   };
 
   pushNewCartProduct = (cartProduct: ICartProduct) => {
+    console.log('in push');
     const state = this.model.getState();
     const currCartProd = state.cartProducts;
 

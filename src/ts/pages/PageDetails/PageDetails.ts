@@ -1,4 +1,5 @@
 import { Details } from '../../components/Details/Details';
+import { Header } from '../../components/Header/Header';
 import { Controller } from '../../controllers/controller';
 import { Model } from '../../models/model';
 import { IPageProps } from '../../types';
@@ -11,18 +12,21 @@ export class PageDetails {
   model: Model;
   controller: Controller;
   go: (event: Event) => void;
+  header: Header;
 
   constructor(
     parent: HTMLElement | null,
     model: Model,
     controller: Controller,
-    go: (event: Event) => void
+    go: (event: Event) => void,
+    header: Header
   ) {
     this.parent = parent;
     this.section = null;
     this.model = model;
     this.go = go;
     this.controller = controller;
+    this.header = header;
   }
 
   createDefaultLayer = () => {
@@ -43,7 +47,7 @@ export class PageDetails {
     const state = this.model.getState();
     const product = state.products.find((item) => item.id === props?.params?.productId);
 
-    const details = new Details(this.section, this.go, this.controller);
+    const details = new Details(this.section, this.go, this.controller, this.header);
 
     if (product) {
       details.update({ item: product });
