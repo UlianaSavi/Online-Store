@@ -1,7 +1,5 @@
 @import 'global';
-
-$catalog-bg-color: hsl(206, 6%, 25%);
-$category-text-color: #ffbd59;
+@import 'variables';
 
 $gap-in-grid-container: 0.1em;
 
@@ -22,13 +20,13 @@ $gap-in-grid-container: 0.1em;
   font-size: 1.1em;
   font-weight: 400;
 
-  background-color: $catalog-bg-color;
+  background-color: $grey;
   border-radius: 1em;
 
   &__category {
     padding: 1em 1em;
 
-    color: $category-text-color;
+    color: $orange;
     opacity: 0.8;
 
     transition: color 0.5s;

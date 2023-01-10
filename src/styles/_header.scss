@@ -1,8 +1,5 @@
 @import 'global';
-
-$input-bg-color: hsl(206, 6%, 25%);
-$input-color: rgba(255, 255, 255, 0.94);
-$input-placeholder-color: rgba(255, 255, 255, 0.403);
+@import 'variables';
 
 .header {
   &__wrapper {
@@ -26,40 +23,40 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
   align-self: center;
   padding-right: 0.5em;
 
-  background-color: $input-bg-color;
+  background-color: $grey;
   border-radius: 2.2rem;
-  
+
   transition: all 0.5s;
 
   &__input {
     height: 2.5rem;
     margin-right: 1em;
     padding-left: 1em;
-    
+
     font-family: 'Roboto', sans-serif;
     font-size: medium;
-    
-    color: $input-color;
+
+    color: $white-opacity;
     background: none;
     border: none;
     border-radius: 2.2rem;
-    
+
     outline: none;
 
     &::placeholder {
       font-family: 'Roboto', sans-serif;
-    
+
       color: $input-placeholder-color;
     }
   }
   &__button {
     max-width: 2.5em;
     min-width: 2em;
-    
+
     background: none;
     border: none;
     border-radius: 1rem;
-    
+
     cursor: pointer;
   }
   &__svg {
@@ -67,12 +64,12 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
 
     opacity: 0.5;
 
-    fill: $svg-icons-color;
+    fill: $orange;
 
     &:hover {
       opacity: 1;
 
-      fill: $svg-icons-color;
+      fill: $orange;
     }
   }
 }
@@ -106,12 +103,12 @@ $input-placeholder-color: rgba(255, 255, 255, 0.403);
 
     opacity: 0.5;
 
-    fill: $svg-icons-color;
+    fill: $orange;
 
     &:hover {
       opacity: 1;
 
-      fill: $svg-icons-color;
+      fill: $orange;
     }
   }
 

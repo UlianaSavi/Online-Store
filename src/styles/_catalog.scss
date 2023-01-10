@@ -1,7 +1,5 @@
 @import 'global';
-
-$transparent-orange: #ffbd594d;
-$brown-opacity: #ffa50030;
+@import 'variables';
 
 .catalog__wrapper {
   display: flex;

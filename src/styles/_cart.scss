@@ -1,12 +1,5 @@
 @import 'global';
-
-$grey: hsl(206deg, 6%, 25%);
-$dark-grey: rgb(39, 41, 43);
-$orange: #ffbd59;
-$lite-grey: rgb(255 255 255 / 39%);
-$white-opacity: rgba(255, 255, 255, 0.94);
-$white-opacity-disabled: rgba(255, 255, 255, 0.308);
-$grey-bg: hsl(210, 6%, 25%);
+@import 'variables';
 
 // MAIN
 
@@ -258,7 +251,7 @@ $grey-bg: hsl(210, 6%, 25%);
 .promo-info {
   padding: 8px;
 
-  background: $grey-bg;
+  background: $grey;
   border-radius: 5px;
 }
 

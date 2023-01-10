@@ -1,10 +1,5 @@
 @import 'global';
-
-$popup-blackout: rgba(0, 0, 0, 0.8);
-$input-bg-color: hsl(206, 6%, 25%);
-$input-color: rgba(255, 255, 255, 0.94);
-$input-placeholder-color: rgba(255, 255, 255, 0.403);
-$orange: #ffbd59;
+@import 'variables';
 
 $input-radius: 2em;
 $container-radius: 0.5em;
@@ -111,8 +106,8 @@ $container-radius: 0.5em;
   font-family: 'Roboto', sans-serif;
   font-size: medium;
 
-  color: $input-color;
-  background-color: $input-bg-color;
+  color: $white-opacity;
+  background-color: $grey;
   border: none;
   border-radius: $input-radius;
   outline: none;
@@ -145,7 +140,7 @@ $container-radius: 0.5em;
   padding: 1em;
   max-width: 60%;
 
-  background-color: $input-bg-color;
+  background-color: $grey;
   border-radius: $container-radius;
 }
 
@@ -164,7 +159,7 @@ $container-radius: 0.5em;
   &__image-wrapper {
     padding: 0.2em 0.2em;
 
-    background-color: $input-color;
+    background-color: $white-opacity;
   }
 
   &__image {
@@ -172,7 +167,7 @@ $container-radius: 0.5em;
   }
 
   &__text {
-    color: $input-color;
+    color: $white-opacity;
   }
 
   &__date-n-cvv {
