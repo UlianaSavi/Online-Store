@@ -22,6 +22,6 @@ describe('IsEqual: ', () => {
       a: 'bbb',
       b: 'bbb'
     };
-    expect(isEqual(obj1, obj2)).toBe(false);
+    expect(isEqual(obj1, obj2)).toBeFalsy();
   });
 });

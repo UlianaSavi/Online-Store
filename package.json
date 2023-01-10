@@ -60,6 +60,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "jsdom": "^21.0.0",
     "metro4-dist": "^4.5.0"
   }
 }
