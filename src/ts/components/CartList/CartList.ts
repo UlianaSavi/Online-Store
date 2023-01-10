@@ -54,6 +54,10 @@ export class CartList {
 
         minusBtn.addEventListener('click', () => {
           this.controller.decreaseAmountOfExistingCartProduct(item.product, 1);
+          if (this.controller.getCurrentCartProducts().length === 0) {
+            this.cartPage.unmount();
+            this.cartPage.mount();
+          }
         });
 
         plusBtn.addEventListener('click', () => {
