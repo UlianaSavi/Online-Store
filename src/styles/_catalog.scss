@@ -1,6 +1,7 @@
 @import 'global';
 
 $transparent-orange: #ffbd594d;
+$brown-opacity: #ffa50030;
 
 .catalog__wrapper {
   display: flex;
@@ -48,7 +49,7 @@ $transparent-orange: #ffbd594d;
       height: 1px;
       margin: 0.3125em 0 0.8125em 0;
       
-      background: #ffa50030;
+      background: $brown-opacity;
     }
   }
 

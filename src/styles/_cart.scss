@@ -6,6 +6,7 @@ $orange: #ffbd59;
 $lite-grey: rgb(255 255 255 / 39%);
 $white-opacity: rgba(255, 255, 255, 0.94);
 $white-opacity-disabled: rgba(255, 255, 255, 0.308);
+$grey-bg: hsl(210, 6%, 25%);
 
 // MAIN
 
@@ -257,7 +258,7 @@ $white-opacity-disabled: rgba(255, 255, 255, 0.308);
 .promo-info {
   padding: 8px;
 
-  background: #3c4044;
+  background: $grey-bg;
   border-radius: 5px;
 }
 
