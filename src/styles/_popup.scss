@@ -11,45 +11,55 @@ $container-radius: 0.5em;
 
 .popup {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: $popup-blackout;
   top: 0;
   left: 0;
-  opacity: 0;
-  visibility: hidden;
-  overflow-y: auto;
-  overflow-x: hidden;
-  transition: all 0.8s ease 0s;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  background-color: $popup-blackout;
+  opacity: 0;
+
+  transition: all 0.8s ease 0s;
+
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   &__body {
+    display: flex;
     align-self: center;
+    gap: 1em;
     min-height: 100%;
     padding: 30px 10px;
-    display: flex;
-    gap: 1em;
   }
 
   &__content {
+    position: relative;
+
     align-self: center;
-    background-color: $main-color;
     max-width: 700px;
     min-width: 300px;
-    position: relative;
+
+    background-color: $main-color;
     border-radius: $container-radius;
-    transition: all 0.8s ease 0s;
     opacity: 0;
+
+    transition: all 0.8s ease 0s;
     transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
   }
 
   .cross {
-    font-size: 2rem;
-    color: $orange;
-    cursor: pointer;
     margin-top: 70px;
+
+    font-size: 2rem;
+
+    color: $orange;
+
+    cursor: pointer;
   }
 
   &__form {
@@ -63,16 +73,20 @@ $container-radius: 0.5em;
   }
 
   &__confirm {
-    background: none;
-    padding: 0.5em;
     margin: 1em 0;
+    padding: 0.5em;
+
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+
+    color: $text-color;
+    background: none;
     border: 2px solid $text-color;
     border-radius: $container-radius;
-    text-transform: uppercase;
-    color: $text-color;
+
+    transition: all 0.8s ease;
+
     cursor: pointer;
-    font-family: "Roboto", sans-serif;
-    transition: all .8s ease;
 
     &:hover {
       color: $orange;
@@ -89,28 +103,32 @@ $container-radius: 0.5em;
 }
 
 .input {
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  padding-left: 1em;
+  height: 2.5rem;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: medium;
+
+  color: $input-color;
   background-color: $input-bg-color;
   border: none;
   border-radius: $input-radius;
-  height: 2.5rem;
-  padding-left: 1em;
-  margin-right: 1em;
-  margin-bottom: 0.5em;
-  font-size: medium;
-  color: $input-color;
   outline: none;
-  font-family: 'Roboto', sans-serif;
 
   &::placeholder {
-    color: $input-placeholder-color;
     font-family: 'Roboto', sans-serif;
+
+    color: $input-placeholder-color;
   }
 
   //убираем стрелочки у типа number
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
     margin: 0;
+
+    -webkit-appearance: none;
   }
   -moz-appearance: textfield;
 }
@@ -122,11 +140,12 @@ $container-radius: 0.5em;
 }
 
 .credit-card-container {
-  background-color: $input-bg-color;
   margin: 1em;
   margin-top: 0;
   padding: 1em;
   max-width: 60%;
+
+  background-color: $input-bg-color;
   border-radius: $container-radius;
 }
 
@@ -143,8 +162,9 @@ $container-radius: 0.5em;
   }
 
   &__image-wrapper {
-    background-color: $input-color;
     padding: 0.2em 0.2em;
+
+    background-color: $input-color;
   }
 
   &__image {
@@ -163,8 +183,9 @@ $container-radius: 0.5em;
   &__text-n-input {
     display: flex;
     align-items: center;
-    white-space: nowrap;
     gap: 0.5em;
+
+    white-space: nowrap;
   }
 
   .input {
@@ -174,14 +195,17 @@ $container-radius: 0.5em;
 
 // .popup.open {
 .popup.active {
-  opacity: 1;
-  visibility: visible;
   z-index: 10;
+
+  opacity: 1;
+
+  visibility: visible;
 }
 
 .popup.active .popup__content {
-  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
   opacity: 1;
+
+  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
 }
 
 // validity
@@ -195,5 +219,6 @@ $container-radius: 0.5em;
 // confirm
 .confirm-text {
   padding: 2em 1.5em;
+
   color: $orange;
 }

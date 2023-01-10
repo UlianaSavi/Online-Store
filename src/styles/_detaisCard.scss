@@ -11,34 +11,37 @@ $black-opacity: rgb(0 0 0 / 70%);
   width: 100%;
   height: 100%;
   padding: 1em;
-  
+
   font-size: medium;
 
   color: $white-opacity;
   background-color: $grey;
   border-radius: 0.3125em;
-  
+
   overflow: hidden;
 }
 
 .link__nav {
   display: flex;
   align-items: center;
-  background: $dark-grey;
   margin: 0.5em 0;
+
+  background: $dark-grey;
   border-radius: 0.3125em;
 
   &-wrapper {
-    min-height: 3.125em;
     display: flex;
     align-items: center;
+    min-height: 3.125em;
     padding: 0.5em;
+
     text-transform: uppercase;
   }
 
   &-item {
-    text-decoration: none;
     margin: 0 1.875em;
+
+    text-decoration: none;
   }
 }
 
@@ -49,24 +52,27 @@ $black-opacity: rgb(0 0 0 / 70%);
 .product__card__info {
   display: flex;
   align-items: center;
-  background: $dark-grey;
-  padding: 1em;
-  border-radius: 0.3125em;
   align-content: center;
+  padding: 1em;
+
+  background: $dark-grey;
+  border-radius: 0.3125em;
 
   &-slides {
     display: flex;
-    width: 10%;
     flex-direction: column;
+    width: 10%;
 
     &-slide__container {
       width: 100%;
       max-width: 5em;
       max-height: 4.25em;
-      overflow: hidden;
       margin: 0 0 0.625em 0.625em;
+
       border-radius: 0.3125em;
+
       cursor: pointer;
+      overflow: hidden;
     }
 
     &-slide__container.active {
@@ -74,24 +80,27 @@ $black-opacity: rgb(0 0 0 / 70%);
     }
 
     .slides-image {
-      border-radius: 0.3125em;
       width: 100%;
+
+      border-radius: 0.3125em;
     }
   }
 }
 
 .product__card__img {
-  width: 35%;
   display: flex;
-  margin-right: 20px;
+  width: 35%;
   height: 500px;
+  margin-right: 20px;
 
   &-img {
-    border-radius: 0.3125em;
     display: block;
-    object-fit: cover;
     max-width: 100%;
+
+    border-radius: 0.3125em;
     box-shadow: rgb(0 0 0 / 70%) 0px 0px 19px 0px;
+
+    object-fit: cover;
   }
 }
 
@@ -101,16 +110,20 @@ $black-opacity: rgb(0 0 0 / 70%);
 
   &-item {
     width: 100%;
+    margin-bottom: 0.5em;
+
+    text-align: center;
+
     background: $grey;
     border: 1px solid $orange;
     border-radius: 0.3125em;
-    margin-bottom: 0.5em;
+
     overflow: hidden;
-    text-align: center;
 
     &__title {
-      background: $dark-grey;
       padding: 0.5em;
+
+      background: $dark-grey;
     }
   }
 
@@ -120,14 +133,16 @@ $black-opacity: rgb(0 0 0 / 70%);
 }
 
 .product__card__add {
-  width: 22%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  width: 22%;
   height: 100%;
   min-height: 280px;
+
+  text-align: center;
+
   background: #3c4044;
   border: 1px solid orange;
   border-radius: 0.3em;

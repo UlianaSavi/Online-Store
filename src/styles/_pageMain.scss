@@ -1,12 +1,12 @@
 @import 'global';
 
 $catalog-bg-color: hsl(206, 6%, 25%);
-$category-text-color:  #ffbd59;
+$category-text-color: #ffbd59;
 
 $gap-in-grid-container: 0.1em;
 
 .main {
-  &__wrapper{
+  &__wrapper {
     margin: 0 1em;
   }
 
@@ -18,17 +18,23 @@ $gap-in-grid-container: 0.1em;
 .catalog-list {
   display: flex;
   justify-content: space-around;
-  background-color:  $catalog-bg-color;
-  border-radius: 1em;
+
   font-size: 1.1em;
   font-weight: 400;
 
+  background-color: $catalog-bg-color;
+  border-radius: 1em;
+
   &__category {
     padding: 1em 1em;
-    cursor: pointer;
+
     color: $category-text-color;
     opacity: 0.8;
-    transition: color .5s;
+
+    transition: color 0.5s;
+
+    cursor: pointer;
+
     &:hover {
       opacity: 1;
     }
@@ -37,52 +43,66 @@ $gap-in-grid-container: 0.1em;
 
 .popular-items {
   &__wrapper {
-    margin-top: 1em;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-areas: "most other"
-                          "most other";
+    grid-template-areas:
+      'most other'
+      'most other';
     gap: $gap-in-grid-container;
+    margin-top: 1em;
+
     border-radius: 1%;
   }
+
   &__img {
     width: 100%;
     height: 100%;
+
     border-radius: 1%;
+
+    transition: filter 0.5s;
+
     object-fit: cover;
     filter: brightness(75%);
-    transition: filter .5s;
-    
+
     &:hover {
       filter: brightness(100%);
     }
   }
+
   &__most-popular-item {
     grid-area: most;
+
     .popular-items__item {
       height: 100%;
     }
   }
+
   &__others-popular-items {
-    grid-area: other;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     gap: $gap-in-grid-container;
+    grid-area: other;
   }
+
   &__item {
     position: relative;
   }
+
   &__name-and-price {
     position: absolute;
-    color: $text-color;
     top: 0;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    background-color: rgba(9, 54, 94, 0.286);
+
     width: 100%;
+    padding: 0.5em 0;
+
     font-size: 0.9em;
+
+    color: $text-color;
+    background-color: rgba(9, 54, 94, 0.286);
   }
+
   &__name-and-price-wrapper {
     margin-left: 0.5em;
   }
