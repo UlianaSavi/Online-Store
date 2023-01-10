@@ -27,17 +27,12 @@ $container-radius: 0.5em;
   &__body {
     display: flex;
     align-self: center;
-    gap: 1em;
-    min-height: 100%;
-    padding: 30px 10px;
+    gap: 1rem;
+    margin: 0 0.5rem;
   }
 
   &__content {
     position: relative;
-
-    align-self: center;
-    max-width: 700px;
-    min-width: 300px;
 
     background-color: $main-color;
     border-radius: $container-radius;
@@ -48,8 +43,6 @@ $container-radius: 0.5em;
   }
 
   .cross {
-    margin-top: 70px;
-
     font-size: 2rem;
 
     color: $orange;
@@ -68,8 +61,8 @@ $container-radius: 0.5em;
   }
 
   &__confirm {
-    margin: 1em 0;
-    padding: 0.5em;
+    margin: 1rem 0;
+    padding: 0.5rem;
 
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
@@ -94,13 +87,13 @@ $container-radius: 0.5em;
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 1em;
+  padding: 0 1rem;
 }
 
 .input {
-  margin-right: 1em;
-  margin-bottom: 0.5em;
-  padding-left: 1em;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
   height: 2.5rem;
 
   font-family: 'Roboto', sans-serif;
@@ -135,29 +128,34 @@ $container-radius: 0.5em;
 }
 
 .credit-card-container {
-  margin: 1em;
+  margin: 1rem;
   margin-top: 0;
-  padding: 1em;
-  max-width: 60%;
+  padding: 1rem;
+  max-width: 65%;
 
   background-color: $grey;
   border-radius: $container-radius;
+  
+  @media (max-width: 466px) {
+    max-width: 80%;
+  }
 }
+
 
 .credit-card {
   display: flex;
   flex-direction: column;
-  padding: 0 1em;
+  padding: 0 1rem;
 
   &__image-n-input {
     display: grid;
     grid-template-columns: 10% 90%;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.5rem;
   }
 
   &__image-wrapper {
-    padding: 0.2em 0.2em;
+    padding: 0.2rem 0.2rem;
 
     background-color: $white-opacity;
   }
@@ -172,19 +170,29 @@ $container-radius: 0.5em;
 
   &__date-n-cvv {
     display: flex;
-    gap: 0.5em;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   &__text-n-input {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 
     white-space: nowrap;
   }
 
   .input {
     background-color: rgba(255, 255, 255, 0.137);
+
+    &__date {
+      width: 4rem;
+    }
+
+    &__cvv {
+      width: 3.3rem;
+    }
   }
 }
 
@@ -213,7 +221,7 @@ $container-radius: 0.5em;
 
 // confirm
 .confirm-text {
-  padding: 2em 1.5em;
+  padding: 2rem 1.5rem;
 
   color: $orange;
 }
