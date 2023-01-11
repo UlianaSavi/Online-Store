@@ -1,3 +1,4 @@
+import { Header } from '../../components/Header/Header';
 import { Controller } from '../../controllers/controller';
 import { Model } from '../../models/model';
 import { create } from '../../utils/create';
@@ -9,12 +10,14 @@ export class PageMain {
   section: HTMLElement | null;
   go: (event: Event) => void;
   controller: Controller;
+  header: Header;
 
   constructor(
     model: Model,
     parent: HTMLElement | null,
     go: (event: Event) => void,
-    controller: Controller
+    controller: Controller,
+    header: Header
   ) {
     this.model = model;
     this.parent = parent;
@@ -22,6 +25,7 @@ export class PageMain {
     this.section = null;
     this.go = go;
     this.controller = controller;
+    this.header = header;
   }
 
   createDefaultLayer = () => {
@@ -37,6 +41,9 @@ export class PageMain {
   };
 
   mount = () => {
+    if (this.header.searchWrapper !== null) {
+      this.header.searchWrapper.style.visibility = 'hidden';
+    }
     this.createDefaultLayer();
 
     const toFilterPageBtn = create({

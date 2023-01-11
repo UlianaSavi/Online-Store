@@ -54,6 +54,9 @@ export class Catalog {
   };
 
   mount = (props?: IPageProps) => {
+    if (this.header.searchWrapper !== null) {
+      this.header.searchWrapper.style.visibility = 'visible';
+    }
     this.createDefaultLayer();
 
     const state = this.model.getState();
@@ -62,7 +65,8 @@ export class Catalog {
       this.section,
       this.controller.setFilterByCategory,
       this.controller.setFilterByName,
-      this.controller.clearData
+      this.controller.clearData,
+      this.header
     );
     const products = new Products(
       this.section,

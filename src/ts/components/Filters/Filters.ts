@@ -1,4 +1,5 @@
 import { create } from '../../utils/create';
+import { Header } from '../Header/Header';
 
 interface IFilterProps {
   categories: Array<{ name: string; count: number; baseCount: number }>;
@@ -16,18 +17,21 @@ export class Filters {
   onFilterClick: (item: string, enabled: boolean) => void;
   onNameClick: (item: string, enabled: boolean) => void;
   onReSetClick: () => void;
+  header: Header;
 
   constructor(
     parent: HTMLElement | null,
     onFilterClick: (item: string, enabled: boolean) => void,
     onNameClick: (item: string, enabled: boolean) => void,
-    onReSetClick: () => void
+    onReSetClick: () => void,
+    header: Header
   ) {
     this.parent = parent;
     this.component = null;
     this.onFilterClick = onFilterClick;
     this.onNameClick = onNameClick;
     this.onReSetClick = onReSetClick;
+    this.header = header;
   }
 
   update = (props?: IFilterProps) => {
@@ -44,7 +48,12 @@ export class Filters {
       dataAttr: [['id', 'btnReset']]
     });
 
-    btnReset.addEventListener('click', () => this.onReSetClick());
+    btnReset.addEventListener('click', () => {
+      this.onReSetClick();
+      localStorage.setItem('searchInput', '');
+      this.header.renderSearchWrapper();
+      this.header.renderCartWrapper();
+    });
 
     const btnCopy = create({
       tagName: 'button',
