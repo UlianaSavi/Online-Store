@@ -97,7 +97,7 @@ export class Popup {
       } else {
         payLogo.src = 'assets/icons/credit-card-regular.svg';
       }
-      cardNumber.value = cardNumber.value.substring(0, 15);
+      cardNumber.value = cardNumber.value.substring(0, 16);
     });
 
     const inputDate = create({
