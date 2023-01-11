@@ -128,6 +128,7 @@ export class Popup {
           inputDate.value = '';
         }
       }
+      inputDate.value = inputDate.value.substring(0, 5)
     });
 
     const inputCVV = create({
