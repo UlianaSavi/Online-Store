@@ -30,13 +30,11 @@ export class App {
   main: HTMLElement | null;
   footer: HTMLElement | null;
   root: HTMLElement;
-  router: Router | null;
 
   constructor(root: HTMLElement) {
     this.root = root;
     this.main = null;
     this.footer = null;
-    this.router = null;
   }
 
   createDefaultLayer = () => {
@@ -62,7 +60,7 @@ export class App {
 
     const model = new Model(this.BASE_STATE);
     const controller = new Controller(model);
-    this.router = new Router(this.main);
+    const router = new Router(this.main);
 
     if (localStorage.length !== 0) {
       controller.getCartItemsFromStorage();
@@ -73,20 +71,13 @@ export class App {
 
     // Dinamic components
 
-    const header = new Header(this.main, this.router.route, controller);
+    const header = new Header(this.main, router.route, controller);
     header.update();
-    const pageMain = new PageMain(model, this.main, this.router.route, controller);
+    const pageMain = new PageMain(model, this.main, router.route, controller);
     const pageCart = new PageCart(this.main, model, controller, header);
-    const pageCatalog = new Catalog(
-      this.main,
-      model,
-      controller,
-      this.router.route,
-      pageCart,
-      header
-    );
-    const page404 = new Page404(this.main, this.router.route);
-    const pageDetails = new PageDetails(this.main, model, controller, this.router.route);
+    const pageCatalog = new Catalog(this.main, model, controller, router.route, pageCart, header);
+    const page404 = new Page404(this.main, router.route);
+    const pageDetails = new PageDetails(this.main, model, controller, router.route);
     const popup = new Popup(this.main, controller);
     popup.mount();
     controller.setPopup(popup);
@@ -160,7 +151,7 @@ export class App {
     };
 
     // Router
-    this.router.initRouter(routes);
+    router.initRouter(routes);
 
     model.fire();
   };
