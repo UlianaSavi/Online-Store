@@ -57,7 +57,7 @@ export class Popup {
     }) as HTMLInputElement;
     inputAddress.required = true;
     inputAddress.title = 'Must contain at least three words, each at least 5 characters long';
-    inputAddress.pattern = '[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}\\b.+?[A-Za-z]{5,}';
+    inputAddress.pattern = '[A-Za-z0-9/,.;-]{5,}\\b.+?[A-Za-z0-9/,.;-]{5,}\\b.+?[A-Za-z0-9/,.;-]{5,}';
 
     const inputEmail = create({
       tagName: 'input',
