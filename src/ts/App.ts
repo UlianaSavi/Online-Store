@@ -75,7 +75,7 @@ export class App {
 
     const header = new Header(this.main, this.router.route, controller);
     header.update();
-    const pageMain = new PageMain(model, this.main, this.router.route, controller);
+    const pageMain = new PageMain(model, this.main, this.router.route, controller, header);
     const pageCart = new PageCart(this.main, model, controller, header);
     const pageCatalog = new Catalog(
       this.main,
@@ -85,7 +85,7 @@ export class App {
       pageCart,
       header
     );
-    const page404 = new Page404(this.main, this.router.route);
+    const page404 = new Page404(this.main, this.router.route, header);
     const pageDetails = new PageDetails(this.main, model, controller, this.router.route, header);
     const popup = new Popup(this.main, controller);
     popup.mount();
