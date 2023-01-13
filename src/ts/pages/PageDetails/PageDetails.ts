@@ -32,7 +32,7 @@ export class PageDetails {
   createDefaultLayer = () => {
     this.section = create({
       tagName: 'section',
-      classNames: 'details container',
+      classNames: 'details',
       parent: this.parent
     });
   };
