@@ -133,21 +133,21 @@ export class Products {
         tagName: 'div',
         classNames:
           !props?.view || props?.view === 'viewMain'
-            ? 'products__table__item'
-            : 'products__table__item view__big',
+            ? 'products-table__item'
+            : 'products-table__item view__big',
         children: [
           create({
             tagName: 'div',
-            classNames: 'products__table__item-title',
+            classNames: 'products-table__item-title',
             children: item.name
           }),
           create({
             tagName: 'div',
-            classNames: 'products__table__item-inner',
+            classNames: 'products-table__item-inner',
             children: [
               create({
                 tagName: 'div',
-                classNames: 'products__table__item-img',
+                classNames: 'products-table__item-img',
                 children: [
                   create({
                     tagName: 'img',
@@ -158,7 +158,7 @@ export class Products {
               }),
               create({
                 tagName: 'div',
-                classNames: 'products__table__item-info',
+                classNames: 'products-table__item-info',
                 children: [
                   create({
                     tagName: 'span',
@@ -279,7 +279,7 @@ export class Products {
         }),
         create({
           tagName: 'div',
-          classNames: 'products__table',
+          classNames: 'products-table',
           children: productItem
         }),
         titleEmpty
