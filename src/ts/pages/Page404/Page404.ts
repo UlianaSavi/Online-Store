@@ -26,7 +26,6 @@ export class Page404 {
       tagName: 'a',
       classNames: 'text__link-to-main',
       dataAttr: [['href', '/']],
-      // children: 'Go back home'
       children: 'Go back home'
     });
 

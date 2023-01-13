@@ -28,23 +28,6 @@ export class SearchInHeader {
         localStorage.setItem('searchInput', this.searchInput.value);
         this.controller.addSearching(this.searchInput.value);
       }
-      // const nodelist = this.parent?.children;
-      // const divyArray = Array.prototype.slice.call(nodelist);
-      // console.log(...divyArray);
-
-      // if (divyArray.map((item) => item.classList.contains('catalog'))) {
-      //   localStorage.setItem('this.searchInput', this.searchInput.value);
-      //   this.controller.addSearching(this.searchInput.value);
-      // } else {
-      //   this.searchInput.value = '';
-      // }
-
-      // if (this.parent?.children.item(0 - 4)?.classList.contains('catalog')) {
-      //   localStorage.setItem('this.searchInput', this.searchInput.value);
-      //   this.controller.addSearching(this.searchInput.value);
-      // } else {
-      //   this.searchInput.value = '';
-      // }
     });
 
     this.searchButton = create({

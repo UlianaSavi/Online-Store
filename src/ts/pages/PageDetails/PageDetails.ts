@@ -60,9 +60,6 @@ export class PageDetails {
       if (isEqual(state.products, prevState?.products)) {
         return;
       }
-      // if (!state.products.find((item) => item.id === props?.params?.productId)) {
-      //   window.location.pathname = '404';
-      // }
       const items = [...new Set(state.products.map((item) => item).filter((item) => !!item))];
 
       details.update({

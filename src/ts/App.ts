@@ -38,11 +38,6 @@ export class App {
   }
 
   createDefaultLayer = () => {
-    // this.header = create({
-    //   tagName: 'header',
-    //   dataAttr: [['id', 'header']],
-    //   parent: this.root
-    // });
     this.main = create({
       tagName: 'main',
       dataAttr: [['id', 'main']],
@@ -69,7 +64,7 @@ export class App {
     const footer = new Footer(this.footer);
     footer.mount();
 
-    // Dinamic components
+    // Dynamic components
 
     const header = new Header(this.main, router.route, controller);
     header.update();

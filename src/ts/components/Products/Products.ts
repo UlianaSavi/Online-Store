@@ -152,7 +152,7 @@ export class Products {
                   create({
                     tagName: 'img',
                     classNames: 'img',
-                    dataAttr: [['src', item?.images?.at(0) || '']] // img
+                    dataAttr: [['src', item?.images?.at(0) || '']]
                   })
                 ]
               }),
