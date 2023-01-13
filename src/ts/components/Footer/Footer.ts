@@ -19,7 +19,7 @@ export class Footer {
       classNames: 'footer__wrapper',
       children: [
         create({
-          tagName: 'section',
+          tagName: 'div',
           classNames: 'footer__signature',
           children: [
             create({
@@ -70,7 +70,7 @@ export class Footer {
           ]
         }),
         create({
-          tagName: 'section',
+          tagName: 'div',
           classNames: 'footer__course',
           children: [
             create({

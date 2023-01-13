@@ -44,7 +44,7 @@ export class App {
       parent: this.root
     });
     this.footer = create({
-      tagName: 'footer',
+      tagName: 'div',
       dataAttr: [['id', 'footer']],
       parent: this.root
     });
