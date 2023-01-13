@@ -2,10 +2,11 @@
 @use '../node_modules/metro4-dist/css/metro-components.min.css';
 
 // Custom
+@use './styles/variables';
+@use './styles/global';
 @use './styles/footer';
 @use './styles/header';
-@use './styles/global';
-@use './styles/main';
+@use './styles/pageMain';
 @use './styles/catalog';
 @use './styles/detaisCard.scss';
 @use './styles/page404';

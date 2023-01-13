@@ -47,7 +47,6 @@ module.exports = {
     new EslintPlugin({ extensions: 'ts' })
   ],
   output: {
-    // Для изображений отведём отдельную папку в *dist*
     assetModuleFilename: 'assets/[name][ext]',
     filename: '[name].[contenthash].js',
     clean: true,

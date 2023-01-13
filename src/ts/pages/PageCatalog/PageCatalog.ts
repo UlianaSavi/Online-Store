@@ -41,7 +41,7 @@ export class Catalog {
   createDefaultLayer = () => {
     this.section = create({
       tagName: 'section',
-      classNames: 'catalog container catalog__wrapper',
+      classNames: 'catalog',
       parent: this.parent
     });
   };

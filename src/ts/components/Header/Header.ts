@@ -29,11 +29,18 @@ export class Header {
   update = () => {
     this.render();
   };
-
+  
   render = () => {
     this.component?.remove();
     this.cartInHeader.render();
     this.searchInHeader.render();
+    
+    this.searchInHeader.searchInput?.addEventListener('input', () => {
+      this.searchWrapper?.classList.add('search_oninput');
+      if (this.searchInHeader.searchInput?.value === '') {
+        this.searchWrapper?.classList.remove('search_oninput');
+      }
+    })
 
     const linkToMain = create({
       tagName: 'a',

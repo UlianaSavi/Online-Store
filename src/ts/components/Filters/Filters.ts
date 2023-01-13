@@ -89,7 +89,7 @@ export class Filters {
 
       const element = create({
         tagName: 'div',
-        classNames: 'filters__item__list__item',
+        classNames: 'filters__item-list-wrapper',
         children: [
           checkBox,
           create({
@@ -100,7 +100,7 @@ export class Filters {
           }),
           create({
             tagName: 'span',
-            classNames: 'list__name',
+            classNames: 'filters__item-name',
             children: `(${item.count}/${item.baseCount})`
           })
         ]
@@ -126,7 +126,7 @@ export class Filters {
       }) as HTMLInputElement;
       const element = create({
         tagName: 'div',
-        classNames: 'filters__item__list__item',
+        classNames: 'filters__item-list-wrapper',
         children: [
           checkBox,
           create({
@@ -137,7 +137,7 @@ export class Filters {
           }),
           create({
             tagName: 'span',
-            classNames: 'list__name',
+            classNames: 'filters__item-name',
             children: `(${item.count}/${item.baseCount})`
           })
         ]
@@ -149,7 +149,7 @@ export class Filters {
 
     const titleSubline = create({
       tagName: 'div',
-      classNames: 'filters__item__title__subline'
+      classNames: 'filters__item-title-subline'
     });
 
     const rangeInputPrice = create({
@@ -193,7 +193,7 @@ export class Filters {
         }),
         create({
           tagName: 'div',
-          classNames: 'filters__items',
+          classNames: 'filters__items-wrapper',
           children: [
             create({
               tagName: 'div',
@@ -201,13 +201,13 @@ export class Filters {
               children: [
                 create({
                   tagName: 'h3',
-                  classNames: 'filters__item__title',
+                  classNames: 'filters__item-title',
                   children: 'Category'
                 }),
                 titleSubline,
                 create({
                   tagName: 'div',
-                  classNames: 'filters__item__list',
+                  classNames: 'filters__item-list',
                   children: categoryItem
                 })
               ]
@@ -218,7 +218,7 @@ export class Filters {
               children: [
                 create({
                   tagName: 'h3',
-                  classNames: 'filters__item__title',
+                  classNames: 'filters__item-title',
                   children: 'Name'
                 }),
                 titleSubline,
@@ -235,7 +235,7 @@ export class Filters {
               children: [
                 create({
                   tagName: 'h3',
-                  classNames: 'filters__item__title',
+                  classNames: 'filters__item-title',
                   children: 'Price'
                 }),
                 titleSubline,
@@ -249,7 +249,7 @@ export class Filters {
                       children: [
                         create({
                           tagName: 'span',
-                          classNames: 'range__text__span',
+                          classNames: 'range__span',
                           children: [
                             'From ',
                             create({
@@ -284,7 +284,7 @@ export class Filters {
               children: [
                 create({
                   tagName: 'h3',
-                  classNames: 'filters__item__title',
+                  classNames: 'filters__item-title',
                   children: 'Stock'
                 }),
                 titleSubline,
@@ -298,7 +298,7 @@ export class Filters {
                       children: [
                         create({
                           tagName: 'span',
-                          classNames: 'range__text__span',
+                          classNames: 'range__span',
                           children: [
                             'From ',
                             create({

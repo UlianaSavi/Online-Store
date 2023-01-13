@@ -13,7 +13,12 @@ export class Details {
   controller: Controller;
   header: Header;
 
-  constructor(parent: HTMLElement | null, go: (event: Event) => void, controller: Controller, header: Header) {
+  constructor(
+    parent: HTMLElement | null,
+    go: (event: Event) => void,
+    controller: Controller,
+    header: Header
+  ) {
     this.parent = parent;
     this.component = null;
     this.go = go;
@@ -46,11 +51,11 @@ export class Details {
     const slidesBlock = props?.item.images.map((image) => {
       const slides = create({
         tagName: 'div',
-        classNames: 'product__card__info-slides-slide__container',
+        classNames: 'product__slides-container',
         children: [
           create({
             tagName: 'img',
-            classNames: 'slides-image',
+            classNames: 'product__slides-image',
             dataAttr: [
               ['src', image || ''],
               ['alt', 'Product image']
@@ -68,7 +73,7 @@ export class Details {
 
     const slides = create({
       tagName: 'div',
-      classNames: 'product__card__info-slides',
+      classNames: 'product__slides',
       children: slidesBlock
     });
 
@@ -171,10 +176,16 @@ export class Details {
       ]
     });
 
+    const slidesNImage = create({
+      tagName: 'div',
+      classNames: 'product__images-wrapper',
+      children: [slides, mainImg]
+    });
+
     const productitem = create({
       tagName: 'div',
-      classNames: 'product__card__info',
-      children: [slides, mainImg, description, add]
+      classNames: 'product__card-info',
+      children: [slidesNImage, description, add]
     });
 
     const linkHome = create({

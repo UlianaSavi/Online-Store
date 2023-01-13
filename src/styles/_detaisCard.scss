@@ -1,95 +1,129 @@
 @import 'global';
-
-$grey: hsl(206deg, 6%, 25%);
-$dark-grey: rgb(39, 41, 43);
-$orange: #ffbd59;
-$lite-grey: rgb(255 255 255 / 39%);
-$white-opacity: rgba(255, 255, 255, 0.94);
-$black-opacity: rgb(0 0 0 / 70%);
+@import 'variables';
 
 .details__wrapper {
   width: 100%;
   height: 100%;
   padding: 1em;
+
+  font-size: medium;
+
+  color: $white-opacity;
   background-color: $grey;
   border-radius: 0.3125em;
-  font-size: medium;
-  color: $white-opacity;
-  border-radius: 0.3125em;
+
   overflow: hidden;
 }
 
-.link__nav {
-  display: flex;
-  align-items: center;
-  background: $dark-grey;
-  margin: 0.5em 0;
-  border-radius: 0.3125em;
-
-  &-wrapper {
-    min-height: 3.125em;
+.link {
+  &__nav {
     display: flex;
     align-items: center;
-    padding: 0.5em;
-    text-transform: uppercase;
+    
+    background: $dark-grey;
+    border-radius: 0.3125em;
   }
-
-  &-item {
-    text-decoration: none;
-    margin: 0 1.875em;
-  }
-}
-
-.product__card-title {
-  text-align: center;
-}
-
-.product__card__info {
-  display: flex;
-  align-items: center;
-  background: $dark-grey;
-  padding: 1em;
-  border-radius: 0.3125em;
-  align-content: center;
-
-  &-slides {
+  
+  &__nav-wrapper {
     display: flex;
-    width: 10%;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    min-height: 3.125em;
+    padding: 0.5em;
+    
+    text-transform: uppercase;
+
+    @media (max-width: 550px) {
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+  }
+
+  &__nav-item {    
+    text-decoration: none;
+  }
+}
+
+.product {
+  &__card-title {
+    text-align: center;
+  }
+
+  &__card-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+  
+    background: $dark-grey;
+    border-radius: 5px;
+  
+  }
+
+  &__images-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+
+    @media (max-width: 850px) {
+      flex-direction: column;
+    }
+  }
+  
+  &__slides {
+    display: flex;
     flex-direction: column;
+    width: 15%;
+    min-width: 3rem;
+    gap: 0.5rem;
 
-    &-slide__container {
-      width: 100%;
-      max-width: 5em;
-      max-height: 4.25em;
-      overflow: hidden;
-      margin: 0 0 0.625em 0.625em;
-      border-radius: 0.3125em;
-      cursor: pointer;
+    @media (max-width: 850px) {
+      flex-direction: row;
+      width: 30%;
+      height: 30%;
     }
+  }
 
-    &-slide__container.active {
-      box-shadow: #ffbd59 0px 0px 6px 0px;
-    }
+  &__slide-container {
+    width: 100%;
+    max-width: 5rem;
+    
+    border-radius: 5px;
+    
+    cursor: pointer;
+    overflow: hidden;
+  }
 
-    .slides-image {
-      border-radius: 0.3125em;
-      width: 100%;
-    }
+  &__slides-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    border-radius: 5px;
+  }
+
+  &__slide-container.active {
+    box-shadow: $orange 0px 0px 6px 0px;
   }
 }
 
 .product__card__img {
-  width: 35%;
   display: flex;
-  margin-right: 20px;
+  width: 70%;
   height: 500px;
+  margin-right: 20px;
 
   &-img {
-    border-radius: 0.3125em;
     display: block;
-    object-fit: cover;
     max-width: 100%;
+
+    border-radius: 5px;
     box-shadow: rgb(0 0 0 / 70%) 0px 0px 19px 0px;
+
+    object-fit: cover;
   }
 }
 
@@ -99,44 +133,50 @@ $black-opacity: rgb(0 0 0 / 70%);
 
   &-item {
     width: 100%;
-    background: $grey;
-    border: 1px solid $orange;
-    border-radius: 0.3125em;
-    margin-bottom: 0.5em;
-    overflow: hidden;
+    margin-bottom: 0.5rem;
+
     text-align: center;
 
+    background: $grey;
+    border: 1px solid $orange;
+    border-radius: 5px;
+
+    overflow: hidden;
+
     &__title {
+      padding: 0.5rem;
+
       background: $dark-grey;
-      padding: 0.5em;
     }
   }
 
   &-item__text {
-    padding: 0.5em;
+    padding: 0.5rem;
   }
 }
 
 .product__card__add {
-  width: 22%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  width: 22%;
   height: 100%;
   min-height: 280px;
-  background: #3c4044;
+
+  text-align: center;
+
+  background: $grey;
   border: 1px solid orange;
-  border-radius: 0.3em;
+  border-radius: 5px;
   box-shadow: $black-opacity 0px 0px 19px 0px;
 
   &-price {
-    font-size: 2em;
+    font-size: 2rem;
   }
 
   .btn {
-    margin: 1.25em 0;
+    margin: 1.25rem 0;
     padding: 11px;
   }
 }
