@@ -1,14 +1,17 @@
+import { Header } from '../../components/Header/Header';
 import { create } from '../../utils/create';
 
 export class Page404 {
   parent: HTMLElement | null;
   component: HTMLElement | null;
   go: (event: Event) => void;
+  header: Header;
 
-  constructor(parent: HTMLElement | null,  go: (event: Event) => void) {
+  constructor(parent: HTMLElement | null, go: (event: Event) => void, header: Header) {
     this.parent = parent;
     this.component = null;
     this.go = go;
+    this.header = header;
   }
 
   unmount = () => {
@@ -16,6 +19,9 @@ export class Page404 {
   };
 
   mount = () => {
+    if (this.header.searchWrapper !== null) {
+      this.header.searchWrapper.style.visibility = 'hidden';
+    }
     const toPageMain = create({
       tagName: 'a',
       classNames: 'text__link-to-main',

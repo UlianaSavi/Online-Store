@@ -1,6 +1,7 @@
 import { create } from '../../utils/create';
 import { ICartProduct, IProduct } from '../../types';
 import { Controller } from '../../controllers/controller';
+import { Header } from '../Header/Header';
 
 interface IDetailsProps {
   item: IProduct;
@@ -10,12 +11,14 @@ export class Details {
   component: HTMLElement | null;
   go: (event: Event, func?: () => void) => void;
   controller: Controller;
+  header: Header;
 
-  constructor(parent: HTMLElement | null, go: (event: Event) => void, controller: Controller) {
+  constructor(parent: HTMLElement | null, go: (event: Event) => void, controller: Controller, header: Header) {
     this.parent = parent;
     this.component = null;
     this.go = go;
     this.controller = controller;
+    this.header = header;
   }
 
   update = (props: IDetailsProps) => {
@@ -114,10 +117,12 @@ export class Details {
     addToCartBtnDetails.addEventListener('click', () => {
       if (addToCartBtnDetails.textContent === 'Add to cart') {
         this.controller.pushNewCartProduct(cartProduct);
+        this.header.renderCartWrapper();
       } else {
         this.controller.getCurrentCartProducts().map((i, index) => {
           if (i.product.id === props.item.id) {
             this.controller.removeCartProduct(index);
+            this.header.renderCartWrapper();
           }
         });
       }
@@ -159,7 +164,7 @@ export class Details {
         create({
           tagName: 'span',
           classNames: 'product__card__add-price',
-          children: `${props?.item?.price} ₽`
+          children: `${props?.item?.price} $`
         }),
         addToCartBtnDetails,
         buyNowBtn

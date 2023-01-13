@@ -42,6 +42,9 @@ export class PageCart {
   };
 
   mount = (props?: IPageProps) => {
+    if (this.header.searchWrapper !== null) {
+      this.header.searchWrapper.style.visibility = 'hidden';
+    }
     this.createDefaultLayer();
 
     if (this.controller.getCurrentCartProducts().length !== 0) {

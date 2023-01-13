@@ -139,6 +139,9 @@ export class Controller {
         case 'MoreInStock':
           products = products.sort((a, b) => (b.stock > a.stock ? 1 : -1));
           break;
+        case 'LessInStock':
+          products = products.sort((a, b) => (a.stock > b.stock ? 1 : -1));
+          break;
 
         default:
           break;
