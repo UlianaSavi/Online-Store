@@ -1,0 +1,52 @@
+@import 'global';
+@import 'variables';
+
+.footer__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2em;
+  padding: 0.5em 0em;
+
+  font-size: 0.8em;
+
+  border-radius: 0.3em;
+}
+.footer__github-logo {
+  width: 4vw;
+  max-width: 42px;
+  min-width: 25px;
+}
+.footer__course-logo {
+  width: 10vw;
+  max-width: 100px;
+  min-width: 70px;
+}
+.footer__link {
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+
+  &:first-child {
+    margin-bottom: 0.5em;
+  }
+}
+
+.footer__signature,
+.footer__course {
+  display: flex;
+  flex-direction: column;
+
+  color: $text-color;
+}
+.footer__date {
+  padding-top: 0.8em;
+
+  font-size: 1em;
+
+  color: $text-color;
+}
+.footer__name {
+  padding-left: 0.5em;
+}

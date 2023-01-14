@@ -1,0 +1,452 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Pencil case «Vanpanchmen»",
+      "description": "Pencil case «Vanpanchmen»",
+      "price": 288,
+      "popularity": 4.69,
+      "stock": 94,
+      "animeName": "OnePunchMan",
+      "category": "Stationery",
+      "images": ["/assets/img/penalOnepunchMan1.jpg", "/assets/img/penalOnepunchMan2.jpg"]
+    },
+    {
+      "id": 2,
+      "name": "Pen «One Piece»",
+      "description": "Ballpoint pen from anime «One Piece»",
+      "price": 100,
+      "popularity": 4.44,
+      "stock": 34,
+      "animeName": "OnePiece",
+      "category": "Stationery",
+      "images": ["/assets/img/ruchkaonePiece1.jpg", "/assets/img/ruchkaonePiece2.jpg"]
+    },
+    {
+      "id": 3,
+      "name": "The Demon Hunter's Notebook",
+      "description": "An exclusive line based on the «Blade Dissecting Demons» — an anime that has become legendary!",
+      "price": 325,
+      "popularity": 4.86,
+      "stock": 36,
+      "animeName": "DemonBlade",
+      "category": "Stationery",
+      "images": ["/assets/img/bloknotKlinok.jpg", "/assets/img/bloknotKlinok2.jpg"]
+    },
+    {
+      "id": 4,
+      "name": "Garrow Poster",
+      "description": "Included posters for anime lovers «One-punch man»",
+      "price": 304,
+      "popularity": 4.3,
+      "stock": 123,
+      "animeName": "OnePunchMan",
+      "category": "Stationery",
+      "images": ["/assets/img/bookOnePunchMan1.jpg", "/assets/img/bookOnePunchMan2.jpg"]
+    },
+    {
+      "id": 5,
+      "name": "Sketchbook Tokyo Avengers",
+      "description": "Sketchbook for drawing from anime «Tokyo Avengers» with an image of a main hero",
+      "price": 150,
+      "popularity": 4.09,
+      "stock": 122,
+      "animeName": "TokyoAvengers",
+      "category": "Stationery",
+      "images": ["/assets/img/BookTokyoAvengers1.jfif", "/assets/img/BookTokyoAvengers2.jpg"]
+    },
+    {
+      "id": 6,
+      "name": "Tokyo Avengers Pencil Case",
+      "description": "Pencil Case from anime «Tokyo Avengers» with an image of a heroes",
+      "price": 990,
+      "popularity": 4.57,
+      "stock": 82,
+      "animeName": "TokyoAvengers",
+      "category": "Stationery",
+      "images": ["/assets/img/penalTokyoAvengers1.jpg", "/assets/img/penalTokyoAvengers2.jpg"]
+    },
+    {
+      "id": 7,
+      "name": "Pencil case «Bleach»",
+      "description": "Pencil case with the image of anime characters «Bleach»",
+      "price": 640,
+      "popularity": 4.25,
+      "stock": 50,
+      "animeName": "Bleach",
+      "category": "Stationery",
+      "images": ["/assets/img/bleachPenal1.jpg", "/assets/img/bleachPenal2"]
+    },
+    {
+      "id": 8,
+      "name": "Diary «Bleach»",
+      "description": "A diary for entries with an image from the anime «Bleach»",
+      "price": 990,
+      "popularity": 4.43,
+      "stock": 78,
+      "animeName": "Bleach",
+      "category": "Stationery",
+      "images": ["/assets/img/bookBleach1.jpg", "/assets/img/bookBleach2.jpg"]
+    },
+    {
+      "id": 9,
+      "name": "Stickers «Bleach»",
+      "description": "Waterproof stickers with an image from anime «Bleach». There are 50 pieces in the set!",
+      "price": 240,
+      "popularity": 4.54,
+      "stock": 97,
+      "animeName": "Bleach",
+      "category": "Stationery",
+      "images": ["/assets/img/nakleikiBleach1.jpg", "/assets/img/nakleikiBleach1.jpg"]
+    },
+    {
+      "id": 10,
+      "name": "A set of pens «Naruto»",
+      "description": "Pen set of 6 gel pens from the cult anime «Naruto»",
+      "price": 1099,
+      "popularity": 4.43,
+      "stock": 89,
+      "animeName": "Naruto",
+      "category": "Stationery",
+      "images": ["/assets/img/ruchkaNaruto1.jpg", "/assets/img/ruchkaNaruto1.jpg"]
+    },
+    {
+      "id": 11,
+      "name": "One-Punch Man. book 1",
+      "description": "The main character — Saitama — has gained such incredible strength that it is difficult for him to find a worthy opponent.",
+      "price": 775,
+      "popularity": 4.96,
+      "stock": 25,
+      "animeName": "OnePunchMan",
+      "category": "Manga",
+      "images": ["/assets/img/mangaOnePunchMan1.jpg", "/assets/img/mangaOnePunchMan2.jpg"]
+    },
+    {
+      "id": 12,
+      "name": "One-Punch Man. book 2",
+      "description": "Saitama was a hero for several years at his leisure, but he never became famous..",
+      "price": 780,
+      "popularity": 4.99,
+      "stock": 52,
+      "animeName": "OnePunchMan",
+      "category": "Manga",
+      "images": ["/assets/img/mangaOnePunchMan3.jpg", "/assets/img/mangaOnePunchMan4.jpg"]
+    },
+    {
+      "id": 13,
+      "name": "Manga One Piece. Big jackpot. book 4.",
+      "description": "Seeing Nami's bitter tears, Luffy decides to stand up for the girl and challenge Arlong himself.",
+      "price": 927,
+      "popularity": 4.59,
+      "stock": 61,
+      "animeName": "OnePiece",
+      "category": "Manga",
+      "images": ["/assets/img/mangaonePiece1.jpeg", "/assets/img/mangaOnePiece2.jpeg"]
+    },
+    {
+      "id": 14,
+      "name": "Manga One Piece. Big jackpot. book 1.",
+      "description": "Gold Roger – the pirate king, who achieved wealth, fame and power in his life, hid somewhere in the vastness of this world a mysterious treasure that everyone calls «One Piece»",
+      "price": 880,
+      "popularity": 4.21,
+      "stock": 52,
+      "animeName": "OnePiece",
+      "category": "Manga",
+      "images": ["/assets/img/mangaonePiece3.jpeg", "/assets/img/mangaOnePiece4.jpeg"]
+    },
+    {
+      "id": 15,
+      "name": "Cool teacher Onizuka. Book 1",
+      "description": "Eikichi Onizuka is a loafer and a former member of a biker gang.",
+      "price": 1497,
+      "popularity": 4.9,
+      "stock": 105,
+      "animeName": "GTO",
+      "category": "Manga",
+      "images": ["/assets/img/mangaGTO1.jpg", "/assets/img/mangaGTO2.jpg"]
+    },
+    {
+      "id": 16,
+      "name": "Manga Bleach set",
+      "description": "The set includes 10 volumes from the first to the tenth",
+      "price": 2299,
+      "popularity": 4.83,
+      "stock": 110,
+      "animeName": "Bleach",
+      "category": "Manga",
+      "images": ["/assets/img/mangaBleach1.jpg", "/assets/img/mangaBleach2.jpg"]
+    },
+    {
+      "id": 17,
+      "name": "Cool teacher Onizuka. Book 2",
+      "description": "Onizuka gets a new job: the headmistress of the Kisse school saw a kind heart behind his rude manners and hopes that he will be able to find an approach to the most difficult class — 3-4.",
+      "price": 1280,
+      "popularity": 4.52,
+      "stock": 78,
+      "animeName": "GTO",
+      "category": "Manga",
+      "images": ["/assets/img/mangaGTO3.jpg", "/assets/img/mangaGTO4.jpg"]
+    },
+    {
+      "id": 18,
+      "name": "A blade that cleaves demons. Manga",
+      "description": "The sensational Manga «Demon Slayer» (Demon Slayer: Kimetsu no Yaiba), or «Blade Cleaving Demons» is officially released in English for the first time!",
+      "price": 770,
+      "popularity": 4.56,
+      "stock": 88,
+      "animeName": "DemonBlade",
+      "category": "Manga",
+      "images": ["/assets/img/mangaKlinok1.jpg", "/assets/img/mangaKlinok2.jpg"]
+    },
+    {
+      "id": 19,
+      "name": "Manga Tokyo avengers. Volume 01",
+      "description": "26-year-old loser Takamichi finds out that his ex-girlfriend Hinata and her younger brother were killed by the Tokyo Manjikai criminal gang",
+      "price": 46,
+      "popularity": 4.42,
+      "stock": 54,
+      "animeName": "TokyoAvengers",
+      "category": "Manga",
+      "images": ["/assets/img/mangaTokyoAvengers1.jpg", "/assets/img/mangaTokyoAvengers2.jpg"]
+    },
+    {
+      "id": 20,
+      "name": "Tokyo avengers. Volume 6.",
+      "description": "After meeting the president of the «Black Dragon» Taiju Shibu, Takemichi realizes that it was his death that led TGM to a criminal future.",
+      "price": 70,
+      "popularity": 4.06,
+      "stock": 140,
+      "animeName": "TokyoAvengers",
+      "category": "Manga",
+      "images": ["/assets/img/mangaTokyoAvengers3.jpg", "/assets/img/mangaTokyoAvengers4.jpg"]
+    },
+    {
+      "id": 21,
+      "name": "Figure One-punch Man",
+      "description": "Figure from anime One-punch Man",
+      "price": 140,
+      "popularity": 4.44,
+      "stock": 133,
+      "animeName": "OnePunchMan",
+      "category": "Figurines",
+      "images": ["/assets/img/figurinesOnePunchMan1.jpg", "/assets/img/figurinesOnePunchMan2.jpg"]
+    },
+    {
+      "id": 22,
+      "name": "Keychains with figurines of characters from anime One-punch Man",
+      "description": "Key chains with figures of different characters from the cult anime One-punch Man",
+      "price": 170,
+      "popularity": 4.57,
+      "stock": 146,
+      "animeName": "OnePunchMan",
+      "category": "Figurines",
+      "images": ["/assets/img/figurinesOnePunchMan3.jpg", "/assets/img/figurinesOnePunchMan4.jpg"]
+    },
+    {
+      "id": 23,
+      "name": "Figure from anime «Ван пис»",
+      "description": "Specifications of Orange Essence Food Flavour For Cakes and Baking Food Item",
+      "price": 14,
+      "popularity": 4.85,
+      "stock": 26,
+      "animeName": "OnePiece",
+      "category": "Figurines",
+      "images": ["/assets/img/figurinesOnePiece1.jpg", "/assets/img/figurinesOnePiece2.jpg"]
+    },
+    {
+      "id": 24,
+      "name": "Figure from anime «A blade that cleaves demons»",
+      "description": "Figurines from anime «A blade that cleaves demons»",
+      "price": 282,
+      "popularity": 4.94,
+      "stock": 113,
+      "animeName": "DemonBlade",
+      "category": "Figurines",
+      "images": ["/assets/img/figurinesDemonBlade1.jpg", "/assets/img/figurinesDemonBlade2.jpg"]
+    },
+    {
+      "id": 25,
+      "name": "Figure from anime «A blade that cleaves demons»",
+      "description": "Figure from anime «A blade that cleaves demons»",
+      "price": 282,
+      "popularity": 4.87,
+      "stock": 47,
+      "animeName": "DemonBlade",
+      "category": "Figurines",
+      "images": ["/assets/img/figurinesDemonBlade3.jpg", "/assets/img/figurinesDemonBlade4.jpg"]
+    },
+    {
+      "id": 26,
+      "name": "Figure from anime «Tokyo avengers»",
+      "description": "Figure from anime «Tokyo avengers»",
+      "price": 90,
+      "popularity": 4.08,
+      "stock": 131,
+      "animeName": "TokyoAvengers",
+      "category": "Figurines",
+      "images": [
+        "/assets/img/figurinesTokyoAvengers1.jpg",
+        "/assets/img/figurinesTokyoAvengers2.jpg"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Figure from anime «Tokyo avengers»",
+      "description": "Figure from anime «Tokyo avengers»",
+      "price": 89,
+      "popularity": 4.41,
+      "stock": 17,
+      "animeName": "TokyoAvengers",
+      "category": "Figurines",
+      "images": [
+        "/assets/img/figurinesTokyoAvengers3.jpg",
+        "/assets/img/figurinesTokyoAvengers4.jpg"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Figure from anime «Bleach»",
+      "description": "Figure from anime «Bleach»",
+      "price": 120,
+      "popularity": 4.82,
+      "stock": 54,
+      "animeName": "Bleach",
+      "category": "Figurines",
+      "images": ["/assets/img/figurinesBleanch1.jpg", "/assets/img/figurinesBleanch2.jpg"]
+    },
+    {
+      "id": 29,
+      "name": "Figure from anime «Bleach»",
+      "description": "Figure from anime «Bleach»",
+      "price": 160,
+      "popularity": 4.44,
+      "stock": 7,
+      "animeName": "Bleach",
+      "category": "Figurines",
+      "images": ["/assets/img/figurinesBleanch3.jpg", "/assets/img/figurinesBleanch4.jpg"]
+    },
+    {
+      "id": 30,
+      "name": "Key Holder",
+      "description": "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality",
+      "price": 130,
+      "popularity": 4.92,
+      "stock": 54,
+      "animeName": "Naruto",
+      "category": "Figurines",
+      "images": ["/assets/img/figurinesNaruto1.jpg", "/assets/img/figurinesNaruto2.jpg"]
+    },
+    {
+      "id": 31,
+      "name": "Saitama Cosplay Costume",
+      "description": "Saitama is the main character of the One Punch Man series, nicknamed One-punch Map. He is the strongest character in the series. ",
+      "price": 2900,
+      "popularity": 4.96,
+      "stock": 140,
+      "animeName": "OnePunchMan",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayOnePunchMan1.jpg", "/assets/img/cosplayOnePunchMan2.jpg"]
+    },
+    {
+      "id": 32,
+      "name": "Tatsumaki Cosplay Costume",
+      "description": "Тацумаки, также известная под свои геройским именем Торнадо Ужаса — является профессиональным героем 2 ранга S-класса Ассоциации Героев.",
+      "price": 3500,
+      "popularity": 4.74,
+      "stock": 30,
+      "animeName": "OnePunchMan",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayOnePunchMan3.jpg", "/assets/img/cosplayOnePunchMan4.jpg"]
+    },
+    {
+      "id": 33,
+      "name": "Michiru Tokyo Cosplay Costume",
+      "description": "Michiru Tokyo - she's a demon hunter, as well as a Pillar of Mist.",
+      "price": 3700,
+      "popularity": 3.31,
+      "stock": 106,
+      "animeName": "DemonBlade",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayDemonBlade1.jpg", "/assets/img/cosplayDemonBlade2.jpg"]
+    },
+    {
+      "id": 34,
+      "name": "The apple of Agatsuma Cosplay Costume",
+      "description": "The apple of Agatsuma — he is a demon slayer and one of the main characters traveling with Tanjiro Kamado.",
+      "price": 2900,
+      "popularity": 4.01,
+      "stock": 136,
+      "animeName": "DemonBlade",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayDemonBlade3.jpg", "/assets/img/cosplayDemonBlade4.jpg"]
+    },
+    {
+      "id": 35,
+      "name": "Manjiro Sano Cosplay Costume",
+      "description": "Manjiro Sano  — founder and head of the Tokyo Swastika gang. He is the deuteragonist of the Tokyo avengers manga, as well as its anime adaptations.",
+      "price": 4180,
+      "popularity": 4.06,
+      "stock": 68,
+      "animeName": "TokyoAvengers",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayTokyoAvengers1.jpg", "/assets/img/cosplayTokyoAvengers2.jpg"]
+    },
+    {
+      "id": 36,
+      "name": "Wigs for cosplay",
+      "description": "Wigs for cosplay characters from the manga and anime adaptations of Tokyo avengers",
+      "price": 2940,
+      "popularity": 3.86,
+      "stock": 39,
+      "animeName": "TokyoAvengers",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayTokyoAvengers3.jpg", "/assets/img/cosplayTokyoAvengers4.jpg"]
+    },
+    {
+      "id": 37,
+      "name": "Ichigo Kurosaki Cosplay Costume",
+      "description": "Ichigo Kurosaki — a human, gemisht Quincy with the powers of shinigami and empty. The main character of the anime Bleach",
+      "price": 2490,
+      "popularity": 4.52,
+      "stock": 12,
+      "animeName": "Bleach",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayBleach1.jpg", "/assets/img/cosplayBleach2.jpg"]
+    },
+    {
+      "id": 38,
+      "name": "Rukia Kuchiki Cosplay Costume",
+      "description": "Rukia Kuchiki — captain of the thirteenth squad of Gotei 13 and wife of Renji Abarai from anime Bleach",
+      "price": 2340,
+      "popularity": 3.52,
+      "stock": 14,
+      "animeName": "Bleach",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayBleach3.jpg", "/assets/img/cosplayBleach4.jpg"]
+    },
+    {
+      "id": 39,
+      "name": "Naruto Uzumaki Cosplay Costume",
+      "description": "Naruto Uzumaki — shinobi of the Hidden Leaf Village. The main character of the Naruto universe.",
+      "price": 3750,
+      "popularity": 4.8,
+      "stock": 20,
+      "animeName": "Naruto",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayNaruto1.jpg", "/assets/img/cosplayNaruto2.jpg"]
+    },
+    {
+      "id": 40,
+      "name": "Kakashi Hatake Cosplay Costume",
+      "description": "Kakashi Hatake — Shinobi of the Hidden Leaf from the Hatake clan.",
+      "price": 2990,
+      "popularity": 3.55,
+      "stock": 21,
+      "animeName": "Naruto",
+      "category": "Cosplay",
+      "images": ["/assets/img/cosplayNaruto3.jpg", "/assets/img/cosplayNaruto4.jpg"]
+    }
+  ],
+  "total": 40,
+  "limit": 40
+}
